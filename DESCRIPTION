@@ -1,15 +1,34 @@
 Package: epigraphdb
-Title: What the Package Does (One Line, Title Case)
+Title: EpiGraphDB
 Version: 0.0.0.9000
 Authors@R:
     person(family = "EpiGraphDB team",
            role = c("aut", "cre"),
-           email = "")
+           email = "EpiGraphDB@epigraphdb.org")
 Description: What the package does (one paragraph).
 License: GPL-3
 Suggests:
-    testthat
+    testthat,
+    roxygen2,
+    knitr,
+    rmarkdown,
+    spelling,
+    devtools,
+    usethis,
+    pkgdown,
+    styler,
+    lintr,
+    covr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
+Imports:
+    magrittr,
+    tibble,
+    httr,
+    glue,
+    purrr,
+    dplyr
+VignetteBuilder: knitr
+Language: en-GB

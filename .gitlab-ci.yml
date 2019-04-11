@@ -1,0 +1,58 @@
+image: rocker/tidyverse
+
+before_script:
+  - apt install -y qpdf
+
+variables:
+  GIT_SSL_NO_VERIFY: "1"
+  R_LIBS_USER: "ci/lib"
+  CHECK_DIR: "ci/logs"
+
+stages:
+  - build
+  - test
+  - deploy
+
+building:
+  stage: build
+  tags:
+    - ubuntu
+    - jojo
+  script:
+    - mkdir -p $R_LIBS_USER $BUILD_LOGS_DIR
+    - Rscript -e 'devtools::install(dependencies = TRUE, lib = Sys.getenv("R_LIBS_USER"))'
+    - Rscript -e 'devtools::check(check_dir = Sys.getenv("CHECK_DIR"))'
+  only:
+    - merge_requests
+  cache:
+    paths:
+      - $R_LIBS_USER
+
+testing:
+  stage: test
+  tags:
+    - ubuntu
+    - jojo
+  dependencies:
+    - building
+  when: on_success
+  only:
+    - merge_requests
+  script:
+    - Rscript -e 'devtools::test()'
+
+pages:
+  stage: deploy
+  tags:
+    - ubuntu
+    - jojo
+  dependencies:
+    - testing
+  script:
+    - Rscript -e 'devtools::document()'
+    - Rscript -e 'pkgdown::build_site(override = list(destination = "public"))'
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

@@ -1,6 +1,13 @@
-^epigraphdbr\.Rproj$
+^epigraphdb\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^README\.Rmd$
 ^cran-comments\.md$
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.gitlab-ci\.yml$
+^TODO.org$
+^Makefile$
+^ci$
