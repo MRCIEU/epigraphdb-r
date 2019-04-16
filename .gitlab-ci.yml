@@ -24,6 +24,7 @@ building:
     - Rscript -e 'devtools::check(check_dir = Sys.getenv("CHECK_DIR"))'
   only:
     - merge_requests
+    - master
   cache:
     paths:
       - $R_LIBS_USER
@@ -38,6 +39,7 @@ testing:
   when: on_success
   only:
     - merge_requests
+    - master
   script:
     - Rscript -e 'devtools::test()'
 
@@ -47,7 +49,7 @@ pages:
     - ubuntu
     - jojo
   dependencies:
-    - testing
+    - building
   script:
     - Rscript -e 'devtools::document()'
     - Rscript -e 'pkgdown::build_site(override = list(destination = "public"))'
