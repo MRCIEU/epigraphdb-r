@@ -39,7 +39,6 @@ testing:
   when: on_success
   only:
     - merge_requests
-    - master
   script:
     - Rscript -e 'devtools::test()'
 
