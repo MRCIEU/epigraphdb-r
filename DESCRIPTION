@@ -29,6 +29,7 @@ Imports:
     httr,
     glue,
     purrr,
-    dplyr
+    dplyr,
+    jsonlite
 VignetteBuilder: knitr
 Language: en-GB
