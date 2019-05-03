@@ -36,7 +36,7 @@ mr <- function(exposure = NULL, outcome = NULL,
   if (mode == "table") {
     return(mr_table(response))
   }
-  response
+  response %>% httr::content(as = "parsed")
 }
 
 #' Regulate parameter input
@@ -63,13 +63,11 @@ mr_requests <- function(exposure, outcome) {
   # nolint start (unused variable)
   url <- getOption("epigraphdb.api.url")
   # nolint end
-  r <- httr::GET(glue::glue("{url}/mr"),
-    query = list(
-      exposure = exposure,
-      outcome = outcome
-    )
+  query <- list(
+    exposure = exposure,
+    outcome = outcome
   )
-  r %>% httr::content()
+  httr::GET(glue::glue("{url}/mr"), query = query)
 }
 
 #' Reformat reponse from mr into a table
@@ -79,8 +77,9 @@ mr_requests <- function(exposure, outcome) {
 #' @return
 #' @keywords internal
 mr_table <- function(response) {
-  response$results %>%
-    purrr::transpose() %>%
-    tibble::as_tibble() %>%
-    dplyr::mutate_all(unlist)
+  response %>%
+    httr::content(as = "text") %>%
+    jsonlite::fromJSON(flatten = TRUE) %>%
+    purrr::pluck("results") %>%
+    tibble::as_tibble()
 }
