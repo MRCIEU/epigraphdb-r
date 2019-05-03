@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • epigraphdb</title>
+<title>Ontology association between EFO term and Gwas — ontology • epigraphdb</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Ontology association between EFO term and Gwas — ontology" />
+
+<meta property="og:description" content="Ontology association between EFO term and Gwas" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -50,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -107,60 +109,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Ontology association between EFO term and Gwas</h1>
+    
+    <div class="hidden name"><code>ontology.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Ontology association between EFO term and Gwas</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="gwas_cor.html">gwas_cor()</a></code> </p>
-        </td>
-        <td><p>GWAS correlations between traits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mr.html">mr()</a></code> </p>
-        </td>
-        <td><p>Return information related to Mendelian Randomisation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="obs_cor.html">obs_cor()</a></code> </p>
-        </td>
-        <td><p>Observational correlations between traits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ontology.html">ontology()</a></code> </p>
-        </td>
-        <td><p>Ontology association between EFO term and Gwas</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>ontology</span>(<span class='no'>efo_term</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>efo_term</th>
+      <td><p>EFO term, e.g. "systolic blood pressure"</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
+<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>ontology</span>(<span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='st'>"systolic blood pressure"</span>)</div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span><span>
+#&gt;   trait                                      type     
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Systolic blood pressure, automated reading EFO_FUZZY
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Systolic blood pressure, manual reading    EFO_FUZZY
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Systolic blood pressure automated reading  EFO_FUZZY
+#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Systolic blood pressure                    EFO_EXACT</div></span></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
