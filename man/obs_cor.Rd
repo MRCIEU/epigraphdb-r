@@ -21,5 +21,6 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 Observational correlations between traits
 }
 \examples{
-obs_cor(trait = "body mass index")
+obs_cor(trait = "body mass index") \%>\%
+  dplyr::glimpse()
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/gwas_cor.R
 \name{gwas_cor_table}
 \alias{gwas_cor_table}
-\title{Title}
+\title{Table format /gwas_cor}
 \usage{
 gwas_cor_table(response)
 }
@@ -10,6 +10,6 @@ gwas_cor_table(response)
 \item{response}{response from \code{gwas_cor_requests}}
 }
 \description{
-Title
+Table format /gwas_cor
 }
 \keyword{internal}

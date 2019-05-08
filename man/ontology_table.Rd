@@ -2,7 +2,7 @@
 % Please edit documentation in R/ontology.R
 \name{ontology_table}
 \alias{ontology_table}
-\title{Title}
+\title{Table format /ontology}
 \usage{
 ontology_table(response)
 }
@@ -10,6 +10,6 @@ ontology_table(response)
 \item{response}{response from \code{ontology_requests}}
 }
 \description{
-Title
+Table format /ontology
 }
 \keyword{internal}

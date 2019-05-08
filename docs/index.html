@@ -86,10 +86,46 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
+<p><code>devtools</code> is required to install from IEU gitlab</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_git</a></span>(</a>
+<a class="sourceLine" id="cb1-3" title="3">  <span class="st">"git@ieugit-scmv-d0.epi.bris.ac.uk:epigraphdb/epigraphdb-r.git"</span>,</a>
+<a class="sourceLine" id="cb1-4" title="4">  <span class="dt">git =</span> <span class="st">"external"</span></a>
+<a class="sourceLine" id="cb1-5" title="5">)</a></code></pre></div>
 </div>
 <div id="example" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"epigraphdb"</span>)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt;   EpiGraphDB v0.2</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt;   Please cite: PLACEHOLDER.</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt;   To turn off this message, use</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="kw"><a href="reference/mr.html">mr</a></span>(<span class="dt">outcome =</span> <span class="st">"Body mass index"</span>)</a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; # A tibble: 19 x 5</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;    exposure               outcome                estimate      se         p</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;    &lt;chr&gt;                  &lt;chr&gt;                     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  1 Waist circumference    Body mass index          1.01   4.04e-2 2.11e-137</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  2 Overweight             Body mass index          0.551  2.85e-2 4.20e- 83</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  3 Hip circumference      Body mass index          0.874  4.76e-2 1.82e- 75</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  4 Obesity class 2        Body mass index          0.256  1.58e-2 4.80e- 59</span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  5 Hip circumference      Extreme body mass ind…   3.5    2.88e-1 6.73e- 34</span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt;  6 Obesity class 2        Extreme body mass ind…   1.12   1.07e-1 1.22e- 25</span></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt;  7 Body mass index        Extreme body mass ind…   3.90   2.73e-1 5.71e- 23</span></a>
+<a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt;  8 HDL cholesterol        Body mass index         -0.0347 2.98e-3 4.14e- 19</span></a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;  9 Waist circumference    Extreme body mass ind…   4.31   3.26e-1 6.17e- 17</span></a>
+<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt; 10 Obesity class 1        Body mass index          0.358  1.11e-2 5.55e- 16</span></a>
+<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; 11 Childhood obesity      Body mass index          0.158  6.35e-4 4.45e- 15</span></a>
+<a class="sourceLine" id="cb2-23" title="23"><span class="co">#&gt; 12 Obesity class 1        Extreme body mass ind…   1.46   8.08e-2 4.83e- 12</span></a>
+<a class="sourceLine" id="cb2-24" title="24"><span class="co">#&gt; 13 Overweight             Extreme body mass ind…   2.22   1.03e-1 1.49e- 11</span></a>
+<a class="sourceLine" id="cb2-25" title="25"><span class="co">#&gt; 14 Extreme body mass ind… Body mass index          0.212  1.88e-3 3.29e- 11</span></a>
+<a class="sourceLine" id="cb2-26" title="26"><span class="co">#&gt; 15 Body fat               Body mass index          0.402  6.92e-2 6.08e-  9</span></a>
+<a class="sourceLine" id="cb2-27" title="27"><span class="co">#&gt; 16 Height                 Extreme body mass ind…  -0.288  4.87e-2 7.57e-  9</span></a>
+<a class="sourceLine" id="cb2-28" title="28"><span class="co">#&gt; 17 Total cholesterol      Body mass index         -0.0479 8.72e-3 4.47e-  7</span></a>
+<a class="sourceLine" id="cb2-29" title="29"><span class="co">#&gt; 18 Years of schooling     Extreme body mass ind…  -0.931  1.67e-1 5.46e-  7</span></a>
+<a class="sourceLine" id="cb2-30" title="30"><span class="co">#&gt; 19 Years of schooling     Body mass index         -0.204  4.32e-2 2.38e-  6</span></a></code></pre></div>
 </div>
   </div>
 

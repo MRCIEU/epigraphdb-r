@@ -2,7 +2,7 @@
 % Please edit documentation in R/obs_cor.R
 \name{obs_cor_table}
 \alias{obs_cor_table}
-\title{Title}
+\title{Table format /obs_cor}
 \usage{
 obs_cor_table(response)
 }
@@ -10,6 +10,6 @@ obs_cor_table(response)
 \item{response}{response from \code{obs_cor_requests}}
 }
 \description{
-Title
+Table format /obs_cor
 }
 \keyword{internal}
