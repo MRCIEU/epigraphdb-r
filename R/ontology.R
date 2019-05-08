@@ -33,7 +33,7 @@ ontology_requests <- function(efo_term) {
   httr::GET(glue::glue("{url}/ontology"), query = query)
 }
 
-#' Title
+#' Table format /ontology
 #'
 #' @param response response from `ontology_requests`
 #'

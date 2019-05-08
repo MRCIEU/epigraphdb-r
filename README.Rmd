@@ -18,4 +18,19 @@ knitr::opts_chunk$set(
 
 # Installation
 
+`devtools` is required to install from IEU gitlab
+
+```{r install, eval=FALSE}
+# install.packages("devtools")
+devtools::install_git(
+  "git@ieugit-scmv-d0.epi.bris.ac.uk:epigraphdb/epigraphdb-r.git",
+  git = "external"
+)
+```
+
 # Example
+
+```{r example}
+library("epigraphdb")
+mr(outcome = "Body mass index")
+```

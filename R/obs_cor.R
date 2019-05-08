@@ -8,7 +8,8 @@
 #' @export
 #'
 #' @examples
-#' obs_cor(trait = "body mass index")
+#' obs_cor(trait = "body mass index") %>%
+#'   dplyr::glimpse()
 obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- obs_cor_requests(trait = trait, pval_threshold = pval_threshold)
@@ -35,7 +36,7 @@ obs_cor_requests <- function(trait, pval_threshold) {
   httr::GET(glue::glue("{url}/obs_cor"), query = query)
 }
 
-#' Title
+#' Table format /obs_cor
 #'
 #' @param response response from `obs_cor_requests`
 #'

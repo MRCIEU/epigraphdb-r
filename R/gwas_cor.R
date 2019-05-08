@@ -8,7 +8,8 @@
 #' @export
 #'
 #' @examples
-#' gwas_cor(trait = "body mass index")
+#' gwas_cor(trait = "body mass index") %>%
+#'   dplyr::glimpse()
 gwas_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- gwas_cor_requests(trait = trait, cor_coef_threshold = cor_coef_threshold)
@@ -35,7 +36,7 @@ gwas_cor_requests <- function(trait, cor_coef_threshold) {
   httr::GET(glue::glue("{url}/gwas_cor"), query = query)
 }
 
-#' Title
+#' Table format /gwas_cor
 #'
 #' @param response response from `gwas_cor_requests`
 #'
