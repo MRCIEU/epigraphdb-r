@@ -54,7 +54,7 @@ pqtl <- function(query = NULL,
                             pvalue = pvalue,
                             searchflag = searchflag)
   if (mode == "table" && length(response) > 0) {
-    return(mr_table(response))
+    return(pqtl_table(response))
   }
   response
 }
@@ -96,7 +96,7 @@ pqtl_pleio <- function(rsid = NULL,
 
   if ( mode == "table" && length(response) > 0 &&
        prflag == "proteins" ) {
-    return(mr_table(response))
+    return(pqtl_table(response))
   }
   response
 }
@@ -138,7 +138,7 @@ pqtl_list <- function(flag = "exposures",
   }
 
   if ( mode == "table" && length(response) > 0 ) {
-    return(mr_table(response))
+    return(pqtl_table(response))
   }
   response
 }
@@ -271,7 +271,7 @@ pqtl_list_requests <- function(flag) {
 #'
 #' @return
 #' @keywords internal
-mr_table <- function(response) {
+pqtl_table <- function(response) {
   response %>%
     purrr::transpose() %>%
     tibble::as_tibble() %>%
