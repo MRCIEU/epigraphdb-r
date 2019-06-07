@@ -33,3 +33,28 @@ test_that("gwas_cor mode = \"raw\"", {
   )
   expect_equal(length(response), 2L)
 })
+
+test_that("gwas_cor cor_coef_threshold", {
+  trait <- "Body mass index"
+  expect_error(
+    response <- gwas_cor(
+      trait = trait,
+      cor_coef_threshold = 0.8
+    ),
+    NA
+  )
+  expect_error(
+    response <- gwas_cor(
+      trait = trait,
+      cor_coef_threshold = 0.9
+    ),
+    NA
+  )
+  expect_error(
+    response <- gwas_cor(
+      trait = trait,
+      cor_coef_threshold = 0.2
+    ),
+    NA
+  )
+})

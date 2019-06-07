@@ -8,7 +8,11 @@
 #' @export
 #'
 #' @examples
-#' obs_cor(trait = "body mass index") %>%
+#' obs_cor(trait = "Body mass index (BMI)") %>%
+#'   dplyr::glimpse()
+#'
+#' # Use a different threshold
+#' obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) %>%
 #'   dplyr::glimpse()
 obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
   mode <- match.arg(mode)

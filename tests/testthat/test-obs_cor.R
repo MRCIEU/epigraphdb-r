@@ -33,3 +33,28 @@ test_that("obs_cor mode = \"raw\"", {
   )
   expect_equal(length(response), 2L)
 })
+
+test_that("obs_cor pval_threshold", {
+  trait <- "Body mass index"
+  expect_error(
+    response <- obs_cor(
+      trait = trait,
+      pval_threshold = 1e-5
+    ),
+    NA
+  )
+  expect_error(
+    response <- obs_cor(
+      trait = trait,
+      pval_threshold = 1e-8
+    ),
+    NA
+  )
+  expect_error(
+    response <- obs_cor(
+      trait = trait,
+      pval_threshold = 1e-2
+    ),
+    NA
+  )
+})
