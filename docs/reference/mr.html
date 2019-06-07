@@ -122,7 +122,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,6 +143,10 @@ related to a specific <code>exposure</code>.
 <strong>NOTE</strong>: <code>exposure</code> and <code>outcome</code> cannot be both <code>NULL</code>.</p></td>
     </tr>
     <tr>
+      <th>pval_threshold</th>
+      <td><p>P-value threshold for the MR evidence.</p></td>
+    </tr>
+    <tr>
       <th>mode</th>
       <td><p>If <code>mode = "table"</code>, returns a data frame
 (a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
@@ -154,30 +159,38 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame</span>
-<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 5</span><span>
-#&gt;   exposure                outcome                estimate     se             p
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Body mass index         Coronary heart disease   0.450  0.065</span><span style='text-decoration: underline;'>1</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>001</span><span style='text-decoration: underline;'>17</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Extreme body mass index Coronary heart disease   0.071</span><span style='text-decoration: underline;'>5</span><span> 0.024</span><span style='text-decoration: underline;'>3</span><span> 0.003</span><span style='text-decoration: underline;'>25</span><span>      </div><div class='input'>
+<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1 x 5</span><span>
+#&gt;   exposure        outcome                estimate     se             p
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Body mass index Coronary heart disease    0.450 0.065</span><span style='text-decoration: underline;'>1</span><span> 0.000</span><span style='text-decoration: underline;'>000</span><span>001</span><span style='text-decoration: underline;'>17</span><span></div><div class='input'>
 <span class='co'># Returns raw response</span>
 <span class='fu'>mr</span>(
   <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>,
   <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"raw"</span>
 ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>()</div><div class='output co'>#&gt; List of 2
-#&gt;  $ query  : chr "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait =~ \"(?i).*Body mass index.*\" AND t2.trait =~ \"(?i).*Coronar"| __truncated__
-#&gt;  $ results:List of 2
+#&gt;  $ query  : chr "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = \"Body mass index\" AND t2.trait = \"Coronary heart disease\"| __truncated__
+#&gt;  $ results:List of 1
 #&gt;   ..$ :List of 5
 #&gt;   .. ..$ exposure: chr "Body mass index"
 #&gt;   .. ..$ outcome : chr "Coronary heart disease"
 #&gt;   .. ..$ estimate: num 0.45
 #&gt;   .. ..$ se      : num 0.0651
-#&gt;   .. ..$ p       : num 1.17e-09
-#&gt;   ..$ :List of 5
-#&gt;   .. ..$ exposure: chr "Extreme body mass index"
-#&gt;   .. ..$ outcome : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate: num 0.0715
-#&gt;   .. ..$ se      : num 0.0243
-#&gt;   .. ..$ p       : num 0.00325</div></span></pre>
+#&gt;   .. ..$ p       : num 1.17e-09</div><div class='input'>
+<span class='co'># Use a different threshold</span>
+<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-8</span>)</div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 21 x 5</span><span>
+#&gt;    exposure        outcome                 estimate     se        p
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Body mass index Body fat                   0.631 0.033</span><span style='text-decoration: underline;'>9</span><span> 1.53</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-77</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Body mass index Waist circumference        0.871 0.016</span><span style='text-decoration: underline;'>6</span><span> 1.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-62</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Body mass index Obesity class 1            2.53  0.048</span><span style='text-decoration: underline;'>5</span><span> 1.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-62</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Body mass index Hip circumference          0.856 0.018</span><span style='text-decoration: underline;'>6</span><span> 2.24</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-58</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Body mass index Waist-to-hip ratio         0.474 0.012</span><span style='text-decoration: underline;'>1</span><span> 5.11</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-53</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Body mass index Obesity class 2            3.36  0.101  5.11</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-48</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Body mass index Obesity class 3            3.97  0.277  1.38</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-46</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Body mass index Childhood obesity          2.48  0.087</span><span style='text-decoration: underline;'>8</span><span> 2.44</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-41</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Body mass index Fasting insulin            0.181 0.011</span><span style='text-decoration: underline;'>1</span><span> 8.10</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-27</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Body mass index Extreme body mass index    3.90  0.273  5.71</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-23</span><span>
+#&gt; </span><span style='color: #949494;'># … with 11 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

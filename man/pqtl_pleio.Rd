@@ -25,11 +25,9 @@ Return information related to the pleiotropy of SNPs
 }
 \examples{
 
-#Returns a data frame of associated proteins
-pqtl_pleio(rsid="rs1260326")
+# Returns a data frame of associated proteins
+pqtl_pleio(rsid = "rs1260326")
 
-#Returns a number of associated proteins
-pqtl_pleio(rsid="rs1260326", prflag="count")
-
-
+# Returns a number of associated proteins
+pqtl_pleio(rsid = "rs1260326", prflag = "count")
 }

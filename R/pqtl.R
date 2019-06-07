@@ -29,30 +29,30 @@
 #'
 #' @examples
 #' # Returns a data frame of MR results, while searching for proteins
-#' pqtl(query="ADAM19", searchflag="proteins")
-#'
+#' pqtl(query = "ADAM19", searchflag = "proteins")
+#' 
 #' # Returns a data frame with SNP information, while searching for traits
-#' pqtl(query="Inflammatory bowel disease", rtype="inst", searchflag="traits")
-#'
+#' pqtl(query = "Inflammatory bowel disease", rtype = "inst", searchflag = "traits")
+#' 
 #' # Change a pvalue threshold (the default is 0.05)
-#' pqtl(query="Inflammatory bowel disease", rtype="inst", pvalue=1.0, searchflag="traits")
-#'
+#' pqtl(query = "Inflammatory bowel disease", rtype = "inst", pvalue = 1.0, searchflag = "traits")
+#' 
 #' # Returns raw response if mode="raw"
 #' pqtl(
-#'   query="ADAM19", searchflag="proteins",
+#'   query = "ADAM19", searchflag = "proteins",
 #'   mode = "raw"
 #' ) %>% str()
-#'
-#'
 pqtl <- function(query = NULL,
-                 rtype="mrres", pvalue=0.05, searchflag=NULL,
-                 mode=c("table", "raw")) {
+                 rtype = "mrres", pvalue = 0.05, searchflag = NULL,
+                 mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  pqtl_regulator(query ,rtype, pvalue, searchflag)
-  response <- pqtl_requests(query = query,
-                            rtype = rtype,
-                            pvalue = pvalue,
-                            searchflag = searchflag)
+  pqtl_regulator(query, rtype, pvalue, searchflag)
+  response <- pqtl_requests(
+    query = query,
+    rtype = rtype,
+    pvalue = pvalue,
+    searchflag = searchflag
+  )
   if (mode == "table" && length(response) > 0) {
     return(pqtl_table(response))
   }
@@ -78,24 +78,24 @@ pqtl <- function(query = NULL,
 #' @export
 #'
 #' @examples
-#'
-#' #Returns a data frame of associated proteins
-#' pqtl_pleio(rsid="rs1260326")
-#'
-#' #Returns a number of associated proteins
-#' pqtl_pleio(rsid="rs1260326", prflag="count")
-#'
-#'
+#' 
+#' # Returns a data frame of associated proteins
+#' pqtl_pleio(rsid = "rs1260326")
+#' 
+#' # Returns a number of associated proteins
+#' pqtl_pleio(rsid = "rs1260326", prflag = "count")
 pqtl_pleio <- function(rsid = NULL,
                        prflag = "proteins",
                        mode = c("table", "raw")) {
   mode <- match.arg(mode)
   pqtl_pleio_regulator(rsid, prflag)
-  response <- pqtl_pleio_requests(rsid = rsid,
-                                  prflag = prflag)
+  response <- pqtl_pleio_requests(
+    rsid = rsid,
+    prflag = prflag
+  )
 
-  if ( mode == "table" && length(response) > 0 &&
-       prflag == "proteins" ) {
+  if (mode == "table" && length(response) > 0 &&
+    prflag == "proteins") {
     return(pqtl_table(response))
   }
   response
@@ -119,25 +119,23 @@ pqtl_pleio <- function(rsid = NULL,
 #' @export
 #'
 #' @examples
-#'
-#' #Returns a list of available proteins (exposures)
+#' 
+#' # Returns a list of available proteins (exposures)
 #' pqtl_list()
-#'
-#' #Returns a list of available traits (outcomes)
-#' pqtl_list(flag="outcomes")
-#'
-#'
+#' 
+#' # Returns a list of available traits (outcomes)
+#' pqtl_list(flag = "outcomes")
 pqtl_list <- function(flag = "exposures",
-                      mode = c("table", "raw")){
+                      mode = c("table", "raw")) {
   mode <- match.arg(mode)
 
-  if ( is.null(flag) || !(flag %in% c("exposures", "outcomes")) ) {
+  if (is.null(flag) || !(flag %in% c("exposures", "outcomes"))) {
     stop("flag has invalid value, should be 'exposures' or 'outcomes'.")
   } else {
     response <- pqtl_list_requests(flag = flag)
   }
 
-  if ( mode == "table" && length(response) > 0 ) {
+  if (mode == "table" && length(response) > 0) {
     return(pqtl_table(response))
   }
   response
@@ -154,24 +152,24 @@ pqtl_list <- function(flag = "exposures",
 #' @return
 #' @keywords internal
 pqtl_regulator <- function(query, rtype, pvalue, searchflag) {
-  if ( is.null(query) || is.null(searchflag) ) {
+  if (is.null(query) || is.null(searchflag)) {
     stop("query and searchflag cannot be NULL, try query='ADAM19' and searchflag='proteins'
          or query='Inflammatory bowel disease' and searchflag='traits'.")
   }
 
-  if ( is.null(rtype) || is.null(pvalue) ) {
+  if (is.null(rtype) || is.null(pvalue)) {
     stop("rtype or pvalue cannot be NULL, specify their value or use the default.")
   }
 
-  if ( !(searchflag %in% c("proteins", "traits")) ) {
+  if (!(searchflag %in% c("proteins", "traits"))) {
     stop("searchflag has invalid value, should be 'proteins' or 'traits'.")
   }
 
-  if ( !(rtype %in% c("simple", "mrres", "sglmr", "inst", "sense")) ) {
+  if (!(rtype %in% c("simple", "mrres", "sglmr", "inst", "sense"))) {
     stop("rtype has invalid value, should be one of: 'simple', 'mrres', 'sglmr', 'inst' or 'sense'.")
   }
 
-  if ( (pvalue < 0.0) || (pvalue > 1.0) ) {
+  if ((pvalue < 0.0) || (pvalue > 1.0)) {
     stop("pvalue threshold has invalid value, should be in [0,1].")
   }
 }
@@ -191,12 +189,12 @@ pqtl_requests <- function(query, rtype, pvalue, searchflag) {
   url <- getOption("epigraphdb.api.url")
   # nolint end
   r <- httr::GET(glue::glue("{url}/pqtl/"),
-                 query = list(
-                   query = query,
-                   rtype = rtype,
-                   pvalue = pvalue,
-                   searchflag = searchflag
-                 )
+    query = list(
+      query = query,
+      rtype = rtype,
+      pvalue = pvalue,
+      searchflag = searchflag
+    )
   )
   r %>%
     httr::content() %>%
@@ -212,11 +210,11 @@ pqtl_requests <- function(query, rtype, pvalue, searchflag) {
 #' @return
 #' @keywords internal
 pqtl_pleio_regulator <- function(rsid, prflag) {
-  if ( !(prflag %in% c("proteins", "count") ) || is.null(prflag)  ) {
+  if (!(prflag %in% c("proteins", "count")) || is.null(prflag)) {
     stop("prflag has invalid value, should be 'proteins' or 'count'.")
   }
 
-  if ( is.null(rsid) ) {
+  if (is.null(rsid)) {
     stop("rsid cannot be NULL, specify its value such as rs1260326.")
   }
 }
@@ -234,10 +232,10 @@ pqtl_pleio_requests <- function(rsid, prflag) {
   url <- getOption("epigraphdb.api.url")
   # nolint end
   r <- httr::GET(glue::glue("{url}/pqtl/pleio/"),
-                        query = list(
-                          rsid = rsid,
-                          prflag = prflag
-                        )
+    query = list(
+      rsid = rsid,
+      prflag = prflag
+    )
   )
   r %>%
     httr::content() %>%
@@ -256,8 +254,7 @@ pqtl_list_requests <- function(flag) {
   url <- getOption("epigraphdb.api.url")
   # nolint end
   r <- httr::GET(glue::glue("{url}/pqtl/list/"),
-                 query = list(flag = flag
-                 )
+    query = list(flag = flag)
   )
   r %>%
     httr::content() %>%

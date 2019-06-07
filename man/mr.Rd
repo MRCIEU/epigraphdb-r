@@ -4,7 +4,8 @@
 \alias{mr}
 \title{Return information related to Mendelian Randomisation}
 \usage{
-mr(exposure = NULL, outcome = NULL, mode = c("table", "raw"))
+mr(exposure = NULL, outcome = NULL, pval_threshold = 1e-05,
+  mode = c("table", "raw"))
 }
 \arguments{
 \item{exposure}{A trait name, eg. "Body mass index",
@@ -16,6 +17,8 @@ related to a specific \code{outcome}.
 leaving \code{outcome} as \code{NULL} will return MR information
 related to a specific \code{exposure}.
 \strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
+
+\item{pval_threshold}{P-value threshold for the MR evidence.}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
 (a \href{https://tibble.tidyverse.org/}{tibble} as per
@@ -35,4 +38,7 @@ mr(
   exposure = "Body mass index", outcome = "Coronary heart disease",
   mode = "raw"
 ) \%>\% str()
+
+# Use a different threshold
+mr(exposure = "Body mass index", pval_threshold = 1e-8)
 }

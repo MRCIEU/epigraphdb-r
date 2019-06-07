@@ -98,38 +98,31 @@
 <h2 class="hasAnchor">
 <a href="#queries" class="anchor"></a>Queries</h2>
 <p>By default, for ease of use, the query returns a data frame (a <a href="https://tibble.tidyverse.org/"><code>tibble</code></a> as per tidyverse convention).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">df =<span class="st"> </span><span class="kw"><a href="../reference/mr.html">mr</a></span>(<span class="dt">exposure =</span> <span class="st">"Body mass index"</span>,</a>
-<a class="sourceLine" id="cb2-2" title="2">        <span class="dt">outcome =</span> <span class="st">"Coronary heart disease"</span>)</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mr.html">mr</a></span>(<span class="dt">exposure =</span> <span class="st">"Body mass index"</span>,</a>
+<a class="sourceLine" id="cb2-2" title="2">         <span class="dt">outcome =</span> <span class="st">"Coronary heart disease"</span>)</a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></a>
 <a class="sourceLine" id="cb2-4" title="4">df</a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; # A tibble: 2 x 5</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;   exposure               outcome               estimate     se            p</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;   &lt;chr&gt;                  &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt;        &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; 1 Body mass index        Coronary heart disea…   0.450  0.0651      1.17e-9</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; 2 Extreme body mass ind… Coronary heart disea…   0.0715 0.0243      3.25e-3</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; # A tibble: 1 x 5</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;   exposure        outcome                estimate     se             p</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                     &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; 1 Body mass index Coronary heart disease    0.450 0.0651 0.00000000117</span></a></code></pre></div>
 <p>Alternatively, you can use <code>results_type = "raw"</code> to get response from EpiGraphDB API.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">response =<span class="st"> </span><span class="kw"><a href="../reference/mr.html">mr</a></span>(<span class="dt">exposure =</span> <span class="st">"Body mass index"</span>,</a>
-<a class="sourceLine" id="cb3-2" title="2">              <span class="dt">outcome =</span> <span class="st">"Coronary heart disease"</span>,</a>
-<a class="sourceLine" id="cb3-3" title="3">              <span class="dt">mode =</span> <span class="st">"raw"</span>)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">response &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mr.html">mr</a></span>(<span class="dt">exposure =</span> <span class="st">"Body mass index"</span>,</a>
+<a class="sourceLine" id="cb3-2" title="2">               <span class="dt">outcome =</span> <span class="st">"Coronary heart disease"</span>,</a>
+<a class="sourceLine" id="cb3-3" title="3">               <span class="dt">mode =</span> <span class="st">"raw"</span>)</a>
 <a class="sourceLine" id="cb3-4" title="4">response <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>()</a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; List of 2</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;  $ query  : chr "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait =~ \"(?i).*Body mass index.*\" AND t2.trait =~ \"(?i).*Coronar"| __truncated__</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;  $ results:List of 2</span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;  $ query  : chr "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = \"Body mass index\" AND t2.trait = \"Coronary heart disease\"| __truncated__</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt;  $ results:List of 1</span></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;   ..$ :List of 5</span></a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;   .. ..$ exposure: chr "Body mass index"</span></a>
 <a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   .. ..$ outcome : chr "Coronary heart disease"</span></a>
 <a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt;   .. ..$ estimate: num 0.45</span></a>
 <a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;   .. ..$ se      : num 0.0651</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;   .. ..$ p       : num 1.17e-09</span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt;   ..$ :List of 5</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt;   .. ..$ exposure: chr "Extreme body mass index"</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt;   .. ..$ outcome : chr "Coronary heart disease"</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt;   .. ..$ estimate: num 0.0715</span></a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;   .. ..$ se      : num 0.0243</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt;   .. ..$ p       : num 0.00325</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;   .. ..$ p       : num 1.17e-09</span></a></code></pre></div>
 <p>The <code>query</code> component returns the <a href="https://neo4j.com/developer/cypher-query-language/">cypher</a> query that fetches data from the EpiGraphDB neo4j databases. Once you are sufficiently well-versed in cypher you can construct your own refined queries to better suit your needs (forthcoming).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">response<span class="op">$</span>query</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; [1] "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait =~ \"(?i).*Body mass index.*\" AND t2.trait =~ \"(?i).*Coronary heart disease.*\" RETURN t1.trait AS exposure, t2.trait AS outcome, r.estimate AS estimate, r.se AS se, r.p AS p ORDER BY r.p;"</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; [1] "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = \"Body mass index\" AND t2.trait = \"Coronary heart disease\" AND r.p &lt; 1e-05 RETURN t1.trait AS exposure, t2.trait AS outcome, r.estimate AS estimate, r.se AS se, r.p AS p ORDER BY r.p;"</span></a></code></pre></div>
 </div>
   </div>
 

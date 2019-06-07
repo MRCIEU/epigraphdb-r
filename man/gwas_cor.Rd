@@ -21,6 +21,10 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 GWAS correlations between traits
 }
 \examples{
-gwas_cor(trait = "body mass index") \%>\%
+gwas_cor(trait = "Body mass index") \%>\%
+  dplyr::glimpse()
+
+# Use a different threshold
+gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) \%>\%
   dplyr::glimpse()
 }

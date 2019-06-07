@@ -4,7 +4,7 @@
 \alias{mr_requests}
 \title{The core function to query from epigraphdb api}
 \usage{
-mr_requests(exposure, outcome)
+mr_requests(exposure, outcome, pval_threshold)
 }
 \arguments{
 \item{outcome}{}

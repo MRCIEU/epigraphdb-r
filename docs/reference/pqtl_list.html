@@ -151,7 +151,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='co'>#Returns a list of available proteins (exposures)</span>
+<span class='co'># Returns a list of available proteins (exposures)</span>
 <span class='fu'>pqtl_list</span>()</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 989 x 1</span><span>
 #&gt;    expID   
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
@@ -166,8 +166,8 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ADAMTS5 
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> ADGRE2  
 #&gt; </span><span style='color: #949494;'># … with 979 more rows</span><span></div><div class='input'>
-<span class='co'>#Returns a list of available traits (outcomes)</span>
-<span class='fu'>pqtl_list</span>(<span class='kw'>flag</span><span class='kw'>=</span><span class='st'>"outcomes"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 225 x 1</span><span>
+<span class='co'># Returns a list of available traits (outcomes)</span>
+<span class='fu'>pqtl_list</span>(<span class='kw'>flag</span> <span class='kw'>=</span> <span class='st'>"outcomes"</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 225 x 1</span><span>
 #&gt;    outID                                                                  
 #&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                                  
 #&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Cancer code  self-reported: basal cell carcinoma                       
@@ -180,9 +180,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Eye problems or disorders: Diabetes related eye disease                
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Eye problems or disorders: Glaucoma                                    
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> Eye problems or disorders: Injury or trauma resulting in loss of vision
-#&gt; </span><span style='color: #949494;'># … with 215 more rows</span><span></div><div class='input'>
-
-</div></span></pre>
+#&gt; </span><span style='color: #949494;'># … with 215 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -21,6 +21,10 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 Observational correlations between traits
 }
 \examples{
-obs_cor(trait = "body mass index") \%>\%
+obs_cor(trait = "Body mass index (BMI)") \%>\%
+  dplyr::glimpse()
+
+# Use a different threshold
+obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) \%>\%
   dplyr::glimpse()
 }

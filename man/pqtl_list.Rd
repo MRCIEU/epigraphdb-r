@@ -24,11 +24,9 @@ available in the database
 }
 \examples{
 
-#Returns a list of available proteins (exposures)
+# Returns a list of available proteins (exposures)
 pqtl_list()
 
-#Returns a list of available traits (outcomes)
-pqtl_list(flag="outcomes")
-
-
+# Returns a list of available traits (outcomes)
+pqtl_list(flag = "outcomes")
 }

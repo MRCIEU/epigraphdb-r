@@ -39,19 +39,17 @@ Return information related to the pQTL analysis
 }
 \examples{
 # Returns a data frame of MR results, while searching for proteins
-pqtl(query="ADAM19", searchflag="proteins")
+pqtl(query = "ADAM19", searchflag = "proteins")
 
 # Returns a data frame with SNP information, while searching for traits
-pqtl(query="Inflammatory bowel disease", rtype="inst", searchflag="traits")
+pqtl(query = "Inflammatory bowel disease", rtype = "inst", searchflag = "traits")
 
 # Change a pvalue threshold (the default is 0.05)
-pqtl(query="Inflammatory bowel disease", rtype="inst", pvalue=1.0, searchflag="traits")
+pqtl(query = "Inflammatory bowel disease", rtype = "inst", pvalue = 1.0, searchflag = "traits")
 
 # Returns raw response if mode="raw"
 pqtl(
-  query="ADAM19", searchflag="proteins",
+  query = "ADAM19", searchflag = "proteins",
   mode = "raw"
 ) \%>\% str()
-
-
 }

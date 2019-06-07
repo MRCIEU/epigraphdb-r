@@ -7,12 +7,12 @@ test_that("pqtl protein endpoint", {
   pvalue <- 0.05
   searchflag <- "proteins"
   r <- httr::GET(glue::glue("{url}/pqtl/"),
-                 query = list(
-                   query = query,
-                   rtype = rtype,
-                   pvalue = pvalue,
-                   searchflag = searchflag
-                 )
+    query = list(
+      query = query,
+      rtype = rtype,
+      pvalue = pvalue,
+      searchflag = searchflag
+    )
   )
   expect_equal(r$status_code, 200)
 })
@@ -24,12 +24,12 @@ test_that("pqtl trait endpoint", {
   pvalue <- 0.05
   searchflag <- "traits"
   r <- httr::GET(glue::glue("{url}/pqtl/"),
-                 query = list(
-                   query = query,
-                   rtype = rtype,
-                   pvalue = pvalue,
-                   searchflag = searchflag
-                 )
+    query = list(
+      query = query,
+      rtype = rtype,
+      pvalue = pvalue,
+      searchflag = searchflag
+    )
   )
   expect_equal(r$status_code, 200)
 })
@@ -39,10 +39,10 @@ test_that("pqtl_pleio endpoint", {
   rsid <- "rs1260326"
   prflag <- "proteins"
   r <- httr::GET(glue::glue("{url}/pqtl/pleio/"),
-                 query = list(
-                   rsid = rsid,
-                   prflag = prflag
-                 )
+    query = list(
+      rsid = rsid,
+      prflag = prflag
+    )
   )
   expect_equal(r$status_code, 200)
 })
@@ -51,9 +51,9 @@ test_that("pqtl_list endpoint", {
   url <- getOption("epigraphdb.api.url")
   flag <- "exposures"
   r <- httr::GET(glue::glue("{url}/pqtl/list/"),
-                 query = list(
-                   flag = flag
-                 )
+    query = list(
+      flag = flag
+    )
   )
   expect_equal(r$status_code, 200)
 })
@@ -145,12 +145,12 @@ test_that("pqtl_pleio not found input", {
   )
   expect_equal(r, NULL)
 })
-  
+
 test_that("pqtl_list correct exposures input", {
   flag <- "exposures"
   r <- pqtl_list(
     flag = flag
-    )
+  )
   expect_is(r, "tbl_df")
   expect_true(dim(r)[1] > 0)
 })

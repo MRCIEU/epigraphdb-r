@@ -24,12 +24,13 @@
 #' @examples
 #' # Returns a data frame
 #' mr(exposure = "Body mass index", outcome = "Coronary heart disease")
-#'
+#' 
 #' # Returns raw response
 #' mr(
 #'   exposure = "Body mass index", outcome = "Coronary heart disease",
 #'   mode = "raw"
 #' ) %>% str()
+#' 
 #' # Use a different threshold
 #' mr(exposure = "Body mass index", pval_threshold = 1e-8)
 mr <- function(exposure = NULL, outcome = NULL,
