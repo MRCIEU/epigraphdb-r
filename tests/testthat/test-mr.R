@@ -65,3 +65,28 @@ test_that("mr parameters", {
     "exposure and outcome cannot be both NULL!"
   )
 })
+
+test_that("mr pval_threshold", {
+  exposure <- "Body mass index"
+  expect_error(
+    response <- mr(
+      exposure = exposure,
+      pval_threshold = 1e-5
+    ),
+    NA
+  )
+  expect_error(
+    response <- mr(
+      exposure = exposure,
+      pval_threshold = 1e-8
+    ),
+    NA
+  )
+  expect_error(
+    response <- mr(
+      exposure = exposure,
+      pval_threshold = 1e-2
+    ),
+    NA
+  )
+})

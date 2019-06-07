@@ -10,6 +10,8 @@
 #' leaving `outcome` as `NULL` will return MR information
 #' related to a specific `exposure`.
 #' **NOTE**: `exposure` and `outcome` cannot be both `NULL`.
+#' @param pval_threshold
+#' P-value threshold for the MR evidence.
 #' @param mode
 #' If `mode = "table"`, returns a data frame
 #' (a [`tibble`](https://tibble.tidyverse.org/) as per
@@ -28,11 +30,14 @@
 #'   exposure = "Body mass index", outcome = "Coronary heart disease",
 #'   mode = "raw"
 #' ) %>% str()
+#' # Use a different threshold
+#' mr(exposure = "Body mass index", pval_threshold = 1e-8)
 mr <- function(exposure = NULL, outcome = NULL,
+               pval_threshold = 1e-5,
                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   mr_regulator(exposure, outcome)
-  response <- mr_requests(exposure = exposure, outcome = outcome)
+  response <- mr_requests(exposure = exposure, outcome = outcome, pval_threshold = pval_threshold)
   if (mode == "table") {
     return(mr_table(response))
   }
@@ -59,13 +64,14 @@ mr_regulator <- function(exposure, outcome) {
 #'
 #' @return
 #' @keywords internal
-mr_requests <- function(exposure, outcome) {
+mr_requests <- function(exposure, outcome, pval_threshold) {
   # nolint start (unused variable)
   url <- getOption("epigraphdb.api.url")
   # nolint end
   query <- list(
     exposure = exposure,
-    outcome = outcome
+    outcome = outcome,
+    pval_threshold = pval_threshold
   )
   httr::GET(glue::glue("{url}/mr"), query = query)
 }
