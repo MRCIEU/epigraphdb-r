@@ -3,6 +3,8 @@
     EpiGraphDB v0.2
     Please cite: PLACEHOLDER.
 
+    Web API: http://api.epigraphdb.org
+
     To turn off this message, use
     suppressPackageStartupMessages({{library(\"epigraphdb\")}})
   "))
