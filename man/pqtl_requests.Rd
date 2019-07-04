@@ -7,7 +7,25 @@
 pqtl_requests(query, rtype, pvalue, searchflag)
 }
 \arguments{
-\item{searchflag}{}
+\item{query}{(Required) A protein coding gene name or a trait name, eg. "ADAM19" or "Inflammatory bowel disease"
+which cannot be \code{NULL}.}
+
+\item{rtype}{(Optional) A type of data to be extracted, which can be one of these options:
+\enumerate{
+\item \code{simple}: Basic summary
+\item \code{mrres}: MR results (DEFAULT)
+\item \code{sglmr}: Single SNP MR results
+\item \code{inst}: SNP information
+\item \code{sense}: Sensitivity analysis
+\strong{NOTE}: \code{mrres} is a DEFAULT option.
+}}
+
+\item{pvalue}{(Optional) A pvalue threshold for MR results with the DEFAULT set to 0.05.
+\strong{NOTE}: this threshold applies to any \code{rtype} chosen.}
+
+\item{searchflag}{(Required) A flag to indicate whether you are searching for proteins or traits which cannot be \code{NULL}.
+If \code{query} is a protein name, then this flag should be "proteins"; if \code{query} is a trait, this flag should be "traits".
+\strong{NOTE}: if the wrong flag is chosen for \code{query}, there will be no result returned.}
 }
 \description{
 Create an API request for the pQTL-related analyses

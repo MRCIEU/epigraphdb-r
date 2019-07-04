@@ -30,6 +30,8 @@
 
 
 
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Ontology association between EFO term and Gwas — ontology" />
 
 <meta property="og:description" content="Ontology association between EFO term and Gwas" />
@@ -54,7 +56,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -65,40 +67,36 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
+</li>
+<li>
+  <a href="../articles/using-epigraphdb-web-api.html">Using Web API</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/usinsg-epigraphdb.html">Using epigraphdb</a>
-    </li>
-  </ul>
+<li>
+  <a href="../articles/index.html">Articles</a>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">CHANGELOG</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/MRCIEU/epigraphdb-r">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -143,12 +141,12 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ontology</span>(<span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='st'>"systolic blood pressure"</span>)</div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span><span>
+    <pre class="examples"><div class='input'><span class='fu'>ontology</span>(<span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='st'>"systolic blood pressure"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span><span>
 #&gt;   trait                                      type     
 #&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Systolic blood pressure, automated reading EFO_FUZZY
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Systolic blood pressure automated reading  EFO_FUZZY
 #&gt; </span><span style='color: #BCBCBC;'>2</span><span> Systolic blood pressure, manual reading    EFO_FUZZY
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Systolic blood pressure automated reading  EFO_FUZZY
+#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Systolic blood pressure, automated reading EFO_FUZZY
 #&gt; </span><span style='color: #BCBCBC;'>4</span><span> Systolic blood pressure                    EFO_EXACT</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -164,7 +162,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 
       <footer>
       <div class="copyright">
-  <p>Developed by  EpiGraphDB team.</p>
+  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
 </div>
 
 <div class="pkgdown">

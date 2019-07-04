@@ -6,9 +6,6 @@
 \usage{
 pqtl_pleio_regulator(rsid, prflag)
 }
-\arguments{
-\item{prflag}{}
-}
 \description{
 Regulate parameter input
 }

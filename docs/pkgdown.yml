@@ -2,5 +2,6 @@ pandoc: '2.6'
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
-  usinsg-epigraphdb: usinsg-epigraphdb.html
+  using-epigraphdb-r-package: using-epigraphdb-r-package.html
+  using-epigraphdb-web-api: using-epigraphdb-web-api.html
 

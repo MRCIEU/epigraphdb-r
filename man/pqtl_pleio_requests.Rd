@@ -6,9 +6,6 @@
 \usage{
 pqtl_pleio_requests(rsid, prflag)
 }
-\arguments{
-\item{prflag}{}
-}
 \description{
 Create an API request for the pleiotropy analyses
 }

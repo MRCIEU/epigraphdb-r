@@ -28,7 +28,7 @@ which cannot be \code{NULL}.}
 If \code{query} is a protein name, then this flag should be "proteins"; if \code{query} is a trait, this flag should be "traits".
 \strong{NOTE}: if the wrong flag is chosen for \code{query}, there will be no result returned.}
 
-\item{mode}{(Optional) If \code{mode = "table"}, returns a data frame
+\item{mode}{If \code{mode = "table"}, returns a data frame
 (a \href{https://tibble.tidyverse.org/}{tibble} as per
 \href{https://style.tidyverse.org/}{tidyverse} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API

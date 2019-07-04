@@ -8,10 +8,18 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
-What the package does (one paragraph).
+R package for getting EpiGraphDB data.
 }
 \author{
-\strong{Maintainer}:  EpiGraphDB team \email{EpiGraphDB@epigraphdb.org}
+\strong{Maintainer}: Yi Liu \email{yi6240.liu@bristol.ac.uk}
+
+Authors:
+\itemize{
+  \item Valeriia Haberland \email{valeriia.haberland@bristol.ac.uk}
+  \item Pau Erola \email{pau.erola@bristol.ac.uk}
+  \item Benjamin Elsworth \email{ben.elsworth@bristol.ac.uk}
+  \item Tom Gaunt \email{Tom.Gaunt@bristol.ac.uk}
+}
 
 }
 \keyword{internal}

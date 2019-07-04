@@ -7,7 +7,15 @@
 mr_regulator(exposure, outcome)
 }
 \arguments{
-\item{outcome}{}
+\item{exposure}{A trait name, eg. "Body mass index",
+leaving \code{exposure} as \code{NULL} will return MR information
+related to a specific \code{outcome}.
+\strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
+
+\item{outcome}{A trait name, eg. "Coronary heart disease",
+leaving \code{outcome} as \code{NULL} will return MR information
+related to a specific \code{exposure}.
+\strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
 }
 \description{
 Regulate parameter input

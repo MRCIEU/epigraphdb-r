@@ -9,8 +9,9 @@
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="EpiGraphDB">
-<meta property="og:description" content="What the package does (one paragraph).">
+<script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
+<meta property="og:title" content="EpiGraphDB">
+<meta property="og:description" content="R package for getting EpiGraphDB data.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -20,7 +21,7 @@
 </head>
 <body>
     <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -31,38 +32,36 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="articles/using-epigraphdb-web-api.html">Using Web API</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/usinsg-epigraphdb.html">Using epigraphdb</a>
-    </li>
-  </ul>
+  <a href="articles/index.html">Articles</a>
 </li>
 <li>
-  <a href="news/index.html">Changelog</a>
+  <a href="news/index.html">CHANGELOG</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/MRCIEU/epigraphdb-r">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -79,45 +78,48 @@
     
 <div id="epigraphdb" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#epigraphdb" class="anchor"></a>EpiGraphDB</h1></div>
+<a href="#epigraphdb" class="anchor"></a>epigraphdb <span class="pull-right"> <a href="http://epigraphdb.org"><img src="reference/figures/logo_wide.png" alt="" height="60" style="padding:10px"></a> <a href="http://www.bris.ac.uk"><img src="reference/figures/ieu40.png" alt="" height="60" style="padding:10px"></a> <a href="http://www.bris.ac.uk/ieu"><img src="reference/figures/uob40.png" alt="" height="60" style="padding:10px"></a> </span>
+</h1></div>
 <!-- badges: start -->
 
-</div>
-<div id="installation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1>
-<p><code>devtools</code> is required to install from IEU gitlab</p>
+<p><a href="http://epigraphdb.org">EpiGraphDB</a> is an analytical platform and database to support data mining in epidemiology. The platform incorporates a graph of causal estimates generated by systematically applying Mendelian randomization to a wide array of phenotypes, and augments this with a wealth of additional data from other bioinformatic sources. EpiGraphDB aims to support appropriate application and interpretation of causal inference in systematic automated analyses of many phenotypes.</p>
+<p><a href="https://github.com/MRCIEU/epigraphdb-r"><code>epigraphdb</code></a> is an R package to provide ease of access to EpiGraphDB services.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p><a href="http://devtools.r-lib.org/"><code>devtools</code></a> is required to install from github:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_git</a></span>(</a>
-<a class="sourceLine" id="cb1-3" title="3">  <span class="st">"git@ieugit-scmv-d0.epi.bris.ac.uk:epigraphdb/epigraphdb-r.git"</span>,</a>
-<a class="sourceLine" id="cb1-4" title="4">  <span class="dt">git =</span> <span class="st">"external"</span></a>
-<a class="sourceLine" id="cb1-5" title="5">)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"MRCIEU/epigraphdb-r"</span>)</a></code></pre></div>
+<p><strong>NOTE</strong>: while the package repository is “epigraphdb-r”, the R package name is “epigraphdb”.</p>
 </div>
-<div id="example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h1>
+<div id="using-epigraphdb" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-epigraphdb" class="anchor"></a>Using <code>epigraphdb</code>
+</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(<span class="st">"epigraphdb"</span>)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="co">#&gt;   EpiGraphDB v0.2</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt;   Please cite: PLACEHOLDER.</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt;   To turn off this message, use</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="kw"><a href="reference/mr.html">mr</a></span>(<span class="dt">outcome =</span> <span class="st">"Body mass index"</span>)</a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; No encoding supplied: defaulting to UTF-8.</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; # A tibble: 11 x 5</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;    exposure                outcome         estimate       se         p</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;    &lt;chr&gt;                   &lt;chr&gt;              &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  1 Waist circumference     Body mass index   1.01   0.0404   2.11e-137</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  2 Overweight              Body mass index   0.551  0.0285   4.20e- 83</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  3 Hip circumference       Body mass index   0.874  0.0476   1.82e- 75</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  4 Obesity class 2         Body mass index   0.256  0.0158   4.80e- 59</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  5 HDL cholesterol         Body mass index  -0.0347 0.00298  4.14e- 19</span></a>
-<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt;  6 Obesity class 1         Body mass index   0.358  0.0111   5.55e- 16</span></a>
-<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt;  7 Childhood obesity       Body mass index   0.158  0.000635 4.45e- 15</span></a>
-<a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt;  8 Extreme body mass index Body mass index   0.212  0.00188  3.29e- 11</span></a>
-<a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;  9 Body fat                Body mass index   0.402  0.0692   6.08e-  9</span></a>
-<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt; 10 Total cholesterol       Body mass index  -0.0479 0.00872  4.47e-  7</span></a>
-<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; 11 Years of schooling      Body mass index  -0.204  0.0432   2.38e-  6</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt;   Web API: http://api.epigraphdb.org</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;   To turn off this message, use</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="kw"><a href="reference/mr.html">mr</a></span>(<span class="dt">outcome =</span> <span class="st">"Body mass index"</span>)</a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; # A tibble: 370 x 12</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;    exposure_id exposure_name outcome_id outcome_name estimate      se</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;  1 627         Epiandroster… 785        Body mass i…   0.0950 2.28e-3</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;  2 541         X-11787       835        Body mass i…  -0.0578 1.77e-4</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;  3 971         Ulcerative c… 835        Body mass i…  -0.0111 1.76e-4</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co">#&gt;  4 60          Waist circum… 835        Body mass i…   0.861  2.07e-2</span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt;  5 UKB-a:426   Eye problems… 94         Body mass i…  -1.12   1.90e-2</span></a>
+<a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt;  6 UKB-a:373   Ever depress… 95         Body mass i…  -0.616  4.80e-4</span></a>
+<a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt;  7 29          Birth length  95         Body mass i…  -0.141  5.67e-4</span></a>
+<a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt;  8 350         Laurate (12:… 974        Body mass i…   0.418  7.10e-3</span></a>
+<a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;  9 UKB-a:124   Treatment/me… 974        Body mass i…  -5.14   1.08e-1</span></a>
+<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt; 10 95          Body mass in… 974        Body mass i…   0.981  2.79e-2</span></a>
+<a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; # … with 360 more rows, and 6 more variables: p &lt;dbl&gt;, ci_upp &lt;dbl&gt;,</span></a>
+<a class="sourceLine" id="cb2-23" title="23"><span class="co">#&gt; #   ci_low &lt;dbl&gt;, selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;</span></a></code></pre></div>
+</div>
 </div>
   </div>
 
@@ -132,7 +134,11 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li> EpiGraphDB team <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Yi Liu <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Valeriia Haberland <br><small class="roles"> Author </small>  </li>
+<li>Pau Erola <br><small class="roles"> Author </small>  </li>
+<li>Benjamin Elsworth <br><small class="roles"> Author </small>  </li>
+<li>Tom Gaunt <br><small class="roles"> Author </small>  </li>
 </ul>
 </div>
 
@@ -148,7 +154,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by  EpiGraphDB team.</p>
+  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
 </div>
 
 <div class="pkgdown">

@@ -6,9 +6,6 @@
 \usage{
 pqtl_list_requests(flag)
 }
-\arguments{
-\item{flag}{}
-}
 \description{
 Create an API request for the list of proteins/traits
 }

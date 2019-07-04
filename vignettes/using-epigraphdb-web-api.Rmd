@@ -2,6 +2,7 @@
 title: "Using EpiGraphDB Web API"
 output: rmarkdown::html_vignette
 vignette: >
+  %\VignetteIndexEntry{"Using EpiGraphDB Web API"}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
