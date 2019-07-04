@@ -1,0 +1,187 @@
+---
+title: "Using EpiGraphDB Web API"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+EpiGraphDB as a collated resource offers rich integrative epidemiological
+evidence for researchers to use, which can be queried from our
+[RESTful API service](http://api.epigraphdb.org).
+
+EpiGraphDB [web application](http://epigraphdb.org):
+
+![web application](figures/epigraphdb-xqtl-view.png)
+
+EpiGraphDB [web API (OpenAPI / swagger interface)](http://api.epigraphdb.org):
+
+![web API](figures/epigraphdb-api-swagger.png)
+
+The R package is designed to give users quick access to some of the
+key resources, but not as a comprehensive replacement of the web API.
+At the moment EpiGraphDB is still under fast and active development with
+frequent addition of new API endpoints that might not have corresponding
+functions available in the R package.
+
+In this tutorial we will discuss two alternative methods to get data from
+the EpiGraphDB web API -- using `httr` in R and
+using `curl` in the command line.
+
+## Using `httr`
+
+Here are some examples of querying EpiGraphDB web API using
+[httr](https://httr.r-lib.org/reference/index.html):
+
+```{r}
+library("epigraphdb")
+url <- getOption("epigraphdb.api.url")
+payload <- list(
+  exposure = "Body mass index",
+  outcome = "Coronary heart disease"
+)
+r <- httr::GET(glue::glue("{url}/mr"), query = payload)
+r %>% httr::content(as = "parsed") %>% str(2)
+```
+
+And this is the data structure as returned from the
+`epigraphdb::mr` call with `mode = "raw"`:
+
+```{r epigraphdb-mr}
+epigraphdb::mr(exposure = "Body mass index",
+               outcome = "Coronary heart disease",
+               mode = "raw") %>%
+  str(2)
+```
+
+In fact, currently the `epigraphdb::mr` function is a
+[wrapper](https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R)
+of `httr::get`.
+Please consult with
+[`httr` documentation](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html)
+for details of usage.
+
+## Using `curl`
+
+Here is an example in using `curl` to get data and using
+[`jq`](https://stedolan.github.io/jq/) for
+post processing the returned json data:
+
+```shell
+curl -X 'GET' 'http://api.epigraphdb.org/mr?exposure=Body+mass+index&outcome=Coronary+heart+disease' | jq
+```
+
+The returned data will look like this:
+
+```json
+{
+  "query": "MATCH (t1:Gwas)-[r:MR]->(t2:Gwas) WHERE t1.trait = \"Body mass index\" AND t2.trait = \"Coronary heart disease\" AND r.p < 1e-05 RETURN t1.id AS exposure_id, t1.trait AS exposure_name, t2.id AS outcome_id, t2.trait AS outcome_name, r.estimate AS estimate, r.se AS se, r.p AS p, r.ci_upp as ci_upp, r.ci_low AS ci_low, r.selection AS selection, r.method AS method, r.moescore AS moescore ORDER BY r.p ;",
+  "results": [
+    {
+      "exposure_id": "974",
+      "exposure_name": "Body mass index",
+      "outcome_id": "7",
+      "outcome_name": "Coronary heart disease",
+      "estimate": 0.388519597717655,
+      "se": 0.0493380883899318,
+      "p": 3.41730166606158e-15,
+      "ci_upp": 0.498022055339364,
+      "ci_low": 0.279017140095947,
+      "selection": "DF",
+      "method": "FE IVW",
+      "moescore": 0.89
+    },
+    {
+      "exposure_id": "2",
+      "exposure_name": "Body mass index",
+      "outcome_id": "7",
+      "outcome_name": "Coronary heart disease",
+      "estimate": 0.397101449275362,
+      "se": 0.0727452867916401,
+      "p": 4.79382740959139e-08,
+      "ci_upp": 0.539679591432014,
+      "ci_low": 0.25452330711871,
+      "selection": "HF",
+      "method": "Simple median",
+      "moescore": 0.92
+    },
+    {
+      "exposure_id": "95",
+      "exposure_name": "Body mass index",
+      "outcome_id": "7",
+      "outcome_name": "Coronary heart disease",
+      "estimate": 0.454936804438897,
+      "se": 0.0930665978652417,
+      "p": 1.01714040121612e-06,
+      "ci_upp": 0.637343984418443,
+      "ci_low": 0.272529624459351,
+      "selection": "DF",
+      "method": "Penalised median",
+      "moescore": 0.78
+    },
+    {
+      "exposure_id": "2",
+      "exposure_name": "Body mass index",
+      "outcome_id": "8",
+      "outcome_name": "Coronary heart disease",
+      "estimate": 0.330889761641503,
+      "se": 0.0683874628196063,
+      "p": 1.30851348920923e-06,
+      "ci_upp": 0.47183747438535,
+      "ci_low": 0.189942048897655,
+      "selection": "DF",
+      "method": "FE IVW",
+      "moescore": 0.75
+    },
+    {
+      "exposure_id": "835",
+      "exposure_name": "Body mass index",
+      "outcome_id": "7",
+      "outcome_name": "Coronary heart disease",
+      "estimate": 0.359685792349727,
+      "se": 0.0755689310372249,
+      "p": 1.93876456579184e-06,
+      "ci_upp": 0.507798175532879,
+      "ci_low": 0.211573409166575,
+      "selection": "Tophits",
+      "method": "Simple median",
+      "moescore": 0.91
+    },
+    {
+      "exposure_id": "974",
+      "exposure_name": "Body mass index",
+      "outcome_id": "8",
+      "outcome_name": "Coronary heart disease",
+      "estimate": 0.32847610101648,
+      "se": 0.0730805223133059,
+      "p": 6.96632705468264e-06,
+      "ci_upp": 0.49537017731629,
+      "ci_low": 0.16158202471667,
+      "selection": "DF",
+      "method": "FE IVW",
+      "moescore": 0.85
+    }
+  ]
+}
+```
+
+## Other methods
+
+Alternatively, you can use other commonly used tools to query the web API:
+
+- [command line: httpie](https://github.com/jakubroztocil/httpie)
+- [python: requests](https://realpython.com/python-requests/)
+- [GUI client: insomnia](https://support.brightcove.com/use-insomnia-api-requests)
+- [GUI client: postman](https://www.guru99.com/postman-tutorial.html)
+
+For details of the EpiGraphDB RESTful API and related services,
+please visit our [documentation site](http://docs.epigraphdb.org).

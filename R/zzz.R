@@ -1,7 +1,6 @@
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage(glue::glue("
     EpiGraphDB v0.2
-    Please cite: PLACEHOLDER.
 
     Web API: http://api.epigraphdb.org
 

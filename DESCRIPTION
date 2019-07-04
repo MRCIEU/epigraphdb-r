@@ -1,11 +1,23 @@
 Package: epigraphdb
 Title: EpiGraphDB
-Version: 0.0.0.9000
-Authors@R:
-    person(family = "EpiGraphDB team",
-           role = c("aut", "cre"),
-           email = "EpiGraphDB@epigraphdb.org")
-Description: What the package does (one paragraph).
+Version: 0.1
+Authors@R: c(
+  person("Yi", "Liu", email = "yi6240.liu@bristol.ac.uk",
+    role = c("aut", "cre")
+  ),
+  person("Valeriia", "Haberland", email = "valeriia.haberland@bristol.ac.uk",
+    role = c("aut")
+  ),
+  person("Pau", "Erola", email = "pau.erola@bristol.ac.uk",
+    role = c("aut"),
+  ),
+  person("Benjamin", "Elsworth", email = "ben.elsworth@bristol.ac.uk",
+    role = c("aut"),
+  ),
+  person("Tom", "Gaunt", email = "Tom.Gaunt@bristol.ac.uk",
+    role = c("aut")
+  ))
+Description: R package for getting EpiGraphDB data.
 License: GPL-3
 Suggests:
     testthat,

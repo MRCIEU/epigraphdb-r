@@ -1,1 +1,19 @@
 destination: docs
+
+navbar:
+  title: "epigraphdb"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Using Web API"
+      href: articles/using-epigraphdb-web-api.html
+    - text: "Reference"
+      href: "reference/index.html"
+    - text: "Articles"
+      href: "articles/index.html"
+    - text: "CHANGELOG"
+      href: "news/index.html"
+  right:
+    - icon: fa-github
+      href: https://github.com/MRCIEU/epigraphdb-r
