@@ -18,12 +18,7 @@
 #' (Required) A flag to indicate whether you are searching for proteins or traits which cannot be `NULL`.
 #' If `query` is a protein name, then this flag should be "proteins"; if `query` is a trait, this flag should be "traits".
 #' **NOTE**: if the wrong flag is chosen for `query`, there will be no result returned.
-#' @param mode
-#' (Optional) If `mode = "table"`, returns a data frame
-#' (a [`tibble`](https://tibble.tidyverse.org/) as per
-#' [`tidyverse`](https://style.tidyverse.org/) convention).
-#' If `mode = "raw"`, returns a raw response from EpiGraphDB API
-#' with minimal parsing done by [`httr`](https://httr.r-lib.org/).
+#' @inheritParams mr
 #'
 #' @export
 #'
@@ -105,16 +100,8 @@ pqtl_pleio <- function(rsid = NULL,
 #' Return a list of all proteins/exposures or traits/outcomes
 #' available in the database
 #'
-#' @param flag
-#' (Optional) A flag which indicates whether the list of
-#' exposures (if "exposures") or outcomes (if "outcomes")
-#' should be returned. The DEFAULT is "exposures".
-#' @param mode
-#' (Optional) If `mode = "table"`, returns a data frame
-#' (a [`tibble`](https://tibble.tidyverse.org/) as per
-#' [`tidyverse`](https://style.tidyverse.org/) convention).
-#' If `mode = "raw"`, returns a raw response from EpiGraphDB API
-#' with minimal parsing done by [`httr`](https://httr.r-lib.org/).
+#' @inheritParams pqtl
+#' @inheritParams mr
 #'
 #' @export
 #'
@@ -144,10 +131,7 @@ pqtl_list <- function(flag = "exposures",
 
 #' Regulate parameter input
 #'
-#' @param query
-#' @param rtype
-#' @param pvalue
-#' @param searchflag
+#' @inheritParams pqtl
 #'
 #' @return
 #' @keywords internal
@@ -177,10 +161,7 @@ pqtl_regulator <- function(query, rtype, pvalue, searchflag) {
 
 #' Create an API request for the pQTL-related analyses
 #'
-#' @param query
-#' @param rtype
-#' @param pvalue
-#' @param searchflag
+#' @inheritParams pqtl
 #'
 #' @return
 #' @keywords internal
@@ -204,8 +185,7 @@ pqtl_requests <- function(query, rtype, pvalue, searchflag) {
 
 #' Regulate parameter input
 #'
-#' @param rsid
-#' @param prflag
+#' @inheritParams pqtl
 #'
 #' @return
 #' @keywords internal
@@ -222,8 +202,7 @@ pqtl_pleio_regulator <- function(rsid, prflag) {
 
 #'  Create an API request for the pleiotropy analyses
 #'
-#' @param rsid
-#' @param prflag
+#' @inheritParams pqtl
 #'
 #' @return
 #' @keywords internal
@@ -245,7 +224,7 @@ pqtl_pleio_requests <- function(rsid, prflag) {
 
 #'  Create an API request for the list of proteins/traits
 #'
-#' @param flag
+#' @inheritParams pqtl
 #'
 #' @return
 #' @keywords internal

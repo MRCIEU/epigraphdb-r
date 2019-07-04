@@ -50,8 +50,7 @@ mr <- function(exposure = NULL, outcome = NULL,
 
 #' Regulate parameter input
 #'
-#' @param exposure
-#' @param outcome
+#' @inheritParams mr
 #'
 #' @return
 #' @keywords internal
@@ -63,8 +62,7 @@ mr_regulator <- function(exposure, outcome) {
 
 #' The core function to query from epigraphdb api
 #'
-#' @param exposure
-#' @param outcome
+#' @inheritParams mr
 #'
 #' @return
 #' @keywords internal
