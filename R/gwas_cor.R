@@ -14,9 +14,13 @@
 #' # Use a different threshold
 #' gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) %>%
 #'   dplyr::glimpse()
-gwas_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
+gwas_cor <- function(trait, cor_coef_threshold = 0.8,
+                     mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- gwas_cor_requests(trait = trait, cor_coef_threshold = cor_coef_threshold)
+  response <- gwas_cor_requests(
+    trait = trait,
+    cor_coef_threshold = cor_coef_threshold
+  )
   if (mode == "table") {
     return(gwas_cor_table(response))
   }

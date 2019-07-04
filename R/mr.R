@@ -38,7 +38,10 @@ mr <- function(exposure = NULL, outcome = NULL,
                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   mr_regulator(exposure, outcome)
-  response <- mr_requests(exposure = exposure, outcome = outcome, pval_threshold = pval_threshold)
+  response <- mr_requests(
+    exposure = exposure, outcome = outcome,
+    pval_threshold = pval_threshold
+  )
   if (mode == "table") {
     return(mr_table(response))
   }
