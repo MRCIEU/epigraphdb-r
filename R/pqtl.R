@@ -100,7 +100,10 @@ pqtl_pleio <- function(rsid = NULL,
 #' Return a list of all proteins/exposures or traits/outcomes
 #' available in the database
 #'
-#' @inheritParams pqtl
+#' @param flag
+#' (Optional) A flag which indicates whether the list of
+#' exposures (if "exposures") or outcomes (if "outcomes")
+#' should be returned. The DEFAULT is "exposures".
 #' @inheritParams mr
 #'
 #' @export
@@ -185,7 +188,7 @@ pqtl_requests <- function(query, rtype, pvalue, searchflag) {
 
 #' Regulate parameter input
 #'
-#' @inheritParams pqtl
+#' @inheritParams pqtl_pleio
 #'
 #' @return
 #' @keywords internal
@@ -224,7 +227,7 @@ pqtl_pleio_requests <- function(rsid, prflag) {
 
 #'  Create an API request for the list of proteins/traits
 #'
-#' @inheritParams pqtl
+#' @inheritParams pqtl_list
 #'
 #' @return
 #' @keywords internal
