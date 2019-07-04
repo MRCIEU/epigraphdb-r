@@ -6,6 +6,11 @@
 \usage{
 pqtl_list_requests(flag)
 }
+\arguments{
+\item{flag}{(Optional) A flag which indicates whether the list of
+exposures (if "exposures") or outcomes (if "outcomes")
+should be returned. The DEFAULT is "exposures".}
+}
 \description{
 Create an API request for the list of proteins/traits
 }

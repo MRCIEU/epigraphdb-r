@@ -6,6 +6,13 @@
 \usage{
 pqtl_pleio_regulator(rsid, prflag)
 }
+\arguments{
+\item{rsid}{(Required) A SNP identified by rsID which cannot be \code{NULL}.}
+
+\item{prflag}{(Optional) A flag which determines whether the number (if "count")
+or names (if "proteins") of the associated proteins should be returned.
+The DEFAULT value is "proteins".}
+}
 \description{
 Regulate parameter input
 }

@@ -8,6 +8,10 @@ available in the database}
 pqtl_list(flag = "exposures", mode = c("table", "raw"))
 }
 \arguments{
+\item{flag}{(Optional) A flag which indicates whether the list of
+exposures (if "exposures") or outcomes (if "outcomes")
+should be returned. The DEFAULT is "exposures".}
+
 \item{mode}{If \code{mode = "table"}, returns a data frame
 (a \href{https://tibble.tidyverse.org/}{tibble} as per
 \href{https://style.tidyverse.org/}{tidyverse} convention).
