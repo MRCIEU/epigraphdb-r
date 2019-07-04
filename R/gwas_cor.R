@@ -10,7 +10,7 @@
 #' @examples
 #' gwas_cor(trait = "Body mass index") %>%
 #'   dplyr::glimpse()
-#' 
+#'
 #' # Use a different threshold
 #' gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) %>%
 #'   dplyr::glimpse()
@@ -20,7 +20,7 @@ gwas_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) 
   if (mode == "table") {
     return(gwas_cor_table(response))
   }
-  httr::content(response, as = "parsed")
+  httr::content(response, as = "parsed", encoding = "utf-8")
 }
 
 #' Requests /gwas_cor
@@ -48,7 +48,7 @@ gwas_cor_requests <- function(trait, cor_coef_threshold) {
 #' @keywords internal
 gwas_cor_table <- function(response) {
   response %>%
-    httr::content(as = "text") %>%
+    httr::content(as = "text", encoding = "utf-8") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
     purrr::pluck("results") %>%
     tibble::as_tibble()

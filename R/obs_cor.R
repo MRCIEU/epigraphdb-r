@@ -20,7 +20,7 @@ obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
   if (mode == "table") {
     return(obs_cor_table(response))
   }
-  httr::content(response, as = "parsed")
+  httr::content(response, as = "parsed", encoding = "utf-8")
 }
 
 #' Requests /obs_cor
@@ -48,7 +48,7 @@ obs_cor_requests <- function(trait, pval_threshold) {
 #' @keywords internal
 obs_cor_table <- function(response) {
   response %>%
-    httr::content(as = "text") %>%
+    httr::content(as = "text", encoding = "utf-8") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
     purrr::pluck("results") %>%
     tibble::as_tibble()

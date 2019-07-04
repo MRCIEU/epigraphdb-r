@@ -14,7 +14,7 @@ ontology <- function(efo_term, mode = c("table", "raw")) {
   if (mode == "table") {
     return(ontology_table(response))
   }
-  httr::content(response, as = "parsed")
+  httr::content(response, as = "parsed", encoding = "utf-8")
 }
 
 #' Requests /ontology
@@ -41,7 +41,7 @@ ontology_requests <- function(efo_term) {
 #' @keywords internal
 ontology_table <- function(response) {
   response %>%
-    httr::content(as = "text") %>%
+    httr::content(as = "text", encoding = "utf-8") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
     purrr::pluck("results") %>%
     tibble::as_tibble()

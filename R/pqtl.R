@@ -30,13 +30,13 @@
 #' @examples
 #' # Returns a data frame of MR results, while searching for proteins
 #' pqtl(query = "ADAM19", searchflag = "proteins")
-#' 
+#'
 #' # Returns a data frame with SNP information, while searching for traits
 #' pqtl(query = "Inflammatory bowel disease", rtype = "inst", searchflag = "traits")
-#' 
+#'
 #' # Change a pvalue threshold (the default is 0.05)
 #' pqtl(query = "Inflammatory bowel disease", rtype = "inst", pvalue = 1.0, searchflag = "traits")
-#' 
+#'
 #' # Returns raw response if mode="raw"
 #' pqtl(
 #'   query = "ADAM19", searchflag = "proteins",
@@ -78,10 +78,10 @@ pqtl <- function(query = NULL,
 #' @export
 #'
 #' @examples
-#' 
+#'
 #' # Returns a data frame of associated proteins
 #' pqtl_pleio(rsid = "rs1260326")
-#' 
+#'
 #' # Returns a number of associated proteins
 #' pqtl_pleio(rsid = "rs1260326", prflag = "count")
 pqtl_pleio <- function(rsid = NULL,
@@ -119,10 +119,10 @@ pqtl_pleio <- function(rsid = NULL,
 #' @export
 #'
 #' @examples
-#' 
+#'
 #' # Returns a list of available proteins (exposures)
 #' pqtl_list()
-#' 
+#'
 #' # Returns a list of available traits (outcomes)
 #' pqtl_list(flag = "outcomes")
 pqtl_list <- function(flag = "exposures",
@@ -197,7 +197,7 @@ pqtl_requests <- function(query, rtype, pvalue, searchflag) {
     )
   )
   r %>%
-    httr::content() %>%
+    httr::content(encoding = "utf-8") %>%
     purrr::pluck("results")
 }
 
@@ -238,7 +238,7 @@ pqtl_pleio_requests <- function(rsid, prflag) {
     )
   )
   r %>%
-    httr::content() %>%
+    httr::content(encoding = "utf-8") %>%
     purrr::pluck("results")
 }
 
@@ -257,7 +257,7 @@ pqtl_list_requests <- function(flag) {
     query = list(flag = flag)
   )
   r %>%
-    httr::content() %>%
+    httr::content(encoding = "utf-8") %>%
     purrr::pluck("results")
 }
 

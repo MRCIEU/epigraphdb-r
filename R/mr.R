@@ -24,13 +24,13 @@
 #' @examples
 #' # Returns a data frame
 #' mr(exposure = "Body mass index", outcome = "Coronary heart disease")
-#' 
+#'
 #' # Returns raw response
 #' mr(
 #'   exposure = "Body mass index", outcome = "Coronary heart disease",
 #'   mode = "raw"
 #' ) %>% str()
-#' 
+#'
 #' # Use a different threshold
 #' mr(exposure = "Body mass index", pval_threshold = 1e-8)
 mr <- function(exposure = NULL, outcome = NULL,
@@ -42,7 +42,7 @@ mr <- function(exposure = NULL, outcome = NULL,
   if (mode == "table") {
     return(mr_table(response))
   }
-  response %>% httr::content(as = "parsed")
+  response %>% httr::content(as = "parsed", encoding = "utf-8")
 }
 
 #' Regulate parameter input
@@ -85,7 +85,7 @@ mr_requests <- function(exposure, outcome, pval_threshold) {
 #' @keywords internal
 mr_table <- function(response) {
   response %>%
-    httr::content(as = "text") %>%
+    httr::content(as = "text", encoding = "utf-8") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
     purrr::pluck("results") %>%
     tibble::as_tibble()
