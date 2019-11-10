@@ -13,3 +13,4 @@
 ^ci$
 ^\.lintr$
 ^\.travis\.yml$
+^codecov\.yml$
