@@ -1,0 +1,7 @@
+pandoc: '2.2'
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  using-epigraphdb-api: using-epigraphdb-api.html
+  using-epigraphdb-r-package: using-epigraphdb-r-package.html
+
