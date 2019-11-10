@@ -12,4 +12,8 @@ matrix:
     deploy:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
+      github_token: $GITHUB_TOKEN
       skip_cleanup: true
+      keep_history: true
+      on:
+        branch: master
