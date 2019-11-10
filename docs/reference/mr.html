@@ -8,21 +8,32 @@
 
 <title>Return information related to Mendelian Randomisation — mr • epigraphdb</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,12 +43,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Return information related to Mendelian Randomisation — mr" />
-
 <meta property="og:description" content="Return information related to Mendelian Randomisation" />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -49,6 +60,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -77,10 +89,13 @@
   <a href="../index.html">Home</a>
 </li>
 <li>
-  <a href="../articles/using-epigraphdb-web-api.html">Using Web API</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
+</li>
+<li>
+  <a href="../articles/using-epigraphdb-web-api.html">Using API</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
@@ -89,7 +104,6 @@
   <a href="../news/index.html">CHANGELOG</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
@@ -104,6 +118,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -115,14 +130,12 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Return information related to Mendelian Randomisation</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
-  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
-    
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -153,26 +166,29 @@ If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
 with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
     </tr>
     </table>
-    
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from <code>mr</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame</span>
-<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 12</span><span>
+<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 12</span><span>
 #&gt;   exposure_id exposure_name outcome_id outcome_name estimate     se        p
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 974         Body mass in… 7          Coronary he…    0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> 2           Body mass in… 7          Coronary he…    0.397 0.072</span><span style='text-decoration: underline;'>7</span><span> 4.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> 95          Body mass in… 7          Coronary he…    0.455 0.093</span><span style='text-decoration: underline;'>1</span><span> 1.02</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> 2           Body mass in… 8          Coronary he…    0.331 0.068</span><span style='text-decoration: underline;'>4</span><span> 1.31</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> 835         Body mass in… 7          Coronary he…    0.360 0.075</span><span style='text-decoration: underline;'>6</span><span> 1.94</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> 974         Body mass in… 8          Coronary he…    0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #949494;'># … with 5 more variables: ci_upp </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, ci_low </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, selection </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>,
-#&gt; #   method </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, moescore </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> 974         Body mass in… 7          Coronary he…    0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> 2           Body mass in… 7          Coronary he…    0.397 0.072</span><span style='text-decoration: underline;'>7</span><span> 4.79</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> 95          Body mass in… 7          Coronary he…    0.455 0.093</span><span style='text-decoration: underline;'>1</span><span> 1.02</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> 2           Body mass in… 8          Coronary he…    0.331 0.068</span><span style='text-decoration: underline;'>4</span><span> 1.31</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'>5</span><span> 835         Body mass in… 7          Coronary he…    0.360 0.075</span><span style='text-decoration: underline;'>6</span><span> 1.94</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'>6</span><span> 974         Body mass in… 8          Coronary he…    0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'># … with 5 more variables: ci_upp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ci_low </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,
+#&gt; #   method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Returns raw response</span>
 <span class='fu'>mr</span>(
   <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>,
   <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"raw"</span>
-) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/str'>str</a></span>()</div><div class='output co'>#&gt; List of 2
+) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 2
 #&gt;  $ query  : chr "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = \"Body mass index\" AND t2.trait = \"Coronary heart disease\"| __truncated__
 #&gt;  $ results:List of 6
 #&gt;   ..$ :List of 12
@@ -254,32 +270,34 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 #&gt;   .. ..$ method       : chr "FE IVW"
 #&gt;   .. ..$ moescore     : num 0.85</div><div class='input'>
 <span class='co'># Use a different threshold</span>
-<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-8</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 609 x 12</span><span>
+<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-8</span>)</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 609 x 12</span><span>
 #&gt;    exposure_id exposure_name outcome_id outcome_name estimate     se         p
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 2           Body mass in… UKB-a:282  Arm fat per…    0.526 0.012</span><span style='text-decoration: underline;'>3</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 2           Body mass in… 65         Waist circu…    0.779 0.019</span><span style='text-decoration: underline;'>1</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 2           Body mass in… 85         Extreme bod…    3.82  0.091</span><span style='text-decoration: underline;'>1</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 2           Body mass in… 48         Hip circumf…    0.828 0.014</span><span style='text-decoration: underline;'>9</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 835         Body mass in… 93         Overweight      1.67  0.034</span><span style='text-decoration: underline;'>1</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 835         Body mass in… 64         Waist circu…    0.783 0.019</span><span style='text-decoration: underline;'>3</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 835         Body mass in… 61         Waist circu…    0.824 0.019</span><span style='text-decoration: underline;'>4</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 835         Body mass in… 60         Waist circu…    0.820 0.019</span><span style='text-decoration: underline;'>5</span><span> 0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 94          Body mass in… 1017       Immunoglobu… -</span><span style='color: #BB0000;'>101.</span><span>    1.37   0.  </span><span style='color: #949494;'> </span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 835         Body mass in… 50         Hip circumf…    0.836 0.023</span><span style='text-decoration: underline;'>0</span><span> 6.20</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-290</span><span>
-#&gt; </span><span style='color: #949494;'># … with 599 more rows, and 5 more variables: ci_upp </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>, ci_low </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #949494;'>,
-#&gt; #   selection </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, method </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span style='color: #949494;'>, moescore </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2           Body mass in… 85         Extreme bod…    3.82  0.091</span><span style='text-decoration: underline;'>1</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2           Body mass in… UKB-a:282  Arm fat per…    0.526 0.012</span><span style='text-decoration: underline;'>3</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2           Body mass in… 48         Hip circumf…    0.828 0.014</span><span style='text-decoration: underline;'>9</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2           Body mass in… 65         Waist circu…    0.779 0.019</span><span style='text-decoration: underline;'>1</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 5</span><span> 835         Body mass in… 93         Overweight      1.67  0.034</span><span style='text-decoration: underline;'>1</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 6</span><span> 835         Body mass in… 60         Waist circu…    0.820 0.019</span><span style='text-decoration: underline;'>5</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 7</span><span> 835         Body mass in… 61         Waist circu…    0.824 0.019</span><span style='text-decoration: underline;'>4</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 8</span><span> 835         Body mass in… 64         Waist circu…    0.783 0.019</span><span style='text-decoration: underline;'>3</span><span> 0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'> 9</span><span> 94          Body mass in… 1017       Immunoglobu… -</span><span style='color: #BB0000;'>101.</span><span>    1.37   0.  </span><span style='color: #555555;'> </span><span>    
+#&gt; </span><span style='color: #555555;'>10</span><span> 835         Body mass in… 50         Hip circumf…    0.836 0.023</span><span style='text-decoration: underline;'>0</span><span> 6.20</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-290</span><span>
+#&gt; </span><span style='color: #555555;'># … with 599 more rows, and 5 more variables: ci_upp </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, ci_low </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,
+#&gt; #   selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -287,13 +305,16 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

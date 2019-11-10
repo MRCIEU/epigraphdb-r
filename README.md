@@ -55,14 +55,10 @@ mr(outcome = "Body mass index")
 
 ## Other resources
 
-Check out the EpiGraphDB
-[web API](http://api.epigraphdb.org)
-and [web application](http://epigraphdb.org):
-
-<p float="centre">
-  <a href="http://api.epigraphdb.org"><img src="vignettes/figures/epigraphdb-api-swagger.png" width="400"/></a>
-  <a href="http://epigraphdb.org"><img src="vignettes/figures/epigraphdb-home-view.png" width="400"/></a>
-</p>
+| link                                     | screenshot                                            |
+|------------------------------------------|-------------------------------------------------------|
+| [API](http://api.epigraphdb.org)         | ![api](vignettes/figures/epigraphdb-api-swagger.png)  |
+| [web application](http://epigraphdb.org) | ![webapp](vignettes/figures/epigraphdb-xqtl-view.png) |
 
 ## Citation
 

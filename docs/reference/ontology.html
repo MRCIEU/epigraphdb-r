@@ -8,21 +8,32 @@
 
 <title>Ontology association between EFO term and Gwas — ontology • epigraphdb</title>
 
+<!-- favicons -->
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png" />
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,12 +43,12 @@
 
   <link href="../extra.css" rel="stylesheet">
   
+
 <meta property="og:title" content="Ontology association between EFO term and Gwas — ontology" />
-
 <meta property="og:description" content="Ontology association between EFO term and Gwas" />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -49,6 +60,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -77,10 +89,13 @@
   <a href="../index.html">Home</a>
 </li>
 <li>
-  <a href="../articles/using-epigraphdb-web-api.html">Using Web API</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
+</li>
+<li>
+  <a href="../articles/using-epigraphdb-web-api.html">Using API</a>
 </li>
 <li>
   <a href="../articles/index.html">Articles</a>
@@ -89,7 +104,6 @@
   <a href="../news/index.html">CHANGELOG</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
@@ -104,6 +118,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -115,13 +130,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>Ontology association between EFO term and Gwas</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>ontology</span>(<span class='no'>efo_term</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
-    
+    <pre class="usage"><span class='fu'>ontology</span>(<span class='no'>efo_term</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -138,27 +151,39 @@ If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
 with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
     </tr>
     </table>
-    
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from <code>ontology</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>ontology</span>(<span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='st'>"systolic blood pressure"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 x 2</span><span>
-#&gt;   trait                                      type     
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> Systolic blood pressure automated reading  EFO_FUZZY
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Systolic blood pressure, manual reading    EFO_FUZZY
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> Systolic blood pressure, automated reading EFO_FUZZY
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> Systolic blood pressure                    EFO_EXACT</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>ontology</span>(<span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='st'>"systolic blood pressure"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 158 x 2</span><span>
+#&gt;    trait                                      type     
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                                      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> Systolic blood pressure                    EFO_EXACT
+#&gt; </span><span style='color: #555555;'> 2</span><span> Systolic blood pressure automated reading  EFO_FUZZY
+#&gt; </span><span style='color: #555555;'> 3</span><span> Systolic blood pressure, manual reading    EFO_FUZZY
+#&gt; </span><span style='color: #555555;'> 4</span><span> Systolic blood pressure, automated reading EFO_FUZZY
+#&gt; </span><span style='color: #555555;'> 5</span><span> X-13741                                    EFO_ZOOMA
+#&gt; </span><span style='color: #555555;'> 6</span><span> X-13671                                    EFO_ZOOMA
+#&gt; </span><span style='color: #555555;'> 7</span><span> X-13859                                    EFO_ZOOMA
+#&gt; </span><span style='color: #555555;'> 8</span><span> X-13658                                    EFO_ZOOMA
+#&gt; </span><span style='color: #555555;'> 9</span><span> X-14662                                    EFO_ZOOMA
+#&gt; </span><span style='color: #555555;'>10</span><span> X-14632                                    EFO_ZOOMA
+#&gt; </span><span style='color: #555555;'># … with 148 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -166,13 +191,16 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

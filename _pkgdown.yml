@@ -6,10 +6,12 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Using Web API"
-      href: articles/using-epigraphdb-web-api.html
     - text: "Reference"
       href: "reference/index.html"
+    - text: "Using R package"
+      href: articles/using-epigraphdb-r-package.html
+    - text: "Using API"
+      href: articles/using-epigraphdb-web-api.html
     - text: "Articles"
       href: "articles/index.html"
     - text: "CHANGELOG"
