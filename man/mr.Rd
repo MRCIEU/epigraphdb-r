@@ -26,6 +26,9 @@ related to a specific \code{exposure}.
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
+\value{
+Data from \code{mr}
+}
 \description{
 Return information related to Mendelian Randomisation
 }
@@ -41,4 +44,5 @@ mr(
 
 # Use a different threshold
 mr(exposure = "Body mass index", pval_threshold = 1e-8)
+
 }

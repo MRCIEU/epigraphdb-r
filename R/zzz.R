@@ -1,4 +1,4 @@
-.onAttach <- function(libname, pkgname) {
+.onAttach <- function(libname, pkgname) { # nolint
   packageStartupMessage(glue::glue("
     EpiGraphDB v0.2
 
@@ -9,9 +9,9 @@
   "))
 }
 
-.onLoad <- function(libname, pkgname) {
+.onLoad <- function(libname, pkgname) {  # nolint
   op <- options()
-  op.epigraphdb <- list(
+  op.epigraphdb <- list(  # nolint
     epigraphdb.api.url = "http://api.epigraphdb.org"
   )
   toset <- !(names(op.epigraphdb) %in% names(op))

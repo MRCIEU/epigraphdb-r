@@ -17,6 +17,9 @@ gwas_cor(trait, cor_coef_threshold = 0.8, mode = c("table", "raw"))
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
+\value{
+Data from \code{gwas_cor}
+}
 \description{
 GWAS correlations between traits
 }
@@ -27,4 +30,5 @@ gwas_cor(trait = "Body mass index") \%>\%
 # Use a different threshold
 gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) \%>\%
   dplyr::glimpse()
+
 }

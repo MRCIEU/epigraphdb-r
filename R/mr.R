@@ -19,7 +19,7 @@
 #' If `mode = "raw"`, returns a raw response from EpiGraphDB API
 #' with minimal parsing done by [`httr`](https://httr.r-lib.org/).
 #'
-#' @export
+#' @return Data from `mr`
 #'
 #' @examples
 #' # Returns a data frame
@@ -33,6 +33,8 @@
 #'
 #' # Use a different threshold
 #' mr(exposure = "Body mass index", pval_threshold = 1e-8)
+#'
+#' @export
 mr <- function(exposure = NULL, outcome = NULL,
                pval_threshold = 1e-5,
                mode = c("table", "raw")) {
@@ -52,7 +54,6 @@ mr <- function(exposure = NULL, outcome = NULL,
 #'
 #' @inheritParams mr
 #'
-#' @return
 #' @keywords internal
 mr_regulator <- function(exposure, outcome) {
   if (is.null(exposure) && is.null(outcome)) {
@@ -64,12 +65,9 @@ mr_regulator <- function(exposure, outcome) {
 #'
 #' @inheritParams mr
 #'
-#' @return
 #' @keywords internal
 mr_requests <- function(exposure, outcome, pval_threshold) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url") # nolint
   query <- list(
     exposure = exposure,
     outcome = outcome,
@@ -82,7 +80,6 @@ mr_requests <- function(exposure, outcome, pval_threshold) {
 #'
 #' @param response response from mr
 #'
-#' @return
 #' @keywords internal
 mr_table <- function(response) {
   response %>%

@@ -17,6 +17,9 @@ obs_cor(trait, pval_threshold = 1e-05, mode = c("table", "raw"))
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
+\value{
+Data from \code{obs_cor}
+}
 \description{
 Observational correlations between traits
 }
@@ -27,4 +30,5 @@ obs_cor(trait = "Body mass index (BMI)") \%>\%
 # Use a different threshold
 obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) \%>\%
   dplyr::glimpse()
+
 }

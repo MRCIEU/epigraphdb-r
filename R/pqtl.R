@@ -1,7 +1,8 @@
 #' Return information related to the pQTL analysis
 #'
 #' @param query
-#' (Required) A protein coding gene name or a trait name, eg. "ADAM19" or "Inflammatory bowel disease"
+#' (Required) A protein coding gene name or a trait name,
+#' eg. "ADAM19" or "Inflammatory bowel disease"
 #' which cannot be `NULL`.
 #' @param rtype
 #' (Optional) A type of data to be extracted, which can be one of these options:
@@ -15,28 +16,42 @@
 #' (Optional) A pvalue threshold for MR results with the DEFAULT set to 0.05.
 #' **NOTE**: this threshold applies to any `rtype` chosen.
 #' @param searchflag
-#' (Required) A flag to indicate whether you are searching for proteins or traits which cannot be `NULL`.
-#' If `query` is a protein name, then this flag should be "proteins"; if `query` is a trait, this flag should be "traits".
-#' **NOTE**: if the wrong flag is chosen for `query`, there will be no result returned.
+#' (Required) A flag to indicate whether you are searching for proteins or
+#' traits which cannot be `NULL`.
+#' If `query` is a protein name, then this flag should be "proteins";
+#' if `query` is a trait, this flag should be "traits".
+#' **NOTE**: if the wrong flag is chosen for `query`, there will be no result
+#' returned.
 #' @inheritParams mr
 #'
-#' @export
+#' @return Data from `pqtl`
 #'
 #' @examples
 #' # Returns a data frame of MR results, while searching for proteins
 #' pqtl(query = "ADAM19", searchflag = "proteins")
 #'
 #' # Returns a data frame with SNP information, while searching for traits
-#' pqtl(query = "Inflammatory bowel disease", rtype = "inst", searchflag = "traits")
+#' pqtl(
+#'   query = "Inflammatory bowel disease",
+#'   rtype = "inst",
+#'   searchflag = "traits"
+#' )
 #'
 #' # Change a pvalue threshold (the default is 0.05)
-#' pqtl(query = "Inflammatory bowel disease", rtype = "inst", pvalue = 1.0, searchflag = "traits")
+#' pqtl(
+#'   query = "Inflammatory bowel disease",
+#'   rtype = "inst",
+#'   pvalue = 1.0,
+#'   searchflag = "traits"
+#' )
 #'
 #' # Returns raw response if mode="raw"
 #' pqtl(
 #'   query = "ADAM19", searchflag = "proteins",
 #'   mode = "raw"
 #' ) %>% str()
+#'
+#' @export
 pqtl <- function(query = NULL,
                  rtype = "mrres", pvalue = 0.05, searchflag = NULL,
                  mode = c("table", "raw")) {
@@ -136,24 +151,33 @@ pqtl_list <- function(flag = "exposures",
 #'
 #' @inheritParams pqtl
 #'
-#' @return
 #' @keywords internal
 pqtl_regulator <- function(query, rtype, pvalue, searchflag) {
   if (is.null(query) || is.null(searchflag)) {
-    stop("query and searchflag cannot be NULL, try query='ADAM19' and searchflag='proteins'
-         or query='Inflammatory bowel disease' and searchflag='traits'.")
+    stop(glue::glue(
+      "query and searchflag cannot be NULL, ",
+      "try query='ADAM19' and searchflag='proteins' ",
+      "or query='Inflammatory bowel disease' and searchflag='traits'."
+    ))
   }
 
   if (is.null(rtype) || is.null(pvalue)) {
-    stop("rtype or pvalue cannot be NULL, specify their value or use the default.")
+    stop(glue::glue(
+      "rtype or pvalue cannot be NULL, specify their value or use the default."
+    ))
   }
 
   if (!(searchflag %in% c("proteins", "traits"))) {
-    stop("searchflag has invalid value, should be 'proteins' or 'traits'.")
+    stop(glue::glue(
+      "searchflag has invalid value, should be 'proteins' or 'traits'."
+    ))
   }
 
   if (!(rtype %in% c("simple", "mrres", "sglmr", "inst", "sense"))) {
-    stop("rtype has invalid value, should be one of: 'simple', 'mrres', 'sglmr', 'inst' or 'sense'.")
+    stop(glue::glue(
+      "rtype has invalid value, should be one of: ",
+      "'simple', 'mrres', 'sglmr', 'inst' or 'sense'."
+    ))
   }
 
   if ((pvalue < 0.0) || (pvalue > 1.0)) {
@@ -166,12 +190,9 @@ pqtl_regulator <- function(query, rtype, pvalue, searchflag) {
 #'
 #' @inheritParams pqtl
 #'
-#' @return
 #' @keywords internal
 pqtl_requests <- function(query, rtype, pvalue, searchflag) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url")  # nolint
   r <- httr::GET(glue::glue("{url}/pqtl/"),
     query = list(
       query = query,
@@ -190,7 +211,6 @@ pqtl_requests <- function(query, rtype, pvalue, searchflag) {
 #'
 #' @inheritParams pqtl_pleio
 #'
-#' @return
 #' @keywords internal
 pqtl_pleio_regulator <- function(rsid, prflag) {
   if (!(prflag %in% c("proteins", "count")) || is.null(prflag)) {
@@ -210,9 +230,7 @@ pqtl_pleio_regulator <- function(rsid, prflag) {
 #' @return
 #' @keywords internal
 pqtl_pleio_requests <- function(rsid, prflag) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url") # nolint
   r <- httr::GET(glue::glue("{url}/pqtl/pleio/"),
     query = list(
       rsid = rsid,
@@ -229,12 +247,9 @@ pqtl_pleio_requests <- function(rsid, prflag) {
 #'
 #' @inheritParams pqtl_list
 #'
-#' @return
 #' @keywords internal
 pqtl_list_requests <- function(flag) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url") # nolint
   r <- httr::GET(glue::glue("{url}/pqtl/list/"),
     query = list(flag = flag)
   )
@@ -248,7 +263,6 @@ pqtl_list_requests <- function(flag) {
 #'
 #' @param response response for pQTL analysis
 #'
-#' @return
 #' @keywords internal
 pqtl_table <- function(response) {
   response %>%

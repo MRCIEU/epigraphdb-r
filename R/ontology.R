@@ -3,11 +3,12 @@
 #' @param efo_term EFO term, e.g. "systolic blood pressure"
 #' @inheritParams mr
 #'
-#' @return
-#' @export
+#' @return Data from `ontology`
 #'
 #' @examples
 #' ontology(efo_term = "systolic blood pressure")
+#'
+#' @export
 ontology <- function(efo_term, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- ontology_requests(efo_term = efo_term)
@@ -21,12 +22,9 @@ ontology <- function(efo_term, mode = c("table", "raw")) {
 #'
 #' @inheritParams ontology
 #'
-#' @return
 #' @keywords internal
 ontology_requests <- function(efo_term) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url")  # nolint
   query <- list(
     efo_term = efo_term
   )
@@ -37,7 +35,6 @@ ontology_requests <- function(efo_term) {
 #'
 #' @param response response from `ontology_requests`
 #'
-#' @return
 #' @keywords internal
 ontology_table <- function(response) {
   response %>%

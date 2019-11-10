@@ -15,9 +15,13 @@ ontology(efo_term, mode = c("table", "raw"))
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
+\value{
+Data from \code{ontology}
+}
 \description{
 Ontology association between EFO term and Gwas
 }
 \examples{
 ontology(efo_term = "systolic blood pressure")
+
 }

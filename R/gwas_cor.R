@@ -4,8 +4,7 @@
 #' @param cor_coef_threshold correlation coefficient threshold
 #' @inheritParams mr
 #'
-#' @return
-#' @export
+#' @return Data from `gwas_cor`
 #'
 #' @examples
 #' gwas_cor(trait = "Body mass index") %>%
@@ -14,6 +13,8 @@
 #' # Use a different threshold
 #' gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) %>%
 #'   dplyr::glimpse()
+#'
+#' @export
 gwas_cor <- function(trait, cor_coef_threshold = 0.8,
                      mode = c("table", "raw")) {
   mode <- match.arg(mode)
@@ -31,12 +32,9 @@ gwas_cor <- function(trait, cor_coef_threshold = 0.8,
 #'
 #' @inheritParams gwas_cor
 #'
-#' @return
 #' @keywords internal
 gwas_cor_requests <- function(trait, cor_coef_threshold) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url") # nolint
   query <- list(
     trait = trait,
     cor_coef_threshold = cor_coef_threshold
@@ -48,7 +46,6 @@ gwas_cor_requests <- function(trait, cor_coef_threshold) {
 #'
 #' @param response response from `gwas_cor_requests`
 #'
-#' @return
 #' @keywords internal
 gwas_cor_table <- function(response) {
   response %>%

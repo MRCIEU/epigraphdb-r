@@ -4,8 +4,7 @@
 #' @param pval_threshold pvalue threshold
 #' @inheritParams mr
 #'
-#' @return
-#' @export
+#' @return Data from `obs_cor`
 #'
 #' @examples
 #' obs_cor(trait = "Body mass index (BMI)") %>%
@@ -14,6 +13,8 @@
 #' # Use a different threshold
 #' obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) %>%
 #'   dplyr::glimpse()
+#'
+#' @export
 obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- obs_cor_requests(trait = trait, pval_threshold = pval_threshold)
@@ -27,12 +28,9 @@ obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
 #'
 #' @inheritParams obs_cor
 #'
-#' @return
 #' @keywords internal
 obs_cor_requests <- function(trait, pval_threshold) {
-  # nolint start (unused variable)
-  url <- getOption("epigraphdb.api.url")
-  # nolint end
+  url <- getOption("epigraphdb.api.url") # nolint
   query <- list(
     trait = trait,
     pval_threshold = pval_threshold
@@ -44,7 +42,6 @@ obs_cor_requests <- function(trait, pval_threshold) {
 #'
 #' @param response response from `obs_cor_requests`
 #'
-#' @return
 #' @keywords internal
 obs_cor_table <- function(response) {
   response %>%

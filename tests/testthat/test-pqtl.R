@@ -85,8 +85,7 @@ test_that("pqtl incorrect input", {
       rtype = rtype,
       pvalue = pvalue,
       searchflag = searchflag
-    ),
-    "rtype has invalid value, should be one of: 'simple', 'mrres', 'sglmr', 'inst' or 'sense'."
+    )
   )
 })
 
@@ -131,8 +130,7 @@ test_that("pqtl_pleio incorrect input", {
     r <- pqtl_pleio(
       rsid = rsid,
       prflag = prflag
-    ),
-    "prflag has invalid value, should be 'proteins' or 'count'."
+    )
   )
 })
 
@@ -169,7 +167,6 @@ test_that("pqtl_list incorrect input", {
   expect_error(
     r <- pqtl_list(
       flag = flag
-    ),
-    "flag has invalid value, should be 'exposures' or 'outcomes'."
+    )
   )
 })
