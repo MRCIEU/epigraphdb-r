@@ -12,3 +12,4 @@
 ^Makefile$
 ^ci$
 ^\.lintr$
+^\.travis\.yml$
