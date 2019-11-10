@@ -11,7 +11,7 @@ navbar:
     - text: "Using R package"
       href: articles/using-epigraphdb-r-package.html
     - text: "Using API"
-      href: articles/using-epigraphdb-web-api.html
+      href: articles/using-epigraphdb-api.html
     - text: "Articles"
       href: "articles/index.html"
     - text: "CHANGELOG"
