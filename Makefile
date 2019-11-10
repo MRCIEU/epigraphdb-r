@@ -13,7 +13,7 @@ PROJECT_NAME = epigraphdb-r
 
 ## Init (install a local copy and its development dependencies)
 init:
-	Rscript -e "devtools::install(dependencies = c('Imports', 'Suggests'))"
+	Rscript -e "devtools::install(dependencies = TRUE)"
 
 ## Check package infrastructure and perform unit tests
 tests:
@@ -26,6 +26,10 @@ test: tests
 lint:
 	Rscript -e "lintr::lint_package()"
 
+## Format codebase
+fmt:
+	Rscript -e "usethis::use_tidy_style()"
+
 ## Build package and install locally
 build:
 	Rscript -e "devtools::install()"
@@ -36,10 +40,6 @@ install: build
 ## Uninstall
 uninstall:
 	Rscript -e "devtools::uninstall()"
-
-## Format codebase
-fmt:
-	Rscript -e "styler::style_pkg()"
 
 ## Build documentation
 docs:
