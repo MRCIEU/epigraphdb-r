@@ -28,3 +28,6 @@ options(epigraphdb.api.url="http://devapi.epigraphdb.org")
 # verify current URL
 getOption("epigraphdb.api.url")
 ```
+
+NOTE: you can make this change persistent by placing the changes in
+[`.Rprofile`](https://www.statmethods.net/interface/customizing.html).
