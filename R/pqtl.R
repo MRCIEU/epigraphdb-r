@@ -50,7 +50,6 @@
 #'   query = "ADAM19", searchflag = "proteins",
 #'   mode = "raw"
 #' ) %>% str()
-#'
 #' @export
 pqtl <- function(query = NULL,
                  rtype = "mrres", pvalue = 0.05, searchflag = NULL,
@@ -192,7 +191,7 @@ pqtl_regulator <- function(query, rtype, pvalue, searchflag) {
 #'
 #' @keywords internal
 pqtl_requests <- function(query, rtype, pvalue, searchflag) {
-  url <- getOption("epigraphdb.api.url")  # nolint
+  url <- getOption("epigraphdb.api.url") # nolint
   r <- httr::GET(glue::glue("{url}/pqtl/"),
     query = list(
       query = query,

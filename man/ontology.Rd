@@ -23,5 +23,4 @@ Ontology association between EFO term and Gwas
 }
 \examples{
 ontology(efo_term = "systolic blood pressure")
-
 }

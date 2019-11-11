@@ -68,5 +68,4 @@ pqtl(
   query = "ADAM19", searchflag = "proteins",
   mode = "raw"
 ) \%>\% str()
-
 }

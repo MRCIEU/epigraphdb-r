@@ -7,7 +7,6 @@
 #'
 #' @examples
 #' ontology(efo_term = "systolic blood pressure")
-#'
 #' @export
 ontology <- function(efo_term, mode = c("table", "raw")) {
   mode <- match.arg(mode)
@@ -24,7 +23,7 @@ ontology <- function(efo_term, mode = c("table", "raw")) {
 #'
 #' @keywords internal
 ontology_requests <- function(efo_term) {
-  url <- getOption("epigraphdb.api.url")  # nolint
+  url <- getOption("epigraphdb.api.url") # nolint
   query <- list(
     efo_term = efo_term
   )

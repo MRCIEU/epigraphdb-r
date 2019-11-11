@@ -9,9 +9,9 @@
   "))
 }
 
-.onLoad <- function(libname, pkgname) {  # nolint
+.onLoad <- function(libname, pkgname) { # nolint
   op <- options()
-  op.epigraphdb <- list(  # nolint
+  op.epigraphdb <- list( # nolint
     epigraphdb.api.url = "http://api.epigraphdb.org"
   )
   toset <- !(names(op.epigraphdb) %in% names(op))

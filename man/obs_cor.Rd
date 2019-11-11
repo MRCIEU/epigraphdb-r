@@ -30,5 +30,4 @@ obs_cor(trait = "Body mass index (BMI)") \%>\%
 # Use a different threshold
 obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) \%>\%
   dplyr::glimpse()
-
 }

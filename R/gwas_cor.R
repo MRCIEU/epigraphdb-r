@@ -13,7 +13,6 @@
 #' # Use a different threshold
 #' gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) %>%
 #'   dplyr::glimpse()
-#'
 #' @export
 gwas_cor <- function(trait, cor_coef_threshold = 0.8,
                      mode = c("table", "raw")) {

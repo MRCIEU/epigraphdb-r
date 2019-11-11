@@ -33,7 +33,6 @@
 #'
 #' # Use a different threshold
 #' mr(exposure = "Body mass index", pval_threshold = 1e-8)
-#'
 #' @export
 mr <- function(exposure = NULL, outcome = NULL,
                pval_threshold = 1e-5,

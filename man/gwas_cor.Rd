@@ -30,5 +30,4 @@ gwas_cor(trait = "Body mass index") \%>\%
 # Use a different threshold
 gwas_cor(trait = "Body mass index", cor_coef_threshold = 0.4) \%>\%
   dplyr::glimpse()
-
 }
