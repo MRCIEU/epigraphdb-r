@@ -1,0 +1,30 @@
+---
+title: "Options"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{"Options"}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Change the API URL
+
+EpiGraphDB currently offers two API URLs
+
+- prodcution (default): http://api.epigraphdb.org
+- development: http://devapi.epigraphdb.org
+
+To switch to the development API, do
+
+```{r}
+options(epigraphdb.api.url="http://devapi.epigraphdb.org")
+# verify current URL
+getOption("epigraphdb.api.url")
+```

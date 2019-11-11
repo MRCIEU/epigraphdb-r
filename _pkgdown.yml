@@ -8,14 +8,16 @@ navbar:
       href: index.html
     - text: "Reference"
       href: "reference/index.html"
-    - text: "Using R package"
-      href: articles/using-epigraphdb-r-package.html
-    - text: "Using API"
-      href: articles/using-epigraphdb-api.html
     - text: "Articles"
-      href: "articles/index.html"
-    - text: "About"
-      href: "articles/about.html"
+      menu:
+      - text: "Using R package"
+        href: articles/using-epigraphdb-r-package.html
+      - text: "Using API"
+        href: articles/using-epigraphdb-api.html
+      - text: "Options"
+        href: "articles/options.html"
+      - text: "About EpiGraphDB"
+        href: "articles/about.html"
     - text: "CHANGELOG"
       href: "news/index.html"
   right:
