@@ -24,7 +24,8 @@
 #' returned.
 #' @inheritParams mr
 #'
-#' @return Data from `pqtl`
+#' @return Data from
+#' [`/pqtl/`](http://api.epigraphdb.org/#/pqtl/get_pqtl_pqtl__get)
 #'
 #' @examples
 #' # Returns a data frame of MR results, while searching for proteins

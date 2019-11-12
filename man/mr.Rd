@@ -27,7 +27,8 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from \code{mr}
+Data from
+\href{http://devapi.epigraphdb.org/#/topics/get_mr_mr_get}{/mr}
 }
 \description{
 Return information related to Mendelian Randomisation

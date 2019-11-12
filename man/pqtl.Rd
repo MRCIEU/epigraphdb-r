@@ -39,7 +39,8 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from \code{pqtl}
+Data from
+\href{http://api.epigraphdb.org/#/pqtl/get_pqtl_pqtl__get}{/pqtl/}
 }
 \description{
 Return information related to the pQTL analysis

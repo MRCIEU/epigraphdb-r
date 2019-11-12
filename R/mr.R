@@ -19,7 +19,8 @@
 #' If `mode = "raw"`, returns a raw response from EpiGraphDB API
 #' with minimal parsing done by [`httr`](https://httr.r-lib.org/).
 #'
-#' @return Data from `mr`
+#' @return Data from
+#' [`/mr`](http://devapi.epigraphdb.org/#/topics/get_mr_mr_get)
 #'
 #' @examples
 #' # Returns a data frame
