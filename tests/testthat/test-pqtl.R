@@ -14,7 +14,7 @@ test_that("pqtl protein endpoint", {
       searchflag = searchflag
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("pqtl trait endpoint", {
@@ -31,7 +31,7 @@ test_that("pqtl trait endpoint", {
       searchflag = searchflag
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("pqtl_pleio endpoint", {
@@ -44,7 +44,7 @@ test_that("pqtl_pleio endpoint", {
       prflag = prflag
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("pqtl_list endpoint", {
@@ -55,7 +55,7 @@ test_that("pqtl_list endpoint", {
       flag = flag
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("pqtl correct input", {
@@ -163,7 +163,7 @@ test_that("pqtl_list correct outcomes input", {
 })
 
 test_that("pqtl_list incorrect input", {
-  flag <- "exposure"
+  flag <- "foobar"
   expect_error(
     r <- pqtl_list(
       flag = flag

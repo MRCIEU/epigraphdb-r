@@ -4,8 +4,9 @@
 \alias{pqtl}
 \title{Return information related to the pQTL analysis}
 \usage{
-pqtl(query = NULL, rtype = "mrres", pvalue = 0.05,
-  searchflag = NULL, mode = c("table", "raw"))
+pqtl(query, rtype = c("mrres", "simple", "sglmr", "inst", "sense"),
+  pvalue = 0.05, searchflag = c("traits", "proteins"),
+  mode = c("table", "raw"))
 }
 \arguments{
 \item{query}{(Required) A protein coding gene name or a trait name,

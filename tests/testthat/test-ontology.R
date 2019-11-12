@@ -8,7 +8,7 @@ test_that("ontology endpoint", {
       efo_term = efo_term
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("ontology mode = \"table\"", {

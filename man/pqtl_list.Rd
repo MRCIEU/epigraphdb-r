@@ -5,7 +5,7 @@
 \title{Return a list of all proteins/exposures or traits/outcomes
 available in the database}
 \usage{
-pqtl_list(flag = "exposures", mode = c("table", "raw"))
+pqtl_list(flag = c("exposures", "outcomes"), mode = c("table", "raw"))
 }
 \arguments{
 \item{flag}{(Optional) A flag which indicates whether the list of

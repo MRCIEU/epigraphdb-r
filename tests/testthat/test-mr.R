@@ -10,7 +10,7 @@ test_that("mr endpoint", {
       outcome = outcome
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("mr mode = \"table\"", {
@@ -61,8 +61,7 @@ test_that("mr parameters", {
     mr(
       exposure = NULL,
       outcome = NULL
-    ),
-    "exposure and outcome cannot be both NULL!"
+    )
   )
 })
 

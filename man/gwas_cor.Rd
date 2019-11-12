@@ -18,7 +18,8 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from \code{gwas_cor}
+Data from
+\href{http://api.epigraphdb.org/#/topics/get_gwas_cor_gwas_cor_get}{ /gwas_cor }
 }
 \description{
 GWAS correlations between traits

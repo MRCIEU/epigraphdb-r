@@ -16,7 +16,8 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from \code{ontology}
+Data from
+\href{http://api.epigraphdb.org/#/topics/get_ontology_ontology_get}{ ontology }
 }
 \description{
 Ontology association between EFO term and Gwas

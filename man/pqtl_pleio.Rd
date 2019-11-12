@@ -4,8 +4,8 @@
 \alias{pqtl_pleio}
 \title{Return information related to the pleiotropy of SNPs}
 \usage{
-pqtl_pleio(rsid = NULL, prflag = "proteins", mode = c("table",
-  "raw"))
+pqtl_pleio(rsid = NULL, prflag = c("proteins", "count"),
+  mode = c("table", "raw"))
 }
 \arguments{
 \item{rsid}{(Required) A SNP identified by rsID which cannot be \code{NULL}.}

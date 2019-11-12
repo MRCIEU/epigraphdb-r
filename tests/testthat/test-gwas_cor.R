@@ -8,7 +8,7 @@ test_that("gwas_cor endpoint", {
       trait = trait
     )
   )
-  expect_equal(r$status_code, 200)
+  expect_equal(httr::status_code(r), 200)
 })
 
 test_that("gwas_cor mode = \"table\"", {

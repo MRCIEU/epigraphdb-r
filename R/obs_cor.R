@@ -4,7 +4,10 @@
 #' @param pval_threshold pvalue threshold
 #' @inheritParams mr
 #'
-#' @return Data from `obs_cor`
+#' @return Data from
+#' [
+#'   `/obs_cor`
+#' ](http://api.epigraphdb.org/#/topics/get_obs_cor_obs_cor_get)
 #'
 #' @examples
 #' obs_cor(trait = "Body mass index (BMI)") %>%
@@ -16,25 +19,16 @@
 #' @export
 obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- obs_cor_requests(trait = trait, pval_threshold = pval_threshold)
+  response <- api_get_request(
+    endpoint = "/obs_cor",
+    params = list(
+      trait = trait, pval_threshold = pval_threshold
+    )
+  )
   if (mode == "table") {
     return(obs_cor_table(response))
   }
   httr::content(response, as = "parsed", encoding = "utf-8")
-}
-
-#' Requests /obs_cor
-#'
-#' @inheritParams obs_cor
-#'
-#' @keywords internal
-obs_cor_requests <- function(trait, pval_threshold) {
-  url <- getOption("epigraphdb.api.url") # nolint
-  query <- list(
-    trait = trait,
-    pval_threshold = pval_threshold
-  )
-  httr::GET(glue::glue("{url}/obs_cor"), query = query)
 }
 
 #' Table format /obs_cor
