@@ -13,12 +13,10 @@
 #' @export
 ontology <- function(efo_term, mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_get_request(
+  response <- api_request(
     endpoint = "/ontology",
-    params = list(efo_term = efo_term)
+    params = list(efo_term = efo_term),
+    mode = mode
   )
-  if (mode == "table") {
-    return(flatten_response(response))
-  }
-  httr::content(response, as = "parsed", encoding = "utf-8")
+  response
 }

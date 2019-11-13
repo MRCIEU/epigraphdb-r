@@ -19,14 +19,12 @@
 #' @export
 obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_get_request(
+  response <- api_request(
     endpoint = "/obs_cor",
     params = list(
       trait = trait, pval_threshold = pval_threshold
-    )
+    ),
+    mode = mode
   )
-  if (mode == "table") {
-    return(flatten_response(response))
-  }
-  httr::content(response, as = "parsed", encoding = "utf-8")
+  response
 }

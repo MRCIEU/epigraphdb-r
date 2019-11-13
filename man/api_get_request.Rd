@@ -4,12 +4,15 @@
 \alias{api_get_request}
 \title{Wrapper of httr::GET that handles status errors and custom headers}
 \usage{
-api_get_request(endpoint, params)
+api_get_request(endpoint, params, call = sys.call(-1))
 }
 \arguments{
 \item{endpoint}{An EpiGraphDB API endpoint, e.g. "/mr"}
 
 \item{params}{GET request params}
+
+\item{call}{The function call to identify the original function
+when things go wrong}
 }
 \description{
 Wrapper of httr::GET that handles status errors and custom headers

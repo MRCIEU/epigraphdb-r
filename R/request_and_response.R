@@ -2,9 +2,11 @@
 #'
 #' @param endpoint An EpiGraphDB API endpoint, e.g. "/mr"
 #' @param params GET request params
+#' @param call The function call to identify the original function
+#' when things go wrong
 #'
 #' @keywords internal
-api_get_request <- function(endpoint, params) {
+api_get_request <- function(endpoint, params, call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
   response <- httr::GET(glue::glue("{api_url}{endpoint}"),
     query = params,
@@ -12,6 +14,31 @@ api_get_request <- function(endpoint, params) {
   )
   stop_for_status(response, call = sys.call(-1))
   response
+}
+
+#' The very general wrapper from EpiGraphDB endpoint request
+#'
+#' @param endpoint An EpiGraphDB API endpoint, e.g. "/mr"
+#' @param params A list of parameters to send
+#' @param mode Either `"table"` (returns tibble) or
+#' `"raw"` (returns raw response parsed from json to R list).
+#' @param method A specifc request handler, e.g. `epi_get_request`
+#' @param call The function call to identify the original function
+#' when things go wrong
+#'
+#' @keywords internal
+api_request <- function(endpoint, params,
+                        mode = c("table", "raw"),
+                        method = api_get_request,
+                        call = sys.call(-1)) {
+  mode <- match.arg(mode)
+  response <- do.call(method, args = list(
+    endpoint = endpoint, params = params, call = call
+  ))
+  if (mode == "table") {
+    return(flatten_response(response))
+  }
+  response %>% httr::content(as = "parsed", encoding = "utf-8")
 }
 
 #' Flatten the "results" field from an API response to a tibble df

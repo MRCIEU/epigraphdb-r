@@ -11,7 +11,7 @@
 #' related to a specific `exposure`.
 #' **NOTE**: `exposure` and `outcome` cannot be both `NULL`.
 #' @param pval_threshold
-#' P-value threshold for the MR evidence.
+#' P-value threshold
 #' @param mode
 #' If `mode = "table"`, returns a data frame
 #' (a [`tibble`](https://tibble.tidyverse.org/) as per
@@ -39,15 +39,13 @@ mr <- function(exposure = NULL, outcome = NULL,
                pval_threshold = 1e-5,
                mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_get_request(
+  response <- api_request(
     endpoint = "/mr",
     params = list(
       exposure = exposure, outcome = outcome,
       pval_threshold = pval_threshold
-    )
+    ),
+    mode = mode
   )
-  if (mode == "table") {
-    return(flatten_response(response))
-  }
-  response %>% httr::content(as = "parsed", encoding = "utf-8")
+  response
 }

@@ -18,7 +18,7 @@ leaving \code{outcome} as \code{NULL} will return MR information
 related to a specific \code{exposure}.
 \strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
 
-\item{pval_threshold}{P-value threshold for the MR evidence.}
+\item{pval_threshold}{P-value threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
 (a \href{https://tibble.tidyverse.org/}{tibble} as per
