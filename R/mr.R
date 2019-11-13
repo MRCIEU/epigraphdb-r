@@ -47,20 +47,7 @@ mr <- function(exposure = NULL, outcome = NULL,
     )
   )
   if (mode == "table") {
-    return(mr_table(response))
+    return(flatten_response(response))
   }
   response %>% httr::content(as = "parsed", encoding = "utf-8")
-}
-
-#' Reformat reponse from mr into a table
-#'
-#' @param response response from mr
-#'
-#' @keywords internal
-mr_table <- function(response) {
-  response %>%
-    httr::content(as = "text", encoding = "utf-8") %>%
-    jsonlite::fromJSON(flatten = TRUE) %>%
-    purrr::pluck("results") %>%
-    tibble::as_tibble()
 }

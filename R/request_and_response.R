@@ -14,6 +14,25 @@ api_get_request <- function(endpoint, params) {
   response
 }
 
+#' Flatten the "results" field from an API response to a tibble df
+#'
+#' The general tibble flattener for EpiGraphDB endpoints
+#'
+#' @param response An httr response
+#'
+#' @param field Default to the "results" field
+#'
+#' @return A tibble df
+#'
+#' @keywords internal
+flatten_response <- function(response, field = "results") {
+  response %>%
+    httr::content(as = "text", encoding = "utf-8") %>%
+    jsonlite::fromJSON(flatten = TRUE) %>%
+    purrr::pluck(field) %>%
+    tibble::as_tibble()
+}
+
 #' Catch error for an HTTP response
 #'
 #' Modifies from httr::stop_for_status

@@ -28,20 +28,7 @@ gwas_cor <- function(trait, cor_coef_threshold = 0.8,
     )
   )
   if (mode == "table") {
-    return(gwas_cor_table(response))
+    return(flatten_response(response))
   }
   httr::content(response, as = "parsed", encoding = "utf-8")
-}
-
-#' Table format /gwas_cor
-#'
-#' @param response response from `gwas_cor_requests`
-#'
-#' @keywords internal
-gwas_cor_table <- function(response) {
-  response %>%
-    httr::content(as = "text", encoding = "utf-8") %>%
-    jsonlite::fromJSON(flatten = TRUE) %>%
-    purrr::pluck("results") %>%
-    tibble::as_tibble()
 }
