@@ -3,6 +3,7 @@ pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
   about: about.html
+  options: options.html
   using-epigraphdb-api: using-epigraphdb-api.html
   using-epigraphdb-r-package: using-epigraphdb-r-package.html
 

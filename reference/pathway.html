@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • epigraphdb</title>
+<title>Pathway evidence — pathway • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,7 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Pathway evidence — pathway" />
+<meta property="og:description" content="Pathway evidence" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -65,7 +66,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -135,20 +136,69 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Pathway evidence</h1>
+    
+    <div class="hidden name"><code>pathway.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="options.html">Options</a></li>
-        <li><a href="using-epigraphdb-api.html">Using EpiGraphDB Web API</a></li>
-        <li><a href="using-epigraphdb-r-package.html">Using EpiGraphDB R package</a></li>
-      </ul>
+    <div class="ref-description">
+    <p>Pathway evidence</p>
     </div>
+
+    <pre class="usage"><span class='fu'>pathway</span>(<span class='no'>trait_name</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>trait_name</th>
+      <td><p>A trait name</p></td>
+    </tr>
+    <tr>
+      <th>pval_threshold</th>
+      <td><p>P-value threshold</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
+<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from
+<a href='http://api.epigraphdb.org/#/topics/get_confounder_pathway_get'> /pathway </a></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>pathway</span>(<span class='kw'>trait_name</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 79 x 12
+#&gt;    gwas.trait gwas.id mre_study_snp.se mre_study_snp.e… mre_study_snp.p…
+#&gt;    &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+#&gt;  1 Body mass… 2                 0.0037            0.2           6.66e-30
+#&gt;  2 Body mass… 835               0.0038            0.2           5.56e-28
+#&gt;  3 Body mass… 835               0.0031            0.649         2.66e-26
+#&gt;  4 Body mass… 2                 0.003             0.358         3.45e-25
+#&gt;  5 Body mass… 2                 0.003             0.358         3.45e-25
+#&gt;  6 Body mass… 2                 0.003             0.358         3.45e-25
+#&gt;  7 Body mass… 835               0.0031            0.358         3.14e-23
+#&gt;  8 Body mass… 835               0.0031            0.358         3.14e-23
+#&gt;  9 Body mass… 835               0.0031            0.358         3.14e-23
+#&gt; 10 Body mass… 785               0.0051            0.175         1.09e-19
+#&gt; # … with 69 more rows, and 7 more variables: mre_study_snp.samplesize &lt;dbl&gt;,
+#&gt; #   mre_study_snp.beta &lt;dbl&gt;, snp.name &lt;chr&gt;, gene.name &lt;chr&gt;,
+#&gt; #   protein.uniprot_id &lt;chr&gt;, pathway.name &lt;chr&gt;, pathway.reactome_id &lt;chr&gt;</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 

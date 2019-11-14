@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • epigraphdb</title>
+<title>Single SNP QTL MR evidence — xqtl_single_snp_mr • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,7 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Single SNP QTL MR evidence — xqtl_single_snp_mr" />
+<meta property="og:description" content="Single SNP QTL MR evidence" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -65,7 +66,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -135,20 +136,80 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Single SNP QTL MR evidence</h1>
+    
+    <div class="hidden name"><code>xqtl_single_snp_mr.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="options.html">Options</a></li>
-        <li><a href="using-epigraphdb-api.html">Using EpiGraphDB Web API</a></li>
-        <li><a href="using-epigraphdb-r-package.html">Using EpiGraphDB R package</a></li>
-      </ul>
+    <div class="ref-description">
+    <p>Single SNP QTL MR evidence</p>
     </div>
+
+    <pre class="usage"><span class='fu'>xqtl_single_snp_mr</span>(<span class='kw'>exposure_gene</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>snp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>qtl_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"eQTL"</span>, <span class='st'>"pQTL"</span>), <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>exposure_gene</th>
+      <td><p>Name of the exposure gene</p></td>
+    </tr>
+    <tr>
+      <th>outcome_trait</th>
+      <td><p>Name of the outcome trait</p></td>
+    </tr>
+    <tr>
+      <th>snp</th>
+      <td><p>SNP rsid</p></td>
+    </tr>
+    <tr>
+      <th>qtl_type</th>
+      <td><p>"eQTL" or "pQTL"</p></td>
+    </tr>
+    <tr>
+      <th>pval_threshold</th>
+      <td><p>P-value threshold</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
+<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from <a href='http://api.epigraphdb.org/#/xqtl/get_xqtl_single_snp_mr_xqtl_single-snp-mr_get'> /xqtl/single-snp-mr </a></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>xqtl_single_snp_mr</span>(<span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 404 x 8
+#&gt;    exposure_ensemb… exposure_name outcome_id outcome_name      b     se        p
+#&gt;    &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 ENSG00000147889  CDKN2A        7          Coronary he… -1.97  0.135  4.98e-48
+#&gt;  2 ENSG00000173207  CKS1B         7          Coronary he…  1.14  0.140  3.34e-16
+#&gt;  3 ENSG00000134222  PSRC1         7          Coronary he… -0.159 0.0205 7.40e-15
+#&gt;  4 ENSG00000140403  DNAJA4        7          Coronary he… -1.02  0.144  1.12e-12
+#&gt;  5 ENSG00000197520  FAM177B       7          Coronary he…  0.192 0.0288 2.84e-11
+#&gt;  6 ENSG00000147883  CDKN2B        7          Coronary he… -0.880 0.133  4.09e-11
+#&gt;  7 ENSG00000160179  ABCG1         7          Coronary he… -0.856 0.132  8.17e-11
+#&gt;  8 ENSG00000165071  TMEM71        7          Coronary he… -0.954 0.150  1.93e-10
+#&gt;  9 ENSG00000144635  DYNC1LI1      7          Coronary he… -1.01  0.158  1.93e-10
+#&gt; 10 ENSG00000171988  JMJD1C        7          Coronary he… -0.706 0.111  1.93e-10
+#&gt; # … with 394 more rows, and 1 more variable: snp &lt;chr&gt;</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 

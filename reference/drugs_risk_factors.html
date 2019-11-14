@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • epigraphdb</title>
+<title>Drugs for risk factors — drugs_risk_factors • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,7 +44,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Drugs for risk factors — drugs_risk_factors" />
+<meta property="og:description" content="Drugs for risk factors" />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -65,7 +66,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -135,20 +136,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Drugs for risk factors</h1>
+    
+    <div class="hidden name"><code>drugs_risk_factors.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="about.html">About</a></li>
-        <li><a href="options.html">Options</a></li>
-        <li><a href="using-epigraphdb-api.html">Using EpiGraphDB Web API</a></li>
-        <li><a href="using-epigraphdb-r-package.html">Using EpiGraphDB R package</a></li>
-      </ul>
+    <div class="ref-description">
+    <p>Drugs for risk factors</p>
     </div>
+
+    <pre class="usage"><span class='fu'>drugs_risk_factors</span>(<span class='no'>trait</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-08</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>,
+  <span class='st'>"raw"</span>))</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>trait</th>
+      <td><p>A trait name</p></td>
+    </tr>
+    <tr>
+      <th>pval_threshold</th>
+      <td><p>P-value threshold</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
+<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from
+<a href='http://api.epigraphdb.org/#/drugs/get_drug_risk_factors_drugs_risk-factors_get'> /drugs/risk-factors </a></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>drugs_risk_factors</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 6,747 x 13
+#&gt;    trait.id trait.trait assoc_trait.id assoc_trait.tra… snp.name gene.name
+#&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;    
+#&gt;  1 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  2 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  3 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  4 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  5 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  6 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  7 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  8 835      Body mass … 541            X-11787          rs19349… CYP2C9   
+#&gt;  9 835      Body mass … 60             Waist circumfer… rs79031… TCF7L2   
+#&gt; 10 785      Body mass … UKB-a:323      Age started ora… rs93115… CACNA1D  
+#&gt; # … with 6,737 more rows, and 7 more variables: drug.label &lt;chr&gt;,
+#&gt; #   mr.estimate &lt;dbl&gt;, mr.se &lt;dbl&gt;, mr.p &lt;dbl&gt;, mr.method &lt;chr&gt;,
+#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 
