@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Multi SNP QTL MR evidence — xqtl_multi_snp_mr • epigraphdb</title>
+<title>Send data request to an EpiGraphDB API endpoint — query_epigraphdb • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,8 +44,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Multi SNP QTL MR evidence — xqtl_multi_snp_mr" />
-<meta property="og:description" content="Multi SNP QTL MR evidence" />
+<meta property="og:title" content="Send data request to an EpiGraphDB API endpoint — query_epigraphdb" />
+<meta property="og:description" content="This is a general purpose function to send data request
+which can be used when there has not been a R equivalent package function
+to an API endpoint.
+Underneath this is a wrapper around httr functions with better handling of
+returned status." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -136,72 +140,102 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Multi SNP QTL MR evidence</h1>
+    <h1>Send data request to an EpiGraphDB API endpoint</h1>
     
-    <div class="hidden name"><code>xqtl_multi_snp_mr.Rd</code></div>
+    <div class="hidden name"><code>query_epigraphdb.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Multi SNP QTL MR evidence</p>
+    <p>This is a general purpose function to send data request
+which can be used when there has not been a R equivalent package function
+to an API endpoint.
+Underneath this is a wrapper around <code>httr</code> functions with better handling of
+returned status.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>xqtl_multi_snp_mr</span>(<span class='kw'>exposure_gene</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>mr_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"IVW"</span>, <span class='st'>"Egger"</span>), <span class='kw'>qtl_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"eQTL"</span>, <span class='st'>"pQTL"</span>),
-  <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>query_epigraphdb</span>(<span class='no'>endpoint</span>, <span class='no'>params</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"table"</span>),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>exposure_gene</th>
-      <td><p>Name of the exposure gene</p></td>
+      <th>endpoint</th>
+      <td><p>An EpiGraphDB API endpoint, e.g. <code>"/mr"</code> or <code>"/confounder"</code>.
+Consult the <a href='http://api.epigraphdb.org'>EpiGraphDB API documentation</a>.</p></td>
     </tr>
     <tr>
-      <th>outcome_trait</th>
-      <td><p>Name of the outcome trait</p></td>
-    </tr>
-    <tr>
-      <th>mr_method</th>
-      <td><p>"IVW" or "Egger"</p></td>
-    </tr>
-    <tr>
-      <th>qtl_type</th>
-      <td><p>"eQTL" or "pQTL"</p></td>
-    </tr>
-    <tr>
-      <th>pval_threshold</th>
-      <td><p>P-value threshold</p></td>
+      <th>params</th>
+      <td><p>A list of parameters associated with the query endpoint.</p></td>
     </tr>
     <tr>
       <th>mode</th>
-      <td><p>If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
-If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/c.html'>c("raw", "table")</a></code>, if <code>"table"</code> then the query handler will try
+to convert the returned data to a tibble dataframe.
+NOTE: The default mode is "raw" which will NOT convert the returned response to
+a dataframe.
+This is different to functions that query topic endpoints which
+default to return a dataframe.
+Explicitly specify <code>mode = "table"</code> when needed.</p></td>
+    </tr>
+    <tr>
+      <th>method</th>
+      <td><p>Type of HTTP (GET, POST, PUT, etc.) method.
+Currently only <code>"GET"</code> is supported.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data from <a href='http://api.epigraphdb.org/#/xqtl/get_xqtl_multi_snp_mr_xqtl_multi-snp-mr_get'> /xqtl/multi-snp-mr </a></p>
+    <p>Data from an EpiGraphDB API endpoint.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span>(<span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 12 x 7
-#&gt;    exposure_ensemb… exposure_name outcome_id outcome_name      b     se        p
-#&gt;    &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 ENSG00000134222  PSRC1         7          Coronary he… -0.147 0.0190 9.74e-15
-#&gt;  2 ENSG00000135148  TRAFD1        7          Coronary he…  0.783 0.137  1.14e- 8
-#&gt;  3 ENSG00000183508  FAM46C        7          Coronary he…  0.161 0.0298 6.55e- 8
-#&gt;  4 ENSG00000133789  SWAP70        7          Coronary he… -0.128 0.0240 1.01e- 7
-#&gt;  5 ENSG00000151612  ZNF827        7          Coronary he… -0.336 0.0647 2.05e- 7
-#&gt;  6 ENSG00000076685  NT5C2         7          Coronary he… -0.102 0.0209 1.10e- 6
-#&gt;  7 ENSG00000130475  FCHO1         7          Coronary he… -0.126 0.0266 1.94e- 6
-#&gt;  8 ENSG00000212541  RNU6-510P     7          Coronary he… -0.153 0.0324 2.32e- 6
-#&gt;  9 ENSG00000152804  HHEX          7          Coronary he… -0.117 0.0250 2.77e- 6
-#&gt; 10 ENSG00000197520  FAM177B       7          Coronary he…  0.164 0.0355 3.96e- 6
-#&gt; 11 ENSG00000234608  MAPKAPK5-AS1  7          Coronary he… -0.112 0.0244 4.28e- 6
-#&gt; 12 ENSG00000242142  SERBP1P3      7          Coronary he…  0.115 0.0253 5.25e- 6</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># equivalent to `mr(exposure = "Body mass index", outcome = "Coronary heart disease")`</span>
+<span class='fu'>query_epigraphdb</span>(
+  <span class='kw'>endpoint</span> <span class='kw'>=</span> <span class='st'>"/mr"</span>,
+  <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>,
+    <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>
+  ),
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"table"</span>
+)</div><div class='output co'>#&gt; # A tibble: 6 x 12
+#&gt;   exposure_id exposure_name outcome_id outcome_name estimate     se        p
+#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 974         Body mass in… 7          Coronary he…    0.389 0.0493 3.42e-15
+#&gt; 2 2           Body mass in… 7          Coronary he…    0.397 0.0727 4.79e- 8
+#&gt; 3 95          Body mass in… 7          Coronary he…    0.455 0.0931 1.02e- 6
+#&gt; 4 2           Body mass in… 8          Coronary he…    0.331 0.0684 1.31e- 6
+#&gt; 5 835         Body mass in… 7          Coronary he…    0.360 0.0756 1.94e- 6
+#&gt; 6 974         Body mass in… 8          Coronary he…    0.328 0.0731 6.97e- 6
+#&gt; # … with 5 more variables: ci_upp &lt;dbl&gt;, ci_low &lt;dbl&gt;, selection &lt;chr&gt;,
+#&gt; #   method &lt;chr&gt;, moescore &lt;dbl&gt;</div><div class='input'>
+<span class='co'># /meta/nodes/Gwas/list</span>
+<span class='fu'>query_epigraphdb</span>(
+  <span class='kw'>endpoint</span> <span class='kw'>=</span> <span class='st'>"/meta/nodes/Gwas/list"</span>,
+  <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>
+  )
+) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; List of 2
+#&gt;  $ query  : chr "MATCH (n:Gwas) RETURN n SKIP 0 LIMIT 5"
+#&gt;  $ results:List of 5</div><div class='input'>
+<span class='co'># error handling</span>
+<span class='fu'><a href='https://rdrr.io/r/base/conditions.html'>tryCatch</a></span>(
+  <span class='fu'>query_epigraphdb</span>(
+    <span class='kw'>endpoint</span> <span class='kw'>=</span> <span class='st'>"/mr"</span>,
+    <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+      <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+      <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+    )
+  ),
+  <span class='kw'>error</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>e</span>) {
+    <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='no'>e</span>)
+  }
+)</div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
+#&gt; <span class='error'>Detail:</span>
+#&gt; <span class='error'>$detail</span>
+#&gt; <span class='error'>[1] "exposure and outcome can't be both missing."</span>
+#&gt; <span class='error'>do.call(method, args = list(endpoint = endpoint, params = params, call = call))</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
