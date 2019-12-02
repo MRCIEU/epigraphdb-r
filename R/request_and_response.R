@@ -1,3 +1,70 @@
+#' Send data request to an EpiGraphDB API endpoint
+#'
+#' This is a general purpose function to send data request
+#' which can be used when there has not been a R equivalent package function
+#' to an API endpoint.
+#' Underneath this is a wrapper around `httr` functions with better handling of
+#' returned status.
+#'
+#' @param endpoint An EpiGraphDB API endpoint, e.g. `"/mr"` or `"/confounder"`.
+#' Consult the [EpiGraphDB API documentation](http://api.epigraphdb.org).
+#' @param params A list of parameters associated with the query endpoint.
+#' @param mode `c("raw", "table")`, if `"table"` then the query handler will try
+#' to convert the returned data to a tibble dataframe.
+#' NOTE: The default mode is "raw" which will NOT convert the returned response to
+#' a dataframe.
+#' This is different to functions that query topic endpoints which
+#' default to return a dataframe.
+#' Explicitly specify `mode = "table"` when needed.
+#' @param method Type of HTTP (GET, POST, PUT, etc.) method.
+#' Currently only `"GET"` is supported.
+#' @return Data from an EpiGraphDB API endpoint.
+#'
+#' @examples
+#' # equivalent to `mr(exposure = "Body mass index", outcome = "Coronary heart disease")`
+#' query_epigraphdb(
+#'   endpoint = "/mr",
+#'   params = list(
+#'     exposure = "Body mass index",
+#'     outcome = "Coronary heart disease"
+#'   ),
+#'   mode = "table"
+#' )
+#'
+#' # /meta/nodes/Gwas/list
+#' query_epigraphdb(
+#'   endpoint = "/meta/nodes/Gwas/list",
+#'   params = list(
+#'     limit = 5,
+#'     offset = 0
+#'   )
+#' ) %>% str(1)
+#'
+#' # error handling
+#' tryCatch(
+#'   query_epigraphdb(
+#'     endpoint = "/mr",
+#'     params = list(
+#'       exposure = NULL,
+#'       outcome = NULL
+#'     )
+#'   ),
+#'   error = function(e) {
+#'     message(e)
+#'   }
+#' )
+#' @export
+query_epigraphdb <- function(endpoint, params, mode = c("raw", "table"), method = c("GET")) {
+  mode <- match.arg(mode)
+  method <- match.arg(method)
+  # NOTE: Add POST at a later date
+  if (method == "GET") {
+    method_func <- api_get_request
+  }
+  res <- api_request(endpoint = endpoint, params = params, mode = mode, method = method_func)
+  res
+}
+
 #' Wrapper of httr::GET that handles status errors and custom headers
 #'
 #' @param endpoint An EpiGraphDB API endpoint, e.g. "/mr"

@@ -23,3 +23,23 @@ navbar:
   right:
     - icon: fa-github
       href: https://github.com/MRCIEU/epigraphdb-r
+
+reference:
+  - title: General query
+    contents:
+      - query_epigraphdb
+  - title: Topics
+    contents:
+      - confounder
+      - drugs_risk_factors
+      - gwas_cor
+      - literature_mr
+      - mr
+      - obs_cor
+      - ontology
+      - pathway
+      - pqtl
+      - pqtl_list
+      - pqtl_pleio
+      - xqtl_multi_snp_mr
+      - xqtl_single_snp_mr
