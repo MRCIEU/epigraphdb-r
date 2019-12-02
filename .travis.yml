@@ -8,7 +8,7 @@ matrix:
     after_success:
     - Rscript -e 'covr::codecov()'
     # TODO: revert once rmarkdown fixed
-    before_cache: Rscript -e 'remotes::install_github("pkgdown")'
+    before_cache: Rscript -e 'remotes::install_github("r-lib/pkgdown")'
     # before_cache: Rscript -e 'remotes::install_github("rstudio/rmarkdown"); remotes::install_cran("pkgdown")'
     deploy:
       provider: script
