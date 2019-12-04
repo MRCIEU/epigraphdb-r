@@ -70,6 +70,17 @@ Advanced users are **encouraged** to use the [API service](http://api.epigraphdb
   </thead>
   <tbody>
     <tr>
+      <td><strong>General query</strong></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html"><code>query_epigraphdb</code></a>
+      </td>
+    </tr>
+    <tr>
       <td><strong>Topic queries</strong></td>
       <td></td>
     </tr>
@@ -246,4 +257,7 @@ Advanced users are **encouraged** to use the [API service](http://api.epigraphdb
 
 If Using EpiGraphDB or the `epigraphdb` R package:
 
-[Elsworth B, Liu Y, Haberland V, Erola P, Lyon M, Zheng J, Gaunt TR. EpiGraphDB. http://epigraphdb.org](http://epigraphdb.org)
+[
+  Liu Y, Elsworth B, Haberland V, Erola P, Lyon M, Zheng J, Gaunt TR.
+  EpiGraphDB: a database and data mining platform for health data science.
+](http://epigraphdb.org)
