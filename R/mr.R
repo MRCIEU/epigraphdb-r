@@ -1,15 +1,15 @@
 #' Return information related to Mendelian Randomisation
 #'
-#' @param exposure
+#' @param exposure_trait
 #' A trait name, eg. "Body mass index",
-#' leaving `exposure` as `NULL` will return MR information
+#' leaving `exposure_trait` as `NULL` will return MR information
 #' related to a specific `outcome`.
-#' **NOTE**: `exposure` and `outcome` cannot be both `NULL`.
-#' @param outcome
+#' **NOTE**: `exposure_trait` and `outcome_trait` cannot be both `NULL`.
+#' @param outcome_trait
 #' A trait name, eg. "Coronary heart disease",
-#' leaving `outcome` as `NULL` will return MR information
-#' related to a specific `exposure`.
-#' **NOTE**: `exposure` and `outcome` cannot be both `NULL`.
+#' leaving `outcome_trait` as `NULL` will return MR information
+#' related to a specific `exposure_trait`.
+#' **NOTE**: `exposure_trait` and `outcome_trait` cannot be both `NULL`.
 #' @param pval_threshold
 #' P-value threshold
 #' @param mode
@@ -24,25 +24,25 @@
 #'
 #' @examples
 #' # Returns a data frame
-#' mr(exposure = "Body mass index", outcome = "Coronary heart disease")
+#' mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
 #'
 #' # Returns raw response
 #' mr(
-#'   exposure = "Body mass index", outcome = "Coronary heart disease",
+#'   exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease",
 #'   mode = "raw"
 #' ) %>% str()
 #'
 #' # Use a different threshold
-#' mr(exposure = "Body mass index", pval_threshold = 1e-8)
+#' mr(exposure_trait = "Body mass index", pval_threshold = 1e-8)
 #' @export
-mr <- function(exposure = NULL, outcome = NULL,
+mr <- function(exposure_trait = NULL, outcome_trait = NULL,
                pval_threshold = 1e-5,
                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
     endpoint = "/mr",
     params = list(
-      exposure = exposure, outcome = outcome,
+      exposure_trait = exposure_trait, outcome_trait = outcome_trait,
       pval_threshold = pval_threshold
     ),
     mode = mode

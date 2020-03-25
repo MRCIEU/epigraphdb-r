@@ -4,10 +4,10 @@
 \alias{pathway}
 \title{Pathway evidence}
 \usage{
-pathway(trait_name, pval_threshold = 1e-05, mode = c("table", "raw"))
+pathway(trait, pval_threshold = 1e-05, mode = c("table", "raw"))
 }
 \arguments{
-\item{trait_name}{A trait name}
+\item{trait}{A trait name}
 
 \item{pval_threshold}{P-value threshold}
 
@@ -25,5 +25,5 @@ Data from
 Pathway evidence
 }
 \examples{
-pathway(trait_name = "Body mass index")
+pathway(trait = "Body mass index")
 }

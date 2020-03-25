@@ -47,8 +47,8 @@ Here are some examples of querying EpiGraphDB web API using
 library("epigraphdb")
 url <- getOption("epigraphdb.api.url")
 payload <- list(
-  exposure = "Body mass index",
-  outcome = "Coronary heart disease"
+  exposure_trait = "Body mass index",
+  outcome_trait = "Coronary heart disease"
 )
 r <- httr::GET(glue::glue("{url}/mr"), query = payload)
 r %>% httr::content(as = "parsed") %>% str(2)
@@ -58,8 +58,8 @@ And this is the data structure as returned from the
 `epigraphdb::mr` call with `mode = "raw"`:
 
 ```{r epigraphdb-mr}
-epigraphdb::mr(exposure = "Body mass index",
-               outcome = "Coronary heart disease",
+epigraphdb::mr(exposure_trait = "Body mass index",
+               outcome_trait = "Coronary heart disease",
                mode = "raw") %>%
   str(2)
 ```

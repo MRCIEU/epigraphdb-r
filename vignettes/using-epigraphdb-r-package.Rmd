@@ -31,8 +31,8 @@ By default, for ease of use, the query returns a data frame which is a
 tidyverse [`tibble`](https://tibble.tidyverse.org/):
 
 ```{r}
-df <- mr(exposure = "Body mass index",
-         outcome = "Coronary heart disease")
+df <- mr(exposure_trait = "Body mass index",
+         outcome_trait = "Coronary heart disease")
 df
 ```
 
@@ -42,8 +42,8 @@ Alternatively, you can use `results_type = "raw"` to get the unformatted
 response from EpiGraphDB API.
 
 ```{r}
-response <- mr(exposure = "Body mass index",
-               outcome = "Coronary heart disease",
+response <- mr(exposure_trait = "Body mass index",
+               outcome_trait = "Coronary heart disease",
                mode = "raw")
 response %>% str(2)
 ```

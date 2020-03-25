@@ -3,7 +3,7 @@ context("obs_cor")
 test_that("obs_cor endpoint", {
   url <- getOption("epigraphdb.api.url")
   trait <- "body mass index"
-  r <- httr::GET(glue::glue("{url}/obs_cor"),
+  r <- httr::GET(glue::glue("{url}/obs-cor"),
     query = list(
       trait = trait
     )
@@ -34,26 +34,26 @@ test_that("obs_cor mode = \"raw\"", {
   expect_equal(length(response), 2L)
 })
 
-test_that("obs_cor pval_threshold", {
+test_that("obs_cor cor_coef_threshold", {
   trait <- "Body mass index"
   expect_error(
     response <- obs_cor(
       trait = trait,
-      pval_threshold = 1e-5
+      cor_coef_threshold = 0.8
     ),
     NA
   )
   expect_error(
     response <- obs_cor(
       trait = trait,
-      pval_threshold = 1e-8
+      cor_coef_threshold = 0.6
     ),
     NA
   )
   expect_error(
     response <- obs_cor(
       trait = trait,
-      pval_threshold = 1e-2
+      cor_coef_threshold = 0.4
     ),
     NA
   )

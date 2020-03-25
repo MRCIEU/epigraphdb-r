@@ -11,7 +11,7 @@ test_that("query_epigraphdb raw", {
     ),
     NA
   )
-  expect_equal(names(results), c("query", "results"))
+  expect_equal(names(results), c("metadata", "results"))
 })
 
 test_that("query_epigraphdb table", {
@@ -19,8 +19,8 @@ test_that("query_epigraphdb table", {
     results <- query_epigraphdb(
       endpoint = "/mr",
       params = list(
-        exposure = "Body mass index",
-        outcome = "Coronary heart disease"
+        exposure_trait = "Body mass index",
+        outcome_trait = "Coronary heart disease"
       ),
       mode = "table"
     ),
@@ -34,8 +34,8 @@ test_that("query_epigraphdb error handling", {
     results <- query_epigraphdb(
       endpoint = "/mr",
       params = list(
-        exposure = NULL,
-        outcome = NULL
+        exposure_trait = NULL,
+        outcome_trait = NULL
       )
     )
   )

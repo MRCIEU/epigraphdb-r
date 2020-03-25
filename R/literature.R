@@ -1,24 +1,22 @@
-#' Literature evidence regarding MR
+#' Literature evidence regarding a GWAS trait
 #'
-#' @param trait_name A trait name
+#' @param trait A trait name
 #' @param semmed_predicate Either NULL which returns entries from
 #' all predicates, or a SemMed predicate e.g. "DIAGNOSES" or "ASSOCIATED_WITH"
 #' @inheritParams mr
 #' @return Data from
-#' [
-#'   `/literature/mr`
-#' ](http://api.epigraphdb.org/#/literature/get_literature_mr_literature_mr_get)
+#' `/literature/gwas`
 #'
 #' @examples
-#' literature_mr(trait_name = "Body mass index")
+#' literature_gwas(trait = "Body mass index")
 #' @export
-literature_mr <- function(trait_name, semmed_predicate = NULL,
-                          mode = c("table", "raw")) {
+literature_gwas <- function(trait, semmed_predicate = NULL,
+                            mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/literature/mr",
+    endpoint = "/literature/gwas",
     params = list(
-      trait_name = trait_name,
+      trait = trait,
       semmed_predicate = semmed_predicate
     ),
     mode = mode

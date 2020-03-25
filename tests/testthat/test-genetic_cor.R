@@ -1,9 +1,9 @@
-context("gwas_cor")
+context("genetic_cor")
 
-test_that("gwas_cor endpoint", {
+test_that("genetic_cor endpoint", {
   url <- getOption("epigraphdb.api.url")
   trait <- "body mass index"
-  r <- httr::GET(glue::glue("{url}/gwas_cor"),
+  r <- httr::GET(glue::glue("{url}/genetic-cor"),
     query = list(
       trait = trait
     )
@@ -11,10 +11,10 @@ test_that("gwas_cor endpoint", {
   expect_equal(httr::status_code(r), 200)
 })
 
-test_that("gwas_cor mode = \"table\"", {
+test_that("genetic_cor mode = \"table\"", {
   trait <- "body mass index"
   expect_error(
-    df <- gwas_cor(
+    df <- genetic_cor(
       trait = trait
     ),
     NA
@@ -22,10 +22,10 @@ test_that("gwas_cor mode = \"table\"", {
   expect_is(df, "tbl_df")
 })
 
-test_that("gwas_cor mode = \"raw\"", {
+test_that("genetic_cor mode = \"raw\"", {
   trait <- "body mass index"
   expect_error(
-    response <- gwas_cor(
+    response <- genetic_cor(
       trait = trait,
       mode = "raw"
     ),
@@ -34,26 +34,26 @@ test_that("gwas_cor mode = \"raw\"", {
   expect_equal(length(response), 2L)
 })
 
-test_that("gwas_cor cor_coef_threshold", {
+test_that("genetic_cor cor_coef_threshold", {
   trait <- "Body mass index"
   expect_error(
-    response <- gwas_cor(
+    response <- genetic_cor(
       trait = trait,
       cor_coef_threshold = 0.8
     ),
     NA
   )
   expect_error(
-    response <- gwas_cor(
+    response <- genetic_cor(
       trait = trait,
-      cor_coef_threshold = 0.9
+      cor_coef_threshold = 0.6
     ),
     NA
   )
   expect_error(
-    response <- gwas_cor(
+    response <- genetic_cor(
       trait = trait,
-      cor_coef_threshold = 0.2
+      cor_coef_threshold = 0.4
     ),
     NA
   )

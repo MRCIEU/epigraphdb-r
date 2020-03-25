@@ -35,12 +35,12 @@ Underneath this is a wrapper around \code{httr} functions with better handling o
 returned status.
 }
 \examples{
-# equivalent to `mr(exposure = "Body mass index", outcome = "Coronary heart disease")`
+# equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
 query_epigraphdb(
   endpoint = "/mr",
   params = list(
-    exposure = "Body mass index",
-    outcome = "Coronary heart disease"
+    exposure_trait = "Body mass index",
+    outcome_trait = "Coronary heart disease"
   ),
   mode = "table"
 )
@@ -59,8 +59,8 @@ tryCatch(
   query_epigraphdb(
     endpoint = "/mr",
     params = list(
-      exposure = NULL,
-      outcome = NULL
+      exposure_trait = NULL,
+      outcome_trait = NULL
     )
   ),
   error = function(e) {
