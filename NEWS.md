@@ -2,7 +2,8 @@
 
 Current ongoing development
 
-- Migrated to github and travis CI.
+- (2020-03) Move upstream API url to http://api.epigraphdb.org/v0.2.0
+- (2019-11) Migrated to github and travis CI.
   Current documentation site is now `https://mrcieu.github.io/epigraphdb-r`.
 
 # epigraphdb 0.1 (2019-07-04)
