@@ -5,7 +5,7 @@
 \title{Send data request to an EpiGraphDB API endpoint}
 \usage{
 query_epigraphdb(endpoint, params, mode = c("raw", "table"),
-  method = c("GET"))
+  method = c("GET", "POST"))
 }
 \arguments{
 \item{endpoint}{An EpiGraphDB API endpoint, e.g. \code{"/mr"} or \code{"/confounder"}.
@@ -21,8 +21,7 @@ This is different to functions that query topic endpoints which
 default to return a dataframe.
 Explicitly specify \code{mode = "table"} when needed.}
 
-\item{method}{Type of HTTP (GET, POST, PUT, etc.) method.
-Currently only \code{"GET"} is supported.}
+\item{method}{Type of HTTP (GET, POST, PUT, etc.) method.}
 }
 \value{
 Data from an EpiGraphDB API endpoint.
@@ -53,6 +52,15 @@ query_epigraphdb(
     offset = 0
   )
 ) \%>\% str(1)
+
+# POST request for /protein/ppi
+query_epigraphdb(
+  endpoint = "/protein/ppi",
+  params = list(
+    uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
+  ),
+  method = "POST"
+)
 
 # error handling
 tryCatch(

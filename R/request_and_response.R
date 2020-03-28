@@ -17,7 +17,6 @@
 #' default to return a dataframe.
 #' Explicitly specify `mode = "table"` when needed.
 #' @param method Type of HTTP (GET, POST, PUT, etc.) method.
-#' Currently only `"GET"` is supported.
 #' @return Data from an EpiGraphDB API endpoint.
 #'
 #' @examples
@@ -40,6 +39,15 @@
 #'   )
 #' ) %>% str(1)
 #'
+#' # POST request for /protein/ppi
+#' query_epigraphdb(
+#'   endpoint = "/protein/ppi",
+#'   params = list(
+#'     uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
+#'   ),
+#'   method = "POST"
+#' )
+#'
 #' # error handling
 #' tryCatch(
 #'   query_epigraphdb(
@@ -54,12 +62,14 @@
 #'   }
 #' )
 #' @export
-query_epigraphdb <- function(endpoint, params, mode = c("raw", "table"), method = c("GET")) {
+query_epigraphdb <- function(endpoint, params, mode = c("raw", "table"), method = c("GET", "POST")) {
   mode <- match.arg(mode)
   method <- match.arg(method)
   # NOTE: Add POST at a later date
   if (method == "GET") {
     method_func <- api_get_request
+  } else if (method == "POST") {
+    method_func <- api_post_request
   }
   res <- api_request(endpoint = endpoint, params = params, mode = mode, method = method_func)
   res
@@ -77,6 +87,25 @@ api_get_request <- function(endpoint, params, call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
   response <- httr::GET(glue::glue("{api_url}{endpoint}"),
     query = params,
+    httr::add_headers(.headers = c("client-type" = "R"))
+  )
+  stop_for_status(response, call = sys.call(-1))
+  response
+}
+
+#' Wrapper of httr::POST that handles status errors and custom headers
+#'
+#' @param endpoint An EpiGraphDB API endpoint, e.g. "/mr"
+#' @param params POST request payload
+#' @param call The function call to identify the original function
+#' when things go wrong
+#'
+#' @keywords internal
+api_post_request <- function(endpoint, params, call = sys.call(-1)) {
+  api_url <- getOption("epigraphdb.api.url") # nolint
+  response <- httr::POST(glue::glue("{api_url}{endpoint}"),
+    body = jsonlite::toJSON(params),
+    endcode = "json",
     httr::add_headers(.headers = c("client-type" = "R"))
   )
   stop_for_status(response, call = sys.call(-1))

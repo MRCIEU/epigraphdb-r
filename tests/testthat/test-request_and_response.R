@@ -40,3 +40,17 @@ test_that("query_epigraphdb error handling", {
     )
   )
 })
+
+test_that("query_epigraphdb POST", {
+  expect_error(
+    results <- query_epigraphdb(
+      endpoint = "/protein/ppi",
+      params = list(
+        uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
+      ),
+      method = "POST"
+    ),
+    NA
+  )
+  expect_equal(names(results), c("metadata", "results"))
+})
