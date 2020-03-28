@@ -1,12 +1,13 @@
 #' Ontology association between EFO term and Gwas
 #'
+#' [`GET /ontology/gwas-efo`](http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo)
+#'
 #' @param trait trait name, e.g. "body mass"
 #' @param efo_term EFO term, e.g. "systolic blood pressure"
 #' @param fuzzy whether query with exact matching (FALSE) or fuzzy matching (default, TRUE)
 #' @inheritParams mr
 #'
-#' @return Data from
-#' `ontology`
+#' @return Data from `GET /ontology/gwas-efo`
 #'
 #' @examples
 #' ontology_gwas_efo(trait = "blood", fuzzy = FALSE)

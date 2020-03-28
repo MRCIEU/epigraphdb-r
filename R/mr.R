@@ -1,5 +1,7 @@
 #' Return information related to Mendelian Randomisation
 #'
+#' [`GET /mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-mr)
+#'
 #' @param exposure_trait
 #' A trait name, eg. "Body mass index",
 #' leaving `exposure_trait` as `NULL` will return MR information
@@ -19,8 +21,7 @@
 #' If `mode = "raw"`, returns a raw response from EpiGraphDB API
 #' with minimal parsing done by [`httr`](https://httr.r-lib.org/).
 #'
-#' @return Data from
-#' [`/mr`](http://devapi.epigraphdb.org/#/topics/get_mr_mr_get)
+#' @return Data from `GET /mr`
 #'
 #' @examples
 #' # Returns a data frame

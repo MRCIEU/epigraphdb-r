@@ -1,11 +1,12 @@
 #' Literature evidence regarding a GWAS trait
 #'
+#' [`GET /literature/gwas`](http://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas)
+#'
 #' @param trait A trait name
 #' @param semmed_predicate Either NULL which returns entries from
 #' all predicates, or a SemMed predicate e.g. "DIAGNOSES" or "ASSOCIATED_WITH"
 #' @inheritParams mr
-#' @return Data from
-#' `/literature/gwas`
+#' @return Data from `GET /literature/gwas`
 #'
 #' @examples
 #' literature_gwas(trait = "Body mass index")

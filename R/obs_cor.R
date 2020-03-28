@@ -1,13 +1,12 @@
 #' Observational correlations between traits
 #'
+#' [`GET /obs-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor)
+#'
 #' @param trait name of the trait, e.g. "body mass index"
 #' @param cor_coef_threshold correlation coefficient threshold
 #' @inheritParams mr
 #'
-#' @return Data from
-#' [
-#'   `/obs-cor`
-#' ](http://api.epigraphdb.org/#/topics/get_obs_cor_obs_cor_get)
+#' @return Data from `GET /obs-cor`
 #'
 #' @examples
 #' obs_cor(trait = "Body mass index (BMI)") %>%

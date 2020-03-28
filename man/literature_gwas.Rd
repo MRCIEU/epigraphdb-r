@@ -20,11 +20,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\code{/literature/gwas}
+Data from \code{GET /literature/gwas}
 }
 \description{
-Literature evidence regarding a GWAS trait
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas}{GET /literature/gwas}
 }
 \examples{
 literature_gwas(trait = "Body mass index")

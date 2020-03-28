@@ -1,9 +1,10 @@
 #' Genetic correlations between traits
 #'
+#' [`GET /genetic-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor)
+#'
 #' @inheritParams obs_cor
 #'
-#' @return Data from
-#' `/genetic_cor`
+#' @return Data from `GET /genetic_cor`
 #'
 #' @examples
 #' genetic_cor(trait = "Body mass index") %>%

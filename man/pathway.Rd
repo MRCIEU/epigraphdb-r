@@ -18,11 +18,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/topics/get_confounder_pathway_get}{ /pathway }
+Data from \code{GET /pathway}
 }
 \description{
-Pathway evidence
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{GET /pathway}
 }
 \examples{
 pathway(trait = "Body mass index")

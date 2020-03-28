@@ -40,11 +40,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/pqtl/get_pqtl_pqtl__get}{/pqtl/}
+Data from \code{GET /pqtl/}
 }
 \description{
-Return information related to the pQTL analysis
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{GET /pqtl/}
 }
 \examples{
 # Returns a data frame of MR results, while searching for proteins

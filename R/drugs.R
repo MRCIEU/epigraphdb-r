@@ -1,11 +1,10 @@
 #' Drugs for risk factors
 #'
+#' [`GET /drugs/risk-factors`](http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors)
+#'
 #' @param trait A trait name
 #' @inheritParams mr
-#' @return Data from
-#' [
-#'   `/drugs/risk-factors`
-#' ](http://api.epigraphdb.org/#/drugs/get_drug_risk_factors_drugs_risk-factors_get)
+#' @return Data from `GET /drugs/risk-factors`
 #'
 #' @examples
 #' drugs_risk_factors(trait = "Body mass index")

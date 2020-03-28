@@ -20,8 +20,11 @@ The DEFAULT value is "proteins".}
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
+\value{
+Data from \code{GET /pqtl/pleio/}
+}
 \description{
-Return information related to the pleiotropy of SNPs
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio}{GET /pqtl/pleio/}
 }
 \examples{
 

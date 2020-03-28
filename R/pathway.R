@@ -1,11 +1,10 @@
 #' Pathway evidence
 #'
+#' [`GET /pathway`](http://docs.epigraphdb.org/api/api-endpoints/#get-pathway)
+#'
 #' @param trait A trait name
 #' @inheritParams mr
-#' @return Data from
-#' [
-#'   `/pathway`
-#' ](http://api.epigraphdb.org/#/topics/get_confounder_pathway_get)
+#' @return Data from `GET /pathway`
 #'
 #' @examples
 #' pathway(trait = "Body mass index")

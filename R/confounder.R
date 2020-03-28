@@ -1,5 +1,7 @@
 #' MR evidence on confounding traits between exposure and outcome
 #'
+#' [`GET /confounder`](http://docs.epigraphdb.org/api/api-endpoints/#get-confounder)
+#'
 #' @param type One in `["confounder", "intermediate",
 #' "reverse_intermediate", "collider"]`
 #' Refer to [
@@ -8,10 +10,7 @@
 #' for details
 #' @inheritParams mr
 #'
-#' @return Data from
-#' [
-#'   `/confounder`
-#' ](http://api.epigraphdb.org/#/topics/get_confounder_confounder_get)
+#' @return Data from `GET /confounder`
 #'
 #' @examples
 #' confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")

@@ -21,11 +21,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\code{ontology}
+Data from \code{GET /ontology/gwas-efo}
 }
 \description{
-Ontology association between EFO term and Gwas
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo}{GET /ontology/gwas-efo}
 }
 \examples{
 ontology_gwas_efo(trait = "blood", fuzzy = FALSE)

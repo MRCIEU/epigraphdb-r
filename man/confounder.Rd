@@ -32,11 +32,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/topics/get_confounder_confounder_get}{ /confounder }
+Data from \code{GET /confounder}
 }
 \description{
-MR evidence on confounding traits between exposure and outcome
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{GET /confounder}
 }
 \examples{
 confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")

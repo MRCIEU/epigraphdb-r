@@ -19,11 +19,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/drugs/get_drug_risk_factors_drugs_risk-factors_get}{ /drugs/risk-factors }
+Data from \code{GET /drugs/risk-factors}
 }
 \description{
-Drugs for risk factors
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors}{GET /drugs/risk-factors}
 }
 \examples{
 drugs_risk_factors(trait = "Body mass index")
