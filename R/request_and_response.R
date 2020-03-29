@@ -17,6 +17,12 @@
 #' default to return a dataframe.
 #' Explicitly specify `mode = "table"` when needed.
 #' @param method Type of HTTP (GET, POST, PUT, etc.) method.
+#'
+#' NOTE: When sending a POST request where a specific parameter is specified as a list on the API,
+#'       and if the equivalent in R is a vector of length 1, you should wrap this parameter
+#'       in `I()`, e.g. I(c("APOE")) to avoid auto unboxing.
+#'       For details, please refer to [`httr::POST`](https://httr.r-lib.org/reference/POST.html)
+#'
 #' @return Data from an EpiGraphDB API endpoint.
 #'
 #' @examples

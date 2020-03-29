@@ -21,7 +21,12 @@ This is different to functions that query topic endpoints which
 default to return a dataframe.
 Explicitly specify \code{mode = "table"} when needed.}
 
-\item{method}{Type of HTTP (GET, POST, PUT, etc.) method.}
+\item{method}{Type of HTTP (GET, POST, PUT, etc.) method.
+
+NOTE: When sending a POST request where a specific parameter is specified as a list on the API,
+and if the equivalent in R is a vector of length 1, you should wrap this parameter
+in \code{I()}, e.g. I(c("APOE")) to avoid auto unboxing.
+For details, please refer to \href{https://httr.r-lib.org/reference/POST.html}{httr::POST}}
 }
 \value{
 Data from an EpiGraphDB API endpoint.
