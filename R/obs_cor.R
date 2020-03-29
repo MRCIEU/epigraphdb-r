@@ -19,7 +19,7 @@
 obs_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/obs-cor",
+    route = "/obs-cor",
     params = list(
       trait = trait, cor_coef_threshold = cor_coef_threshold
     ),

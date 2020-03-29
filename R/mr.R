@@ -41,7 +41,7 @@ mr <- function(exposure_trait = NULL, outcome_trait = NULL,
                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/mr",
+    route = "/mr",
     params = list(
       exposure_trait = exposure_trait, outcome_trait = outcome_trait,
       pval_threshold = pval_threshold

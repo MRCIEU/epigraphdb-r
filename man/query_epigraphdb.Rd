@@ -4,11 +4,11 @@
 \alias{query_epigraphdb}
 \title{Send data request to an EpiGraphDB API endpoint}
 \usage{
-query_epigraphdb(endpoint, params, mode = c("raw", "table"),
+query_epigraphdb(route, params, mode = c("raw", "table"),
   method = c("GET", "POST"))
 }
 \arguments{
-\item{endpoint}{An EpiGraphDB API endpoint, e.g. \code{"/mr"} or \code{"/confounder"}.
+\item{route}{An EpiGraphDB API endpoint route, e.g. \code{"/mr"} or \code{"/confounder"}.
 Consult the \href{http://api.epigraphdb.org}{EpiGraphDB API documentation}.}
 
 \item{params}{A list of parameters associated with the query endpoint.}
@@ -34,9 +34,10 @@ Underneath this is a wrapper around \code{httr} functions with better handling o
 returned status.
 }
 \examples{
+# GET /mr
 # equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
 query_epigraphdb(
-  endpoint = "/mr",
+  route = "/mr",
   params = list(
     exposure_trait = "Body mass index",
     outcome_trait = "Coronary heart disease"
@@ -44,18 +45,18 @@ query_epigraphdb(
   mode = "table"
 )
 
-# /meta/nodes/Gwas/list
+# GET /meta/nodes/Gwas/list
 query_epigraphdb(
-  endpoint = "/meta/nodes/Gwas/list",
+  route = "/meta/nodes/Gwas/list",
   params = list(
     limit = 5,
     offset = 0
   )
 ) \%>\% str(1)
 
-# POST request for /protein/ppi
+# POST /protein/ppi
 query_epigraphdb(
-  endpoint = "/protein/ppi",
+  route = "/protein/ppi",
   params = list(
     uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
   ),
@@ -65,7 +66,7 @@ query_epigraphdb(
 # error handling
 tryCatch(
   query_epigraphdb(
-    endpoint = "/mr",
+    route = "/mr",
     params = list(
       exposure_trait = NULL,
       outcome_trait = NULL

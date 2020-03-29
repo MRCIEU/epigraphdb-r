@@ -13,7 +13,7 @@ drugs_risk_factors <- function(trait, pval_threshold = 1e-8,
                                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/drugs/risk-factors",
+    route = "/drugs/risk-factors",
     params = list(
       trait = trait,
       pval_threshold = pval_threshold

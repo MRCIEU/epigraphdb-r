@@ -25,7 +25,7 @@ confounder <- function(exposure_trait = NULL, outcome_trait = NULL,
   mode <- match.arg(mode)
   type <- match.arg(type)
   response <- api_request(
-    endpoint = "/confounder",
+    route = "/confounder",
     params = list(
       exposure_trait = exposure_trait, outcome_trait = outcome_trait,
       type = type,

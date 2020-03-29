@@ -14,7 +14,7 @@ pathway <- function(trait,
                     mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/pathway",
+    route = "/pathway",
     params = list(
       trait = trait,
       pval_threshold = pval_threshold

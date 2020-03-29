@@ -21,7 +21,7 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
   mr_method <- match.arg(mr_method)
   qtl_type <- match.arg(qtl_type)
   response <- api_request(
-    endpoint = "/xqtl/multi-snp-mr",
+    route = "/xqtl/multi-snp-mr",
     params = list(
       exposure_gene = exposure_gene,
       outcome_trait = outcome_trait,
@@ -53,7 +53,7 @@ xqtl_single_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
   mode <- match.arg(mode)
   qtl_type <- match.arg(qtl_type)
   response <- api_request(
-    endpoint = "/xqtl/single-snp-mr",
+    route = "/xqtl/single-snp-mr",
     params = list(
       exposure_gene = exposure_gene,
       outcome_trait = outcome_trait,

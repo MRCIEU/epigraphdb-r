@@ -18,7 +18,7 @@ genetic_cor <- function(trait, cor_coef_threshold = 0.8,
                         mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_get_request(
-    endpoint = "/genetic-cor",
+    route = "/genetic-cor",
     params = list(
       trait = trait,
       cor_coef_threshold = cor_coef_threshold

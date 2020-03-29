@@ -15,7 +15,7 @@ literature_gwas <- function(trait, semmed_predicate = NULL,
                             mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/literature/gwas",
+    route = "/literature/gwas",
     params = list(
       trait = trait,
       semmed_predicate = semmed_predicate

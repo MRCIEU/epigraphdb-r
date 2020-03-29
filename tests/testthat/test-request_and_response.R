@@ -3,7 +3,7 @@ context("request_and_response")
 test_that("query_epigraphdb raw", {
   expect_error(
     results <- query_epigraphdb(
-      endpoint = "/meta/nodes/Gwas/list",
+      route = "/meta/nodes/Gwas/list",
       params = list(
         limit = 5,
         offset = 0
@@ -17,7 +17,7 @@ test_that("query_epigraphdb raw", {
 test_that("query_epigraphdb table", {
   expect_error(
     results <- query_epigraphdb(
-      endpoint = "/mr",
+      route = "/mr",
       params = list(
         exposure_trait = "Body mass index",
         outcome_trait = "Coronary heart disease"
@@ -32,7 +32,7 @@ test_that("query_epigraphdb table", {
 test_that("query_epigraphdb error handling", {
   expect_error(
     results <- query_epigraphdb(
-      endpoint = "/mr",
+      route = "/mr",
       params = list(
         exposure_trait = NULL,
         outcome_trait = NULL
@@ -44,7 +44,7 @@ test_that("query_epigraphdb error handling", {
 test_that("query_epigraphdb POST", {
   expect_error(
     results <- query_epigraphdb(
-      endpoint = "/protein/ppi",
+      route = "/protein/ppi",
       params = list(
         uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
       ),

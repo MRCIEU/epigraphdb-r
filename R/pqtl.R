@@ -62,7 +62,7 @@ pqtl <- function(query,
   rtype <- match.arg(rtype)
   searchflag <- match.arg(searchflag)
   response <- api_get_request(
-    endpoint = "/pqtl/",
+    route = "/pqtl/",
     params = list(
       query = query,
       rtype = rtype,
@@ -113,7 +113,7 @@ pqtl_pleio <- function(rsid = NULL,
   mode <- match.arg(mode)
   prflag <- match.arg(prflag)
   response <- api_get_request(
-    endpoint = "/pqtl/pleio/",
+    route = "/pqtl/pleio/",
     params = list(
       rsid = rsid,
       prflag = prflag
@@ -157,7 +157,7 @@ pqtl_list <- function(flag = c("exposures", "outcomes"),
   mode <- match.arg(mode)
   flag <- match.arg(flag)
   response <- api_get_request(
-    endpoint = "/pqtl/list/",
+    route = "/pqtl/list/",
     params = list(flag = flag)
   ) %>%
     httr::content(encoding = "utf-8") %>%
