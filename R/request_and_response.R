@@ -104,8 +104,9 @@ api_get_request <- function(route, params, call = sys.call(-1)) {
 #' @keywords internal
 api_post_request <- function(route, params, call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
+  body <- jsonlite::toJSON(params, auto_unbox = TRUE)
   response <- httr::POST(glue::glue("{api_url}{route}"),
-    body = jsonlite::toJSON(params),
+    body = body,
     endcode = "json",
     httr::add_headers(.headers = c("client-type" = "R"))
   )

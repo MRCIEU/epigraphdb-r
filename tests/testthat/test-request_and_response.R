@@ -41,7 +41,7 @@ test_that("query_epigraphdb error handling", {
   )
 })
 
-test_that("query_epigraphdb POST", {
+test_that("query_epigraphdb POST 1", {
   expect_error(
     results <- query_epigraphdb(
       route = "/protein/ppi",
@@ -53,4 +53,27 @@ test_that("query_epigraphdb POST", {
     NA
   )
   expect_equal(names(results), c("metadata", "results"))
+})
+
+test_that("query_epigraphdb POST 2", {
+  expect_error(
+    results <- query_epigraphdb(
+      route = "/xqtl/single-snp-mr/gene-by-variant",
+      params = list(
+        qtl_type = "eQTL",
+        variant_list = c(
+          "rs7028268", "rs140244541", "rs4970834",
+          "rs2904220", "rs34032254", "rs2184061", "rs7412",
+          "rs11065979", "rs10774625", "rs4766578", "rs7568458",
+          "rs10176176", "rs653178", "rs3184504", "rs3731827",
+          "rs7310615", "rs10187424", "rs10774624", "rs17696736",
+          "rs597808"
+        )
+      ),
+      method = "POST",
+      mode = "table"
+    ),
+    NA
+  )
+  expect_is(results, "tbl_df")
 })
