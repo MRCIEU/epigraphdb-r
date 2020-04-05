@@ -178,8 +178,8 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>gwas_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 198
-#&gt; Variables: 5
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 198
+#&gt; Columns: 5
 #&gt; $ trait_id         &lt;chr&gt; "2", "835", "835", "974", "2", "974", "785", "785", …
 #&gt; $ trait_name       &lt;chr&gt; "Body mass index", "Body mass index", "Body mass ind…
 #&gt; $ cor              &lt;dbl&gt; 0.9947284, 0.9947284, 0.9638813, 0.9638813, 0.961907…
@@ -187,8 +187,8 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 #&gt; $ assoc_trait_name &lt;chr&gt; "Body mass index", "Body mass index", "Body mass ind…</div><div class='input'>
 <span class='co'># Use a different threshold</span>
 <span class='fu'>gwas_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>cor_coef_threshold</span> <span class='kw'>=</span> <span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 652
-#&gt; Variables: 5
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 652
+#&gt; Columns: 5
 #&gt; $ trait_id         &lt;chr&gt; "2", "835", "835", "974", "2", "974", "785", "785", …
 #&gt; $ trait_name       &lt;chr&gt; "Body mass index", "Body mass index", "Body mass ind…
 #&gt; $ cor              &lt;dbl&gt; 0.9947284, 0.9947284, 0.9638813, 0.9638813, 0.961907…

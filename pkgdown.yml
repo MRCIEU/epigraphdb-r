@@ -1,10 +1,10 @@
 pandoc: '2.2'
 pkgdown: 1.5.0.9000
-pkgdown_sha: 2254f318a4c1cb12419e27155cce74307bd844ea
+pkgdown_sha: 1522b5625edb570935afcd3e9add44cc54d6272e
 articles:
   about: about.html
   options: options.html
   using-epigraphdb-api: using-epigraphdb-api.html
   using-epigraphdb-r-package: using-epigraphdb-r-package.html
-last_built: 2020-03-29T14:05Z
+last_built: 2020-04-05T14:06Z
 

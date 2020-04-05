@@ -178,8 +178,8 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>obs_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index (BMI)"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 39
-#&gt; Variables: 6
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 39
+#&gt; Columns: 6
 #&gt; $ trait_id         &lt;chr&gt; "UKB-b:19953", "UKB-b:19953", "UKB-b:19953", "UKB-b:…
 #&gt; $ trait_name       &lt;chr&gt; "Body mass index (BMI)", "Body mass index (BMI)", "B…
 #&gt; $ cor              &lt;dbl&gt; 0.8667976, 0.8509821, 0.6404578, 0.8656913, 0.504887…
@@ -188,8 +188,8 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td
 #&gt; $ assoc_trait_name &lt;chr&gt; "Arm fat mass (left)", "Trunk fat mass", "Trunk fat …</div><div class='input'>
 <span class='co'># Use a different threshold</span>
 <span class='fu'>obs_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index (BMI)"</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-8</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Observations: 39
-#&gt; Variables: 6
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 39
+#&gt; Columns: 6
 #&gt; $ trait_id         &lt;chr&gt; "UKB-b:19953", "UKB-b:19953", "UKB-b:19953", "UKB-b:…
 #&gt; $ trait_name       &lt;chr&gt; "Body mass index (BMI)", "Body mass index (BMI)", "B…
 #&gt; $ cor              &lt;dbl&gt; 0.8667976, 0.8509821, 0.6404578, 0.8656913, 0.504887…
