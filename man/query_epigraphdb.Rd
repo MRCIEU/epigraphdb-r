@@ -33,7 +33,7 @@ Data from an EpiGraphDB API endpoint.
 }
 \description{
 This is a general purpose function to send data request
-which can be used when there has not been a R equivalent package function
+which can be used when there has not been an R equivalent package function
 to an API endpoint.
 Underneath this is a wrapper around \code{httr} functions with better handling of
 returned status.

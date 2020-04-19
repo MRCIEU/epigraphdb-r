@@ -19,12 +19,12 @@ knitr::opts_chunk$set(
 EpiGraphDB currently offers two API URLs
 
 - prodcution (default): http://api.epigraphdb.org
-- development: http://devapi.epigraphdb.org
+- development: http://dev-api.epigraphdb.org
 
 To switch to the development API, do
 
 ```{r}
-options(epigraphdb.api.url="http://devapi.epigraphdb.org")
+options(epigraphdb.api.url="http://dev-api.epigraphdb.org")
 # verify current URL
 getOption("epigraphdb.api.url")
 ```

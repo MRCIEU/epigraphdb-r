@@ -1,8 +1,8 @@
 ---
-title: "Using EpiGraphDB Web API"
+title: "Using EpiGraphDB API"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Using EpiGraphDB Web API"}
+  %\VignetteIndexEntry{"Using EpiGraphDB API"}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
