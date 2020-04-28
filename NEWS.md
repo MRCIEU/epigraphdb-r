@@ -1,3 +1,11 @@
+# epigraphdb 0.2.0.9
+
+Current ongoing development
+
+# epigraphdb 0.2 (2020-04-21)
+
+- Migrated to EpiGraphDB v0.3.0 API.
+
 # epigraphdb 0.1.0.9
 
 Current ongoing development
