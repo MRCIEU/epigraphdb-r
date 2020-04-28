@@ -1,6 +1,6 @@
 Package: epigraphdb
 Title: EpiGraphDB
-Version: 0.1
+Version: 0.2
 Authors@R: c(
   person("Yi", "Liu", email = "yi6240.liu@bristol.ac.uk",
     role = c("aut", "cre")
