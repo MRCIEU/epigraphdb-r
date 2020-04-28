@@ -4,10 +4,10 @@
 \alias{pathway}
 \title{Pathway evidence}
 \usage{
-pathway(trait_name, pval_threshold = 1e-05, mode = c("table", "raw"))
+pathway(trait, pval_threshold = 1e-05, mode = c("table", "raw"))
 }
 \arguments{
-\item{trait_name}{A trait name}
+\item{trait}{A trait name}
 
 \item{pval_threshold}{P-value threshold}
 
@@ -18,12 +18,11 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/topics/get_confounder_pathway_get}{ /pathway }
+Data from \code{GET /pathway}
 }
 \description{
-Pathway evidence
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{GET /pathway}
 }
 \examples{
-pathway(trait_name = "Body mass index")
+pathway(trait = "Body mass index")
 }

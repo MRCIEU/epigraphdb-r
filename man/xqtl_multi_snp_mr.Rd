@@ -26,10 +26,10 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from \href{http://api.epigraphdb.org/#/xqtl/get_xqtl_multi_snp_mr_xqtl_multi-snp-mr_get}{ /xqtl/multi-snp-mr }
+Data from \code{GET /xqtl/multi-snp-mr}
 }
 \description{
-Multi SNP QTL MR evidence
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr}{GET /xqtl/multi-snp-mr}
 }
 \examples{
 xqtl_multi_snp_mr(outcome_trait = "Coronary heart disease")

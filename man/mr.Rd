@@ -4,19 +4,19 @@
 \alias{mr}
 \title{Return information related to Mendelian Randomisation}
 \usage{
-mr(exposure = NULL, outcome = NULL, pval_threshold = 1e-05,
-  mode = c("table", "raw"))
+mr(exposure_trait = NULL, outcome_trait = NULL,
+  pval_threshold = 1e-05, mode = c("table", "raw"))
 }
 \arguments{
-\item{exposure}{A trait name, eg. "Body mass index",
-leaving \code{exposure} as \code{NULL} will return MR information
+\item{exposure_trait}{A trait name, eg. "Body mass index",
+leaving \code{exposure_trait} as \code{NULL} will return MR information
 related to a specific \code{outcome}.
-\strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
+\strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
-\item{outcome}{A trait name, eg. "Coronary heart disease",
-leaving \code{outcome} as \code{NULL} will return MR information
-related to a specific \code{exposure}.
-\strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
+\item{outcome_trait}{A trait name, eg. "Coronary heart disease",
+leaving \code{outcome_trait} as \code{NULL} will return MR information
+related to a specific \code{exposure_trait}.
+\strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
 \item{pval_threshold}{P-value threshold}
 
@@ -27,22 +27,21 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://devapi.epigraphdb.org/#/topics/get_mr_mr_get}{/mr}
+Data from \code{GET /mr}
 }
 \description{
-Return information related to Mendelian Randomisation
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-mr}{GET /mr}
 }
 \examples{
 # Returns a data frame
-mr(exposure = "Body mass index", outcome = "Coronary heart disease")
+mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
 
 # Returns raw response
 mr(
-  exposure = "Body mass index", outcome = "Coronary heart disease",
+  exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease",
   mode = "raw"
 ) \%>\% str()
 
 # Use a different threshold
-mr(exposure = "Body mass index", pval_threshold = 1e-8)
+mr(exposure_trait = "Body mass index", pval_threshold = 1e-8)
 }

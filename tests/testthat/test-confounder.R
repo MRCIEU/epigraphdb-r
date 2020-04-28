@@ -6,8 +6,8 @@ test_that("/confounder", {
   outcome <- "Coronary heart disease"
   r <- httr::GET(glue::glue("{url}/confounder"),
     query = list(
-      exposure = exposure,
-      outcome = outcome
+      exposure_trait = exposure,
+      outcome_trait = outcome
     )
   )
   expect_equal(httr::status_code(r), 200)
@@ -18,8 +18,8 @@ test_that("confounder", {
   outcome <- "Coronary heart disease"
   expect_error(
     confounder(
-      exposure = exposure,
-      outcome = outcome
+      exposure_trait = exposure,
+      outcome_trait = outcome
     ),
     NA
   )

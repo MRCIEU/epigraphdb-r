@@ -1,12 +1,12 @@
 #' Send data request to an EpiGraphDB API endpoint
 #'
 #' This is a general purpose function to send data request
-#' which can be used when there has not been a R equivalent package function
+#' which can be used when there has not been an R equivalent package function
 #' to an API endpoint.
 #' Underneath this is a wrapper around `httr` functions with better handling of
 #' returned status.
 #'
-#' @param endpoint An EpiGraphDB API endpoint, e.g. `"/mr"` or `"/confounder"`.
+#' @param route An EpiGraphDB API endpoint route, e.g. `"/mr"` or `"/confounder"`.
 #' Consult the [EpiGraphDB API documentation](http://api.epigraphdb.org).
 #' @param params A list of parameters associated with the query endpoint.
 #' @param mode `c("raw", "table")`, if `"table"` then the query handler will try
@@ -17,36 +17,51 @@
 #' default to return a dataframe.
 #' Explicitly specify `mode = "table"` when needed.
 #' @param method Type of HTTP (GET, POST, PUT, etc.) method.
-#' Currently only `"GET"` is supported.
+#'
+#' NOTE: When sending a POST request where a specific parameter is specified as a list on the API,
+#'       and if the equivalent in R is a vector of length 1, you should wrap this parameter
+#'       in `I()`, e.g. I(c("APOE")) to avoid auto unboxing.
+#'       For details, please refer to [`httr::POST`](https://httr.r-lib.org/reference/POST.html)
+#'
 #' @return Data from an EpiGraphDB API endpoint.
 #'
 #' @examples
-#' # equivalent to `mr(exposure = "Body mass index", outcome = "Coronary heart disease")`
+#' # GET /mr
+#' # equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
 #' query_epigraphdb(
-#'   endpoint = "/mr",
+#'   route = "/mr",
 #'   params = list(
-#'     exposure = "Body mass index",
-#'     outcome = "Coronary heart disease"
+#'     exposure_trait = "Body mass index",
+#'     outcome_trait = "Coronary heart disease"
 #'   ),
 #'   mode = "table"
 #' )
 #'
-#' # /meta/nodes/Gwas/list
+#' # GET /meta/nodes/Gwas/list
 #' query_epigraphdb(
-#'   endpoint = "/meta/nodes/Gwas/list",
+#'   route = "/meta/nodes/Gwas/list",
 #'   params = list(
 #'     limit = 5,
 #'     offset = 0
 #'   )
 #' ) %>% str(1)
 #'
+#' # POST /protein/ppi
+#' query_epigraphdb(
+#'   route = "/protein/ppi",
+#'   params = list(
+#'     uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
+#'   ),
+#'   method = "POST"
+#' )
+#'
 #' # error handling
 #' tryCatch(
 #'   query_epigraphdb(
-#'     endpoint = "/mr",
+#'     route = "/mr",
 #'     params = list(
-#'       exposure = NULL,
-#'       outcome = NULL
+#'       exposure_trait = NULL,
+#'       outcome_trait = NULL
 #'     )
 #'   ),
 #'   error = function(e) {
@@ -54,29 +69,51 @@
 #'   }
 #' )
 #' @export
-query_epigraphdb <- function(endpoint, params, mode = c("raw", "table"), method = c("GET")) {
+query_epigraphdb <- function(route, params, mode = c("raw", "table"), method = c("GET", "POST")) {
   mode <- match.arg(mode)
   method <- match.arg(method)
   # NOTE: Add POST at a later date
   if (method == "GET") {
     method_func <- api_get_request
+  } else if (method == "POST") {
+    method_func <- api_post_request
   }
-  res <- api_request(endpoint = endpoint, params = params, mode = mode, method = method_func)
+  res <- api_request(route = route, params = params, mode = mode, method = method_func)
   res
 }
 
 #' Wrapper of httr::GET that handles status errors and custom headers
 #'
-#' @param endpoint An EpiGraphDB API endpoint, e.g. "/mr"
+#' @param route An EpiGraphDB API endpoint route, e.g. "/mr"
 #' @param params GET request params
 #' @param call The function call to identify the original function
 #' when things go wrong
 #'
 #' @keywords internal
-api_get_request <- function(endpoint, params, call = sys.call(-1)) {
+api_get_request <- function(route, params, call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
-  response <- httr::GET(glue::glue("{api_url}{endpoint}"),
+  response <- httr::GET(glue::glue("{api_url}{route}"),
     query = params,
+    httr::add_headers(.headers = c("client-type" = "R"))
+  )
+  stop_for_status(response, call = sys.call(-1))
+  response
+}
+
+#' Wrapper of httr::POST that handles status errors and custom headers
+#'
+#' @param route An EpiGraphDB API endpoint route, e.g. "/mr"
+#' @param params POST request payload
+#' @param call The function call to identify the original function
+#' when things go wrong
+#'
+#' @keywords internal
+api_post_request <- function(route, params, call = sys.call(-1)) {
+  api_url <- getOption("epigraphdb.api.url") # nolint
+  body <- jsonlite::toJSON(params, auto_unbox = TRUE)
+  response <- httr::POST(glue::glue("{api_url}{route}"),
+    body = body,
+    endcode = "json",
     httr::add_headers(.headers = c("client-type" = "R"))
   )
   stop_for_status(response, call = sys.call(-1))
@@ -85,7 +122,7 @@ api_get_request <- function(endpoint, params, call = sys.call(-1)) {
 
 #' The very general wrapper from EpiGraphDB endpoint request
 #'
-#' @param endpoint An EpiGraphDB API endpoint, e.g. "/mr"
+#' @param route An EpiGraphDB API endpoint route, e.g. "/mr"
 #' @param params A list of parameters to send
 #' @param mode Either `"table"` (returns tibble) or
 #' `"raw"` (returns raw response parsed from json to R list).
@@ -94,13 +131,13 @@ api_get_request <- function(endpoint, params, call = sys.call(-1)) {
 #' when things go wrong
 #'
 #' @keywords internal
-api_request <- function(endpoint, params,
+api_request <- function(route, params,
                         mode = c("table", "raw"),
                         method = api_get_request,
                         call = sys.call(-1)) {
   mode <- match.arg(mode)
   response <- do.call(method, args = list(
-    endpoint = endpoint, params = params, call = call
+    route = route, params = params, call = call
   ))
   if (mode == "table") {
     return(flatten_response(response))

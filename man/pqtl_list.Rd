@@ -18,9 +18,11 @@ should be returned. The DEFAULT is "exposures".}
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
+\value{
+Data from \code{GET /pqtl/list/}
+}
 \description{
-Return a list of all proteins/exposures or traits/outcomes
-available in the database
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist}{GET /pqtl/list/}
 }
 \examples{
 

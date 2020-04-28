@@ -4,12 +4,12 @@
 \alias{obs_cor}
 \title{Observational correlations between traits}
 \usage{
-obs_cor(trait, pval_threshold = 1e-05, mode = c("table", "raw"))
+obs_cor(trait, cor_coef_threshold = 0.8, mode = c("table", "raw"))
 }
 \arguments{
 \item{trait}{name of the trait, e.g. "body mass index"}
 
-\item{pval_threshold}{pvalue threshold}
+\item{cor_coef_threshold}{correlation coefficient threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
 (a \href{https://tibble.tidyverse.org/}{tibble} as per
@@ -18,17 +18,16 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/topics/get_obs_cor_obs_cor_get}{ /obs_cor }
+Data from \code{GET /obs-cor}
 }
 \description{
-Observational correlations between traits
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor}{GET /obs-cor}
 }
 \examples{
 obs_cor(trait = "Body mass index (BMI)") \%>\%
   dplyr::glimpse()
 
 # Use a different threshold
-obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) \%>\%
+obs_cor(trait = "Body mass index (BMI)", cor_coef_threshold = 0.8) \%>\%
   dplyr::glimpse()
 }

@@ -4,20 +4,20 @@
 \alias{confounder}
 \title{MR evidence on confounding traits between exposure and outcome}
 \usage{
-confounder(exposure = NULL, outcome = NULL, type = c("confounder",
-  "intermediate", "reverse_intermediate", "collider"),
-  pval_threshold = 1e-05, mode = c("table", "raw"))
+confounder(exposure_trait = NULL, outcome_trait = NULL,
+  type = c("confounder", "intermediate", "reverse_intermediate",
+  "collider"), pval_threshold = 1e-05, mode = c("table", "raw"))
 }
 \arguments{
-\item{exposure}{A trait name, eg. "Body mass index",
-leaving \code{exposure} as \code{NULL} will return MR information
+\item{exposure_trait}{A trait name, eg. "Body mass index",
+leaving \code{exposure_trait} as \code{NULL} will return MR information
 related to a specific \code{outcome}.
-\strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
+\strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
-\item{outcome}{A trait name, eg. "Coronary heart disease",
-leaving \code{outcome} as \code{NULL} will return MR information
-related to a specific \code{exposure}.
-\strong{NOTE}: \code{exposure} and \code{outcome} cannot be both \code{NULL}.}
+\item{outcome_trait}{A trait name, eg. "Coronary heart disease",
+leaving \code{outcome_trait} as \code{NULL} will return MR information
+related to a specific \code{exposure_trait}.
+\strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
 \item{type}{One in \code{["confounder", "intermediate", "reverse_intermediate", "collider"]}
 Refer to \href{http://epigraphdb.org/confounder}{ the confounder view in web application }
@@ -32,12 +32,11 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
 }
 \value{
-Data from
-\href{http://api.epigraphdb.org/#/topics/get_confounder_confounder_get}{ /confounder }
+Data from \code{GET /confounder}
 }
 \description{
-MR evidence on confounding traits between exposure and outcome
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{GET /confounder}
 }
 \examples{
-confounder(exposure = "Body mass index", outcome = "Coronary heart disease")
+confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
 }

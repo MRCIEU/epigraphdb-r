@@ -32,11 +32,11 @@ reference:
     contents:
       - confounder
       - drugs_risk_factors
-      - gwas_cor
-      - literature_mr
+      - genetic_cor
+      - literature_gwas
       - mr
       - obs_cor
-      - ontology
+      - ontology_gwas_efo
       - pathway
       - pqtl
       - pqtl_list

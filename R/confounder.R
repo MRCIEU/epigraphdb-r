@@ -1,5 +1,7 @@
 #' MR evidence on confounding traits between exposure and outcome
 #'
+#' [`GET /confounder`](http://docs.epigraphdb.org/api/api-endpoints/#get-confounder)
+#'
 #' @param type One in `["confounder", "intermediate",
 #' "reverse_intermediate", "collider"]`
 #' Refer to [
@@ -8,15 +10,12 @@
 #' for details
 #' @inheritParams mr
 #'
-#' @return Data from
-#' [
-#'   `/confounder`
-#' ](http://api.epigraphdb.org/#/topics/get_confounder_confounder_get)
+#' @return Data from `GET /confounder`
 #'
 #' @examples
-#' confounder(exposure = "Body mass index", outcome = "Coronary heart disease")
+#' confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
 #' @export
-confounder <- function(exposure = NULL, outcome = NULL,
+confounder <- function(exposure_trait = NULL, outcome_trait = NULL,
                        type = c(
                          "confounder", "intermediate",
                          "reverse_intermediate", "collider"
@@ -26,9 +25,9 @@ confounder <- function(exposure = NULL, outcome = NULL,
   mode <- match.arg(mode)
   type <- match.arg(type)
   response <- api_request(
-    endpoint = "/confounder",
+    route = "/confounder",
     params = list(
-      exposure = exposure, outcome = outcome,
+      exposure_trait = exposure_trait, outcome_trait = outcome_trait,
       type = type,
       pval_threshold = pval_threshold
     ),

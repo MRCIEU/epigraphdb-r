@@ -4,11 +4,11 @@
 \alias{query_epigraphdb}
 \title{Send data request to an EpiGraphDB API endpoint}
 \usage{
-query_epigraphdb(endpoint, params, mode = c("raw", "table"),
-  method = c("GET"))
+query_epigraphdb(route, params, mode = c("raw", "table"),
+  method = c("GET", "POST"))
 }
 \arguments{
-\item{endpoint}{An EpiGraphDB API endpoint, e.g. \code{"/mr"} or \code{"/confounder"}.
+\item{route}{An EpiGraphDB API endpoint route, e.g. \code{"/mr"} or \code{"/confounder"}.
 Consult the \href{http://api.epigraphdb.org}{EpiGraphDB API documentation}.}
 
 \item{params}{A list of parameters associated with the query endpoint.}
@@ -22,45 +22,59 @@ default to return a dataframe.
 Explicitly specify \code{mode = "table"} when needed.}
 
 \item{method}{Type of HTTP (GET, POST, PUT, etc.) method.
-Currently only \code{"GET"} is supported.}
+
+NOTE: When sending a POST request where a specific parameter is specified as a list on the API,
+and if the equivalent in R is a vector of length 1, you should wrap this parameter
+in \code{I()}, e.g. I(c("APOE")) to avoid auto unboxing.
+For details, please refer to \href{https://httr.r-lib.org/reference/POST.html}{httr::POST}}
 }
 \value{
 Data from an EpiGraphDB API endpoint.
 }
 \description{
 This is a general purpose function to send data request
-which can be used when there has not been a R equivalent package function
+which can be used when there has not been an R equivalent package function
 to an API endpoint.
 Underneath this is a wrapper around \code{httr} functions with better handling of
 returned status.
 }
 \examples{
-# equivalent to `mr(exposure = "Body mass index", outcome = "Coronary heart disease")`
+# GET /mr
+# equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
 query_epigraphdb(
-  endpoint = "/mr",
+  route = "/mr",
   params = list(
-    exposure = "Body mass index",
-    outcome = "Coronary heart disease"
+    exposure_trait = "Body mass index",
+    outcome_trait = "Coronary heart disease"
   ),
   mode = "table"
 )
 
-# /meta/nodes/Gwas/list
+# GET /meta/nodes/Gwas/list
 query_epigraphdb(
-  endpoint = "/meta/nodes/Gwas/list",
+  route = "/meta/nodes/Gwas/list",
   params = list(
     limit = 5,
     offset = 0
   )
 ) \%>\% str(1)
 
+# POST /protein/ppi
+query_epigraphdb(
+  route = "/protein/ppi",
+  params = list(
+    uniprot_id_list = c("P30793", "Q9NZM1", "O95236")
+  ),
+  method = "POST"
+)
+
 # error handling
 tryCatch(
   query_epigraphdb(
-    endpoint = "/mr",
+    route = "/mr",
     params = list(
-      exposure = NULL,
-      outcome = NULL
+      exposure_trait = NULL,
+      outcome_trait = NULL
     )
   ),
   error = function(e) {

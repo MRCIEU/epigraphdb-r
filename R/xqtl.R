@@ -1,13 +1,13 @@
 #' Multi SNP QTL MR evidence
 #'
+#' [`GET /xqtl/multi-snp-mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr)
+#'
 #' @param exposure_gene Name of the exposure gene
 #' @param outcome_trait Name of the outcome trait
 #' @param mr_method "IVW" or "Egger"
 #' @param qtl_type "eQTL" or "pQTL"
 #' @inheritParams mr
-#' @return Data from [
-#'   `/xqtl/multi-snp-mr`
-#' ](http://api.epigraphdb.org/#/xqtl/get_xqtl_multi_snp_mr_xqtl_multi-snp-mr_get)
+#' @return Data from `GET /xqtl/multi-snp-mr`
 #'
 #' @examples
 #' xqtl_multi_snp_mr(outcome_trait = "Coronary heart disease")
@@ -21,7 +21,7 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
   mr_method <- match.arg(mr_method)
   qtl_type <- match.arg(qtl_type)
   response <- api_request(
-    endpoint = "/xqtl/multi-snp-mr",
+    route = "/xqtl/multi-snp-mr",
     params = list(
       exposure_gene = exposure_gene,
       outcome_trait = outcome_trait,
@@ -36,11 +36,11 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
 
 #' Single SNP QTL MR evidence
 #'
+#' [`GET /xqtl/single-snp-mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr)
+#'
 #' @param snp SNP rsid
 #' @inheritParams xqtl_multi_snp_mr
-#' @return Data from [
-#'   `/xqtl/single-snp-mr`
-#' ](http://api.epigraphdb.org/#/xqtl/get_xqtl_single_snp_mr_xqtl_single-snp-mr_get)
+#' @return Data from `GEET /xqtl/single-snp-mr`
 #'
 #' @examples
 #' xqtl_single_snp_mr(outcome_trait = "Coronary heart disease")
@@ -53,7 +53,7 @@ xqtl_single_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
   mode <- match.arg(mode)
   qtl_type <- match.arg(qtl_type)
   response <- api_request(
-    endpoint = "/xqtl/single-snp-mr",
+    route = "/xqtl/single-snp-mr",
     params = list(
       exposure_gene = exposure_gene,
       outcome_trait = outcome_trait,

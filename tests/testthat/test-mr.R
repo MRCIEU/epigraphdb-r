@@ -6,8 +6,8 @@ test_that("mr endpoint", {
   outcome <- "Coronary heart disease"
   r <- httr::GET(glue::glue("{url}/mr"),
     query = list(
-      exposure = exposure,
-      outcome = outcome
+      exposure_trait = exposure,
+      outcome_trait = outcome
     )
   )
   expect_equal(httr::status_code(r), 200)
@@ -18,8 +18,8 @@ test_that("mr mode = \"table\"", {
   outcome <- "Coronary heart disease"
   expect_error(
     df <- mr(
-      exposure = exposure,
-      outcome = outcome
+      exposure_trait = exposure,
+      outcome_trait = outcome
     ),
     NA
   )
@@ -31,8 +31,8 @@ test_that("mr mode = \"raw\"", {
   outcome <- "Coronary heart disease"
   expect_error(
     response <- mr(
-      exposure = exposure,
-      outcome = outcome,
+      exposure_trait = exposure,
+      outcome_trait = outcome,
       mode = "raw"
     ),
     NA
@@ -45,22 +45,22 @@ test_that("mr parameters", {
   outcome <- "Coronary heart disease"
   expect_error(
     mr(
-      exposure = exposure,
-      outcome = NULL
+      exposure_trait = exposure,
+      outcome_trait = NULL
     ),
     NA
   )
   expect_error(
     mr(
-      exposure = NULL,
-      outcome = outcome
+      exposure_trait = NULL,
+      outcome_trait = outcome
     ),
     NA
   )
   expect_error(
     mr(
-      exposure = NULL,
-      outcome = NULL
+      exposure_trait = NULL,
+      outcome_trait = NULL
     )
   )
 })
@@ -69,21 +69,21 @@ test_that("mr pval_threshold", {
   exposure <- "Body mass index"
   expect_error(
     response <- mr(
-      exposure = exposure,
+      exposure_trait = exposure,
       pval_threshold = 1e-5
     ),
     NA
   )
   expect_error(
     response <- mr(
-      exposure = exposure,
+      exposure_trait = exposure,
       pval_threshold = 1e-8
     ),
     NA
   )
   expect_error(
     response <- mr(
-      exposure = exposure,
+      exposure_trait = exposure,
       pval_threshold = 1e-2
     ),
     NA

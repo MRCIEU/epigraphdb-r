@@ -1,5 +1,7 @@
 #' Return information related to the pQTL analysis
 #'
+#' [`GET /pqtl/`](http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl)
+#'
 #' @param query
 #' (Required) A protein coding gene name or a trait name,
 #' eg. "ADAM19" or "Inflammatory bowel disease"
@@ -24,8 +26,7 @@
 #' returned.
 #' @inheritParams mr
 #'
-#' @return Data from
-#' [`/pqtl/`](http://api.epigraphdb.org/#/pqtl/get_pqtl_pqtl__get)
+#' @return Data from `GET /pqtl/`
 #'
 #' @examples
 #' # Returns a data frame of MR results, while searching for proteins
@@ -61,7 +62,7 @@ pqtl <- function(query,
   rtype <- match.arg(rtype)
   searchflag <- match.arg(searchflag)
   response <- api_get_request(
-    endpoint = "/pqtl/",
+    route = "/pqtl/",
     params = list(
       query = query,
       rtype = rtype,
@@ -80,6 +81,8 @@ pqtl <- function(query,
 
 #' Return information related to the pleiotropy of SNPs
 #'
+#' [`GET /pqtl/pleio/`](http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio)
+#'
 #' @param rsid
 #' (Required) A SNP identified by rsID which cannot be `NULL`.
 #' @param prflag
@@ -92,6 +95,8 @@ pqtl <- function(query,
 #' [`tidyverse`](https://style.tidyverse.org/) convention).
 #' If `mode = "raw"`, returns a raw response from EpiGraphDB API
 #' with minimal parsing done by [`httr`](https://httr.r-lib.org/).
+#'
+#' @return Data from `GET /pqtl/pleio/`
 #'
 #' @export
 #'
@@ -108,7 +113,7 @@ pqtl_pleio <- function(rsid = NULL,
   mode <- match.arg(mode)
   prflag <- match.arg(prflag)
   response <- api_get_request(
-    endpoint = "/pqtl/pleio/",
+    route = "/pqtl/pleio/",
     params = list(
       rsid = rsid,
       prflag = prflag
@@ -128,11 +133,15 @@ pqtl_pleio <- function(rsid = NULL,
 #' Return a list of all proteins/exposures or traits/outcomes
 #' available in the database
 #'
+#' [`GET /pqtl/list/`](http://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist)
+#'
 #' @param flag
 #' (Optional) A flag which indicates whether the list of
 #' exposures (if "exposures") or outcomes (if "outcomes")
 #' should be returned. The DEFAULT is "exposures".
 #' @inheritParams mr
+#'
+#' @return Data from `GET /pqtl/list/`
 #'
 #' @export
 #'
@@ -148,7 +157,7 @@ pqtl_list <- function(flag = c("exposures", "outcomes"),
   mode <- match.arg(mode)
   flag <- match.arg(flag)
   response <- api_get_request(
-    endpoint = "/pqtl/list/",
+    route = "/pqtl/list/",
     params = list(flag = flag)
   ) %>%
     httr::content(encoding = "utf-8") %>%

@@ -14,36 +14,84 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Introduction
-
 ```{r setup}
 library("epigraphdb")
 ```
+
+## Methods to query EpiGraphDB
+
+We provide a
+[list of functions](https://mrcieu.github.io/epigraphdb-r/index.html#functionalities)
+that are equivalent to the
+[upstream API endpoints](http://api.epigraphdb.org)
+for users to use.
+For endpoints that don't have equivalent functions, users can use the
+[`query_epigraphdb`](https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html)
+function.
+
+Here we show the two approaches to query MR data from EpiGraphDB, using the
+[`mr`](https://mrcieu.github.io/epigraphdb-r/reference/mr.html) function and
+using
+[`query_epigraphdb`](https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html)
+to query the
+[`GET /mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-mr)
+endpoint.
+
+### `mr`
+
+```{r}
+df <- mr(exposure_trait = "Body mass index",
+         outcome_trait = "Coronary heart disease",
+         mode = "table")
+df
+```
+
+### `GET /mr`
+
+```{r}
+df <- query_epigraphdb(
+  route = "/mr",
+  params = list(
+    exposure_trait = "Body mass index",
+    outcome_trait = "Coronary heart disease"
+  ),
+  mode = "table"
+)
+
+df
+```
+
+For more information on the API endpoints, please visit:
+
+- The API Swagger interface http://api.epigraphdb.org
+- The documentation on API endpoints http://docs.epigraphdb.org/api/api-endpoints/
+
+## Returned data format
 
 As a general principle, we offer two modes of the returned data:
 a `table` mode (default) that returns a data frame,
 and a `raw` mode that preserves the hierachical structure of the upstream
 json data and contains other information that might benefit users.
 
-## `mode = "table"`
+### `mode = "table"`
 
 By default, for ease of use, the query returns a data frame which is a
 tidyverse [`tibble`](https://tibble.tidyverse.org/):
 
 ```{r}
-df <- mr(exposure = "Body mass index",
-         outcome = "Coronary heart disease")
+df <- mr(exposure_trait = "Body mass index",
+         outcome_trait = "Coronary heart disease")
 df
 ```
 
-## `mode = "raw"`
+### `mode = "raw"`
 
 Alternatively, you can use `results_type = "raw"` to get the unformatted
 response from EpiGraphDB API.
 
 ```{r}
-response <- mr(exposure = "Body mass index",
-               outcome = "Coronary heart disease",
+response <- mr(exposure_trait = "Body mass index",
+               outcome_trait = "Coronary heart disease",
                mode = "raw")
 response %>% str(2)
 ```

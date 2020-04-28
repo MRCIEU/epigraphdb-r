@@ -1,28 +1,27 @@
 #' Observational correlations between traits
 #'
+#' [`GET /obs-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor)
+#'
 #' @param trait name of the trait, e.g. "body mass index"
-#' @param pval_threshold pvalue threshold
+#' @param cor_coef_threshold correlation coefficient threshold
 #' @inheritParams mr
 #'
-#' @return Data from
-#' [
-#'   `/obs_cor`
-#' ](http://api.epigraphdb.org/#/topics/get_obs_cor_obs_cor_get)
+#' @return Data from `GET /obs-cor`
 #'
 #' @examples
 #' obs_cor(trait = "Body mass index (BMI)") %>%
 #'   dplyr::glimpse()
 #'
 #' # Use a different threshold
-#' obs_cor(trait = "Body mass index (BMI)", pval_threshold = 1e-8) %>%
+#' obs_cor(trait = "Body mass index (BMI)", cor_coef_threshold = 0.8) %>%
 #'   dplyr::glimpse()
 #' @export
-obs_cor <- function(trait, pval_threshold = 1e-5, mode = c("table", "raw")) {
+obs_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/obs_cor",
+    route = "/obs-cor",
     params = list(
-      trait = trait, pval_threshold = pval_threshold
+      trait = trait, cor_coef_threshold = cor_coef_threshold
     ),
     mode = mode
   )

@@ -1,23 +1,22 @@
 #' Pathway evidence
 #'
-#' @param trait_name A trait name
+#' [`GET /pathway`](http://docs.epigraphdb.org/api/api-endpoints/#get-pathway)
+#'
+#' @param trait A trait name
 #' @inheritParams mr
-#' @return Data from
-#' [
-#'   `/pathway`
-#' ](http://api.epigraphdb.org/#/topics/get_confounder_pathway_get)
+#' @return Data from `GET /pathway`
 #'
 #' @examples
-#' pathway(trait_name = "Body mass index")
+#' pathway(trait = "Body mass index")
 #' @export
-pathway <- function(trait_name,
+pathway <- function(trait,
                     pval_threshold = 0.00001,
                     mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- api_request(
-    endpoint = "/pathway",
+    route = "/pathway",
     params = list(
-      trait_name = trait_name,
+      trait = trait,
       pval_threshold = pval_threshold
     ),
     mode = mode

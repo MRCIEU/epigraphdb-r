@@ -2,8 +2,8 @@ context("ontology")
 
 test_that("ontology endpoint", {
   url <- getOption("epigraphdb.api.url")
-  efo_term <- "systolic blood pressure"
-  r <- httr::GET(glue::glue("{url}/ontology"),
+  efo_term <- "blood pressure"
+  r <- httr::GET(glue::glue("{url}/ontology/gwas-efo"),
     query = list(
       efo_term = efo_term
     )
@@ -12,9 +12,9 @@ test_that("ontology endpoint", {
 })
 
 test_that("ontology mode = \"table\"", {
-  efo_term <- "systolic blood pressure"
+  efo_term <- "blood pressure"
   expect_error(
-    df <- ontology(
+    df <- ontology_gwas_efo(
       efo_term = efo_term
     ),
     NA
@@ -23,9 +23,9 @@ test_that("ontology mode = \"table\"", {
 })
 
 test_that("mr mode = \"raw\"", {
-  efo_term <- "systolic blood pressure"
+  efo_term <- "blood pressure"
   expect_error(
-    response <- ontology(
+    response <- ontology_gwas_efo(
       efo_term = efo_term,
       mode = "raw"
     ),
