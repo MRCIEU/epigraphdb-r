@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper of httr::GET that handles status errors and custom headers — api_get_request • epigraphdb</title>
+<title>Genetic correlations between traits — genetic_cor • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Wrapper of httr::GET that handles status errors and custom headers — api_get_request" />
-<meta property="og:description" content="Wrapper of httr::GET that handles status errors and custom headers" />
+<meta property="og:title" content="Genetic correlations between traits — genetic_cor" />
+<meta property="og:description" content="GET /genetic-cor" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -139,36 +139,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wrapper of httr::GET that handles status errors and custom headers</h1>
+    <h1>Genetic correlations between traits</h1>
     
-    <div class="hidden name"><code>api_get_request.Rd</code></div>
+    <div class="hidden name"><code>genetic_cor.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper of httr::GET that handles status errors and custom headers</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor'><code>GET /genetic-cor</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>api_get_request</span>(<span class='no'>route</span>, <span class='no'>params</span>, <span class='kw'>call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(-<span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>genetic_cor</span>(<span class='no'>trait</span>, <span class='kw'>cor_coef_threshold</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>route</th>
-      <td><p>An EpiGraphDB API endpoint route, e.g. "/mr"</p></td>
+      <th>trait</th>
+      <td><p>name of the trait, e.g. "body mass index"</p></td>
     </tr>
     <tr>
-      <th>params</th>
-      <td><p>GET request params</p></td>
+      <th>cor_coef_threshold</th>
+      <td><p>correlation coefficient threshold</p></td>
     </tr>
     <tr>
-      <th>call</th>
-      <td><p>The function call to identify the original function
-when things go wrong</p></td>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Data from <code>GET /genetic_cor</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>genetic_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 0
+#&gt; Columns: 0</div><div class='input'>
+<span class='co'># Use a different threshold</span>
+<span class='fu'>genetic_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>cor_coef_threshold</span> <span class='kw'>=</span> <span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
+  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 0
+#&gt; Columns: 0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

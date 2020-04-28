@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Return information related to Mendelian Randomisation — mr" />
-<meta property="og:description" content="Return information related to Mendelian Randomisation" />
+<meta property="og:description" content="GET /mr" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -145,28 +145,32 @@
     </div>
 
     <div class="ref-description">
-    <p>Return information related to Mendelian Randomisation</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-mr'><code>GET /mr</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
-  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>mr</span>(
+  <span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>exposure</th>
+      <th>exposure_trait</th>
       <td><p>A trait name, eg. "Body mass index",
-leaving <code>exposure</code> as <code>NULL</code> will return MR information
+leaving <code>exposure_trait</code> as <code>NULL</code> will return MR information
 related to a specific <code>outcome</code>.
-<strong>NOTE</strong>: <code>exposure</code> and <code>outcome</code> cannot be both <code>NULL</code>.</p></td>
+<strong>NOTE</strong>: <code>exposure_trait</code> and <code>outcome_trait</code> cannot be both <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>outcome</th>
+      <th>outcome_trait</th>
       <td><p>A trait name, eg. "Coronary heart disease",
-leaving <code>outcome</code> as <code>NULL</code> will return MR information
-related to a specific <code>exposure</code>.
-<strong>NOTE</strong>: <code>exposure</code> and <code>outcome</code> cannot be both <code>NULL</code>.</p></td>
+leaving <code>outcome_trait</code> as <code>NULL</code> will return MR information
+related to a specific <code>exposure_trait</code>.
+<strong>NOTE</strong>: <code>exposure_trait</code> and <code>outcome_trait</code> cannot be both <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>pval_threshold</th>
@@ -175,132 +179,140 @@ related to a specific <code>exposure</code>.
     <tr>
       <th>mode</th>
       <td><p>If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
 If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data from
-<a href='http://devapi.epigraphdb.org/#/topics/get_mr_mr_get'>/mr</a></p>
+    <p>Data from <code>GET /mr</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame</span>
-<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 12
-#&gt;   exposure_id exposure_name outcome_id outcome_name estimate     se        p
-#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 974         Body mass in… 7          Coronary he…    0.389 0.0493 3.42e-15
-#&gt; 2 2           Body mass in… 7          Coronary he…    0.397 0.0727 4.79e- 8
-#&gt; 3 95          Body mass in… 7          Coronary he…    0.455 0.0931 1.02e- 6
-#&gt; 4 2           Body mass in… 8          Coronary he…    0.331 0.0684 1.31e- 6
-#&gt; 5 835         Body mass in… 7          Coronary he…    0.360 0.0756 1.94e- 6
-#&gt; 6 974         Body mass in… 8          Coronary he…    0.328 0.0731 6.97e- 6
-#&gt; # … with 5 more variables: ci_upp &lt;dbl&gt;, ci_low &lt;dbl&gt;, selection &lt;chr&gt;,
-#&gt; #   method &lt;chr&gt;, moescore &lt;dbl&gt;</div><div class='input'>
+<span class='fu'>mr</span>(<span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 10
+#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval
+#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15
+#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8
+#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6
+#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6
+#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6
+#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6
+#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,
+#&gt; #   mr.moescore &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Returns raw response</span>
 <span class='fu'>mr</span>(
-  <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>,
+  <span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>,
   <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"raw"</span>
 ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 2
-#&gt;  $ query  : chr "MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = \"Body mass index\" AND t2.trait = \"Coronary heart disease\"| __truncated__
-#&gt;  $ results:List of 6
-#&gt;   ..$ :List of 12
-#&gt;   .. ..$ exposure_id  : chr "974"
-#&gt;   .. ..$ exposure_name: chr "Body mass index"
-#&gt;   .. ..$ outcome_id   : chr "7"
-#&gt;   .. ..$ outcome_name : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate     : num 0.389
-#&gt;   .. ..$ se           : num 0.0493
-#&gt;   .. ..$ p            : num 3.42e-15
-#&gt;   .. ..$ ci_upp       : num 0.498
-#&gt;   .. ..$ ci_low       : num 0.279
-#&gt;   .. ..$ selection    : chr "DF"
-#&gt;   .. ..$ method       : chr "FE IVW"
-#&gt;   .. ..$ moescore     : num 0.89
-#&gt;   ..$ :List of 12
-#&gt;   .. ..$ exposure_id  : chr "2"
-#&gt;   .. ..$ exposure_name: chr "Body mass index"
-#&gt;   .. ..$ outcome_id   : chr "7"
-#&gt;   .. ..$ outcome_name : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate     : num 0.397
-#&gt;   .. ..$ se           : num 0.0727
-#&gt;   .. ..$ p            : num 4.79e-08
-#&gt;   .. ..$ ci_upp       : num 0.54
-#&gt;   .. ..$ ci_low       : num 0.255
-#&gt;   .. ..$ selection    : chr "HF"
-#&gt;   .. ..$ method       : chr "Simple median"
-#&gt;   .. ..$ moescore     : num 0.92
-#&gt;   ..$ :List of 12
-#&gt;   .. ..$ exposure_id  : chr "95"
-#&gt;   .. ..$ exposure_name: chr "Body mass index"
-#&gt;   .. ..$ outcome_id   : chr "7"
-#&gt;   .. ..$ outcome_name : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate     : num 0.455
-#&gt;   .. ..$ se           : num 0.0931
-#&gt;   .. ..$ p            : num 1.02e-06
-#&gt;   .. ..$ ci_upp       : num 0.637
-#&gt;   .. ..$ ci_low       : num 0.273
-#&gt;   .. ..$ selection    : chr "DF"
-#&gt;   .. ..$ method       : chr "Penalised median"
-#&gt;   .. ..$ moescore     : num 0.78
-#&gt;   ..$ :List of 12
-#&gt;   .. ..$ exposure_id  : chr "2"
-#&gt;   .. ..$ exposure_name: chr "Body mass index"
-#&gt;   .. ..$ outcome_id   : chr "8"
-#&gt;   .. ..$ outcome_name : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate     : num 0.331
-#&gt;   .. ..$ se           : num 0.0684
-#&gt;   .. ..$ p            : num 1.31e-06
-#&gt;   .. ..$ ci_upp       : num 0.472
-#&gt;   .. ..$ ci_low       : num 0.19
-#&gt;   .. ..$ selection    : chr "DF"
-#&gt;   .. ..$ method       : chr "FE IVW"
-#&gt;   .. ..$ moescore     : num 0.75
-#&gt;   ..$ :List of 12
-#&gt;   .. ..$ exposure_id  : chr "835"
-#&gt;   .. ..$ exposure_name: chr "Body mass index"
-#&gt;   .. ..$ outcome_id   : chr "7"
-#&gt;   .. ..$ outcome_name : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate     : num 0.36
-#&gt;   .. ..$ se           : num 0.0756
-#&gt;   .. ..$ p            : num 1.94e-06
-#&gt;   .. ..$ ci_upp       : num 0.508
-#&gt;   .. ..$ ci_low       : num 0.212
-#&gt;   .. ..$ selection    : chr "Tophits"
-#&gt;   .. ..$ method       : chr "Simple median"
-#&gt;   .. ..$ moescore     : num 0.91
-#&gt;   ..$ :List of 12
-#&gt;   .. ..$ exposure_id  : chr "974"
-#&gt;   .. ..$ exposure_name: chr "Body mass index"
-#&gt;   .. ..$ outcome_id   : chr "8"
-#&gt;   .. ..$ outcome_name : chr "Coronary heart disease"
-#&gt;   .. ..$ estimate     : num 0.328
-#&gt;   .. ..$ se           : num 0.0731
-#&gt;   .. ..$ p            : num 6.97e-06
-#&gt;   .. ..$ ci_upp       : num 0.495
-#&gt;   .. ..$ ci_low       : num 0.162
-#&gt;   .. ..$ selection    : chr "DF"
-#&gt;   .. ..$ method       : chr "FE IVW"
-#&gt;   .. ..$ moescore     : num 0.85</div><div class='input'>
+#&gt;  $ metadata:List of 3
+#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__
+#&gt;   ..$ total_seconds: num 0.0141
+#&gt;   ..$ empty_results: logi FALSE
+#&gt;  $ results :List of 6
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-974"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.389
+#&gt;   .. .. ..$ se       : num 0.0493
+#&gt;   .. .. ..$ pval     : num 3.42e-15
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "DF"
+#&gt;   .. .. ..$ moescore : num 0.89
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-2"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.397
+#&gt;   .. .. ..$ se       : num 0.0727
+#&gt;   .. .. ..$ pval     : num 4.79e-08
+#&gt;   .. .. ..$ method   : chr "Simple median"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.92
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-95"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.455
+#&gt;   .. .. ..$ se       : num 0.0931
+#&gt;   .. .. ..$ pval     : num 1.02e-06
+#&gt;   .. .. ..$ method   : chr "Penalised median"
+#&gt;   .. .. ..$ selection: chr "DF"
+#&gt;   .. .. ..$ moescore : num 0.78
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-2"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-8"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.331
+#&gt;   .. .. ..$ se       : num 0.0684
+#&gt;   .. .. ..$ pval     : num 1.31e-06
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "DF"
+#&gt;   .. .. ..$ moescore : num 0.75
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-835"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.36
+#&gt;   .. .. ..$ se       : num 0.0756
+#&gt;   .. .. ..$ pval     : num 1.94e-06
+#&gt;   .. .. ..$ method   : chr "Simple median"
+#&gt;   .. .. ..$ selection: chr "Tophits"
+#&gt;   .. .. ..$ moescore : num 0.91
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-974"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-8"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.328
+#&gt;   .. .. ..$ se       : num 0.0731
+#&gt;   .. .. ..$ pval     : num 6.97e-06
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "DF"
+#&gt;   .. .. ..$ moescore : num 0.85</div><div class='input'>
 <span class='co'># Use a different threshold</span>
-<span class='fu'>mr</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-8</span>)</div><div class='output co'>#&gt; # A tibble: 609 x 12
-#&gt;    exposure_id exposure_name outcome_id outcome_name estimate     se         p
-#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;
-#&gt;  1 2           Body mass in… 85         Extreme bod…    3.82  0.0911 0.       
-#&gt;  2 2           Body mass in… UKB-a:282  Arm fat per…    0.526 0.0123 0.       
-#&gt;  3 2           Body mass in… 48         Hip circumf…    0.828 0.0149 0.       
-#&gt;  4 2           Body mass in… 65         Waist circu…    0.779 0.0191 0.       
-#&gt;  5 835         Body mass in… 93         Overweight      1.67  0.0341 0.       
-#&gt;  6 835         Body mass in… 60         Waist circu…    0.820 0.0195 0.       
-#&gt;  7 835         Body mass in… 61         Waist circu…    0.824 0.0194 0.       
-#&gt;  8 835         Body mass in… 64         Waist circu…    0.783 0.0193 0.       
-#&gt;  9 94          Body mass in… 1017       Immunoglobu… -101.    1.37   0.       
-#&gt; 10 835         Body mass in… 50         Hip circumf…    0.836 0.0230 6.20e-290
-#&gt; # … with 599 more rows, and 5 more variables: ci_upp &lt;dbl&gt;, ci_low &lt;dbl&gt;,
-#&gt; #   selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;</div></pre>
+<span class='fu'>mr</span>(<span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-8</span>)</div><div class='output co'>#&gt; # A tibble: 602 x 10
+#&gt;    exposure.id exposure.trait outcome.id outcome.trait   mr.b   mr.se mr.pval
+#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+#&gt;  1 ieu-a-2     Body mass ind… ukb-a-74   Non-cancer i… 0.0346 0.00242       0
+#&gt;  2 ieu-a-2     Body mass ind… ukb-a-388  Hip circumfe… 0.724  0.0266        0
+#&gt;  3 ieu-a-2     Body mass ind… ukb-a-382  Waist circum… 0.656  0.0245        0
+#&gt;  4 ieu-a-2     Body mass ind… ukb-a-35   Comparative … 0.137  0.00791       0
+#&gt;  5 ieu-a-2     Body mass ind… ukb-a-34   Comparative … 0.366  0.0236        0
+#&gt;  6 ieu-a-2     Body mass ind… ukb-a-293  Trunk predic… 0.358  0.0167        0
+#&gt;  7 ieu-a-2     Body mass ind… ukb-a-292  Trunk fat-fr… 0.360  0.0177        0
+#&gt;  8 ieu-a-2     Body mass ind… ukb-a-291  Trunk fat ma… 0.737  0.0280        0
+#&gt;  9 ieu-a-2     Body mass ind… ukb-a-290  Trunk fat pe… 0.527  0.0275        0
+#&gt; 10 ieu-a-2     Body mass ind… ukb-a-289  Arm predicte… 0.416  0.0177        0
+#&gt; # … with 592 more rows, and 3 more variables: mr.method &lt;chr&gt;,
+#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

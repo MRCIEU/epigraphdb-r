@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Drugs for risk factors — drugs_risk_factors" />
-<meta property="og:description" content="Drugs for risk factors" />
+<meta property="og:description" content="GET /drugs/risk-factors" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -145,11 +145,10 @@
     </div>
 
     <div class="ref-description">
-    <p>Drugs for risk factors</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors'><code>GET /drugs/risk-factors</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>drugs_risk_factors</span>(<span class='no'>trait</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-08</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>,
-  <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>drugs_risk_factors</span>(<span class='no'>trait</span>, <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-08</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,35 +164,34 @@
     <tr>
       <th>mode</th>
       <td><p>If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
 If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data from
-<a href='http://api.epigraphdb.org/#/drugs/get_drug_risk_factors_drugs_risk-factors_get'> /drugs/risk-factors </a></p>
+    <p>Data from <code>GET /drugs/risk-factors</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>drugs_risk_factors</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 6,747 x 13
-#&gt;    trait.id trait.trait assoc_trait.id assoc_trait.tra… snp.name gene.name
-#&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;    
-#&gt;  1 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  2 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  3 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  4 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  5 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  6 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  7 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  8 835      Body mass … 541            X-11787          rs19349… CYP2C9   
-#&gt;  9 835      Body mass … 60             Waist circumfer… rs79031… TCF7L2   
-#&gt; 10 785      Body mass … UKB-a:323      Age started ora… rs93115… CACNA1D  
-#&gt; # … with 6,737 more rows, and 7 more variables: drug.label &lt;chr&gt;,
-#&gt; #   mr.estimate &lt;dbl&gt;, mr.se &lt;dbl&gt;, mr.p &lt;dbl&gt;, mr.method &lt;chr&gt;,
-#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>drugs_risk_factors</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 6,684 x 13
+#&gt;    trait.id trait.trait assoc_trait.id assoc_trait.tra… variant.name gene.name
+#&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;    
+#&gt;  1 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt;  2 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt;  3 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt;  4 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt;  5 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt;  6 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt;  7 ieu-a-2  Body mass … ieu-a-60       Waist circumfer… rs7903146    TCF7L2   
+#&gt;  8 ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
+#&gt;  9 ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
+#&gt; 10 ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
+#&gt; # … with 6,674 more rows, and 7 more variables: drug.label &lt;chr&gt;, mr.b &lt;dbl&gt;,
+#&gt; #   mr.se &lt;dbl&gt;, mr.pval &lt;dbl&gt;, mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,
+#&gt; #   mr.moescore &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

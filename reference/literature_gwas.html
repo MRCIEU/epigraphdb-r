@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper of httr::GET that handles status errors and custom headers — api_get_request • epigraphdb</title>
+<title>Literature evidence regarding a GWAS trait — literature_gwas • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Wrapper of httr::GET that handles status errors and custom headers — api_get_request" />
-<meta property="og:description" content="Wrapper of httr::GET that handles status errors and custom headers" />
+<meta property="og:title" content="Literature evidence regarding a GWAS trait — literature_gwas" />
+<meta property="og:description" content="GET /literature/gwas" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -139,36 +139,59 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wrapper of httr::GET that handles status errors and custom headers</h1>
+    <h1>Literature evidence regarding a GWAS trait</h1>
     
-    <div class="hidden name"><code>api_get_request.Rd</code></div>
+    <div class="hidden name"><code>literature_gwas.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper of httr::GET that handles status errors and custom headers</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas'><code>GET /literature/gwas</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>api_get_request</span>(<span class='no'>route</span>, <span class='no'>params</span>, <span class='kw'>call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(-<span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>literature_gwas</span>(<span class='no'>trait</span>, <span class='kw'>semmed_predicate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>route</th>
-      <td><p>An EpiGraphDB API endpoint route, e.g. "/mr"</p></td>
+      <th>trait</th>
+      <td><p>A trait name</p></td>
     </tr>
     <tr>
-      <th>params</th>
-      <td><p>GET request params</p></td>
+      <th>semmed_predicate</th>
+      <td><p>Either NULL which returns entries from
+all predicates, or a SemMed predicate e.g. "DIAGNOSES" or "ASSOCIATED_WITH"</p></td>
     </tr>
     <tr>
-      <th>call</th>
-      <td><p>The function call to identify the original function
-when things go wrong</p></td>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Data from <code>GET /literature/gwas</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>literature_gwas</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 50 x 9
+#&gt;    gwas.trait gwas.id gs.localCount gs.pval triple.subject_… triple.predicate
+#&gt;    &lt;chr&gt;      &lt;chr&gt;           &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;           
+#&gt;  1 Body mass… ebi-a-…             2 8.04e-4 Insulin|INS      TREATS          
+#&gt;  2 Body mass… ebi-a-…             2 8.04e-4 Conjugated Equi… NEG_INTERACTS_W…
+#&gt;  3 Body mass… ebi-a-…             2 8.04e-4 Spondylarthritis PREDISPOSES     
+#&gt;  4 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt;  5 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt;  6 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt;  7 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt;  8 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt;  9 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt; 10 Body mass… ebi-a-…             7 3.47e-5 Hypertensive di… COEXISTS_WITH   
+#&gt; # … with 40 more rows, and 3 more variables: triple.id &lt;chr&gt;,
+#&gt; #   triple.object_name &lt;chr&gt;, lit.pubmed_id &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

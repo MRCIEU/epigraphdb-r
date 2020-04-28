@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Return information related to the pleiotropy of SNPs — pqtl_pleio" />
-<meta property="og:description" content="Return information related to the pleiotropy of SNPs" />
+<meta property="og:description" content="GET /pqtl/pleio/" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -145,11 +145,14 @@
     </div>
 
     <div class="ref-description">
-    <p>Return information related to the pleiotropy of SNPs</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio'><code>GET /pqtl/pleio/</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>pqtl_pleio</span>(<span class='kw'>rsid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prflag</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"proteins"</span>, <span class='st'>"count"</span>),
-  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>pqtl_pleio</span>(
+  <span class='kw'>rsid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>prflag</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"proteins"</span>, <span class='st'>"count"</span>),
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -167,13 +170,16 @@ The DEFAULT value is "proteins".</p></td>
     <tr>
       <th>mode</th>
       <td><p>(Optional) If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
 If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from <code>GET /pqtl/pleio/</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>

@@ -148,15 +148,20 @@
     <p>The very general wrapper from EpiGraphDB endpoint request</p>
     </div>
 
-    <pre class="usage"><span class='fu'>api_request</span>(<span class='no'>endpoint</span>, <span class='no'>params</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>api_get_request</span>, <span class='kw'>call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(-<span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>api_request</span>(
+  <span class='no'>route</span>,
+  <span class='no'>params</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='no'>api_get_request</span>,
+  <span class='kw'>call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(-<span class='fl'>1</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>endpoint</th>
-      <td><p>An EpiGraphDB API endpoint, e.g. "/mr"</p></td>
+      <th>route</th>
+      <td><p>An EpiGraphDB API endpoint route, e.g. "/mr"</p></td>
     </tr>
     <tr>
       <th>params</th>

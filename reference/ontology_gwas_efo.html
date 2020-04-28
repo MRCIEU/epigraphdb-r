@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper of httr::GET that handles status errors and custom headers — api_get_request • epigraphdb</title>
+<title>Ontology association between EFO term and Gwas — ontology_gwas_efo • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Wrapper of httr::GET that handles status errors and custom headers — api_get_request" />
-<meta property="og:description" content="Wrapper of httr::GET that handles status errors and custom headers" />
+<meta property="og:title" content="Ontology association between EFO term and Gwas — ontology_gwas_efo" />
+<meta property="og:description" content="GET /ontology/gwas-efo" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -139,36 +139,60 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wrapper of httr::GET that handles status errors and custom headers</h1>
+    <h1>Ontology association between EFO term and Gwas</h1>
     
-    <div class="hidden name"><code>api_get_request.Rd</code></div>
+    <div class="hidden name"><code>ontology_gwas_efo.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper of httr::GET that handles status errors and custom headers</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo'><code>GET /ontology/gwas-efo</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>api_get_request</span>(<span class='no'>route</span>, <span class='no'>params</span>, <span class='kw'>call</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(-<span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>ontology_gwas_efo</span>(
+  <span class='kw'>trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fuzzy</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>route</th>
-      <td><p>An EpiGraphDB API endpoint route, e.g. "/mr"</p></td>
+      <th>trait</th>
+      <td><p>trait name, e.g. "body mass"</p></td>
     </tr>
     <tr>
-      <th>params</th>
-      <td><p>GET request params</p></td>
+      <th>efo_term</th>
+      <td><p>EFO term, e.g. "systolic blood pressure"</p></td>
     </tr>
     <tr>
-      <th>call</th>
-      <td><p>The function call to identify the original function
-when things go wrong</p></td>
+      <th>fuzzy</th>
+      <td><p>whether query with exact matching (FALSE) or fuzzy matching (default, TRUE)</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Data from <code>GET /ontology/gwas-efo</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>ontology_gwas_efo</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"blood"</span>, <span class='kw'>fuzzy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 0 x 0</div><div class='input'>
+<span class='fu'>ontology_gwas_efo</span>(<span class='kw'>efo_term</span> <span class='kw'>=</span> <span class='st'>"blood pressure"</span>, <span class='kw'>fuzzy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 6
+#&gt;   gwas.trait                 gwas.id  r.score efo.type   efo.value  efo.id      
+#&gt;   &lt;chr&gt;                      &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;       
+#&gt; 1 Medication for cholestero… ukb-b-1…   0.785 typed-lit… blood pre… http://www.…
+#&gt; 2 Medication for cholestero… ukb-a-4…   0.785 typed-lit… blood pre… http://www.…
+#&gt; 3 Medication for cholestero… ukb-a-4…   0.785 typed-lit… blood pre… http://www.…
+#&gt; 4 Medication for cholestero… ukb-b-1…   0.785 typed-lit… blood pre… http://www.…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

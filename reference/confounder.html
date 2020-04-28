@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="MR evidence on confounding traits between exposure and outcome — confounder" />
-<meta property="og:description" content="MR evidence on confounding traits between exposure and outcome" />
+<meta property="og:description" content="GET /confounder" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -145,29 +145,33 @@
     </div>
 
     <div class="ref-description">
-    <p>MR evidence on confounding traits between exposure and outcome</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-confounder'><code>GET /confounder</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>confounder</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"confounder"</span>,
-  <span class='st'>"intermediate"</span>, <span class='st'>"reverse_intermediate"</span>, <span class='st'>"collider"</span>),
-  <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>confounder</span>(
+  <span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"confounder"</span>, <span class='st'>"intermediate"</span>, <span class='st'>"reverse_intermediate"</span>, <span class='st'>"collider"</span>),
+  <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>exposure</th>
+      <th>exposure_trait</th>
       <td><p>A trait name, eg. "Body mass index",
-leaving <code>exposure</code> as <code>NULL</code> will return MR information
+leaving <code>exposure_trait</code> as <code>NULL</code> will return MR information
 related to a specific <code>outcome</code>.
-<strong>NOTE</strong>: <code>exposure</code> and <code>outcome</code> cannot be both <code>NULL</code>.</p></td>
+<strong>NOTE</strong>: <code>exposure_trait</code> and <code>outcome_trait</code> cannot be both <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>outcome</th>
+      <th>outcome_trait</th>
       <td><p>A trait name, eg. "Coronary heart disease",
-leaving <code>outcome</code> as <code>NULL</code> will return MR information
-related to a specific <code>exposure</code>.
-<strong>NOTE</strong>: <code>exposure</code> and <code>outcome</code> cannot be both <code>NULL</code>.</p></td>
+leaving <code>outcome_trait</code> as <code>NULL</code> will return MR information
+related to a specific <code>exposure_trait</code>.
+<strong>NOTE</strong>: <code>exposure_trait</code> and <code>outcome_trait</code> cannot be both <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -182,37 +186,36 @@ for details</p></td>
     <tr>
       <th>mode</th>
       <td><p>If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
 If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data from
-<a href='http://api.epigraphdb.org/#/topics/get_confounder_confounder_get'> /confounder </a></p>
+    <p>Data from <code>GET /confounder</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>confounder</span>(<span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 105 x 24
-#&gt;    exposure.id exposure.trait outcome.id outcome.trait cf.id cf.trait
-#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;   
-#&gt;  1 835         Body mass ind… 7          Coronary hea… 60    Waist c…
-#&gt;  2 974         Body mass ind… 8          Coronary hea… UKB-… Treatme…
-#&gt;  3 95          Body mass ind… 7          Coronary hea… 51    Hip cir…
-#&gt;  4 95          Body mass ind… 7          Coronary hea… 63    Waist c…
-#&gt;  5 835         Body mass ind… 7          Coronary hea… 638   Asparag…
-#&gt;  6 95          Body mass ind… 7          Coronary hea… 62    Waist c…
-#&gt;  7 974         Body mass ind… 7          Coronary hea… 307   Cholest…
-#&gt;  8 974         Body mass ind… 8          Coronary hea… 307   Cholest…
-#&gt;  9 974         Body mass ind… 7          Coronary hea… 51    Hip cir…
-#&gt; 10 974         Body mass ind… 7          Coronary hea… 63    Waist c…
-#&gt; # … with 95 more rows, and 18 more variables: r1.estimate &lt;dbl&gt;, r1.se &lt;dbl&gt;,
-#&gt; #   r1.p &lt;dbl&gt;, r1.method &lt;chr&gt;, r1.selection &lt;chr&gt;, r1.moescore &lt;dbl&gt;,
-#&gt; #   r2.estimate &lt;dbl&gt;, r2.se &lt;dbl&gt;, r2.p &lt;dbl&gt;, r2.method &lt;chr&gt;,
-#&gt; #   r2.selection &lt;chr&gt;, r2.moescore &lt;dbl&gt;, r3.estimate &lt;dbl&gt;, r3.se &lt;dbl&gt;,
-#&gt; #   r3.p &lt;dbl&gt;, r3.method &lt;chr&gt;, r3.selection &lt;chr&gt;, r3.moescore &lt;dbl&gt;</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>confounder</span>(<span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 91 x 24
+#&gt;    exposure.id exposure.trait outcome.id outcome.trait cf.id cf.trait  r1.b
+#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
+#&gt;  1 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.817
+#&gt;  2 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.851
+#&gt;  3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.929
+#&gt;  4 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 1.04 
+#&gt;  5 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.340
+#&gt;  6 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.349
+#&gt;  7 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.378
+#&gt;  8 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.360
+#&gt;  9 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ukb-… Trunk f… 0.587
+#&gt; 10 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ukb-… Trunk f… 0.594
+#&gt; # … with 81 more rows, and 17 more variables: r1.se &lt;dbl&gt;, r1.pval &lt;dbl&gt;,
+#&gt; #   r1.method &lt;chr&gt;, r1.selection &lt;chr&gt;, r1.moescore &lt;dbl&gt;, r2.b &lt;dbl&gt;,
+#&gt; #   r2.se &lt;dbl&gt;, r2.pval &lt;dbl&gt;, r2.method &lt;chr&gt;, r2.selection &lt;chr&gt;,
+#&gt; #   r2.moescore &lt;dbl&gt;, r3.b &lt;dbl&gt;, r3.se &lt;dbl&gt;, r3.pval &lt;dbl&gt;, r3.method &lt;chr&gt;,
+#&gt; #   r3.selection &lt;chr&gt;, r3.moescore &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

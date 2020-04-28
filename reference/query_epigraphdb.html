@@ -50,7 +50,7 @@
 
 <meta property="og:title" content="Send data request to an EpiGraphDB API endpoint — query_epigraphdb" />
 <meta property="og:description" content="This is a general purpose function to send data request
-which can be used when there has not been a R equivalent package function
+which can be used when there has not been an R equivalent package function
 to an API endpoint.
 Underneath this is a wrapper around httr functions with better handling of
 returned status." />
@@ -150,21 +150,25 @@ returned status." />
 
     <div class="ref-description">
     <p>This is a general purpose function to send data request
-which can be used when there has not been a R equivalent package function
+which can be used when there has not been an R equivalent package function
 to an API endpoint.
 Underneath this is a wrapper around <code>httr</code> functions with better handling of
 returned status.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>query_epigraphdb</span>(<span class='no'>endpoint</span>, <span class='no'>params</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"table"</span>),
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>))</pre>
+    <pre class="usage"><span class='fu'>query_epigraphdb</span>(
+  <span class='no'>route</span>,
+  <span class='no'>params</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"table"</span>),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>endpoint</th>
-      <td><p>An EpiGraphDB API endpoint, e.g. <code>"/mr"</code> or <code>"/confounder"</code>.
+      <th>route</th>
+      <td><p>An EpiGraphDB API endpoint route, e.g. <code>"/mr"</code> or <code>"/confounder"</code>.
 Consult the <a href='http://api.epigraphdb.org'>EpiGraphDB API documentation</a>.</p></td>
     </tr>
     <tr>
@@ -183,8 +187,11 @@ Explicitly specify <code>mode = "table"</code> when needed.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>Type of HTTP (GET, POST, PUT, etc.) method.
-Currently only <code>"GET"</code> is supported.</p></td>
+      <td><p>Type of HTTP (GET, POST, PUT, etc.) method.</p>
+<p>NOTE: When sending a POST request where a specific parameter is specified as a list on the API,
+and if the equivalent in R is a vector of length 1, you should wrap this parameter
+in <code><a href='https://rdrr.io/r/base/AsIs.html'>I()</a></code>, e.g. I(c("APOE")) to avoid auto unboxing.
+For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html'><code><a href='https://httr.r-lib.org/reference/POST.html'>httr::POST</a></code></a></p></td>
     </tr>
     </table>
 
@@ -193,42 +200,735 @@ Currently only <code>"GET"</code> is supported.</p></td>
     <p>Data from an EpiGraphDB API endpoint.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># equivalent to `mr(exposure = "Body mass index", outcome = "Coronary heart disease")`</span>
+    <pre class="examples"><div class='input'><span class='co'># GET /mr</span>
+<span class='co'># equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`</span>
 <span class='fu'>query_epigraphdb</span>(
-  <span class='kw'>endpoint</span> <span class='kw'>=</span> <span class='st'>"/mr"</span>,
+  <span class='kw'>route</span> <span class='kw'>=</span> <span class='st'>"/mr"</span>,
   <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>,
-    <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>
+    <span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>,
+    <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>
   ),
   <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"table"</span>
-)</div><div class='output co'>#&gt; # A tibble: 6 x 12
-#&gt;   exposure_id exposure_name outcome_id outcome_name estimate     se        p
-#&gt;   &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 974         Body mass in… 7          Coronary he…    0.389 0.0493 3.42e-15
-#&gt; 2 2           Body mass in… 7          Coronary he…    0.397 0.0727 4.79e- 8
-#&gt; 3 95          Body mass in… 7          Coronary he…    0.455 0.0931 1.02e- 6
-#&gt; 4 2           Body mass in… 8          Coronary he…    0.331 0.0684 1.31e- 6
-#&gt; 5 835         Body mass in… 7          Coronary he…    0.360 0.0756 1.94e- 6
-#&gt; 6 974         Body mass in… 8          Coronary he…    0.328 0.0731 6.97e- 6
-#&gt; # … with 5 more variables: ci_upp &lt;dbl&gt;, ci_low &lt;dbl&gt;, selection &lt;chr&gt;,
-#&gt; #   method &lt;chr&gt;, moescore &lt;dbl&gt;</div><div class='input'>
-<span class='co'># /meta/nodes/Gwas/list</span>
+)</div><div class='output co'>#&gt; # A tibble: 6 x 10
+#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval
+#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15
+#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8
+#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6
+#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6
+#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6
+#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6
+#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,
+#&gt; #   mr.moescore &lt;dbl&gt;</div><div class='input'>
+<span class='co'># GET /meta/nodes/Gwas/list</span>
 <span class='fu'>query_epigraphdb</span>(
-  <span class='kw'>endpoint</span> <span class='kw'>=</span> <span class='st'>"/meta/nodes/Gwas/list"</span>,
+  <span class='kw'>route</span> <span class='kw'>=</span> <span class='st'>"/meta/nodes/Gwas/list"</span>,
   <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
     <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>5</span>,
     <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>
   )
 ) <span class='kw'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; List of 2
-#&gt;  $ query  : chr "MATCH (n:Gwas) RETURN n SKIP 0 LIMIT 5"
-#&gt;  $ results:List of 5</div><div class='input'>
+#&gt;  $ metadata:List of 3
+#&gt;  $ results :List of 5</div><div class='input'>
+<span class='co'># POST /protein/ppi</span>
+<span class='fu'>query_epigraphdb</span>(
+  <span class='kw'>route</span> <span class='kw'>=</span> <span class='st'>"/protein/ppi"</span>,
+  <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+    <span class='kw'>uniprot_id_list</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"P30793"</span>, <span class='st'>"Q9NZM1"</span>, <span class='st'>"O95236"</span>)
+  ),
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"POST"</span>
+)</div><div class='output co'>#&gt; $metadata
+#&gt; $metadata$query
+#&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
+#&gt; 
+#&gt; $metadata$total_seconds
+#&gt; [1] 0.006079
+#&gt; 
+#&gt; $metadata$empty_results
+#&gt; [1] FALSE
+#&gt; 
+#&gt; 
+#&gt; $results
+#&gt; $results[[1]]
+#&gt; $results[[1]]$protein
+#&gt; $results[[1]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[1]]$assoc_protein
+#&gt; $results[[1]]$assoc_protein$uniprot_id
+#&gt; [1] "P00439"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[2]]
+#&gt; $results[[2]]$protein
+#&gt; $results[[2]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[2]]$assoc_protein
+#&gt; $results[[2]]$assoc_protein$uniprot_id
+#&gt; [1] "Q5TCS8"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[3]]
+#&gt; $results[[3]]$protein
+#&gt; $results[[3]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[3]]$assoc_protein
+#&gt; $results[[3]]$assoc_protein$uniprot_id
+#&gt; [1] "O14638"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[4]]
+#&gt; $results[[4]]$protein
+#&gt; $results[[4]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[4]]$assoc_protein
+#&gt; $results[[4]]$assoc_protein$uniprot_id
+#&gt; [1] "P20711"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[5]]
+#&gt; $results[[5]]$protein
+#&gt; $results[[5]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[5]]$assoc_protein
+#&gt; $results[[5]]$assoc_protein$uniprot_id
+#&gt; [1] "O43556"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[6]]
+#&gt; $results[[6]]$protein
+#&gt; $results[[6]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[6]]$assoc_protein
+#&gt; $results[[6]]$assoc_protein$uniprot_id
+#&gt; [1] "P00374"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[7]]
+#&gt; $results[[7]]$protein
+#&gt; $results[[7]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[7]]$assoc_protein
+#&gt; $results[[7]]$assoc_protein$uniprot_id
+#&gt; [1] "P22392"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[8]]
+#&gt; $results[[8]]$protein
+#&gt; $results[[8]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[8]]$assoc_protein
+#&gt; $results[[8]]$assoc_protein$uniprot_id
+#&gt; [1] "P05187"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[9]]
+#&gt; $results[[9]]$protein
+#&gt; $results[[9]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[9]]$assoc_protein
+#&gt; $results[[9]]$assoc_protein$uniprot_id
+#&gt; [1] "P22102"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[10]]
+#&gt; $results[[10]]$protein
+#&gt; $results[[10]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[10]]$assoc_protein
+#&gt; $results[[10]]$assoc_protein$uniprot_id
+#&gt; [1] "P07101"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[11]]
+#&gt; $results[[11]]$protein
+#&gt; $results[[11]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[11]]$assoc_protein
+#&gt; $results[[11]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9BY32"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[12]]
+#&gt; $results[[12]]$protein
+#&gt; $results[[12]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[12]]$assoc_protein
+#&gt; $results[[12]]$assoc_protein$uniprot_id
+#&gt; [1] "O95197"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[13]]
+#&gt; $results[[13]]$protein
+#&gt; $results[[13]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[13]]$assoc_protein
+#&gt; $results[[13]]$assoc_protein$uniprot_id
+#&gt; [1] "P50583"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[14]]
+#&gt; $results[[14]]$protein
+#&gt; $results[[14]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[14]]$assoc_protein
+#&gt; $results[[14]]$assoc_protein$uniprot_id
+#&gt; [1] "P05186"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[15]]
+#&gt; $results[[15]]$protein
+#&gt; $results[[15]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[15]]$assoc_protein
+#&gt; $results[[15]]$assoc_protein$uniprot_id
+#&gt; [1] "Q05932"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[16]]
+#&gt; $results[[16]]$protein
+#&gt; $results[[16]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[16]]$assoc_protein
+#&gt; $results[[16]]$assoc_protein$uniprot_id
+#&gt; [1] "Q5MY95"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[17]]
+#&gt; $results[[17]]$protein
+#&gt; $results[[17]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[17]]$assoc_protein
+#&gt; $results[[17]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9BX66"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[18]]
+#&gt; $results[[18]]$protein
+#&gt; $results[[18]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[18]]$assoc_protein
+#&gt; $results[[18]]$assoc_protein$uniprot_id
+#&gt; [1] "P49961"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[19]]
+#&gt; $results[[19]]$protein
+#&gt; $results[[19]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[19]]$assoc_protein
+#&gt; $results[[19]]$assoc_protein$uniprot_id
+#&gt; [1] "P16066"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[20]]
+#&gt; $results[[20]]$protein
+#&gt; $results[[20]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[20]]$assoc_protein
+#&gt; $results[[20]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NP79"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[21]]
+#&gt; $results[[21]]$protein
+#&gt; $results[[21]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[21]]$assoc_protein
+#&gt; $results[[21]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9Y5B8"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[22]]
+#&gt; $results[[22]]$protein
+#&gt; $results[[22]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[22]]$assoc_protein
+#&gt; $results[[22]]$assoc_protein$uniprot_id
+#&gt; [1] "P22413"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[23]]
+#&gt; $results[[23]]$protein
+#&gt; $results[[23]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[23]]$assoc_protein
+#&gt; $results[[23]]$assoc_protein$uniprot_id
+#&gt; [1] "P51841"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[24]]
+#&gt; $results[[24]]$protein
+#&gt; $results[[24]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[24]]$assoc_protein
+#&gt; $results[[24]]$assoc_protein$uniprot_id
+#&gt; [1] "O00746"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[25]]
+#&gt; $results[[25]]$protein
+#&gt; $results[[25]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[25]]$assoc_protein
+#&gt; $results[[25]]$assoc_protein$uniprot_id
+#&gt; [1] "Q13232"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[26]]
+#&gt; $results[[26]]$protein
+#&gt; $results[[26]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[26]]$assoc_protein
+#&gt; $results[[26]]$assoc_protein$uniprot_id
+#&gt; [1] "P35270"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[27]]
+#&gt; $results[[27]]$protein
+#&gt; $results[[27]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[27]]$assoc_protein
+#&gt; $results[[27]]$assoc_protein$uniprot_id
+#&gt; [1] "Q96PE7"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[28]]
+#&gt; $results[[28]]$protein
+#&gt; $results[[28]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[28]]$assoc_protein
+#&gt; $results[[28]]$assoc_protein$uniprot_id
+#&gt; [1] "O75298"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[29]]
+#&gt; $results[[29]]$protein
+#&gt; $results[[29]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[29]]$assoc_protein
+#&gt; $results[[29]]$assoc_protein$uniprot_id
+#&gt; [1] "P17752"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[30]]
+#&gt; $results[[30]]$protein
+#&gt; $results[[30]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[30]]$assoc_protein
+#&gt; $results[[30]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NVV9"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[31]]
+#&gt; $results[[31]]$protein
+#&gt; $results[[31]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[31]]$assoc_protein
+#&gt; $results[[31]]$assoc_protein$uniprot_id
+#&gt; [1] "Q02846"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[32]]
+#&gt; $results[[32]]$protein
+#&gt; $results[[32]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[32]]$assoc_protein
+#&gt; $results[[32]]$assoc_protein$uniprot_id
+#&gt; [1] "P25092"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[33]]
+#&gt; $results[[33]]$protein
+#&gt; $results[[33]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[33]]$assoc_protein
+#&gt; $results[[33]]$assoc_protein$uniprot_id
+#&gt; [1] "P30047"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[34]]
+#&gt; $results[[34]]$protein
+#&gt; $results[[34]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[34]]$assoc_protein
+#&gt; $results[[34]]$assoc_protein$uniprot_id
+#&gt; [1] "Q02153"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[35]]
+#&gt; $results[[35]]$protein
+#&gt; $results[[35]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[35]]$assoc_protein
+#&gt; $results[[35]]$assoc_protein$uniprot_id
+#&gt; [1] "Q16799"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[36]]
+#&gt; $results[[36]]$protein
+#&gt; $results[[36]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[36]]$assoc_protein
+#&gt; $results[[36]]$assoc_protein$uniprot_id
+#&gt; [1] "P09417"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[37]]
+#&gt; $results[[37]]$protein
+#&gt; $results[[37]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[37]]$assoc_protein
+#&gt; $results[[37]]$assoc_protein$uniprot_id
+#&gt; [1] "P33402"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[38]]
+#&gt; $results[[38]]$protein
+#&gt; $results[[38]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[38]]$assoc_protein
+#&gt; $results[[38]]$assoc_protein$uniprot_id
+#&gt; [1] "Q03393"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[39]]
+#&gt; $results[[39]]$protein
+#&gt; $results[[39]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[39]]$assoc_protein
+#&gt; $results[[39]]$assoc_protein$uniprot_id
+#&gt; [1] "P16152"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[40]]
+#&gt; $results[[40]]$protein
+#&gt; $results[[40]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[40]]$assoc_protein
+#&gt; $results[[40]]$assoc_protein$uniprot_id
+#&gt; [1] "P09923"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[41]]
+#&gt; $results[[41]]$protein
+#&gt; $results[[41]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[41]]$assoc_protein
+#&gt; $results[[41]]$assoc_protein$uniprot_id
+#&gt; [1] "P10696"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[42]]
+#&gt; $results[[42]]$protein
+#&gt; $results[[42]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[42]]$assoc_protein
+#&gt; $results[[42]]$assoc_protein$uniprot_id
+#&gt; [1] "Q02108"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[43]]
+#&gt; $results[[43]]$protein
+#&gt; $results[[43]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[43]]$assoc_protein
+#&gt; $results[[43]]$assoc_protein$uniprot_id
+#&gt; [1] "O75355"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[44]]
+#&gt; $results[[44]]$protein
+#&gt; $results[[44]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[44]]$assoc_protein
+#&gt; $results[[44]]$assoc_protein$uniprot_id
+#&gt; [1] "P14618"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[45]]
+#&gt; $results[[45]]$protein
+#&gt; $results[[45]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[45]]$assoc_protein
+#&gt; $results[[45]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NQC3"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[46]]
+#&gt; $results[[46]]$protein
+#&gt; $results[[46]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[46]]$assoc_protein
+#&gt; $results[[46]]$assoc_protein$uniprot_id
+#&gt; [1] "P30613"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[47]]
+#&gt; $results[[47]]$protein
+#&gt; $results[[47]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[47]]$assoc_protein
+#&gt; $results[[47]]$assoc_protein$uniprot_id
+#&gt; [1] "P15531"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[48]]
+#&gt; $results[[48]]$protein
+#&gt; $results[[48]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[48]]$assoc_protein
+#&gt; $results[[48]]$assoc_protein$uniprot_id
+#&gt; [1] "P20594"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[49]]
+#&gt; $results[[49]]$protein
+#&gt; $results[[49]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[49]]$assoc_protein
+#&gt; $results[[49]]$assoc_protein$uniprot_id
+#&gt; [1] "O14656"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[50]]
+#&gt; $results[[50]]$protein
+#&gt; $results[[50]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[50]]$assoc_protein
+#&gt; $results[[50]]$assoc_protein$uniprot_id
+#&gt; [1] "O94875"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[51]]
+#&gt; $results[[51]]$protein
+#&gt; $results[[51]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[51]]$assoc_protein
+#&gt; $results[[51]]$assoc_protein$uniprot_id
+#&gt; [1] "P15692"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[52]]
+#&gt; $results[[52]]$protein
+#&gt; $results[[52]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[52]]$assoc_protein
+#&gt; $results[[52]]$assoc_protein$uniprot_id
+#&gt; [1] "P50570"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[53]]
+#&gt; $results[[53]]$protein
+#&gt; $results[[53]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[53]]$assoc_protein
+#&gt; $results[[53]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NZN3"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[54]]
+#&gt; $results[[54]]$protein
+#&gt; $results[[54]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[54]]$assoc_protein
+#&gt; $results[[54]]$assoc_protein$uniprot_id
+#&gt; [1] "P22681"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[55]]
+#&gt; $results[[55]]$protein
+#&gt; $results[[55]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[55]]$assoc_protein
+#&gt; $results[[55]]$assoc_protein$uniprot_id
+#&gt; [1] "P35968"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[56]]
+#&gt; $results[[56]]$protein
+#&gt; $results[[56]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[56]]$assoc_protein
+#&gt; $results[[56]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NZN4"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; </div><div class='input'>
 <span class='co'># error handling</span>
 <span class='fu'><a href='https://rdrr.io/r/base/conditions.html'>tryCatch</a></span>(
   <span class='fu'>query_epigraphdb</span>(
-    <span class='kw'>endpoint</span> <span class='kw'>=</span> <span class='st'>"/mr"</span>,
+    <span class='kw'>route</span> <span class='kw'>=</span> <span class='st'>"/mr"</span>,
     <span class='kw'>params</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-      <span class='kw'>exposure</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-      <span class='kw'>outcome</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+      <span class='kw'>exposure_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+      <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
     )
   ),
   <span class='kw'>error</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>e</span>) {
@@ -237,8 +937,8 @@ Currently only <code>"GET"</code> is supported.</p></td>
 )</div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
 #&gt; <span class='error'>Detail:</span>
 #&gt; <span class='error'>$detail</span>
-#&gt; <span class='error'>[1] "exposure and outcome can't be both missing."</span>
-#&gt; <span class='error'>do.call(method, args = list(endpoint = endpoint, params = params, call = call))</span></div></pre>
+#&gt; <span class='error'>[1] "At least one of the following parameters should be non-missing: [exposure_trait, outcome_trait]"</span>
+#&gt; <span class='error'>do.call(method, args = list(route = route, params = params, call = call))</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

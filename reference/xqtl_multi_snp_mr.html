@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Multi SNP QTL MR evidence — xqtl_multi_snp_mr" />
-<meta property="og:description" content="Multi SNP QTL MR evidence" />
+<meta property="og:description" content="GET /xqtl/multi-snp-mr" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -145,12 +145,17 @@
     </div>
 
     <div class="ref-description">
-    <p>Multi SNP QTL MR evidence</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr'><code>GET /xqtl/multi-snp-mr</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>xqtl_multi_snp_mr</span>(<span class='kw'>exposure_gene</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>mr_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"IVW"</span>, <span class='st'>"Egger"</span>), <span class='kw'>qtl_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"eQTL"</span>, <span class='st'>"pQTL"</span>),
-  <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>xqtl_multi_snp_mr</span>(
+  <span class='kw'>exposure_gene</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>mr_method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"IVW"</span>, <span class='st'>"Egger"</span>),
+  <span class='kw'>qtl_type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"eQTL"</span>, <span class='st'>"pQTL"</span>),
+  <span class='kw'>pval_threshold</span> <span class='kw'>=</span> <span class='fl'>1e-05</span>,
+  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,33 +183,32 @@
     <tr>
       <th>mode</th>
       <td><p>If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
 If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data from <a href='http://api.epigraphdb.org/#/xqtl/get_xqtl_multi_snp_mr_xqtl_multi-snp-mr_get'> /xqtl/multi-snp-mr </a></p>
+    <p>Data from <code>GET /xqtl/multi-snp-mr</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span>(<span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 12 x 7
-#&gt;    exposure_ensemb… exposure_name outcome_id outcome_name      b     se        p
-#&gt;    &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 ENSG00000134222  PSRC1         7          Coronary he… -0.147 0.0190 9.74e-15
-#&gt;  2 ENSG00000135148  TRAFD1        7          Coronary he…  0.783 0.137  1.14e- 8
-#&gt;  3 ENSG00000183508  FAM46C        7          Coronary he…  0.161 0.0298 6.55e- 8
-#&gt;  4 ENSG00000133789  SWAP70        7          Coronary he… -0.128 0.0240 1.01e- 7
-#&gt;  5 ENSG00000151612  ZNF827        7          Coronary he… -0.336 0.0647 2.05e- 7
-#&gt;  6 ENSG00000076685  NT5C2         7          Coronary he… -0.102 0.0209 1.10e- 6
-#&gt;  7 ENSG00000130475  FCHO1         7          Coronary he… -0.126 0.0266 1.94e- 6
-#&gt;  8 ENSG00000212541  RNU6-510P     7          Coronary he… -0.153 0.0324 2.32e- 6
-#&gt;  9 ENSG00000152804  HHEX          7          Coronary he… -0.117 0.0250 2.77e- 6
-#&gt; 10 ENSG00000197520  FAM177B       7          Coronary he…  0.164 0.0355 3.96e- 6
-#&gt; 11 ENSG00000234608  MAPKAPK5-AS1  7          Coronary he… -0.112 0.0244 4.28e- 6
-#&gt; 12 ENSG00000242142  SERBP1P3      7          Coronary he…  0.115 0.0253 5.25e- 6</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span>(<span class='kw'>outcome_trait</span> <span class='kw'>=</span> <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 11 x 7
+#&gt;    gene.ensembl_id gene.name   gwas.id gwas.trait         r.beta   r.se      r.p
+#&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+#&gt;  1 ENSG00000134222 PSRC1       ieu-a-7 Coronary heart d… -0.214  0.0270 1.98e-15
+#&gt;  2 ENSG00000183508 FAM46C      ieu-a-7 Coronary heart d…  0.236  0.0435 5.86e- 8
+#&gt;  3 ENSG00000151612 ZNF827      ieu-a-7 Coronary heart d… -0.503  0.0968 2.05e- 7
+#&gt;  4 ENSG00000133789 SWAP70      ieu-a-7 Coronary heart d… -0.184  0.0361 3.24e- 7
+#&gt;  5 ENSG00000130475 FCHO1       ieu-a-7 Coronary heart d… -0.127  0.0257 7.28e- 7
+#&gt;  6 ENSG00000076685 NT5C2       ieu-a-7 Coronary heart d… -0.148  0.0303 1.08e- 6
+#&gt;  7 ENSG00000212541 RNU6-510P   ieu-a-7 Coronary heart d… -0.0912 0.0194 2.50e- 6
+#&gt;  8 ENSG00000152804 HHEX        ieu-a-7 Coronary heart d… -0.174  0.0371 2.82e- 6
+#&gt;  9 ENSG00000197520 FAM177B     ieu-a-7 Coronary heart d…  0.237  0.0510 3.32e- 6
+#&gt; 10 ENSG00000234608 MAPKAPK5-A… ieu-a-7 Coronary heart d… -0.142  0.0308 4.25e- 6
+#&gt; 11 ENSG00000242142 SERBP1P3    ieu-a-7 Coronary heart d…  0.0683 0.0150 5.17e- 6</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

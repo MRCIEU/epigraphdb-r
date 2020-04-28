@@ -51,8 +51,7 @@ available in the database — pqtl_list • epigraphdb</title>
 
 <meta property="og:title" content="Return a list of all proteins/exposures or traits/outcomes
 available in the database — pqtl_list" />
-<meta property="og:description" content="Return a list of all proteins/exposures or traits/outcomes
-available in the database" />
+<meta property="og:description" content="GET /pqtl/list/" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -149,8 +148,7 @@ available in the database</h1>
     </div>
 
     <div class="ref-description">
-    <p>Return a list of all proteins/exposures or traits/outcomes
-available in the database</p>
+    <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist'><code>GET /pqtl/list/</code></a></p>
     </div>
 
     <pre class="usage"><span class='fu'>pqtl_list</span>(<span class='kw'>flag</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"exposures"</span>, <span class='st'>"outcomes"</span>), <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
@@ -167,13 +165,16 @@ should be returned. The DEFAULT is "exposures".</p></td>
     <tr>
       <th>mode</th>
       <td><p>If <code>mode = "table"</code>, returns a data frame
-(a <a href='https://tibble.tidyverse.org/'>tibble</a> as per
-<a href='https://style.tidyverse.org/'>tidyverse</a> convention).
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
 If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
-with minimal parsing done by <a href='https://httr.r-lib.org/'>httr</a>.</p></td>
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Data from <code>GET /pqtl/list/</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
