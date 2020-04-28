@@ -4,8 +4,7 @@
 \alias{drugs_risk_factors}
 \title{Drugs for risk factors}
 \usage{
-drugs_risk_factors(trait, pval_threshold = 1e-08, mode = c("table",
-  "raw"))
+drugs_risk_factors(trait, pval_threshold = 1e-08, mode = c("table", "raw"))
 }
 \arguments{
 \item{trait}{A trait name}
@@ -13,16 +12,16 @@ drugs_risk_factors(trait, pval_threshold = 1e-08, mode = c("table",
 \item{pval_threshold}{P-value threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
 Data from \code{GET /drugs/risk-factors}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors}{GET /drugs/risk-factors}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors}{\code{GET /drugs/risk-factors}}
 }
 \examples{
 drugs_risk_factors(trait = "Body mass index")

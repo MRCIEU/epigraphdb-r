@@ -12,16 +12,16 @@ genetic_cor(trait, cor_coef_threshold = 0.8, mode = c("table", "raw"))
 \item{cor_coef_threshold}{correlation coefficient threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
 Data from \code{GET /genetic_cor}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor}{GET /genetic-cor}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor}{\code{GET /genetic-cor}}
 }
 \examples{
 genetic_cor(trait = "Body mass index") \%>\%

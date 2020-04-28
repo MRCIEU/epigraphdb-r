@@ -4,9 +4,14 @@
 \alias{xqtl_multi_snp_mr}
 \title{Multi SNP QTL MR evidence}
 \usage{
-xqtl_multi_snp_mr(exposure_gene = NULL, outcome_trait = NULL,
-  mr_method = c("IVW", "Egger"), qtl_type = c("eQTL", "pQTL"),
-  pval_threshold = 1e-05, mode = c("table", "raw"))
+xqtl_multi_snp_mr(
+  exposure_gene = NULL,
+  outcome_trait = NULL,
+  mr_method = c("IVW", "Egger"),
+  qtl_type = c("eQTL", "pQTL"),
+  pval_threshold = 1e-05,
+  mode = c("table", "raw")
+)
 }
 \arguments{
 \item{exposure_gene}{Name of the exposure gene}
@@ -20,16 +25,16 @@ xqtl_multi_snp_mr(exposure_gene = NULL, outcome_trait = NULL,
 \item{pval_threshold}{P-value threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
 Data from \code{GET /xqtl/multi-snp-mr}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr}{GET /xqtl/multi-snp-mr}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr}{\code{GET /xqtl/multi-snp-mr}}
 }
 \examples{
 xqtl_multi_snp_mr(outcome_trait = "Coronary heart disease")

@@ -12,16 +12,16 @@ pathway(trait, pval_threshold = 1e-05, mode = c("table", "raw"))
 \item{pval_threshold}{P-value threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
 Data from \code{GET /pathway}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{GET /pathway}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{\code{GET /pathway}}
 }
 \examples{
 pathway(trait = "Body mass index")

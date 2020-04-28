@@ -6,7 +6,7 @@
 \alias{epigraphdb-package}
 \title{epigraphdb: EpiGraphDB}
 \description{
-\if{html}{\figure{logo.png}{options: align='right'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 R package for getting EpiGraphDB data.
 }

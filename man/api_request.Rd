@@ -4,8 +4,13 @@
 \alias{api_request}
 \title{The very general wrapper from EpiGraphDB endpoint request}
 \usage{
-api_request(route, params, mode = c("table", "raw"),
-  method = api_get_request, call = sys.call(-1))
+api_request(
+  route,
+  params,
+  mode = c("table", "raw"),
+  method = api_get_request,
+  call = sys.call(-1)
+)
 }
 \arguments{
 \item{route}{An EpiGraphDB API endpoint route, e.g. "/mr"}

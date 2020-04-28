@@ -4,9 +4,13 @@
 \alias{pqtl}
 \title{Return information related to the pQTL analysis}
 \usage{
-pqtl(query, rtype = c("mrres", "simple", "sglmr", "inst", "sense"),
-  pvalue = 0.05, searchflag = c("traits", "proteins"),
-  mode = c("table", "raw"))
+pqtl(
+  query,
+  rtype = c("mrres", "simple", "sglmr", "inst", "sense"),
+  pvalue = 0.05,
+  searchflag = c("traits", "proteins"),
+  mode = c("table", "raw")
+)
 }
 \arguments{
 \item{query}{(Required) A protein coding gene name or a trait name,
@@ -34,16 +38,16 @@ if \code{query} is a trait, this flag should be "traits".
 returned.}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
-Data from \code{GET /pqtl/}
+Data from \verb{GET /pqtl/}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{GET /pqtl/}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{\verb{GET /pqtl/}}
 }
 \examples{
 # Returns a data frame of MR results, while searching for proteins

@@ -4,9 +4,13 @@
 \alias{confounder}
 \title{MR evidence on confounding traits between exposure and outcome}
 \usage{
-confounder(exposure_trait = NULL, outcome_trait = NULL,
-  type = c("confounder", "intermediate", "reverse_intermediate",
-  "collider"), pval_threshold = 1e-05, mode = c("table", "raw"))
+confounder(
+  exposure_trait = NULL,
+  outcome_trait = NULL,
+  type = c("confounder", "intermediate", "reverse_intermediate", "collider"),
+  pval_threshold = 1e-05,
+  mode = c("table", "raw")
+)
 }
 \arguments{
 \item{exposure_trait}{A trait name, eg. "Body mass index",
@@ -19,23 +23,23 @@ leaving \code{outcome_trait} as \code{NULL} will return MR information
 related to a specific \code{exposure_trait}.
 \strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
-\item{type}{One in \code{["confounder", "intermediate", "reverse_intermediate", "collider"]}
+\item{type}{One in \verb{["confounder", "intermediate", "reverse_intermediate", "collider"]}
 Refer to \href{http://epigraphdb.org/confounder}{ the confounder view in web application }
 for details}
 
 \item{pval_threshold}{P-value threshold}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
 Data from \code{GET /confounder}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{GET /confounder}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{\code{GET /confounder}}
 }
 \examples{
 confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")

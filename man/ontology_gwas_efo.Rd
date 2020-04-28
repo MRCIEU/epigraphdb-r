@@ -4,8 +4,12 @@
 \alias{ontology_gwas_efo}
 \title{Ontology association between EFO term and Gwas}
 \usage{
-ontology_gwas_efo(trait = NULL, efo_term = NULL, fuzzy = TRUE,
-  mode = c("table", "raw"))
+ontology_gwas_efo(
+  trait = NULL,
+  efo_term = NULL,
+  fuzzy = TRUE,
+  mode = c("table", "raw")
+)
 }
 \arguments{
 \item{trait}{trait name, e.g. "body mass"}
@@ -15,16 +19,16 @@ ontology_gwas_efo(trait = NULL, efo_term = NULL, fuzzy = TRUE,
 \item{fuzzy}{whether query with exact matching (FALSE) or fuzzy matching (default, TRUE)}
 
 \item{mode}{If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
 Data from \code{GET /ontology/gwas-efo}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo}{GET /ontology/gwas-efo}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo}{\code{GET /ontology/gwas-efo}}
 }
 \examples{
 ontology_gwas_efo(trait = "blood", fuzzy = FALSE)

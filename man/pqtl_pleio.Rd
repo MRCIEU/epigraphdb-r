@@ -4,8 +4,11 @@
 \alias{pqtl_pleio}
 \title{Return information related to the pleiotropy of SNPs}
 \usage{
-pqtl_pleio(rsid = NULL, prflag = c("proteins", "count"),
-  mode = c("table", "raw"))
+pqtl_pleio(
+  rsid = NULL,
+  prflag = c("proteins", "count"),
+  mode = c("table", "raw")
+)
 }
 \arguments{
 \item{rsid}{(Required) A SNP identified by rsID which cannot be \code{NULL}.}
@@ -15,16 +18,16 @@ or names (if "proteins") of the associated proteins should be returned.
 The DEFAULT value is "proteins".}
 
 \item{mode}{(Optional) If \code{mode = "table"}, returns a data frame
-(a \href{https://tibble.tidyverse.org/}{tibble} as per
-\href{https://style.tidyverse.org/}{tidyverse} convention).
+(a \href{https://tibble.tidyverse.org/}{\code{tibble}} as per
+\href{https://style.tidyverse.org/}{\code{tidyverse}} convention).
 If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
-with minimal parsing done by \href{https://httr.r-lib.org/}{httr}.}
+with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
-Data from \code{GET /pqtl/pleio/}
+Data from \verb{GET /pqtl/pleio/}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio}{GET /pqtl/pleio/}
+\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio}{\verb{GET /pqtl/pleio/}}
 }
 \examples{
 

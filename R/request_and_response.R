@@ -168,7 +168,6 @@ flatten_response <- function(response, field = "results") {
 #'
 #' Modifies from httr::stop_for_status
 #'
-#' @title
 #' @param response An httr response
 #'
 #' @keywords internal

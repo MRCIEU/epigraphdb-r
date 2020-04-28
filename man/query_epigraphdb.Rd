@@ -4,8 +4,12 @@
 \alias{query_epigraphdb}
 \title{Send data request to an EpiGraphDB API endpoint}
 \usage{
-query_epigraphdb(route, params, mode = c("raw", "table"),
-  method = c("GET", "POST"))
+query_epigraphdb(
+  route,
+  params,
+  mode = c("raw", "table"),
+  method = c("GET", "POST")
+)
 }
 \arguments{
 \item{route}{An EpiGraphDB API endpoint route, e.g. \code{"/mr"} or \code{"/confounder"}.
@@ -26,7 +30,7 @@ Explicitly specify \code{mode = "table"} when needed.}
 NOTE: When sending a POST request where a specific parameter is specified as a list on the API,
 and if the equivalent in R is a vector of length 1, you should wrap this parameter
 in \code{I()}, e.g. I(c("APOE")) to avoid auto unboxing.
-For details, please refer to \href{https://httr.r-lib.org/reference/POST.html}{httr::POST}}
+For details, please refer to \href{https://httr.r-lib.org/reference/POST.html}{\code{httr::POST}}}
 }
 \value{
 Data from an EpiGraphDB API endpoint.
