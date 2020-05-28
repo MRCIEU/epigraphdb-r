@@ -31,6 +31,8 @@ the R package name is "epigraphdb".
 
 ## Using `epigraphdb`
 
+`epigraphdb` provides a simple and intuitive way to query the API, as:
+
 ```r
 library("epigraphdb")
 #>   EpiGraphDB v0.3
@@ -39,6 +41,8 @@ library("epigraphdb")
 #>
 #>   To turn off this message, use
 #>   suppressPackageStartupMessages({library("epigraphdb")})
+#>
+#>
 mr(outcome_trait = "Body mass index")
 #> # A tibble: 370 x 12
 #>    exposure_id exposure_name outcome_id outcome_name estimate      se
@@ -60,11 +64,13 @@ mr(outcome_trait = "Body mass index")
 For more information on how to use the `epigraphdb` R package and
 how to use the API in R please check out the following articles:
 
-- [Using EpiGraphDB R package](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html)
-- [Using EpiGraphDB API ](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html)
-- [Package options](https://mrcieu.github.io/epigraphdb-r/articles/options.html)
+| Article  |
+|---|
+| [Using EpiGraphDB R package](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html) |
+| [Using EpiGraphDB API ](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html) |
+| [Package options](https://mrcieu.github.io/epigraphdb-r/articles/options.html)|
 
-## Functionalities
+## Package functionalities
 
 Users can use the general query function
 [query_epigraphdb](https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html)
@@ -202,7 +208,6 @@ We also provide a list of functions (see the table below) that are equivalent to
   </tbody>
 </table>
 
-
 ## EpiGraphDB resources
 
 | link                                                | screenshot                                            |
@@ -214,9 +219,22 @@ We also provide a list of functions (see the table below) that are equivalent to
 
 ## Citation
 
-If Using EpiGraphDB or the `epigraphdb` R package:
+Please cite EpiGraphDB as
 
-[
-  Liu Y, Elsworth B, Haberland V, Erola P, Lyon M, Zheng J, Gaunt TR.
-  EpiGraphDB: a database and data mining platform for health data science.
-](http://epigraphdb.org)
+> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. *EpiGraphDB: A database and data mining platform for health data science*. http://epigraphdb.org
+
+```
+@article {epigraphdb2020,
+  author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
+  title = {{EpiGraphDB}: A database and data mining platform for health data science},
+  url = {http://epigraphdb.org}
+}
+```
+
+## Contact
+
+Please get in touch with us for issues, comments, suggestions, etc. via the following methods:
+
+- [The issue tracker on the `epigraphdb` repo](https://github.com/MRCIEU/epigraphdb/issues)
+- [The support email](mailto:feedback@epigraphdb.org)
+- [The EpiGraphDB twitter](https://twitter.com/epigraphdb)
