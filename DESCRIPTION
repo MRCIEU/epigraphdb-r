@@ -42,6 +42,9 @@ Imports:
     glue,
     purrr,
     dplyr,
-    jsonlite
+    jsonlite,
+    igraph,
+    gtools,
+    stringr
 VignetteBuilder: knitr
 Language: en-GB

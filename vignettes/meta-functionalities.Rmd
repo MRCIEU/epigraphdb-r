@@ -1,0 +1,209 @@
+---
+title: "Meta functionalities of the EpiGraphDB platform"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{"Meta functionalities of the EpiGraphDB platform"}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This RMarkdown document demonstrates how key elements from the
+[github notebook for the meta functionalities](
+https://github.com/MRCIEU/epigraphdb/blob/master/general-examples/platform-meta-functionalities.ipynb
+) can be achieved using the R package.
+For detailed explanations of the case study please refer to the
+[notebook on github](
+https://github.com/MRCIEU/epigraphdb/blob/master/general-examples/platform-meta-functionalities.ipynb
+).
+
+Here we show the following aspects of the EpiGraphDB platform, and how to use the API to get the information:
+
+- Metadata: meta nodes and meta edges, and the overall schema.
+- Search for a specific node under the meta node.
+- Cypher: how to query the database directly using Neo4j Cypher
+
+For detailed documentation on the API endpoints please visit:
+
+- The Swagger interface: http://api.epigraphdb.org
+- The sections regarding API endpoints on the documentation site:
+  http://docs.epigraphdb.org/api/api-endpoints/
+
+```{r}
+library("magrittr")
+library("dplyr")
+library("purrr")
+library("igraph")
+library("epigraphdb")
+```
+
+## Metadata
+
+Here we query for the metadata information using the endpoint `GET /meta/schema`, which will be used for downstream processing.
+
+```{r}
+endpoint <- "/meta/schema"
+params <- list(
+  graphviz = FALSE,
+  plot = FALSE
+)
+metadata <- query_epigraphdb(
+  route = endpoint, params = params, mode = "raw"
+)
+
+metadata %>% str(2)
+```
+
+### Meta nodes
+
+We can extract the specific meta node information as a pandas dataframe from the metadata.
+
+```{r}
+meta_node_df <- metadata %>%
+  pluck("nodes") %>%
+  {
+    names <- names(.)
+    transpose(.) %>%
+      as_tibble() %>%
+      mutate(meta_node = names) %>%
+      # Hide properties column which does not display well
+      select(meta_node, count) %>%
+      # We also need to flatten count
+      mutate(count = flatten_int(count))
+  }
+
+meta_node_df %>%
+  arrange(meta_node) %>%
+  mutate(count = format(count, big.mark = ","))
+```
+
+### Meta relationships and connections
+
+We can also extract the meta relationship (edge) information, and the connections.
+
+```{r}
+meta_rel_df <- metadata %>%
+  pluck("edges") %>%
+  {
+    names <- names(.)
+    transpose(.) %>%
+      as_tibble() %>%
+      mutate(meta_rel = names) %>%
+      mutate(count = flatten_int(count)) %>%
+      select(meta_rel, count)
+  } %>%
+  inner_join(
+    metadata %>% pluck("connections") %>% {
+      transpose(.) %>%
+        as_tibble() %>%
+        mutate(meta_rel = flatten_chr(rel)) %>%
+        mutate_at(vars(from_node, to_node), flatten_chr) %>%
+        select(meta_rel, from_node, to_node)
+    }
+  )
+
+meta_rel_df %>%
+  arrange(from_node, to_node) %>%
+  mutate(count = format(count, big.mark = ","))
+```
+
+### Schema plot
+
+```{r}
+graph <- meta_rel_df %>%
+  select(from_node, to_node) %>%
+  igraph::graph_from_data_frame(directed = FALSE)
+graph$layout <- igraph::layout_with_kk
+plot(graph)
+```
+
+
+A detailed version of the shema plot can be obtained from the API:
+
+![schema_plot](http://ieu-mrbssd1.epi.bris.ac.uk:28046/meta/schema?graphviz=true&plot=true)
+
+## Search for specific node
+
+Users can use [the explorer on the Web UI](http://dev.epigraphdb.org/explore) to search for a specific node by:
+
+- fuzzy matching by "name" field.
+- exact matching by "ID" field if you know the its ID (e.g. the ID to a GWAS from IEU GWAS Database).
+
+Here we show how these are done at the API level using `Gwas` nodes as an example.
+
+ First we need to know what the "ID" and "name" fields are for the meta nodes using `GET /meta/nodes/id-name-schema`:
+
+```{r}
+endpoint <- "/meta/nodes/id-name-schema"
+meta_node_fields <- query_epigraphdb(
+  route = endpoint, params = NULL, mode = "raw"
+)
+meta_node_fields
+```
+
+## Fuzzy matching
+
+Here we search for nodes can contain "body mass index" in their traits.
+
+```{r}
+name <- "body mass index"
+
+endpoint <- "/meta/nodes/Gwas/search"
+params <- list(name = name)
+
+results <- query_epigraphdb(
+  route = endpoint, params = params, mode = "table"
+)
+results
+```
+
+## Exact matching
+
+Similarly, we can exact match a specific node by its ID.
+
+```{r}
+id <- "ieu-a-2"
+
+endpoint <- "/meta/nodes/Gwas/search"
+params <- list(id = id)
+
+results <- query_epigraphdb(
+  route = endpoint, params = params, mode = "table"
+)
+results
+```
+
+## Cypher (advanced)
+
+Advanced users that are familiar with Neo4j Cypher can query the database using Cypher directly.
+
+```{r}
+query <- "
+    MATCH (exposure:Gwas)-[mr:MR]->(outcome:Gwas)
+    WHERE exposure.trait = 'Body mass index'
+    RETURN exposure, outcome, mr LIMIT 2
+"
+
+endpoint <- "/cypher"
+params <- list(query = query)
+
+# NOTE this is a POST request
+results <- query_epigraphdb(
+  route = endpoint, params = params, method = "POST",
+  mode = "table"
+)
+results
+```
+
+
+## `sessionInfo`
+
+```{r}
+sessionInfo()
+```

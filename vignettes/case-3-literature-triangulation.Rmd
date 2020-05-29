@@ -1,0 +1,420 @@
+---
+title: "Case study 3: Triangulating causal estimates with literature evidence"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{"Case study 3: Triangulating causal estimates with literature evidence"}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This RMarkdown document demonstrates how key elements from the
+[notebook for case study 3 in the EpiGraphDB paper](
+https://github.com/MRCIEU/epigraphdb/blob/master/paper-case-studies/case-3-literature-triangulation.ipynb
+) can be achieved using the R package.
+For detailed explanations of the case study please refer to the
+[paper](#)
+or the
+[case study notebook](
+https://github.com/MRCIEU/epigraphdb/blob/master/paper-case-studies/case-3-literature-triangulation.ipynb
+).
+
+## Context
+
+The biomedical literature contains a wealth of information than far exceeds our capacity for systematic manual extraction.
+For this reason, there are many existing literature mining methods to extract the key concepts and content.
+Here we use data from [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/), a well established database that provides subject-predicate-object triples from all PubMed titles and abstracts.
+Using a subset of this data we created MELODI-presto (https://melodi-presto.mrcieu.ac.uk/), a method to assign triples to any given biomedical query via a PubMed search and some basic enrichment, and have applied this systematically to traits represented in EpiGraphDB.
+This allows us to identify overlapping terms connecting any set of GWAS traits, e.g. exposure and disease outcome.
+From here we can attempt to triangulate causal estimates, and conversely, check the mechanisms identified from the literature against the causal evidence.
+
+```{r}
+library("magrittr")
+library("dplyr")
+library("purrr")
+library("glue")
+library("igraph")
+library("epigraphdb")
+```
+
+Here we set the starting trait, which we will use to explore associated disease traits.
+
+```{r}
+STARTING_TRAIT <- "Sleep duration"
+```
+
+## Get traits MR association
+
+Given an exposure trait, find all traits with causal evidence.
+This method searches the causal evidence data for cases where our exposure trait has a potential casual effect on an outcome trait.
+
+```{r}
+get_mr <- function(trait) {
+  endpoint <- "/mr"
+  params <- list(
+    exposure_trait = trait,
+    pval_threshold = 1e-10
+  )
+  mr_df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  mr_df
+}
+
+mr_df <- get_mr(STARTING_TRAIT)
+mr_df %>% glimpse()
+```
+
+## Map outcome traits to disease
+
+For this example, we are interested in traits mapped to a disease node.
+To do this we utilise the mapping from GWAS trait to Disease via EFO term.
+
+```{r}
+trait_to_disease <- function(trait) {
+  endpoint <- "/ontology/gwas-efo-disease"
+  params <- list(trait = trait)
+  disease_df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  if (nrow(disease_df) > 0) {
+    res <- disease_df %>% pull(`disease.label`)
+  } else {
+    res <- c()
+  }
+  res
+}
+
+disease_df <- mr_df %>%
+  mutate(disease = map(`outcome.trait`, trait_to_disease)) %>%
+  filter(map_lgl(`disease`, function(x) !is.null(x)))
+disease_df
+```
+
+## Take one example to look for literature evidence
+
+For the multiple `exposure -> outcome` relationships as reported from the table above,
+here we look at the literature evidence for one pair in detail:
+
+- Trait X: "Sleep duration"
+  ([ieu-a-1088](https://gwas.mrcieu.ac.uk/datasets/ieu-a-1088/))
+- Trait Y: "Coronary heart disease"
+  ([ieu-a-6](https://gwas.mrcieu.ac.uk/datasets/ieu-a-6/)).
+
+The following looks for enriched triples of information (Subject-Predicate-Object) associated with our two traits.
+These have been derived via PubMed searches and corresponding [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/) data.
+
+```{r}
+get_gwas_pair_literature <- function(gwas_id, assoc_gwas_id) {
+  endpoint <- "/literature/gwas/pairwise"
+  # NOTE in this example we blacklist to semmentic types
+  params <- list(
+    gwas_id = gwas_id,
+    assoc_gwas_id = assoc_gwas_id,
+    by_gwas_id = TRUE,
+    pval_threshold = 1e-1,
+    semmantic_types = "nusq",
+    semmantic_types = "dsyn",
+    blacklist = TRUE,
+    limit = 1000
+  )
+  lit_df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  lit_df
+}
+
+GWAS_ID_X <- "ieu-a-1088"
+GWAS_ID_Y <- "ieu-a-6"
+lit_df <- get_gwas_pair_literature(GWAS_ID_X, GWAS_ID_Y)
+
+glimpse(lit_df)
+```
+
+```{r}
+# Predicate counts for SemMed triples for trait X
+lit_df %>%
+  count(`s1.predicate`) %>%
+  arrange(desc(n))
+```
+
+```{r}
+# Predicate counts for SemMed triples for trait Y
+lit_df %>%
+  count(`s2.predicate`) %>%
+  arrange(desc(n))
+```
+
+### Filter the data by predicates
+
+Sometimes it is preferable to filter the SemMedDB data, e.g. to remove less informative Predicates, such as COEXISTS_WITH and ASSOCIATED_WITH.
+
+```{r}
+# Filter out some predicates that are not informative
+pred_filter <- c("COEXISTS_WITH", "ASSOCIATED_WITH")
+lit_df_filter <- lit_df %>%
+  filter(
+    !`s1.predicate` %in% pred_filter,
+    !`s2.predicate` %in% pred_filter
+  )
+lit_df_filter %>%
+  count(`s1.predicate`) %>%
+  arrange(desc(n))
+```
+
+```{r}
+lit_df_filter %>%
+  count(`s2.predicate`) %>%
+  arrange(desc(n))
+```
+
+## Literature results
+
+If we explore the full table in ```lit_df_filter```, we can see lots of links between the two traits, pinned on specific overlapping terms. For example:
+
+`Aspirin:INHIBITS:Oral anticoagulants` from Sleep duration (s1) and `anticoagulants:INHIBITS:P2RY12` from CHD (s2).
+
+We can summarise the [SemMedDB semantic type](https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml) and number of overlapping terms:
+
+```{r}
+lit_counts <- lit_df_filter %>%
+  count(`st.type`, `st.name`) %>%
+  arrange(`st.type`, desc(`n`))
+lit_counts %>% print(n = 30)
+```
+
+Note, the SemMedDB semantic types have been pre-filtered to only include a subset of possibilities.
+
+Further examples of these term IDs and descriptions can be found here - [https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml](https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml)
+
+### Look in detail at one overlapping term
+
+Here we look at cases where `Leptin` is the central overlapping term.
+
+```{r}
+focus_term <- "Leptin"
+lit_detail <- lit_df_filter %>% filter(`st.name` == focus_term)
+lit_detail %>% head()
+```
+
+We can create a network diagram to visualise these relationships.
+
+```{r}
+lit_detail <- lit_detail %>%
+  mutate_at(vars(`gwas.trait`, `assoc_gwas.trait`), stringr::str_to_upper)
+nodes <- bind_rows(
+  lit_detail %>% select(node = `gwas.trait`) %>% distinct() %>% mutate(color = "red"),
+  lit_detail %>% select(node = `assoc_gwas.trait`) %>% distinct() %>% mutate(color = "red"),
+  lit_detail %>% select(node = `s1.subject_name`) %>% distinct() %>% mutate(color = "skyblue"),
+  lit_detail %>% select(node = `s2.subject_name`) %>% distinct() %>% mutate(color = "skyblue"),
+  lit_detail %>% select(node = `s1.object_name`) %>% distinct() %>% mutate(color = "skyblue"),
+  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(color = "skyblue")
+) %>% distinct()
+nodes
+```
+
+```{r}
+edges <- bind_rows(
+  # exposure -> s1 subject
+  lit_detail %>%
+    select(node = `gwas.trait`, assoc_node = `s1.subject_name`) %>%
+    distinct(),
+  # s2 object -> outcome
+  lit_detail %>%
+    select(node = `s2.object_name`, assoc_node = `assoc_gwas.trait`) %>%
+    distinct(),
+  # s1 subject - s1 predicate -> s1 object
+  lit_detail %>%
+    select(
+      node = `s1.subject_name`, assoc_node = `s1.object_name`,
+      label = `s1.predicate`
+    ) %>%
+    distinct(),
+  # s2 subject - s2 predicate -> s2 object
+  lit_detail %>%
+    select(
+      node = `s2.subject_name`, assoc_node = `s2.object_name`,
+      label = `s2.predicate`
+    ) %>%
+    distinct()
+) %>%
+  distinct() %>%
+  mutate(`label.cex` = 0.6)
+edges
+```
+
+```{r}
+graph <- igraph::graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
+graph$layout <- igraph::layout_with_kk
+graph
+```
+
+```{r}
+plot(graph)
+```
+
+## Check against the causal evidence
+
+We can check these proposed intermediates for causal evidence using MR results (from [MR-Eve, Hemani et al 2017](https://doi.org/10.1101/173682)) in EpiGraphDB, e.g.
+
+- sleep duration->ghrelin
+- ghrelin->leptin
+- leptin->Adiponectin
+- Adiponectin->coronary heart disease
+
+This can be achieved via two steps:
+
+1. Find GWAS that match the new literature terms, ghrelin, leptin, etc.
+2. Check the MR data for each pair of connected terms.
+
+```{r}
+mr_check <- function(g1, g2) {
+  endpoint <- "/mr"
+  params <- list(
+    exposure_trait = g1,
+    outcome_trait = g2,
+    pval_threshold = 1e-5
+  )
+  df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  df
+}
+```
+
+```{r}
+term_to_gwas <- function(term) {
+  endpoint <- "/meta/nodes/Gwas/search"
+  params <- list(name = term)
+  df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  df
+}
+```
+
+```{r}
+compare_two_gwas_lists <- function(gwas_list_1, gwas_list_2) {
+  for (i in gwas_list_1) {
+    for (j in gwas_list_2) {
+      cat("Exposure: ", i, "\nOutcome: ", j, "\n")
+      mr_df <- mr_check(i, j)
+      if (nrow(mr_df) == 0) {
+        cat("No MR data\n")
+      } else {
+        print(mr_df)
+      }
+    }
+  }
+}
+```
+
+```{r}
+# get the literature data from earlier
+s1_subjects <- lit_detail %>%
+  pull(`s1.subject_name`) %>%
+  unique()
+s1_objects <- lit_detail %>%
+  pull(`s1.object_name`) %>%
+  unique()
+s2_subjects <- lit_detail %>%
+  pull(`s2.subject_name`) %>%
+  unique()
+s2_objects <- lit_detail %>%
+  pull(`s2.object_name`) %>%
+  unique()
+
+# compare the original trait to s1
+for (i in s1_subjects) {
+  cat(paste("\n### EXPOSURE", STARTING_TRAIT, i, "###\n"))
+  i_gwas <- term_to_gwas(i)
+  if (nrow(i_gwas) > 0) {
+    compare_two_gwas_lists(
+      STARTING_TRAIT,
+      i_gwas %>% pull(`node.trait`) %>% unique()
+    )
+  } else {
+    print("No matching GWAS")
+  }
+}
+
+# compare the s1 data
+for (i in s1_subjects) {
+  i_gwas <- term_to_gwas(i)
+  for (j in s1_objects) {
+    j_gwas <- term_to_gwas(j)
+    cat(paste("\n### S1", i, j, "###\n"))
+    if (nrow(i_gwas) > 0 && nrow(j_gwas) > 0) {
+      compare_two_gwas_lists(
+        i_gwas %>% pull(`node.trait`) %>% unique(),
+        j_gwas %>% pull(`node.trait`) %>% unique()
+      )
+    } else {
+      cat("\nNo matching GWAS\n")
+    }
+  }
+}
+
+# compare the s2 data
+for (i in s2_subjects) {
+  i_gwas <- term_to_gwas(i)
+  for (j in s2_objects) {
+    j_gwas <- term_to_gwas(j)
+    cat(paste("\n### S2", i, j, "###\n"))
+    if (nrow(i_gwas) > 0 && nrow(j_gwas) > 0) {
+      compare_two_gwas_lists(
+        i_gwas %>% pull(`node.trait`) %>% unique(),
+        j_gwas %>% pull(`node.trait`) %>% unique()
+      )
+    } else {
+      cat("\nNo matching GWAS\n")
+    }
+  }
+}
+
+# compare the s2 to disease
+for (i in s2_subjects) {
+  cat(paste("\n### DISEASE", i, "Coronary heart disease", "###\n"))
+  i_gwas <- term_to_gwas(i)
+  if (nrow(i_gwas) > 0) {
+    compare_two_gwas_lists(
+      i_gwas %>% pull(`node.trait`) %>% unique(),
+      "Coronary heart disease"
+    )
+  } else {
+    print("No matching GWAS")
+  }
+}
+```
+
+## Checking the source literature
+
+We can refer back to the articles to check the text that was used to derive the SemMedDB data. This is important due to the imperfect nature of the SemRep annotation process (https://semrep.nlm.nih.gov/).
+
+```{r}
+get_literature <- function(gwas_id, semmed_triple_id) {
+  endpoint <- "/literature/gwas"
+  params <- list(
+    gwas_id = gwas_id,
+    semmed_triple_id = semmed_triple_id,
+    by_gwas_id = TRUE,
+    pval_threshold = 1e-1
+  )
+  df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  df %>% select(`triple.id`, `lit.pubmed_id`)
+}
+
+pub_df <- bind_rows(
+  lit_detail %>%
+    select(gwas_id = `gwas.id`, semmed_triple_id = `s1.id`) %>%
+    distinct(),
+  lit_detail %>%
+    select(gwas_id = `assoc_gwas.id`, semmed_triple_id = `s2.id`) %>%
+    distinct()
+) %>%
+  transpose() %>%
+  map_df(function(x) get_literature(x$gwas_id, x$semmed_triple_id))
+pub_df
+```
+
+## `sessionInfo`
+
+```{r}
+sessionInfo()
+```

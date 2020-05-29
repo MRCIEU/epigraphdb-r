@@ -2,6 +2,9 @@
 
 Current ongoing development
 
+- Added RMarkdown vignettes to the equivalent Jupyter notebooks in the
+  [EpiGraphDB Github repo](https://github.com/MRCIEU/epigraphdb).
+
 # epigraphdb 0.2 (2020-04-21)
 
 - Migrated to EpiGraphDB v0.3.0 API.
