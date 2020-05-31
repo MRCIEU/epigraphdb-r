@@ -24,7 +24,7 @@ EpiGraphDB currently offers two API URLs
 To switch to the development API, do
 
 ```{r}
-options(epigraphdb.api.url="http://dev-api.epigraphdb.org")
+options(epigraphdb.api.url = "http://dev-api.epigraphdb.org")
 # verify current URL
 getOption("epigraphdb.api.url")
 ```

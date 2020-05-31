@@ -51,16 +51,20 @@ payload <- list(
   outcome_trait = "Coronary heart disease"
 )
 r <- httr::GET(glue::glue("{url}/mr"), query = payload)
-r %>% httr::content(as = "parsed") %>% str(2)
+r %>%
+  httr::content(as = "parsed") %>%
+  str(2)
 ```
 
 And this is the data structure as returned from the
 `epigraphdb::mr` call with `mode = "raw"`:
 
 ```{r epigraphdb-mr}
-epigraphdb::mr(exposure_trait = "Body mass index",
-               outcome_trait = "Coronary heart disease",
-               mode = "raw") %>%
+epigraphdb::mr(
+  exposure_trait = "Body mass index",
+  outcome_trait = "Coronary heart disease",
+  mode = "raw"
+) %>%
   str(2)
 ```
 
