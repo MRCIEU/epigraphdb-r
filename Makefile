@@ -28,7 +28,7 @@ lint:
 
 ## Format codebase
 fmt:
-	Rscript -e "usethis::use_tidy_style()"
+	Rscript -e "styler::style_pkg(filetype=c('R', 'Rmd'))"
 
 ## Build package and install locally
 build:
