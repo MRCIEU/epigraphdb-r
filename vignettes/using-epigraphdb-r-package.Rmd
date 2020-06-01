@@ -2,7 +2,7 @@
 title: "Using EpiGraphDB R package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Using EpiGraphDB R package"}
+  %\VignetteIndexEntry{Using EpiGraphDB R package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

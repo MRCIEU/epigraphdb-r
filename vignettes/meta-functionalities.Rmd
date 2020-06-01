@@ -2,7 +2,7 @@
 title: "Meta functionalities of the EpiGraphDB platform"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Meta functionalities of the EpiGraphDB platform"}
+  %\VignetteIndexEntry{Meta functionalities of the EpiGraphDB platform}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -126,7 +126,7 @@ plot(graph)
 
 A detailed version of the shema plot can be obtained from the API:
 
-![schema_plot](http://ieu-mrbssd1.epi.bris.ac.uk:28046/meta/schema?graphviz=true&plot=true)
+![schema_plot](http://api.epigraphdb.org/meta/schema?graphviz=true&plot=true)
 
 ## Search for specific node
 

@@ -2,7 +2,7 @@
 title: "Options"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Options"}
+  %\VignetteIndexEntry{Options}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

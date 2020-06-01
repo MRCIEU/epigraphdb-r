@@ -2,7 +2,7 @@
 title: "Case study 2: Identification of potential drug targets"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Case study 2: Identification of potential drug targets"}
+  %\VignetteIndexEntry{Case study 2: Identification of potential drug targets}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -2,7 +2,7 @@
 title: "Case study 3: Triangulating causal estimates with literature evidence"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Case study 3: Triangulating causal estimates with literature evidence"}
+  %\VignetteIndexEntry{Case study 3: Triangulating causal estimates with literature evidence}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

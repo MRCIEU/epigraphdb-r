@@ -2,7 +2,7 @@
 title: "Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{"Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations"}
+  %\VignetteIndexEntry{Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
