@@ -59,6 +59,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/index.html">Articles</a>
+    </li>
+    <li>
       <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
     </li>
     <li>
@@ -69,6 +72,18 @@
     </li>
     <li>
       <a href="../articles/about.html">About EpiGraphDB</a>
+    </li>
+    <li>
+      <a href="../articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
+    </li>
+    <li>
+      <a href="../articles/case-1-pleiotropy.html">Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
+    </li>
+    <li>
+      <a href="../articles/case-2-alt-drug-targets.html">Case study 2: Identification of potential drug targets</a>
+    </li>
+    <li>
+      <a href="../articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
     </li>
   </ul>
 </li>
@@ -122,9 +137,11 @@
 <h3 class="hasAnchor">
 <a href="#mr" class="anchor"></a><code>mr</code>
 </h3>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(<span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-         <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
-         <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>)
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
+  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
+  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>
+)
 <span class="no">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
@@ -181,8 +198,10 @@
 <a href="#mode-table" class="anchor"></a><code>mode = "table"</code>
 </h3>
 <p>By default, for ease of use, the query returns a data frame which is a tidyverse <a href="https://tibble.tidyverse.org/"><code>tibble</code></a>:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(<span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-         <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>)
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
+  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>
+)
 <span class="no">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
@@ -201,14 +220,16 @@
 <a href="#mode-raw" class="anchor"></a><code>mode = "raw"</code>
 </h3>
 <p>Alternatively, you can use <code>results_type = "raw"</code> to get the unformatted response from EpiGraphDB API.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">response</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(<span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-               <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
-               <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"raw"</span>)
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">response</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
+  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
+  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"raw"</span>
+)
 <span class="no">response</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.00845</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0078</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>

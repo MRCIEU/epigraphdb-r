@@ -106,6 +106,9 @@ returned status." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/index.html">Articles</a>
+    </li>
+    <li>
       <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
     </li>
     <li>
@@ -116,6 +119,18 @@ returned status." />
     </li>
     <li>
       <a href="../articles/about.html">About EpiGraphDB</a>
+    </li>
+    <li>
+      <a href="../articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
+    </li>
+    <li>
+      <a href="../articles/case-1-pleiotropy.html">Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
+    </li>
+    <li>
+      <a href="../articles/case-2-alt-drug-targets.html">Case study 2: Identification of potential drug targets</a>
+    </li>
+    <li>
+      <a href="../articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
     </li>
   </ul>
 </li>
@@ -242,7 +257,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.004444
+#&gt; [1] 0.00401
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE

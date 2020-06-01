@@ -59,6 +59,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/index.html">Articles</a>
+    </li>
+    <li>
       <a href="articles/using-epigraphdb-r-package.html">Using R package</a>
     </li>
     <li>
@@ -69,6 +72,18 @@
     </li>
     <li>
       <a href="articles/about.html">About EpiGraphDB</a>
+    </li>
+    <li>
+      <a href="articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
+    </li>
+    <li>
+      <a href="articles/case-1-pleiotropy.html">Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
+    </li>
+    <li>
+      <a href="articles/case-2-alt-drug-targets.html">Case study 2: Identification of potential drug targets</a>
+    </li>
+    <li>
+      <a href="articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
     </li>
   </ul>
 </li>
@@ -117,6 +132,7 @@
 <h2 class="hasAnchor">
 <a href="#using-epigraphdb" class="anchor"></a>Using <code>epigraphdb</code>
 </h2>
+<p><code>epigraphdb</code> provides a simple and intuitive way to query the API, as:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt;</span>
@@ -124,6 +140,8 @@
 <span class="co">#&gt;</span>
 <span class="co">#&gt;   To turn off this message, use</span>
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
+<span class="co">#&gt;</span>
+<span class="co">#&gt;</span>
 <span class="fu"><a href="reference/mr.html">mr</a></span>(<span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>)
 <span class="co">#&gt; # A tibble: 370 x 12</span>
 <span class="co">#&gt;    exposure_id exposure_name outcome_id outcome_name estimate      se</span>
@@ -141,15 +159,39 @@
 <span class="co">#&gt; # … with 360 more rows, and 6 more variables: p &lt;dbl&gt;, ci_upp &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   ci_low &lt;dbl&gt;, selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;)</span></pre></div>
 <p>For more information on how to use the <code>epigraphdb</code> R package and how to use the API in R please check out the following articles:</p>
-<ul>
-<li><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html">Using EpiGraphDB R package</a></li>
-<li><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html">Using EpiGraphDB API</a></li>
-<li><a href="https://mrcieu.github.io/epigraphdb-r/articles/options.html">Package options</a></li>
-</ul>
+<table class="table">
+<colgroup><col width="100%"></colgroup>
+<thead><tr class="header">
+<th>Article</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html">Using EpiGraphDB R package</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html">Using EpiGraphDB API (from R and commandline)</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/options.html">Package options</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a></td>
+</tr>
+<tr class="even">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-targets.html">Case study 2: Identification of potential drug targets</a></td>
+</tr>
+<tr class="odd">
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="functionalities" class="section level2">
+<div id="package-functionalities" class="section level2">
 <h2 class="hasAnchor">
-<a href="#functionalities" class="anchor"></a>Functionalities</h2>
+<a href="#package-functionalities" class="anchor"></a>Package functionalities</h2>
 <p>Users can use the general query function <a href="https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html">query_epigraphdb</a> to get data from an API endpoint on EpiGraphDB without having to deal with HTTP requests by themselves. We also provide a list of functions (see the table below) that are equivalent to the upstream endpoints for the ease of use.</p>
 <table class="table table">
 <thead><tr class="header">
@@ -320,8 +362,25 @@
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
-<p>If Using EpiGraphDB or the <code>epigraphdb</code> R package:</p>
-<p><a href="http://epigraphdb.org">Liu Y, Elsworth B, Haberland V, Erola P, Lyon M, Zheng J, Gaunt TR. EpiGraphDB: a database and data mining platform for health data science.</a></p>
+<p>Please cite EpiGraphDB as</p>
+<blockquote>
+<p>Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. <em>EpiGraphDB: A database and data mining platform for health data science</em>. <a href="http://epigraphdb.org" class="uri">http://epigraphdb.org</a></p>
+</blockquote>
+<pre><code>@article {epigraphdb2020,
+  author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
+  title = {{EpiGraphDB}: A database and data mining platform for health data science},
+  url = {http://epigraphdb.org}
+}</code></pre>
+</div>
+<div id="contact" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contact" class="anchor"></a>Contact</h2>
+<p>Please get in touch with us for issues, comments, suggestions, etc. via the following methods:</p>
+<ul>
+<li><a href="https://github.com/MRCIEU/epigraphdb/issues">The issue tracker on the <code>epigraphdb</code> repo</a></li>
+<li><a href="mailto:feedback@epigraphdb.org">The support email</a></li>
+<li><a href="https://twitter.com/epigraphdb">The EpiGraphDB twitter</a></li>
+</ul>
 </div>
 </div>
   </div>
