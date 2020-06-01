@@ -34,6 +34,14 @@ Using a subset of this data we created MELODI-presto (https://melodi-presto.mrci
 This allows us to identify overlapping terms connecting any set of GWAS traits, e.g. exposure and disease outcome.
 From here we can attempt to triangulate causal estimates, and conversely, check the mechanisms identified from the literature against the causal evidence.
 
+This case study goes as follows:
+
+- For an exposure trait we identify its causal evidence against other outcome traits,
+  then link the outcomes to diseases
+- Then for an exposure-outcome pair we look for its literature evidence,
+  and the mechanisms (as SemMed triples) identified from the literature evidence
+- Finally we look into detail the mechanisms specifically related to an overlapping term and visualise these mechanisms.
+
 ```{r}
 library("magrittr")
 library("dplyr")
@@ -251,136 +259,6 @@ graph
 
 ```{r}
 plot(graph)
-```
-
-## Check against the causal evidence
-
-We can check these proposed intermediates for causal evidence using MR results (from [MR-Eve, Hemani et al 2017](https://doi.org/10.1101/173682)) in EpiGraphDB, e.g.
-
-- sleep duration->ghrelin
-- ghrelin->leptin
-- leptin->Adiponectin
-- Adiponectin->coronary heart disease
-
-This can be achieved via two steps:
-
-1. Find GWAS that match the new literature terms, ghrelin, leptin, etc.
-2. Check the MR data for each pair of connected terms.
-
-```{r}
-mr_check <- function(g1, g2) {
-  endpoint <- "/mr"
-  params <- list(
-    exposure_trait = g1,
-    outcome_trait = g2,
-    pval_threshold = 1e-5
-  )
-  df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
-  df
-}
-```
-
-```{r}
-term_to_gwas <- function(term) {
-  endpoint <- "/meta/nodes/Gwas/search"
-  params <- list(name = term)
-  df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
-  df
-}
-```
-
-```{r}
-compare_two_gwas_lists <- function(gwas_list_1, gwas_list_2) {
-  for (i in gwas_list_1) {
-    for (j in gwas_list_2) {
-      cat("Exposure: ", i, "\nOutcome: ", j, "\n")
-      mr_df <- mr_check(i, j)
-      if (nrow(mr_df) == 0) {
-        cat("No MR data\n")
-      } else {
-        print(mr_df)
-      }
-    }
-  }
-}
-```
-
-```{r}
-# get the literature data from earlier
-s1_subjects <- lit_detail %>%
-  pull(`s1.subject_name`) %>%
-  unique()
-s1_objects <- lit_detail %>%
-  pull(`s1.object_name`) %>%
-  unique()
-s2_subjects <- lit_detail %>%
-  pull(`s2.subject_name`) %>%
-  unique()
-s2_objects <- lit_detail %>%
-  pull(`s2.object_name`) %>%
-  unique()
-
-# compare the original trait to s1
-for (i in s1_subjects) {
-  cat(paste("\n### EXPOSURE", STARTING_TRAIT, i, "###\n"))
-  i_gwas <- term_to_gwas(i)
-  if (nrow(i_gwas) > 0) {
-    compare_two_gwas_lists(
-      STARTING_TRAIT,
-      i_gwas %>% pull(`node.trait`) %>% unique()
-    )
-  } else {
-    print("No matching GWAS")
-  }
-}
-
-# compare the s1 data
-for (i in s1_subjects) {
-  i_gwas <- term_to_gwas(i)
-  for (j in s1_objects) {
-    j_gwas <- term_to_gwas(j)
-    cat(paste("\n### S1", i, j, "###\n"))
-    if (nrow(i_gwas) > 0 && nrow(j_gwas) > 0) {
-      compare_two_gwas_lists(
-        i_gwas %>% pull(`node.trait`) %>% unique(),
-        j_gwas %>% pull(`node.trait`) %>% unique()
-      )
-    } else {
-      cat("\nNo matching GWAS\n")
-    }
-  }
-}
-
-# compare the s2 data
-for (i in s2_subjects) {
-  i_gwas <- term_to_gwas(i)
-  for (j in s2_objects) {
-    j_gwas <- term_to_gwas(j)
-    cat(paste("\n### S2", i, j, "###\n"))
-    if (nrow(i_gwas) > 0 && nrow(j_gwas) > 0) {
-      compare_two_gwas_lists(
-        i_gwas %>% pull(`node.trait`) %>% unique(),
-        j_gwas %>% pull(`node.trait`) %>% unique()
-      )
-    } else {
-      cat("\nNo matching GWAS\n")
-    }
-  }
-}
-
-# compare the s2 to disease
-for (i in s2_subjects) {
-  cat(paste("\n### DISEASE", i, "Coronary heart disease", "###\n"))
-  i_gwas <- term_to_gwas(i)
-  if (nrow(i_gwas) > 0) {
-    compare_two_gwas_lists(
-      i_gwas %>% pull(`node.trait`) %>% unique(),
-      "Coronary heart disease"
-    )
-  } else {
-    print("No matching GWAS")
-  }
-}
 ```
 
 ## Checking the source literature
