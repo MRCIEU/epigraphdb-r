@@ -126,6 +126,12 @@
 <h2 class="hasAnchor">
 <a href="#context" class="anchor"></a>Context</h2>
 <p>The biomedical literature contains a wealth of information than far exceeds our capacity for systematic manual extraction. For this reason, there are many existing literature mining methods to extract the key concepts and content. Here we use data from <a href="https://skr3.nlm.nih.gov/SemMedDB/">SemMedDB</a>, a well established database that provides subject-predicate-object triples from all PubMed titles and abstracts. Using a subset of this data we created MELODI-presto (<a href="https://melodi-presto.mrcieu.ac.uk/" class="uri">https://melodi-presto.mrcieu.ac.uk/</a>), a method to assign triples to any given biomedical query via a PubMed search and some basic enrichment, and have applied this systematically to traits represented in EpiGraphDB. This allows us to identify overlapping terms connecting any set of GWAS traits, e.g. exposure and disease outcome. From here we can attempt to triangulate causal estimates, and conversely, check the mechanisms identified from the literature against the causal evidence.</p>
+<p>This case study goes as follows:</p>
+<ul>
+<li>For an exposure trait we identify its causal evidence against other outcome traits, then link the outcomes to diseases</li>
+<li>Then for an exposure-outcome pair we look for its literature evidence, and the mechanisms (as SemMed triples) identified from the literature evidence</li>
+<li>Finally we look into detail the mechanisms specifically related to an overlapping term and visualise these mechanisms.</li>
+</ul>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"dplyr"</span>)
 <span class="co">#&gt; </span>
@@ -493,10 +499,10 @@
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">graph</span> <span class="kw">&lt;-</span> <span class="kw pkg">igraph</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(<span class="no">edges</span>, <span class="kw">directed</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">vertices</span> <span class="kw">=</span> <span class="no">nodes</span>)
 <span class="no">graph</span>$<span class="no">layout</span> <span class="kw">&lt;-</span> <span class="kw pkg">igraph</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
 <span class="no">graph</span>
-<span class="co">#&gt; IGRAPH fc94ba0 DN-- 10 14 -- </span>
+<span class="co">#&gt; IGRAPH c6328c0 DN-- 10 14 -- </span>
 <span class="co">#&gt; + attr: layout (g/x), name (v/c), color (v/c), label (e/c), label.cex</span>
 <span class="co">#&gt; | (e/n)</span>
-<span class="co">#&gt; + edges from fc94ba0 (vertex names):</span>
+<span class="co">#&gt; + edges from c6328c0 (vertex names):</span>
 <span class="co">#&gt;  [1] SLEEP DURATION           -&gt;ghrelin                  </span>
 <span class="co">#&gt;  [2] Coronary Arteriosclerosis-&gt;CORONARY HEART DISEASE   </span>
 <span class="co">#&gt;  [3] Coronary heart disease   -&gt;CORONARY HEART DISEASE   </span>
@@ -509,338 +515,11 @@
 <p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
 </div>
 </div>
-<div id="check-against-the-causal-evidence" class="section level2">
-<h2 class="hasAnchor">
-<a href="#check-against-the-causal-evidence" class="anchor"></a>Check against the causal evidence</h2>
-<p>We can check these proposed intermediates for causal evidence using MR results (from <a href="https://doi.org/10.1101/173682">MR-Eve, Hemani et al 2017</a>) in EpiGraphDB, e.g.</p>
-<ul>
-<li>sleep duration-&gt;ghrelin</li>
-<li>ghrelin-&gt;leptin</li>
-<li>leptin-&gt;Adiponectin</li>
-<li>Adiponectin-&gt;coronary heart disease</li>
-</ul>
-<p>This can be achieved via two steps:</p>
-<ol style="list-style-type: decimal">
-<li>Find GWAS that match the new literature terms, ghrelin, leptin, etc.</li>
-<li>Check the MR data for each pair of connected terms.</li>
-</ol>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">mr_check</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">g1</span>, <span class="no">g2</span>) {
-  <span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/mr"</span>
-  <span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="no">g1</span>,
-    <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="no">g2</span>,
-    <span class="kw">pval_threshold</span> <span class="kw">=</span> <span class="fl">1e-5</span>
-  )
-  <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(<span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>)
-  <span class="no">df</span>
-}</pre></body></html></div>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">term_to_gwas</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">term</span>) {
-  <span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
-  <span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="no">term</span>)
-  <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(<span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>)
-  <span class="no">df</span>
-}</pre></body></html></div>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">compare_two_gwas_lists</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">gwas_list_1</span>, <span class="no">gwas_list_2</span>) {
-  <span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="no">gwas_list_1</span>) {
-    <span class="kw">for</span> (<span class="no">j</span> <span class="kw">in</span> <span class="no">gwas_list_2</span>) {
-      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"Exposure: "</span>, <span class="no">i</span>, <span class="st">"\nOutcome: "</span>, <span class="no">j</span>, <span class="st">"\n"</span>)
-      <span class="no">mr_df</span> <span class="kw">&lt;-</span> <span class="fu">mr_check</span>(<span class="no">i</span>, <span class="no">j</span>)
-      <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">mr_df</span>) <span class="kw">==</span> <span class="fl">0</span>) {
-        <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"No MR data\n"</span>)
-      } <span class="kw">else</span> {
-        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="no">mr_df</span>)
-      }
-    }
-  }
-}</pre></body></html></div>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># get the literature data from earlier</span>
-<span class="no">s1_subjects</span> <span class="kw">&lt;-</span> <span class="no">lit_detail</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`s1.subject_name`</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-<span class="no">s1_objects</span> <span class="kw">&lt;-</span> <span class="no">lit_detail</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`s1.object_name`</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-<span class="no">s2_subjects</span> <span class="kw">&lt;-</span> <span class="no">lit_detail</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`s2.subject_name`</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-<span class="no">s2_objects</span> <span class="kw">&lt;-</span> <span class="no">lit_detail</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`s2.object_name`</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-
-<span class="co"># compare the original trait to s1</span>
-<span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="no">s1_subjects</span>) {
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"\n### EXPOSURE"</span>, <span class="no">STARTING_TRAIT</span>, <span class="no">i</span>, <span class="st">"###\n"</span>))
-  <span class="no">i_gwas</span> <span class="kw">&lt;-</span> <span class="fu">term_to_gwas</span>(<span class="no">i</span>)
-  <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">i_gwas</span>) <span class="kw">&gt;</span> <span class="fl">0</span>) {
-    <span class="fu">compare_two_gwas_lists</span>(
-      <span class="no">STARTING_TRAIT</span>,
-      <span class="no">i_gwas</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`node.trait`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-    )
-  } <span class="kw">else</span> {
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"No matching GWAS"</span>)
-  }
-}
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### EXPOSURE Sleep duration ghrelin ###</span>
-<span class="co">#&gt; [1] "No matching GWAS"</span>
-
-<span class="co"># compare the s1 data</span>
-<span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="no">s1_subjects</span>) {
-  <span class="no">i_gwas</span> <span class="kw">&lt;-</span> <span class="fu">term_to_gwas</span>(<span class="no">i</span>)
-  <span class="kw">for</span> (<span class="no">j</span> <span class="kw">in</span> <span class="no">s1_objects</span>) {
-    <span class="no">j_gwas</span> <span class="kw">&lt;-</span> <span class="fu">term_to_gwas</span>(<span class="no">j</span>)
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"\n### S1"</span>, <span class="no">i</span>, <span class="no">j</span>, <span class="st">"###\n"</span>))
-    <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">i_gwas</span>) <span class="kw">&gt;</span> <span class="fl">0</span> <span class="kw">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">j_gwas</span>) <span class="kw">&gt;</span> <span class="fl">0</span>) {
-      <span class="fu">compare_two_gwas_lists</span>(
-        <span class="no">i_gwas</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`node.trait`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(),
-        <span class="no">j_gwas</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`node.trait`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-      )
-    } <span class="kw">else</span> {
-      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"\nNo matching GWAS\n"</span>)
-    }
-  }
-}
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S1 ghrelin Leptin ###</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; No matching GWAS</span>
-
-<span class="co"># compare the s2 data</span>
-<span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="no">s2_subjects</span>) {
-  <span class="no">i_gwas</span> <span class="kw">&lt;-</span> <span class="fu">term_to_gwas</span>(<span class="no">i</span>)
-  <span class="kw">for</span> (<span class="no">j</span> <span class="kw">in</span> <span class="no">s2_objects</span>) {
-    <span class="no">j_gwas</span> <span class="kw">&lt;-</span> <span class="fu">term_to_gwas</span>(<span class="no">j</span>)
-    <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"\n### S2"</span>, <span class="no">i</span>, <span class="no">j</span>, <span class="st">"###\n"</span>))
-    <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">i_gwas</span>) <span class="kw">&gt;</span> <span class="fl">0</span> <span class="kw">&amp;&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">j_gwas</span>) <span class="kw">&gt;</span> <span class="fl">0</span>) {
-      <span class="fu">compare_two_gwas_lists</span>(
-        <span class="no">i_gwas</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`node.trait`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(),
-        <span class="no">j_gwas</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`node.trait`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-      )
-    } <span class="kw">else</span> {
-      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="st">"\nNo matching GWAS\n"</span>)
-    }
-  }
-}
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S2 Leptin Coronary Arteriosclerosis ###</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; No matching GWAS</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S2 Leptin Coronary heart disease ###</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event excluding revascularizations </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event excluding revascularizations </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event excluding revascularizations </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event excluding revascularizations </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Major coronary heart disease event excluding revascularizations </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S2 Leptin Proteome ###</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; No matching GWAS</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S2 Leptin Sleep Apnea, Obstructive ###</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; No matching GWAS</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S2 Leptin Adiponectin ###</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Adiponectin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Adiponectin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Adiponectin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Adiponectin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Adiponectin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### S2 Leptin Insulin ###</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Acute insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Area under the curve of insulin levels </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response adjusted for insulin sensitivity index </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Early placenta insulin-like peptide </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Fasting blood insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Fasting insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Acute insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Area under the curve of insulin levels </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response adjusted for insulin sensitivity index </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Early placenta insulin-like peptide </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Fasting blood insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Fasting insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Acute insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Area under the curve of insulin levels </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response adjusted for insulin sensitivity index </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Early placenta insulin-like peptide </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Fasting blood insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Fasting insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Acute insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Area under the curve of insulin levels </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response adjusted for insulin sensitivity index </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Early placenta insulin-like peptide </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Fasting blood insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Fasting insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Acute insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Area under the curve of insulin levels </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Corrected insulin response adjusted for insulin sensitivity index </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Early placenta insulin-like peptide </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Fasting blood insulin </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Fasting insulin </span>
-<span class="co">#&gt; No MR data</span>
-
-<span class="co"># compare the s2 to disease</span>
-<span class="kw">for</span> (<span class="no">i</span> <span class="kw">in</span> <span class="no">s2_subjects</span>) {
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"\n### DISEASE"</span>, <span class="no">i</span>, <span class="st">"Coronary heart disease"</span>, <span class="st">"###\n"</span>))
-  <span class="no">i_gwas</span> <span class="kw">&lt;-</span> <span class="fu">term_to_gwas</span>(<span class="no">i</span>)
-  <span class="kw">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">i_gwas</span>) <span class="kw">&gt;</span> <span class="fl">0</span>) {
-    <span class="fu">compare_two_gwas_lists</span>(
-      <span class="no">i_gwas</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`node.trait`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(),
-      <span class="st">"Coronary heart disease"</span>
-    )
-  } <span class="kw">else</span> {
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"No matching GWAS"</span>)
-  }
-}
-<span class="co">#&gt; </span>
-<span class="co">#&gt; ### DISEASE Leptin Coronary heart disease ###</span>
-<span class="co">#&gt; Exposure:  Leptin </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  Leptin receptor </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  circulating leptin levels adjusted for BMI </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span>
-<span class="co">#&gt; Exposure:  leptin </span>
-<span class="co">#&gt; Outcome:  Coronary heart disease </span>
-<span class="co">#&gt; No MR data</span></pre></body></html></div>
-</div>
 <div id="checking-the-source-literature" class="section level2">
 <h2 class="hasAnchor">
 <a href="#checking-the-source-literature" class="anchor"></a>Checking the source literature</h2>
 <p>We can refer back to the articles to check the text that was used to derive the SemMedDB data. This is important due to the imperfect nature of the SemRep annotation process (<a href="https://semrep.nlm.nih.gov/" class="uri">https://semrep.nlm.nih.gov/</a>).</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">get_literature</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">gwas_id</span>, <span class="no">semmed_triple_id</span>) {
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">get_literature</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">gwas_id</span>, <span class="no">semmed_triple_id</span>) {
   <span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/literature/gwas"</span>
   <span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
     <span class="kw">gwas_id</span> <span class="kw">=</span> <span class="no">gwas_id</span>,
@@ -886,7 +565,7 @@
 <h2 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
 <span class="co">#&gt; R version 4.0.0 (2020-04-24)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span>
