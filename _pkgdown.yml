@@ -25,7 +25,7 @@ navbar:
       - text: "Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations"
         href: "articles/case-1-pleiotropy.html"
       - text: "Case study 2: Identification of potential drug targets"
-        href: "articles/case-2-alt-drug-targets.html"
+        href: "articles/case-2-alt-drug-target.html"
       - text: "Case study 3: Triangulating causal estimates with literature evidence"
         href: "articles/case-3-literature-triangulation.html"
     - text: "CHANGELOG"

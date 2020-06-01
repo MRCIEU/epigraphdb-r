@@ -71,7 +71,7 @@ how to use the API in R please check out the following articles:
 | [Package options](https://mrcieu.github.io/epigraphdb-r/articles/options.html)|
 | [Meta functionalities of the EpiGraphDB platform](https://mrcieu.github.io/epigraphdb-r/articles/meta-functionalities.html)|
 | [Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations](https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html)|
-| [Case study 2: Identification of potential drug targets](https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-targets.html)|
+| [Case study 2: Identification of potential drug targets](https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html)|
 | [Case study 3: Triangulating causal estimates with literature evidence](https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html)|
 
 ## Package functionalities
