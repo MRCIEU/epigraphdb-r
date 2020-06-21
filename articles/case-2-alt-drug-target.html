@@ -134,8 +134,9 @@
 <li>We also examine the literature evidence of these candidate genes on the disease.</li>
 </ul>
 <p>The triangulation of MR evidence and literature evidence as available from EpiGraphDB regarding these candidate genes will greatly enhance our confidence in identifying potential viable drug targets.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"dplyr"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -144,13 +145,13 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"purrr"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'purrr'</span>
 <span class="co">#&gt; The following object is masked from 'package:magrittr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     set_names</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"glue"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://github.com/tidyverse/glue">"glue"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'glue'</span>
 <span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
@@ -162,11 +163,14 @@
 <span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span></pre></body></html></div>
+<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
+</pre></div>
 <p>Here we configure the parameters used in the case study example. We illustrate this approach using IL23R, an established drug target for inflammatory bowel disease (IBD) (Duerr et al., 2006; Momozawa et al., 2011).</p>
 <p>While specific IL23R interventions are still undergoing trials, there is a possibility that these therapies may not be effective for all or even the majority of patients. This case study therefore explores potential alternative drug targets.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">GENE_NAME</span> <span class="kw">&lt;-</span> <span class="st">"IL23R"</span>
-<span class="no">OUTCOME_TRAIT</span> <span class="kw">&lt;-</span> <span class="st">"Inflammatory bowel disease"</span></pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">GENE_NAME</span> <span class="op">&lt;-</span> <span class="st">"IL23R"</span>
+<span class="kw">OUTCOME_TRAIT</span> <span class="op">&lt;-</span> <span class="st">"Inflammatory bowel disease"</span>
+</pre></div>
 </div>
 <div id="using-ppi-networks-for-alternative-drug-targets-search" class="section level2">
 <h2 class="hasAnchor">
@@ -174,15 +178,16 @@
 <p>The assumption here is that the most likely alternative targets are either directly interacting with IL23R or somewhere in the same PPI network. In this example, we consider only genes that were found to interact with IL23R via direct protein-protein interactions, and require that those <strong>interacting proteins</strong> should also be <strong>druggable</strong>.</p>
 <p>The thousands of genes are classified with regard to their druggability by Finan et al. 2017, where the <strong>Tier 1</strong> category refers to approved drugs or those in clinical testing while for other tier categories the druggability confidence drops in order <strong>Tier 2</strong> and then <strong>Tier 3</strong>.</p>
 <p>Here we use the <a href="http://docs.epigraphdb.org/api/api-endpoints/#get-genedruggabilityppi">GET /gene/druggability/ppi</a> endpoint to get data on the druggable alternative genes.**</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">get_drug_targets_ppi</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">gene_name</span>) {
-  <span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/gene/druggability/ppi"</span>
-  <span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">gene_name</span> <span class="kw">=</span> <span class="no">gene_name</span>)
-  <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(<span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>)
-  <span class="no">df</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">get_drug_targets_ppi</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_name</span>) {
+  <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/gene/druggability/ppi"</span>
+  <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(gene_name = <span class="kw">gene_name</span>)
+  <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>)
+  <span class="kw">df</span>
 }
 
-<span class="no">ppi_df</span> <span class="kw">&lt;-</span> <span class="fu">get_drug_targets_ppi</span>(<span class="kw">gene_name</span> <span class="kw">=</span> <span class="no">GENE_NAME</span>)
-<span class="no">ppi_df</span>
+<span class="kw">ppi_df</span> <span class="op">&lt;-</span> <span class="fu">get_drug_targets_ppi</span>(gene_name = <span class="kw">GENE_NAME</span>)
+<span class="kw">ppi_df</span>
 <span class="co">#&gt; # A tibble: 42 x 5</span>
 <span class="co">#&gt;    g1.name p1.uniprot_id p2.uniprot_id g2.name g2.druggability_tier</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;         &lt;chr&gt;         &lt;chr&gt;   &lt;chr&gt;               </span>
@@ -196,59 +201,63 @@
 <span class="co">#&gt;  8 IL23R   Q5VWK5        P40933        IL15    Tier 1              </span>
 <span class="co">#&gt;  9 IL23R   Q5VWK5        Q16552        IL17A   Tier 1              </span>
 <span class="co">#&gt; 10 IL23R   Q5VWK5        Q96PD4        IL17F   Tier 1              </span>
-<span class="co">#&gt; # … with 32 more rows</span></pre></body></html></div>
+<span class="co">#&gt; # … with 32 more rows</span>
+</pre></div>
 <p>For further analysis we select the gene of interest (IL23R) as well as its interacting genes with Tier 1 druggability.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">get_gene_list</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">ppi_df</span>, <span class="no">include_primary_gene</span> <span class="kw">=</span> <span class="fl">TRUE</span>) {
-  <span class="kw">if</span> (<span class="no">include_primary_gene</span>) {
-    <span class="no">gene_list</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
-      <span class="no">ppi_df</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`g1.name`</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(),
-      <span class="no">ppi_df</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">`g2.druggability_tier`</span> <span class="kw">==</span> <span class="st">"Tier 1"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`g2.name`</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">get_gene_list</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">ppi_df</span>, <span class="kw">include_primary_gene</span> = <span class="fl">TRUE</span>) {
+  <span class="co">if</span> (<span class="kw">include_primary_gene</span>) {
+    <span class="kw">gene_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(
+      <span class="kw">ppi_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">`g1.name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(),
+      <span class="kw">ppi_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">`g2.druggability_tier`</span> <span class="op">==</span> <span class="st">"Tier 1"</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">`g2.name`</span>)
     )
-  } <span class="kw">else</span> {
-    <span class="no">gene_list</span> <span class="kw">&lt;-</span> <span class="no">ppi_df</span> <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">`g2.druggability_tier`</span> <span class="kw">==</span> <span class="st">"Tier 1"</span>) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="no">`g2.name`</span>)
+  } <span class="co">else</span> {
+    <span class="kw">gene_list</span> <span class="op">&lt;-</span> <span class="kw">ppi_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">`g2.druggability_tier`</span> <span class="op">==</span> <span class="st">"Tier 1"</span>) <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">`g2.name`</span>)
   }
-  <span class="no">gene_list</span>
+  <span class="kw">gene_list</span>
 }
 
-<span class="no">gene_list</span> <span class="kw">&lt;-</span> <span class="fu">get_gene_list</span>(<span class="no">ppi_df</span>)
-<span class="no">gene_list</span>
+<span class="kw">gene_list</span> <span class="op">&lt;-</span> <span class="fu">get_gene_list</span>(<span class="kw">ppi_df</span>)
+<span class="kw">gene_list</span>
 <span class="co">#&gt;  [1] "IL23R"   "CSF2"    "IFNA1"   "IFNG"    "IL10"    "IL12B"   "IL12RB1"</span>
 <span class="co">#&gt;  [8] "IL13"    "IL15"    "IL17A"   "IL17F"   "IL2"     "IL22"    "IL23A"  </span>
 <span class="co">#&gt; [15] "IL4"     "IL5"     "IL6"     "IL9"     "JAK1"    "JAK2"    "NFKB1"  </span>
-<span class="co">#&gt; [22] "PIK3CA"  "RORC"    "STAT3"   "TSLP"    "TYK2"</span></pre></body></html></div>
+<span class="co">#&gt; [22] "PIK3CA"  "RORC"    "STAT3"   "TSLP"    "TYK2"</span>
+</pre></div>
 </div>
 <div id="using-mendelian-randomization-results-for-causal-effect-estimation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-mendelian-randomization-results-for-causal-effect-estimation" class="anchor"></a>Using Mendelian randomization results for causal effect estimation</h2>
 <p>The next step is to find out whether any of these genes have a comparable and statistically plausable effect on IBD.</p>
 <p>Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (<a href="http://epigraphdb.org/xqtl/" class="uri">http://epigraphdb.org/xqtl/</a>) via the <a href="http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr">GET /xqtl/single-snp-mr</a> endpoint.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">extract_mr</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">outcome_trait</span>, <span class="no">gene_list</span>, <span class="no">qtl_type</span>) {
-  <span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/xqtl/single-snp-mr"</span>
-  <span class="no">per_gene</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">gene_name</span>) {
-    <span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="kw">exposure_gene</span> <span class="kw">=</span> <span class="no">gene_name</span>,
-      <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="no">outcome_trait</span>,
-      <span class="kw">qtl_type</span> <span class="kw">=</span> <span class="no">qtl_type</span>,
-      <span class="kw">pval_threshold</span> <span class="kw">=</span> <span class="fl">1e-5</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">extract_mr</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">outcome_trait</span>, <span class="kw">gene_list</span>, <span class="kw">qtl_type</span>) {
+  <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/xqtl/single-snp-mr"</span>
+  <span class="kw">per_gene</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_name</span>) {
+    <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      exposure_gene = <span class="kw">gene_name</span>,
+      outcome_trait = <span class="kw">outcome_trait</span>,
+      qtl_type = <span class="kw">qtl_type</span>,
+      pval_threshold = <span class="fl">1e-5</span>
     )
-    <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(<span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>)
-    <span class="no">df</span>
+    <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>)
+    <span class="kw">df</span>
   }
-  <span class="no">res_df</span> <span class="kw">&lt;-</span> <span class="no">gene_list</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="no">per_gene</span>)
-  <span class="no">res_df</span>
+  <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">gene_list</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="kw">per_gene</span>)
+  <span class="kw">res_df</span>
 }
 
-<span class="no">xqtl_df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"pQTL"</span>, <span class="st">"eQTL"</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="kw">function</span>(<span class="no">qtl_type</span>) {
+<span class="kw">xqtl_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"pQTL"</span>, <span class="st">"eQTL"</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="fu">function</span>(<span class="kw">qtl_type</span>) {
   <span class="fu">extract_mr</span>(
-    <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="no">OUTCOME_TRAIT</span>,
-    <span class="kw">gene_list</span> <span class="kw">=</span> <span class="no">gene_list</span>,
-    <span class="kw">qtl_type</span> <span class="kw">=</span> <span class="no">qtl_type</span>
-  ) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">qtl_type</span> <span class="kw">=</span> <span class="no">qtl_type</span>)
+    outcome_trait = <span class="kw">OUTCOME_TRAIT</span>,
+    gene_list = <span class="kw">gene_list</span>,
+    qtl_type = <span class="kw">qtl_type</span>
+  ) <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(qtl_type = <span class="kw">qtl_type</span>)
 })
-<span class="no">xqtl_df</span>
+<span class="kw">xqtl_df</span>
 <span class="co">#&gt; # A tibble: 9 x 9</span>
 <span class="co">#&gt;   gene.ensembl_id gene.name gwas.id gwas.trait r.beta   r.se      r.p r.rsid</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
@@ -261,33 +270,35 @@
 <span class="co">#&gt; 7 ENSG00000109320 NFKB1     ieu-a-… Inflammat…  0.974 0.174  2.16e- 8 rs476…</span>
 <span class="co">#&gt; 8 ENSG00000143365 RORC      ieu-a-… Inflammat… -0.995 0.116  1.21e-17 rs484…</span>
 <span class="co">#&gt; 9 ENSG00000168610 STAT3     ieu-a-… Inflammat…  0.597 0.0757 2.96e-15 rs105…</span>
-<span class="co">#&gt; # … with 1 more variable: qtl_type &lt;chr&gt;</span></pre></body></html></div>
+<span class="co">#&gt; # … with 1 more variable: qtl_type &lt;chr&gt;</span>
+</pre></div>
 </div>
 <div id="using-literature-evidence-for-results-enrichment-and-triangulation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-literature-evidence-for-results-enrichment-and-triangulation" class="anchor"></a>Using literature evidence for results enrichment and triangulation</h2>
 <p>Can we find evidence in the literature where these genes are found to be associated with IBD to increase our level of confidence in MR results or to provide alternative evidence where MR results to not exist?</p>
 <p>We can use the <a href="http://docs.epigraphdb.org/api/api-endpoints/#get-geneliterature">GET /gene/literature</a> endpoint to get data on the literature evidence for the set of genes.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">extract_literature</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">outcome_trait</span>, <span class="no">gene_list</span>) {
-  <span class="no">per_gene</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">gene_name</span>) {
-    <span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/gene/literature"</span>
-    <span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="kw">gene_name</span> <span class="kw">=</span> <span class="no">gene_name</span>,
-      <span class="kw">object_name</span> <span class="kw">=</span> <span class="no">outcome_trait</span> <span class="kw">%&gt;%</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span>()
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">extract_literature</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">outcome_trait</span>, <span class="kw">gene_list</span>) {
+  <span class="kw">per_gene</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_name</span>) {
+    <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/gene/literature"</span>
+    <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+      gene_name = <span class="kw">gene_name</span>,
+      object_name = <span class="kw">outcome_trait</span> <span class="op">%&gt;%</span> <span class="kw">stringr</span>::<span class="fu"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_lower</a></span>()
     )
-    <span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(<span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>)
-    <span class="no">df</span>
+    <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>)
+    <span class="kw">df</span>
   }
-  <span class="no">res_df</span> <span class="kw">&lt;-</span> <span class="no">gene_list</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="no">per_gene</span>)
-  <span class="no">res_df</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">literature_count</span> <span class="kw">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="no">pubmed_id</span>, <span class="kw">function</span>(<span class="no">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">x</span>)))
+  <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">gene_list</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="kw">per_gene</span>)
+  <span class="kw">res_df</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(literature_count = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="kw">pubmed_id</span>, <span class="fu">function</span>(<span class="kw">x</span>) <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">x</span>)))
 }
 
-<span class="no">literature_df</span> <span class="kw">&lt;-</span> <span class="fu">extract_literature</span>(
-  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="no">OUTCOME_TRAIT</span>,
-  <span class="kw">gene_list</span> <span class="kw">=</span> <span class="no">gene_list</span>
+<span class="kw">literature_df</span> <span class="op">&lt;-</span> <span class="fu">extract_literature</span>(
+  outcome_trait = <span class="kw">OUTCOME_TRAIT</span>,
+  gene_list = <span class="kw">gene_list</span>
 )
-<span class="no">literature_df</span>
+<span class="kw">literature_df</span>
 <span class="co">#&gt; # A tibble: 45 x 5</span>
 <span class="co">#&gt;    pubmed_id  gene.name st.predicate     st.object_name         literature_count</span>
 <span class="co">#&gt;    &lt;list&gt;     &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;                             &lt;int&gt;</span>
@@ -301,13 +312,15 @@
 <span class="co">#&gt;  8 &lt;chr [1]&gt;  IFNA1     PREVENTS         Inflammatory Bowel Di…                1</span>
 <span class="co">#&gt;  9 &lt;chr [2]&gt;  IFNG      ASSOCIATED_WITH  Inflammatory Bowel Di…                2</span>
 <span class="co">#&gt; 10 &lt;chr [1]&gt;  IFNG      AFFECTS          Inflammatory Bowel Di…                1</span>
-<span class="co">#&gt; # … with 35 more rows</span></pre></body></html></div>
+<span class="co">#&gt; # … with 35 more rows</span>
+</pre></div>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
 <span class="co">#&gt; R version 4.0.0 (2020-04-24)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span>
@@ -331,16 +344,16 @@
 <span class="co">#&gt; [1] epigraphdb_0.2 glue_1.4.1     purrr_0.3.4    dplyr_1.0.0    magrittr_1.5  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.4.6       knitr_1.28         MASS_7.3-51.5      tidyselect_1.1.0  </span>
-<span class="co">#&gt;  [5] R6_2.4.1           rlang_0.4.6        fansi_0.4.1        httr_1.4.1        </span>
-<span class="co">#&gt;  [9] stringr_1.4.0      tools_4.0.0        xfun_0.14          utf8_1.1.4        </span>
-<span class="co">#&gt; [13] cli_2.0.2          ellipsis_0.3.1     htmltools_0.4.0    yaml_2.2.1        </span>
-<span class="co">#&gt; [17] assertthat_0.2.1   digest_0.6.25      rprojroot_1.3-2    tibble_3.0.1      </span>
-<span class="co">#&gt; [21] lifecycle_0.2.0    pkgdown_1.5.1.9000 crayon_1.3.4       vctrs_0.3.1       </span>
-<span class="co">#&gt; [25] fs_1.4.1           curl_4.3           memoise_1.1.0      evaluate_0.14     </span>
-<span class="co">#&gt; [29] rmarkdown_2.2      stringi_1.4.6      pillar_1.4.4       compiler_4.0.0    </span>
-<span class="co">#&gt; [33] desc_1.2.0         generics_0.0.2     backports_1.1.7    jsonlite_1.6.1    </span>
-<span class="co">#&gt; [37] pkgconfig_2.0.3</span></pre></body></html></div>
+<span class="co">#&gt;  [1] knitr_1.28         tidyselect_1.1.0   R6_2.4.1           rlang_0.4.6       </span>
+<span class="co">#&gt;  [5] fansi_0.4.1        httr_1.4.1         stringr_1.4.0      tools_4.0.0       </span>
+<span class="co">#&gt;  [9] xfun_0.15          utf8_1.1.4         cli_2.0.2          htmltools_0.5.0   </span>
+<span class="co">#&gt; [13] ellipsis_0.3.1     yaml_2.2.1         assertthat_0.2.1   rprojroot_1.3-2   </span>
+<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.1       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
+<span class="co">#&gt; [21] crayon_1.3.4       vctrs_0.3.1        fs_1.4.1           curl_4.3          </span>
+<span class="co">#&gt; [25] memoise_1.1.0      evaluate_0.14      rmarkdown_2.3.1    stringi_1.4.6     </span>
+<span class="co">#&gt; [29] compiler_4.0.0     pillar_1.4.4       desc_1.2.0         generics_0.0.2    </span>
+<span class="co">#&gt; [33] backports_1.1.8    jsonlite_1.6.1     pkgconfig_2.0.3</span>
+</pre></div>
 </div>
   </div>
 

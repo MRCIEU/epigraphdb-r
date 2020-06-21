@@ -166,7 +166,7 @@ available in the database</h1>
     <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist'><code>GET /pqtl/list/</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>pqtl_list</span>(<span class='kw'>flag</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"exposures"</span>, <span class='st'>"outcomes"</span>), <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_list.html'>pqtl_list</a></span>(flag = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"exposures"</span>, <span class='st'>"outcomes"</span>), mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -194,7 +194,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Returns a list of available proteins (exposures)</span>
-<span class='fu'>pqtl_list</span>()</div><div class='output co'>#&gt; # A tibble: 989 x 1
+<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_list.html'>pqtl_list</a></span>()</div><div class='output co'>#&gt; # A tibble: 989 x 1
 #&gt;    expID   
 #&gt;    &lt;chr&gt;   
 #&gt;  1 A1CF    
@@ -209,7 +209,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt; 10 ADGRE2  
 #&gt; # … with 979 more rows</div><div class='input'>
 <span class='co'># Returns a list of available traits (outcomes)</span>
-<span class='fu'>pqtl_list</span>(<span class='kw'>flag</span> <span class='kw'>=</span> <span class='st'>"outcomes"</span>)</div><div class='output co'>#&gt; # A tibble: 225 x 1
+<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_list.html'>pqtl_list</a></span>(flag = <span class='st'>"outcomes"</span>)</div><div class='output co'>#&gt; # A tibble: 225 x 1
 #&gt;    outID                                                                  
 #&gt;    &lt;chr&gt;                                                                  
 #&gt;  1 Cancer code  self-reported: basal cell carcinoma                       

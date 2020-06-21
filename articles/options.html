@@ -132,10 +132,12 @@
 </li>
 </ul>
 <p>To switch to the development API, do</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">epigraphdb.api.url</span> <span class="kw">=</span> <span class="st">"http://dev-api.epigraphdb.org"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(epigraphdb.api.url = <span class="st">"http://dev-api.epigraphdb.org"</span>)
 <span class="co"># verify current URL</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"epigraphdb.api.url"</span>)
-<span class="co">#&gt; [1] "http://dev-api.epigraphdb.org"</span></pre></body></html></div>
+<span class="co">#&gt; [1] "http://dev-api.epigraphdb.org"</span>
+</pre></div>
 <p>NOTE: you can make this change persistent by placing the changes in <a href="https://www.statmethods.net/interface/customizing.html"><code>.Rprofile</code></a>.</p>
 </div>
   </div>

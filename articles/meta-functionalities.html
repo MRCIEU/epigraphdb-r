@@ -135,8 +135,9 @@
 <li>The sections regarding API endpoints on the documentation site: <a href="http://docs.epigraphdb.org/api/api-endpoints/" class="uri">http://docs.epigraphdb.org/api/api-endpoints/</a>
 </li>
 </ul>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"dplyr"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -145,13 +146,13 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"purrr"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'purrr'</span>
 <span class="co">#&gt; The following object is masked from 'package:magrittr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     set_names</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"igraph"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://igraph.org">"igraph"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'igraph'</span>
 <span class="co">#&gt; The following objects are masked from 'package:purrr':</span>
@@ -172,21 +173,23 @@
 <span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span></pre></body></html></div>
+<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
+</pre></div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h2>
 <p>Here we query for the metadata information using the endpoint <code>GET /meta/schema</code>, which will be used for downstream processing.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/meta/schema"</span>
-<span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="kw">graphviz</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">plot</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/schema"</span>
+<span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  graphviz = <span class="fl">FALSE</span>,
+  plot = <span class="fl">FALSE</span>
 )
-<span class="no">metadata</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-  <span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"raw"</span>
+<span class="kw">metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
+  route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"raw"</span>
 )
 
-<span class="no">metadata</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
+<span class="kw">metadata</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
 <span class="co">#&gt; List of 3</span>
 <span class="co">#&gt;  $ nodes      :List of 13</span>
 <span class="co">#&gt;   ..$ Disease     :List of 2</span>
@@ -286,27 +289,29 @@
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
-<span class="co">#&gt;   ..$ :List of 4</span></pre></body></html></div>
+<span class="co">#&gt;   ..$ :List of 4</span>
+</pre></div>
 <div id="meta-nodes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#meta-nodes" class="anchor"></a>Meta nodes</h3>
 <p>We can extract the specific meta node information as a pandas dataframe from the metadata.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">meta_node_df</span> <span class="kw">&lt;-</span> <span class="no">metadata</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span>(<span class="st">"nodes"</span>) <span class="kw">%&gt;%</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">meta_node_df</span> <span class="op">&lt;-</span> <span class="kw">metadata</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span>(<span class="st">"nodes"</span>) <span class="op">%&gt;%</span>
   {
-    <span class="no">names</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">.</span>)
-    <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>(<span class="no">.</span>) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">meta_node</span> <span class="kw">=</span> <span class="no">names</span>) <span class="kw">%&gt;%</span>
+    <span class="kw">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">.</span>)
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>(<span class="kw">.</span>) <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(meta_node = <span class="kw">names</span>) <span class="op">%&gt;%</span>
       <span class="co"># Hide properties column which does not display well</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">meta_node</span>, <span class="no">count</span>) <span class="kw">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">meta_node</span>, <span class="kw">count</span>) <span class="op">%&gt;%</span>
       <span class="co"># We also need to flatten count</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">count</span> <span class="kw">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten_int</a></span>(<span class="no">count</span>))
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten_int</a></span>(<span class="kw">count</span>))
   }
 
-<span class="no">meta_node_df</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">meta_node</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">count</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="no">count</span>, <span class="kw">big.mark</span> <span class="kw">=</span> <span class="st">","</span>))
+<span class="kw">meta_node_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">meta_node</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="kw">count</span>, big.mark = <span class="st">","</span>))
 <span class="co">#&gt; # A tibble: 13 x 2</span>
 <span class="co">#&gt;    meta_node    count       </span>
 <span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;       </span>
@@ -322,36 +327,38 @@
 <span class="co">#&gt; 10 SemmedTerm   "   103,967"</span>
 <span class="co">#&gt; 11 SemmedTriple " 3,428,531"</span>
 <span class="co">#&gt; 12 Tissue       "        53"</span>
-<span class="co">#&gt; 13 Variant      "    88,176"</span></pre></body></html></div>
+<span class="co">#&gt; 13 Variant      "    88,176"</span>
+</pre></div>
 </div>
 <div id="meta-relationships-and-connections" class="section level3">
 <h3 class="hasAnchor">
 <a href="#meta-relationships-and-connections" class="anchor"></a>Meta relationships and connections</h3>
 <p>We can also extract the meta relationship (edge) information, and the connections.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">meta_rel_df</span> <span class="kw">&lt;-</span> <span class="no">metadata</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span>(<span class="st">"edges"</span>) <span class="kw">%&gt;%</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">meta_rel_df</span> <span class="op">&lt;-</span> <span class="kw">metadata</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span>(<span class="st">"edges"</span>) <span class="op">%&gt;%</span>
   {
-    <span class="no">names</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">.</span>)
-    <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>(<span class="no">.</span>) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">meta_rel</span> <span class="kw">=</span> <span class="no">names</span>) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">count</span> <span class="kw">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten_int</a></span>(<span class="no">count</span>)) <span class="kw">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">meta_rel</span>, <span class="no">count</span>)
-  } <span class="kw">%&gt;%</span>
+    <span class="kw">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">.</span>)
+    <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>(<span class="kw">.</span>) <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(meta_rel = <span class="kw">names</span>) <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten_int</a></span>(<span class="kw">count</span>)) <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">meta_rel</span>, <span class="kw">count</span>)
+  } <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span>(
-    <span class="no">metadata</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span>(<span class="st">"connections"</span>) <span class="kw">%&gt;%</span> {
-      <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>(<span class="no">.</span>) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">as_tibble</a></span>() <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">meta_rel</span> <span class="kw">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten_chr</a></span>(<span class="no">rel</span>)) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="no">from_node</span>, <span class="no">to_node</span>), <span class="no">flatten_chr</span>) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">meta_rel</span>, <span class="no">from_node</span>, <span class="no">to_node</span>)
+    <span class="kw">metadata</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span>(<span class="st">"connections"</span>) <span class="op">%&gt;%</span> {
+      <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>(<span class="kw">.</span>) <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span>() <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(meta_rel = <span class="fu"><a href="https://purrr.tidyverse.org/reference/flatten.html">flatten_chr</a></span>(<span class="kw">rel</span>)) <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="kw">from_node</span>, <span class="kw">to_node</span>), <span class="kw">flatten_chr</span>) <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">meta_rel</span>, <span class="kw">from_node</span>, <span class="kw">to_node</span>)
     }
   )
 <span class="co">#&gt; Joining, by = "meta_rel"</span>
 
-<span class="no">meta_rel_df</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="no">from_node</span>, <span class="no">to_node</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">count</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="no">count</span>, <span class="kw">big.mark</span> <span class="kw">=</span> <span class="st">","</span>))
+<span class="kw">meta_rel_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">from_node</span>, <span class="kw">to_node</span>) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="kw">count</span>, big.mark = <span class="st">","</span>))
 <span class="co">#&gt; # A tibble: 41 x 4</span>
 <span class="co">#&gt;    meta_rel                     count        from_node to_node   </span>
 <span class="co">#&gt;    &lt;chr&gt;                        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
@@ -365,16 +372,19 @@
 <span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,098,049" Gene      Gwas      </span>
 <span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,703,863" Gene      Gwas      </span>
 <span class="co">#&gt; 10 GENE_TO_LITERATURE           "       771" Gene      Literature</span>
-<span class="co">#&gt; # … with 31 more rows</span></pre></body></html></div>
+<span class="co">#&gt; # … with 31 more rows</span>
+</pre></div>
 </div>
 <div id="schema-plot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#schema-plot" class="anchor"></a>Schema plot</h3>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">graph</span> <span class="kw">&lt;-</span> <span class="no">meta_rel_df</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">from_node</span>, <span class="no">to_node</span>) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">igraph</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(<span class="kw">directed</span> <span class="kw">=</span> <span class="fl">FALSE</span>)
-<span class="no">graph</span>$<span class="no">layout</span> <span class="kw">&lt;-</span> <span class="kw pkg">igraph</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
-<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">graph</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">graph</span> <span class="op">&lt;-</span> <span class="kw">meta_rel_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">from_node</span>, <span class="kw">to_node</span>) <span class="op">%&gt;%</span>
+  <span class="kw">igraph</span>::<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(directed = <span class="fl">FALSE</span>)
+<span class="kw">graph</span><span class="op">$</span><span class="kw">layout</span> <span class="op">&lt;-</span> <span class="kw">igraph</span>::<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">graph</span>)
+</pre></div>
 <p><img src="meta-functionalities_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>A detailed version of the shema plot can be obtained from the API:</p>
 <div class="figure">
@@ -392,11 +402,12 @@
 </ul>
 <p>Here we show how these are done at the API level using <code>Gwas</code> nodes as an example.</p>
 <p>First we need to know what the “ID” and “name” fields are for the meta nodes using <code>GET /meta/nodes/id-name-schema</code>:</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/meta/nodes/id-name-schema"</span>
-<span class="no">meta_node_fields</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-  <span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="kw">NULL</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"raw"</span>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/id-name-schema"</span>
+<span class="kw">meta_node_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
+  route = <span class="kw">endpoint</span>, params = <span class="kw">NULL</span>, mode = <span class="st">"raw"</span>
 )
-<span class="no">meta_node_fields</span>
+<span class="kw">meta_node_fields</span>
 <span class="co">#&gt; $Disease</span>
 <span class="co">#&gt; $Disease$id</span>
 <span class="co">#&gt; [1] "id"</span>
@@ -490,21 +501,23 @@
 <span class="co">#&gt; [1] "name"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Variant$name</span>
-<span class="co">#&gt; [1] "name"</span></pre></body></html></div>
+<span class="co">#&gt; [1] "name"</span>
+</pre></div>
 </div>
 <div id="fuzzy-matching" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fuzzy-matching" class="anchor"></a>Fuzzy matching</h2>
 <p>Here we search for nodes can contain “body mass index” in their traits.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">name</span> <span class="kw">&lt;-</span> <span class="st">"body mass index"</span>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">name</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
 
-<span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
-<span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="no">name</span>)
+<span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
+<span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(name = <span class="kw">name</span>)
 
-<span class="no">results</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-  <span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>
+<span class="kw">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
+  route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>
 )
-<span class="no">results</span>
+<span class="kw">results</span>
 <span class="co">#&gt; # A tibble: 10 x 18</span>
 <span class="co">#&gt;    node.note node.access node.year node.mr node.author node.consortium node.sex</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   </span>
@@ -521,21 +534,23 @@
 <span class="co">#&gt; # … with 11 more variables: node.priority &lt;chr&gt;, node.pmid &lt;chr&gt;,</span>
 <span class="co">#&gt; #   node.population &lt;chr&gt;, node.unit &lt;chr&gt;, node.sample_size &lt;chr&gt;,</span>
 <span class="co">#&gt; #   node.nsnp &lt;chr&gt;, node.trait &lt;chr&gt;, node.id &lt;chr&gt;, node.subcategory &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.category &lt;chr&gt;, node.sd &lt;chr&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   node.category &lt;chr&gt;, node.sd &lt;chr&gt;</span>
+</pre></div>
 </div>
 <div id="exact-matching" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exact-matching" class="anchor"></a>Exact matching</h2>
 <p>Similarly, we can exact match a specific node by its ID.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">id</span> <span class="kw">&lt;-</span> <span class="st">"ieu-a-2"</span>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="kw">id</span> <span class="op">&lt;-</span> <span class="st">"ieu-a-2"</span>
 
-<span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
-<span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="no">id</span>)
+<span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
+<span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(id = <span class="kw">id</span>)
 
-<span class="no">results</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-  <span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>
+<span class="kw">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
+  route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>
 )
-<span class="no">results</span>
+<span class="kw">results</span>
 <span class="co">#&gt; # A tibble: 1 x 17</span>
 <span class="co">#&gt;   node.access node.year node.mr node.author node.consortium node.sex</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;lgl&gt;           &lt;chr&gt;   </span>
@@ -543,27 +558,32 @@
 <span class="co">#&gt; # … with 11 more variables: node.priority &lt;chr&gt;, node.pmid &lt;chr&gt;,</span>
 <span class="co">#&gt; #   node.population &lt;chr&gt;, node.sd &lt;chr&gt;, node.unit &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   node.sample_size &lt;chr&gt;, node.nsnp &lt;chr&gt;, node.trait &lt;chr&gt;, node.id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;</span>
+</pre></div>
 </div>
 <div id="cypher-advanced" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cypher-advanced" class="anchor"></a>Cypher (advanced)</h2>
 <p>Advanced users that are familiar with Neo4j Cypher can query the database using Cypher directly.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">query</span> <span class="kw">&lt;-</span> <span class="st">"
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="kw">query</span> <span class="op">&lt;-</span> <span class="st">"
     MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas)
     WHERE exposure.trait = 'Body mass index'
     RETURN exposure, outcome, mr LIMIT 2
-"</span>
+"</span>uery (outcome:Gwas)
+    WHERE exposure.trait = 'Body mass index'
+    RETURN exposure, outcome, mr LIMIT 2
+"
 
-<span class="no">endpoint</span> <span class="kw">&lt;-</span> <span class="st">"/cypher"</span>
-<span class="no">params</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">query</span> <span class="kw">=</span> <span class="no">query</span>)
+<span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/cypher"</span>
+<span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(query = <span class="kw">query</span>)
 
 <span class="co"># NOTE this is a POST request</span>
-<span class="no">results</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-  <span class="kw">route</span> <span class="kw">=</span> <span class="no">endpoint</span>, <span class="kw">params</span> <span class="kw">=</span> <span class="no">params</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"POST"</span>,
-  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>
+<span class="kw">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
+  route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, method = <span class="st">"POST"</span>,
+  mode = <span class="st">"table"</span>
 )
-<span class="no">results</span>
+<span class="kw">results</span>
 <span class="co">#&gt; # A tibble: 2 x 45</span>
 <span class="co">#&gt;   exposure.access exposure.year exposure.mr exposure.author exposure.consor…</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;lgl&gt;           </span>
@@ -581,13 +601,15 @@
 <span class="co">#&gt; #   outcome.trait &lt;chr&gt;, outcome.id &lt;chr&gt;, outcome.subcategory &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   outcome.category &lt;lgl&gt;, mr.b &lt;dbl&gt;, mr.se &lt;dbl&gt;, mr.method &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.nsnp &lt;int&gt;, mr.selection &lt;chr&gt;, mr.pval &lt;dbl&gt;, mr.ci_upp &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   mr.log10pval &lt;dbl&gt;, mr.ci_low &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   mr.log10pval &lt;dbl&gt;, mr.ci_low &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
 <span class="co">#&gt; R version 4.0.0 (2020-04-24)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span>
@@ -611,16 +633,16 @@
 <span class="co">#&gt; [1] epigraphdb_0.2 igraph_1.2.5   purrr_0.3.4    dplyr_1.0.0    magrittr_1.5  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.4.6       knitr_1.28         MASS_7.3-51.5      tidyselect_1.1.0  </span>
-<span class="co">#&gt;  [5] R6_2.4.1           rlang_0.4.6        fansi_0.4.1        httr_1.4.1        </span>
-<span class="co">#&gt;  [9] stringr_1.4.0      tools_4.0.0        xfun_0.14          utf8_1.1.4        </span>
-<span class="co">#&gt; [13] cli_2.0.2          ellipsis_0.3.1     htmltools_0.4.0    yaml_2.2.1        </span>
-<span class="co">#&gt; [17] assertthat_0.2.1   digest_0.6.25      rprojroot_1.3-2    tibble_3.0.1      </span>
-<span class="co">#&gt; [21] lifecycle_0.2.0    pkgdown_1.5.1.9000 crayon_1.3.4       vctrs_0.3.1       </span>
-<span class="co">#&gt; [25] fs_1.4.1           curl_4.3           memoise_1.1.0      glue_1.4.1        </span>
-<span class="co">#&gt; [29] evaluate_0.14      rmarkdown_2.2      stringi_1.4.6      pillar_1.4.4      </span>
-<span class="co">#&gt; [33] compiler_4.0.0     desc_1.2.0         generics_0.0.2     backports_1.1.7   </span>
-<span class="co">#&gt; [37] jsonlite_1.6.1     pkgconfig_2.0.3</span></pre></body></html></div>
+<span class="co">#&gt;  [1] knitr_1.28         tidyselect_1.1.0   R6_2.4.1           rlang_0.4.6       </span>
+<span class="co">#&gt;  [5] fansi_0.4.1        httr_1.4.1         stringr_1.4.0      tools_4.0.0       </span>
+<span class="co">#&gt;  [9] xfun_0.15          utf8_1.1.4         cli_2.0.2          htmltools_0.5.0   </span>
+<span class="co">#&gt; [13] ellipsis_0.3.1     yaml_2.2.1         assertthat_0.2.1   rprojroot_1.3-2   </span>
+<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.1       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
+<span class="co">#&gt; [21] crayon_1.3.4       vctrs_0.3.1        fs_1.4.1           curl_4.3          </span>
+<span class="co">#&gt; [25] memoise_1.1.0      glue_1.4.1         evaluate_0.14      rmarkdown_2.3.1   </span>
+<span class="co">#&gt; [29] stringi_1.4.6      compiler_4.0.0     pillar_1.4.4       desc_1.2.0        </span>
+<span class="co">#&gt; [33] generics_0.0.2     backports_1.1.8    jsonlite_1.6.1     pkgconfig_2.0.3</span>
+</pre></div>
 </div>
   </div>
 

@@ -141,26 +141,27 @@
 <a href="#using-httr" class="anchor"></a>Using <code>httr</code>
 </h2>
 <p>Here are some examples of querying EpiGraphDB web API using <a href="https://httr.r-lib.org/reference/index.html">httr</a>:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
-<span class="no">url</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"epigraphdb.api.url"</span>)
-<span class="no">payload</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>
+<span class="kw">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"epigraphdb.api.url"</span>)
+<span class="kw">payload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+  exposure_trait = <span class="st">"Body mass index"</span>,
+  outcome_trait = <span class="st">"Coronary heart disease"</span>
 )
-<span class="no">r</span> <span class="kw">&lt;-</span> <span class="kw pkg">httr</span><span class="kw ns">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span>(<span class="kw pkg">glue</span><span class="kw ns">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{url}/mr"</span>), <span class="kw">query</span> <span class="kw">=</span> <span class="no">payload</span>)
-<span class="no">r</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">httr</span><span class="kw ns">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span>(<span class="kw">as</span> <span class="kw">=</span> <span class="st">"parsed"</span>) <span class="kw">%&gt;%</span>
+<span class="kw">r</span> <span class="op">&lt;-</span> <span class="kw">httr</span>::<span class="fu"><a href="https://httr.r-lib.org/reference/GET.html">GET</a></span>(<span class="kw">glue</span>::<span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"{url}/mr"</span>), query = <span class="kw">payload</span>)
+<span class="kw">r</span> <span class="op">%&gt;%</span>
+  <span class="kw">httr</span>::<span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span>(as = <span class="st">"parsed"</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.0104</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.00901</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -168,18 +169,20 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
-<span class="co">#&gt;   ..$ :List of 3</span></pre></body></html></div>
+<span class="co">#&gt;   ..$ :List of 3</span>
+</pre></div>
 <p>And this is the data structure as returned from the <code><a href="../reference/mr.html">epigraphdb::mr</a></code> call with <code>mode = "raw"</code>:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw pkg">epigraphdb</span><span class="kw ns">::</span><span class="fu"><a href="../reference/mr.html">mr</a></span>(
-  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
-  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"raw"</span>
-) <span class="kw">%&gt;%</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">epigraphdb</span>::<span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  exposure_trait = <span class="st">"Body mass index"</span>,
+  outcome_trait = <span class="st">"Coronary heart disease"</span>,
+  mode = <span class="st">"raw"</span>
+) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.00943</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.00798</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -187,7 +190,8 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
-<span class="co">#&gt;   ..$ :List of 3</span></pre></body></html></div>
+<span class="co">#&gt;   ..$ :List of 3</span>
+</pre></div>
 <p>In fact, currently the <code><a href="../reference/mr.html">epigraphdb::mr</a></code> function is a <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R">wrapper</a> of <code>httr::get</code>. Please consult with <a href="https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html"><code>httr</code> documentation</a> for details of usage.</p>
 </div>
 <div id="using-curl" class="section level2">

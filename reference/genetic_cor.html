@@ -163,7 +163,7 @@
     <p><a href='http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor'><code>GET /genetic-cor</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>genetic_cor</span>(<span class='no'>trait</span>, <span class='kw'>cor_coef_threshold</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/genetic_cor.html'>genetic_cor</a></span>(<span class='kw'>trait</span>, cor_coef_threshold = <span class='fl'>0.8</span>, mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,12 +191,12 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /genetic_cor</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>genetic_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 0
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/genetic_cor.html'>genetic_cor</a></span>(trait = <span class='st'>"Body mass index"</span>) <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 0
 #&gt; Columns: 0</div><div class='input'>
 <span class='co'># Use a different threshold</span>
-<span class='fu'>genetic_cor</span>(<span class='kw'>trait</span> <span class='kw'>=</span> <span class='st'>"Body mass index"</span>, <span class='kw'>cor_coef_threshold</span> <span class='kw'>=</span> <span class='fl'>0.4</span>) <span class='kw'>%&gt;%</span>
-  <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 0
+<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/genetic_cor.html'>genetic_cor</a></span>(trait = <span class='st'>"Body mass index"</span>, cor_coef_threshold = <span class='fl'>0.4</span>) <span class='op'>%&gt;%</span>
+  <span class='kw'>dplyr</span>::<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>()</div><div class='output co'>#&gt; Rows: 0
 #&gt; Columns: 0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

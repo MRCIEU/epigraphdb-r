@@ -124,8 +124,10 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p><a href="http://devtools.r-lib.org/"><code>devtools</code></a> is required to install from github:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"MRCIEU/epigraphdb-r"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"MRCIEU/epigraphdb-r"</span>)
+</pre></div>
 <p><strong>NOTE</strong>: while the package repository is “epigraphdb-r”, the R package name is “epigraphdb”.</p>
 </div>
 <div id="using-epigraphdb" class="section level2">
@@ -133,7 +135,8 @@
 <a href="#using-epigraphdb" class="anchor"></a>Using <code>epigraphdb</code>
 </h2>
 <p><code>epigraphdb</code> provides a simple and intuitive way to query the API, as:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt;</span>
 <span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
@@ -142,7 +145,7 @@
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
 <span class="co">#&gt;</span>
 <span class="co">#&gt;</span>
-<span class="fu"><a href="reference/mr.html">mr</a></span>(<span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>)
+<span class="fu"><a href="reference/mr.html">mr</a></span>(outcome_trait = <span class="st">"Body mass index"</span>)
 <span class="co">#&gt; # A tibble: 370 x 12</span>
 <span class="co">#&gt;    exposure_id exposure_name outcome_id outcome_name estimate      se</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;</span>
@@ -157,7 +160,8 @@
 <span class="co">#&gt;  9 UKB-a:124   Treatment/me… 974        Body mass i…  -5.14   1.08e-1</span>
 <span class="co">#&gt; 10 95          Body mass in… 974        Body mass i…   0.981  2.79e-2</span>
 <span class="co">#&gt; # … with 360 more rows, and 6 more variables: p &lt;dbl&gt;, ci_upp &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   ci_low &lt;dbl&gt;, selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;)</span></pre></div>
+<span class="co">#&gt; #   ci_low &lt;dbl&gt;, selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;)</span>
+</pre></div>
 <p>For more information on how to use the <code>epigraphdb</code> R package and how to use the API in R please check out the following articles:</p>
 <table class="table">
 <colgroup><col width="100%"></colgroup>

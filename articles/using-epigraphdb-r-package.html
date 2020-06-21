@@ -121,13 +121,15 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span></pre></body></html></div>
+<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
+</pre></div>
 <div id="methods-to-query-epigraphdb" class="section level2">
 <h2 class="hasAnchor">
 <a href="#methods-to-query-epigraphdb" class="anchor"></a>Methods to query EpiGraphDB</h2>
@@ -137,12 +139,13 @@
 <h3 class="hasAnchor">
 <a href="#mr" class="anchor"></a><code>mr</code>
 </h3>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
-  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
-  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  exposure_trait = <span class="st">"Body mass index"</span>,
+  outcome_trait = <span class="st">"Coronary heart disease"</span>,
+  mode = <span class="st">"table"</span>
 )
-<span class="no">df</span>
+<span class="kw">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -153,22 +156,24 @@
 <span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
 <span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="get-mr" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-mr" class="anchor"></a><code>GET /mr</code>
 </h3>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-  <span class="kw">route</span> <span class="kw">=</span> <span class="st">"/mr"</span>,
-  <span class="kw">params</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-    <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
+  route = <span class="st">"/mr"</span>,
+  params = <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
+    exposure_trait = <span class="st">"Body mass index"</span>,
+    outcome_trait = <span class="st">"Coronary heart disease"</span>
   ),
-  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"table"</span>
+  mode = <span class="st">"table"</span>
 )
 
-<span class="no">df</span>
+<span class="kw">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -179,7 +184,8 @@
 <span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
 <span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span>
+</pre></div>
 <p>For more information on the API endpoints, please visit:</p>
 <ul>
 <li>The API Swagger interface <a href="http://api.epigraphdb.org" class="uri">http://api.epigraphdb.org</a>
@@ -198,11 +204,12 @@
 <a href="#mode-table" class="anchor"></a><code>mode = "table"</code>
 </h3>
 <p>By default, for ease of use, the query returns a data frame which is a tidyverse <a href="https://tibble.tidyverse.org/"><code>tibble</code></a>:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
-  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  exposure_trait = <span class="st">"Body mass index"</span>,
+  outcome_trait = <span class="st">"Coronary heart disease"</span>
 )
-<span class="no">df</span>
+<span class="kw">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -213,23 +220,25 @@
 <span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
 <span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></body></html></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="mode-raw" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mode-raw" class="anchor"></a><code>mode = "raw"</code>
 </h3>
 <p>Alternatively, you can use <code>results_type = "raw"</code> to get the unformatted response from EpiGraphDB API.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">response</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
-  <span class="kw">exposure_trait</span> <span class="kw">=</span> <span class="st">"Body mass index"</span>,
-  <span class="kw">outcome_trait</span> <span class="kw">=</span> <span class="st">"Coronary heart disease"</span>,
-  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">"raw"</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span>(
+  exposure_trait = <span class="st">"Body mass index"</span>,
+  outcome_trait = <span class="st">"Coronary heart disease"</span>,
+  mode = <span class="st">"raw"</span>
 )
-<span class="no">response</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
+<span class="kw">response</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="fl">2</span>)
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.01</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.00751</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -237,7 +246,8 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
-<span class="co">#&gt;   ..$ :List of 3</span></pre></body></html></div>
+<span class="co">#&gt;   ..$ :List of 3</span>
+</pre></div>
 <p>There are several reasons that a <code>raw</code> mode might benefit you:</p>
 <ol style="list-style-type: decimal">
 <li><p>The <code>results</code> component preserves the upstream hierachical json structure that might be useful for users aiming for specific tasks such as rendering network plots or batch post-processing the returned data in a large scale.</p></li>
