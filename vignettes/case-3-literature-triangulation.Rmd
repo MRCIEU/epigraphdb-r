@@ -256,7 +256,6 @@ edges
 
 
 ```{r}
-
 plot_network <- function(edges, nodes, show_edge_labels = FALSE) {
 
   # default is to not display edge labels
