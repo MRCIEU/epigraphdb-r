@@ -453,28 +453,30 @@
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="kw">lit_detail</span> <span class="op">&lt;-</span> <span class="kw">lit_detail</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="kw">`gwas.trait`</span>, <span class="kw">`assoc_gwas.trait`</span>), <span class="kw">stringr</span>::<span class="kw"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper</a></span>)
+
+<span class="co"># add node types: 1 - selected GWAS, 2 - traits from literature, 3 - current focus term connecting 1 and 2</span>
 <span class="kw">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`gwas.trait`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(color = <span class="st">"red"</span>),
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`assoc_gwas.trait`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(color = <span class="st">"red"</span>),
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s1.subject_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(color = <span class="st">"skyblue"</span>),
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.subject_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(color = <span class="st">"skyblue"</span>),
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s1.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(color = <span class="st">"skyblue"</span>),
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(color = <span class="st">"skyblue"</span>)
-) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`gwas.trait`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">1</span>),
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`assoc_gwas.trait`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">1</span>),
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s1.subject_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>),
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.subject_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>),
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s1.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>),
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>)) <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> (node_type = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">node</span> <span class="op">==</span> <span class="kw">focus_term</span>, <span class="fl">3</span>, <span class="kw">node_type</span>)) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() 
 <span class="kw">nodes</span>
 <span class="co">#&gt; # A tibble: 10 x 2</span>
-<span class="co">#&gt;    node                      color  </span>
-<span class="co">#&gt;    &lt;chr&gt;                     &lt;chr&gt;  </span>
-<span class="co">#&gt;  1 SLEEP DURATION            red    </span>
-<span class="co">#&gt;  2 CORONARY HEART DISEASE    red    </span>
-<span class="co">#&gt;  3 ghrelin                   skyblue</span>
-<span class="co">#&gt;  4 Leptin                    skyblue</span>
-<span class="co">#&gt;  5 Coronary Arteriosclerosis skyblue</span>
-<span class="co">#&gt;  6 Coronary heart disease    skyblue</span>
-<span class="co">#&gt;  7 Proteome                  skyblue</span>
-<span class="co">#&gt;  8 Sleep Apnea, Obstructive  skyblue</span>
-<span class="co">#&gt;  9 Adiponectin               skyblue</span>
-<span class="co">#&gt; 10 Insulin                   skyblue</span>
+<span class="co">#&gt;    node                      node_type</span>
+<span class="co">#&gt;    &lt;chr&gt;                         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 SLEEP DURATION                    1</span>
+<span class="co">#&gt;  2 CORONARY HEART DISEASE            1</span>
+<span class="co">#&gt;  3 ghrelin                           2</span>
+<span class="co">#&gt;  4 Leptin                            3</span>
+<span class="co">#&gt;  5 Coronary Arteriosclerosis         2</span>
+<span class="co">#&gt;  6 Coronary heart disease            2</span>
+<span class="co">#&gt;  7 Proteome                          2</span>
+<span class="co">#&gt;  8 Sleep Apnea, Obstructive          2</span>
+<span class="co">#&gt;  9 Adiponectin                       2</span>
+<span class="co">#&gt; 10 Insulin                           2</span>
 </pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="kw">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(
@@ -501,48 +503,58 @@
     ) <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
 ) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(`label.cex` = <span class="fl">0.6</span>)
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() 
 <span class="kw">edges</span>
-<span class="co">#&gt; # A tibble: 14 x 4</span>
-<span class="co">#&gt;    node                      assoc_node                label          label.cex</span>
-<span class="co">#&gt;    &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;              &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 SLEEP DURATION            ghrelin                   &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  2 Coronary Arteriosclerosis CORONARY HEART DISEASE    &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  3 Coronary heart disease    CORONARY HEART DISEASE    &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  4 Proteome                  CORONARY HEART DISEASE    &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  5 Sleep Apnea, Obstructive  CORONARY HEART DISEASE    &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  6 Adiponectin               CORONARY HEART DISEASE    &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  7 Insulin                   CORONARY HEART DISEASE    &lt;NA&gt;                 0.6</span>
-<span class="co">#&gt;  8 ghrelin                   Leptin                    INHIBITS             0.6</span>
-<span class="co">#&gt;  9 Leptin                    Coronary Arteriosclerosis TREATS               0.6</span>
-<span class="co">#&gt; 10 Leptin                    Coronary heart disease    PREDISPOSES          0.6</span>
-<span class="co">#&gt; 11 Leptin                    Proteome                  INTERACTS_WITH       0.6</span>
-<span class="co">#&gt; 12 Leptin                    Sleep Apnea, Obstructive  TREATS               0.6</span>
-<span class="co">#&gt; 13 Leptin                    Adiponectin               STIMULATES           0.6</span>
-<span class="co">#&gt; 14 Leptin                    Insulin                   INTERACTS_WITH       0.6</span>
+<span class="co">#&gt; # A tibble: 14 x 3</span>
+<span class="co">#&gt;    node                      assoc_node                label         </span>
+<span class="co">#&gt;    &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;         </span>
+<span class="co">#&gt;  1 SLEEP DURATION            ghrelin                   &lt;NA&gt;          </span>
+<span class="co">#&gt;  2 Coronary Arteriosclerosis CORONARY HEART DISEASE    &lt;NA&gt;          </span>
+<span class="co">#&gt;  3 Coronary heart disease    CORONARY HEART DISEASE    &lt;NA&gt;          </span>
+<span class="co">#&gt;  4 Proteome                  CORONARY HEART DISEASE    &lt;NA&gt;          </span>
+<span class="co">#&gt;  5 Sleep Apnea, Obstructive  CORONARY HEART DISEASE    &lt;NA&gt;          </span>
+<span class="co">#&gt;  6 Adiponectin               CORONARY HEART DISEASE    &lt;NA&gt;          </span>
+<span class="co">#&gt;  7 Insulin                   CORONARY HEART DISEASE    &lt;NA&gt;          </span>
+<span class="co">#&gt;  8 ghrelin                   Leptin                    INHIBITS      </span>
+<span class="co">#&gt;  9 Leptin                    Coronary Arteriosclerosis TREATS        </span>
+<span class="co">#&gt; 10 Leptin                    Coronary heart disease    PREDISPOSES   </span>
+<span class="co">#&gt; 11 Leptin                    Proteome                  INTERACTS_WITH</span>
+<span class="co">#&gt; 12 Leptin                    Sleep Apnea, Obstructive  TREATS        </span>
+<span class="co">#&gt; 13 Leptin                    Adiponectin               STIMULATES    </span>
+<span class="co">#&gt; 14 Leptin                    Insulin                   INTERACTS_WITH</span>
 </pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="kw">graph</span> <span class="op">&lt;-</span> <span class="kw">igraph</span>::<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(<span class="kw">edges</span>, directed = <span class="fl">TRUE</span>, vertices = <span class="kw">nodes</span>)
-<span class="kw">graph</span><span class="op">$</span><span class="kw">layout</span> <span class="op">&lt;-</span> <span class="kw">igraph</span>::<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
-<span class="kw">graph</span>
-<span class="co">#&gt; IGRAPH 185f4af DN-- 10 14 -- </span>
-<span class="co">#&gt; + attr: layout (g/x), name (v/c), color (v/c), label (e/c), label.cex</span>
-<span class="co">#&gt; | (e/n)</span>
-<span class="co">#&gt; + edges from 185f4af (vertex names):</span>
-<span class="co">#&gt;  [1] SLEEP DURATION           -&gt;ghrelin                  </span>
-<span class="co">#&gt;  [2] Coronary Arteriosclerosis-&gt;CORONARY HEART DISEASE   </span>
-<span class="co">#&gt;  [3] Coronary heart disease   -&gt;CORONARY HEART DISEASE   </span>
-<span class="co">#&gt;  [4] Proteome                 -&gt;CORONARY HEART DISEASE   </span>
-<span class="co">#&gt;  [5] Sleep Apnea, Obstructive -&gt;CORONARY HEART DISEASE   </span>
-<span class="co">#&gt;  [6] Adiponectin              -&gt;CORONARY HEART DISEASE   </span>
-<span class="co">#&gt;  [7] Insulin                  -&gt;CORONARY HEART DISEASE   </span>
-<span class="co">#&gt; + ... omitted several edges</span>
+
+<span class="kw">plot_network</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, <span class="kw">show_edge_labels</span> = <span class="kw">F</span>){
+  
+  <span class="co"># default is to not display edge labels</span>
+  <span class="co">if</span> (<span class="op">!</span><span class="kw">show_edge_labels</span>){ <span class="kw">edges</span><span class="op">&lt;-</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">edges</span>, <span class="op">-</span><span class="kw">label</span>)}
+  
+  <span class="kw">graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(<span class="kw">edges</span>, directed = <span class="fl">TRUE</span>, vertices = <span class="kw">nodes</span>)
+  <span class="kw">graph</span><span class="op">$</span><span class="kw">layout</span> <span class="op">&lt;-</span> <span class="kw">layout_with_kk</span>
+  
+  <span class="co"># generate colors based on node type</span>
+  <span class="kw">colrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tomato"</span>, <span class="st">"steelblue"</span>, <span class="st">"gold"</span>)
+  <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(<span class="kw">graph</span>)<span class="op">$</span><span class="kw">color</span> <span class="op">&lt;-</span> <span class="kw">colrs</span>[<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(<span class="kw">graph</span>)<span class="op">$</span><span class="kw">node_type</span>]
+  
+  <span class="co"># set all plot margins to zero</span>
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>))
+  
+  <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/plot.igraph.html">plot.igraph</a></span>(<span class="kw">graph</span>,
+              vertex.size=<span class="fl">13</span>,
+              vertex.label.color=<span class="st">"black"</span>,
+              vertex.label.family=<span class="st">"Helvetica"</span>,
+              vertex.label.cex = <span class="fl">0.8</span>,
+              edge.arrow.size=<span class="fl">0.4</span>,
+              edge.label.color=<span class="st">"black"</span>,
+              edge.label.family=<span class="st">"Helvetica"</span>,
+              edge.label.cex = <span class="fl">0.5</span>)
+  }
 </pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">graph</span>)
+<span class="fu">plot_network</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, show_edge_labels=<span class="kw">T</span>)
 </pre></div>
-<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
+<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-16-1.png" width="2187.5"></p>
 </div>
 </div>
 <div id="checking-the-source-literature" class="section level2">
@@ -623,7 +635,7 @@
 <span class="co">#&gt; [6] magrittr_1.5  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] knitr_1.28         tidyselect_1.1.0   R6_2.4.1           rlang_0.4.6       </span>
+<span class="co">#&gt;  [1] knitr_1.29         tidyselect_1.1.0   R6_2.4.1           rlang_0.4.6       </span>
 <span class="co">#&gt;  [5] fansi_0.4.1        httr_1.4.1         stringr_1.4.0      tools_4.0.0       </span>
 <span class="co">#&gt;  [9] xfun_0.15          utf8_1.1.4         cli_2.0.2          htmltools_0.5.0   </span>
 <span class="co">#&gt; [13] ellipsis_0.3.1     yaml_2.2.1         assertthat_0.2.1   rprojroot_1.3-2   </span>
