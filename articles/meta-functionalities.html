@@ -130,9 +130,9 @@
 </ul>
 <p>For detailed documentation on the API endpoints please visit:</p>
 <ul>
-<li>The Swagger interface: <a href="http://api.epigraphdb.org" class="uri">http://api.epigraphdb.org</a>
+<li>The Swagger interface: <a href="https://api.epigraphdb.org" class="uri">https://api.epigraphdb.org</a>
 </li>
-<li>The sections regarding API endpoints on the documentation site: <a href="http://docs.epigraphdb.org/api/api-endpoints/" class="uri">http://docs.epigraphdb.org/api/api-endpoints/</a>
+<li>The sections regarding API endpoints on the documentation site: <a href="https://docs.epigraphdb.org/api/api-endpoints/" class="uri">https://docs.epigraphdb.org/api/api-endpoints/</a>
 </li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit">
@@ -170,7 +170,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
+<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
@@ -248,7 +248,8 @@
 <span class="co">#&gt;   ..$ GWAS_TO_VARIANT                      :List of 2</span>
 <span class="co">#&gt;   ..$ GENE_TO_PROTEIN                      :List of 2</span>
 <span class="co">#&gt;   ..$ SEM_TO_LIT                           :List of 2</span>
-<span class="co">#&gt;  $ connections:List of 41</span>
+<span class="co">#&gt;  $ connections:List of 42</span>
+<span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
@@ -359,20 +360,20 @@
 <span class="kw">meta_rel_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">from_node</span>, <span class="kw">to_node</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="kw">count</span>, big.mark = <span class="st">","</span>))
-<span class="co">#&gt; # A tibble: 41 x 4</span>
-<span class="co">#&gt;    meta_rel                     count        from_node to_node   </span>
-<span class="co">#&gt;    &lt;chr&gt;                        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
-<span class="co">#&gt;  1 MONDO_MAP_EFO                "     2,822" Disease   Efo       </span>
-<span class="co">#&gt;  2 MONDO_MAP_UMLS               "     3,414" Disease   SemmedTerm</span>
-<span class="co">#&gt;  3 OPENTARGETS_DRUG_TO_DISEASE  "     2,486" Drug      Disease   </span>
-<span class="co">#&gt;  4 CPIC                         "       355" Drug      Gene      </span>
-<span class="co">#&gt;  5 OPENTARGETS_DRUG_TO_TARGET   "     6,024" Drug      Gene      </span>
-<span class="co">#&gt;  6 EFO_CHILD_OF                 "    43,154" Efo       Efo       </span>
-<span class="co">#&gt;  7 PRECEDING_EVENT              "    10,418" Event     Event     </span>
-<span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,098,049" Gene      Gwas      </span>
-<span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,703,863" Gene      Gwas      </span>
-<span class="co">#&gt; 10 GENE_TO_LITERATURE           "       771" Gene      Literature</span>
-<span class="co">#&gt; # … with 31 more rows</span>
+<span class="co">#&gt; # A tibble: 42 x 4</span>
+<span class="co">#&gt;    meta_rel                        count        from_node to_node   </span>
+<span class="co">#&gt;    &lt;chr&gt;                           &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
+<span class="co">#&gt;  1 MONDO_MAP_EFO                   "     2,822" Disease   Efo       </span>
+<span class="co">#&gt;  2 MONDO_MAP_UMLS                  "     3,414" Disease   SemmedTerm</span>
+<span class="co">#&gt;  3 OPENTARGETS_DRUG_TO_DISEASE     "     2,486" Drug      Disease   </span>
+<span class="co">#&gt;  4 CPIC                            "       355" Drug      Gene      </span>
+<span class="co">#&gt;  5 OPENTARGETS_DRUG_TO_TARGET      "     6,024" Drug      Gene      </span>
+<span class="co">#&gt;  6 EFO_CHILD_OF                    "    43,154" Efo       Efo       </span>
+<span class="co">#&gt;  7 PRECEDING_EVENT                 "    10,418" Event     Event     </span>
+<span class="co">#&gt;  8 INTACT_INTERACTS_WITH_GENE_GENE "         2" Gene      Gene      </span>
+<span class="co">#&gt;  9 XQTL_MULTI_SNP_MR               " 3,098,049" Gene      Gwas      </span>
+<span class="co">#&gt; 10 XQTL_SINGLE_SNP_MR_GENE_GWAS    " 8,703,863" Gene      Gwas      </span>
+<span class="co">#&gt; # … with 32 more rows</span>
 </pre></div>
 </div>
 <div id="schema-plot" class="section level3">
@@ -388,14 +389,14 @@
 <p><img src="meta-functionalities_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>A detailed version of the shema plot can be obtained from the API:</p>
 <div class="figure">
-<img src="http://api.epigraphdb.org/meta/schema?graphviz=true&amp;plot=true" alt="schema_plot"><p class="caption">schema_plot</p>
+<img src="https://api.epigraphdb.org/meta/schema?graphviz=true&amp;plot=true" alt="schema_plot"><p class="caption">schema_plot</p>
 </div>
 </div>
 </div>
 <div id="search-for-specific-node" class="section level2">
 <h2 class="hasAnchor">
 <a href="#search-for-specific-node" class="anchor"></a>Search for specific node</h2>
-<p>Users can use <a href="http://dev.epigraphdb.org/explore">the explorer on the Web UI</a> to search for a specific node by:</p>
+<p>Users can use <a href="https://dev.epigraphdb.org/explore">the explorer on the Web UI</a> to search for a specific node by:</p>
 <ul>
 <li>fuzzy matching by “name” field.</li>
 <li>exact matching by “ID” field if you know the its ID (e.g. the ID to a GWAS from IEU GWAS Database).</li>

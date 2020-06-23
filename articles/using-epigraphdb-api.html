@@ -124,12 +124,12 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>EpiGraphDB as a collated resource offers rich integrative epidemiological evidence for researchers to use, which can be queried from our <a href="http://api.epigraphdb.org">RESTful API service</a>.</p>
-<p>EpiGraphDB <a href="http://epigraphdb.org">web application</a>:</p>
+<p>EpiGraphDB as a collated resource offers rich integrative epidemiological evidence for researchers to use, which can be queried from our <a href="https://api.epigraphdb.org">RESTful API service</a>.</p>
+<p>EpiGraphDB <a href="https://epigraphdb.org">web application</a>:</p>
 <div class="figure">
 <img src="figures/epigraphdb-xqtl-view.png" alt="web application"><p class="caption">web application</p>
 </div>
-<p>EpiGraphDB <a href="http://api.epigraphdb.org">web API (OpenAPI / swagger interface)</a>:</p>
+<p>EpiGraphDB <a href="https://api.epigraphdb.org">web API (OpenAPI / swagger interface)</a>:</p>
 <div class="figure">
 <img src="figures/epigraphdb-api-swagger.png" alt="web API"><p class="caption">web API</p>
 </div>
@@ -145,7 +145,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
+<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
@@ -161,7 +161,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.00815</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0119</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -182,7 +182,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.00799</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0112</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -199,7 +199,7 @@
 <a href="#using-curl" class="anchor"></a>Using <code>curl</code>
 </h2>
 <p>Here is an example in using <code>curl</code> to get data and using <a href="https://stedolan.github.io/jq/"><code>jq</code></a> for post processing the returned json data:</p>
-<pre class="shell"><code>curl -X 'GET' 'http://api.epigraphdb.org/mr?exposure=Body+mass+index&amp;outcome=Coronary+heart+disease' | jq</code></pre>
+<pre class="shell"><code>curl -X 'GET' 'https://api.epigraphdb.org/mr?exposure=Body+mass+index&amp;outcome=Coronary+heart+disease' | jq</code></pre>
 <p>The returned data will look like this:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">{</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">"query"</span><span class="fu">:</span> <span class="st">"MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = </span><span class="ch">\"</span><span class="st">Body mass index</span><span class="ch">\"</span><span class="st"> AND t2.trait = </span><span class="ch">\"</span><span class="st">Coronary heart disease</span><span class="ch">\"</span><span class="st"> AND r.p &lt; 1e-05 RETURN t1.id AS exposure_id, t1.trait AS exposure_name, t2.id AS outcome_id, t2.trait AS outcome_name, r.estimate AS estimate, r.se AS se, r.p AS p, r.ci_upp as ci_upp, r.ci_low AS ci_low, r.selection AS selection, r.method AS method, r.moescore AS moescore ORDER BY r.p ;"</span><span class="fu">,</span></a>
@@ -301,7 +301,7 @@
 <li><a href="https://support.brightcove.com/use-insomnia-api-requests">GUI client: insomnia</a></li>
 <li><a href="https://www.guru99.com/postman-tutorial.html">GUI client: postman</a></li>
 </ul>
-<p>For details of the EpiGraphDB RESTful API and related services, please visit our <a href="http://docs.epigraphdb.org">documentation site</a>.</p>
+<p>For details of the EpiGraphDB RESTful API and related services, please visit our <a href="https://docs.epigraphdb.org">documentation site</a>.</p>
 </div>
   </div>
 

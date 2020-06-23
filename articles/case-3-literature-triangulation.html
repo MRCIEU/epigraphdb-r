@@ -173,7 +173,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
+<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
@@ -461,8 +461,10 @@
   <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s1.subject_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>),
   <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.subject_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>),
   <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s1.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>),
-  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>)) <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> (node_type = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">node</span> <span class="op">==</span> <span class="kw">focus_term</span>, <span class="fl">3</span>, <span class="kw">node_type</span>)) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() 
+  <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(node = <span class="kw">`s2.object_name`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fl">2</span>)
+) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">node</span> <span class="op">==</span> <span class="kw">focus_term</span>, <span class="fl">3</span>, <span class="kw">node_type</span>)) <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
 <span class="kw">nodes</span>
 <span class="co">#&gt; # A tibble: 10 x 2</span>
 <span class="co">#&gt;    node                      node_type</span>
@@ -503,7 +505,7 @@
     ) <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
 ) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>() 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
 <span class="kw">edges</span>
 <span class="co">#&gt; # A tibble: 14 x 3</span>
 <span class="co">#&gt;    node                      assoc_node                label         </span>
@@ -524,35 +526,37 @@
 <span class="co">#&gt; 14 Leptin                    Insulin                   INTERACTS_WITH</span>
 </pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="kw">plot_network</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, <span class="kw">show_edge_labels</span> = <span class="fl">FALSE</span>) {
 
-<span class="kw">plot_network</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, <span class="kw">show_edge_labels</span> = <span class="kw">F</span>){
-  
   <span class="co"># default is to not display edge labels</span>
-  <span class="co">if</span> (<span class="op">!</span><span class="kw">show_edge_labels</span>){ <span class="kw">edges</span><span class="op">&lt;-</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">edges</span>, <span class="op">-</span><span class="kw">label</span>)}
-  
+  <span class="co">if</span> (<span class="op">!</span><span class="kw">show_edge_labels</span>) {
+    <span class="kw">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">edges</span>, <span class="op">-</span><span class="kw">label</span>)
+  }
+
   <span class="kw">graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(<span class="kw">edges</span>, directed = <span class="fl">TRUE</span>, vertices = <span class="kw">nodes</span>)
   <span class="kw">graph</span><span class="op">$</span><span class="kw">layout</span> <span class="op">&lt;-</span> <span class="kw">layout_with_kk</span>
-  
+
   <span class="co"># generate colors based on node type</span>
   <span class="kw">colrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tomato"</span>, <span class="st">"steelblue"</span>, <span class="st">"gold"</span>)
   <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(<span class="kw">graph</span>)<span class="op">$</span><span class="kw">color</span> <span class="op">&lt;-</span> <span class="kw">colrs</span>[<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(<span class="kw">graph</span>)<span class="op">$</span><span class="kw">node_type</span>]
-  
+
   <span class="co"># set all plot margins to zero</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>))
-  
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>))
+
   <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/plot.igraph.html">plot.igraph</a></span>(<span class="kw">graph</span>,
-              vertex.size=<span class="fl">13</span>,
-              vertex.label.color=<span class="st">"black"</span>,
-              vertex.label.family=<span class="st">"Helvetica"</span>,
-              vertex.label.cex = <span class="fl">0.8</span>,
-              edge.arrow.size=<span class="fl">0.4</span>,
-              edge.label.color=<span class="st">"black"</span>,
-              edge.label.family=<span class="st">"Helvetica"</span>,
-              edge.label.cex = <span class="fl">0.5</span>)
-  }
+    vertex.size = <span class="fl">13</span>,
+    vertex.label.color = <span class="st">"black"</span>,
+    vertex.label.family = <span class="st">"Helvetica"</span>,
+    vertex.label.cex = <span class="fl">0.8</span>,
+    edge.arrow.size = <span class="fl">0.4</span>,
+    edge.label.color = <span class="st">"black"</span>,
+    edge.label.family = <span class="st">"Helvetica"</span>,
+    edge.label.cex = <span class="fl">0.5</span>
+  )
+}
 </pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu">plot_network</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, show_edge_labels=<span class="kw">T</span>)
+<span class="fu">plot_network</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, show_edge_labels = <span class="fl">TRUE</span>)
 </pre></div>
 <p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-16-1.png" width="2187.5"></p>
 </div>

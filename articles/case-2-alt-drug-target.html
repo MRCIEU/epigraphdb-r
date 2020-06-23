@@ -160,7 +160,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: http://api.epigraphdb.org</span>
+<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   To turn off this message, use</span>
 <span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
@@ -177,7 +177,7 @@
 <a href="#using-ppi-networks-for-alternative-drug-targets-search" class="anchor"></a>Using PPI networks for alternative drug targets search</h2>
 <p>The assumption here is that the most likely alternative targets are either directly interacting with IL23R or somewhere in the same PPI network. In this example, we consider only genes that were found to interact with IL23R via direct protein-protein interactions, and require that those <strong>interacting proteins</strong> should also be <strong>druggable</strong>.</p>
 <p>The thousands of genes are classified with regard to their druggability by Finan et al. 2017, where the <strong>Tier 1</strong> category refers to approved drugs or those in clinical testing while for other tier categories the druggability confidence drops in order <strong>Tier 2</strong> and then <strong>Tier 3</strong>.</p>
-<p>Here we use the <a href="http://docs.epigraphdb.org/api/api-endpoints/#get-genedruggabilityppi">GET /gene/druggability/ppi</a> endpoint to get data on the druggable alternative genes.**</p>
+<p>Here we use the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-genedruggabilityppi">GET /gene/druggability/ppi</a> endpoint to get data on the druggable alternative genes.**</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="kw">get_drug_targets_ppi</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_name</span>) {
   <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/gene/druggability/ppi"</span>
@@ -231,7 +231,7 @@
 <h2 class="hasAnchor">
 <a href="#using-mendelian-randomization-results-for-causal-effect-estimation" class="anchor"></a>Using Mendelian randomization results for causal effect estimation</h2>
 <p>The next step is to find out whether any of these genes have a comparable and statistically plausable effect on IBD.</p>
-<p>Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (<a href="http://epigraphdb.org/xqtl/" class="uri">http://epigraphdb.org/xqtl/</a>) via the <a href="http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr">GET /xqtl/single-snp-mr</a> endpoint.</p>
+<p>Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (<a href="https://epigraphdb.org/xqtl/" class="uri">https://epigraphdb.org/xqtl/</a>) via the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr">GET /xqtl/single-snp-mr</a> endpoint.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">extract_mr</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">outcome_trait</span>, <span class="kw">gene_list</span>, <span class="kw">qtl_type</span>) {
   <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/xqtl/single-snp-mr"</span>
@@ -277,7 +277,7 @@
 <h2 class="hasAnchor">
 <a href="#using-literature-evidence-for-results-enrichment-and-triangulation" class="anchor"></a>Using literature evidence for results enrichment and triangulation</h2>
 <p>Can we find evidence in the literature where these genes are found to be associated with IBD to increase our level of confidence in MR results or to provide alternative evidence where MR results to not exist?</p>
-<p>We can use the <a href="http://docs.epigraphdb.org/api/api-endpoints/#get-geneliterature">GET /gene/literature</a> endpoint to get data on the literature evidence for the set of genes.</p>
+<p>We can use the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-geneliterature">GET /gene/literature</a> endpoint to get data on the literature evidence for the set of genes.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">extract_literature</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">outcome_trait</span>, <span class="kw">gene_list</span>) {
   <span class="kw">per_gene</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_name</span>) {
