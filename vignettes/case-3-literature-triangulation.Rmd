@@ -210,14 +210,16 @@ We can create a network diagram to visualise these relationships.
 ```{r}
 lit_detail <- lit_detail %>%
   mutate_at(vars(`gwas.trait`, `assoc_gwas.trait`), stringr::str_to_upper)
+
+# add node types: 1 - selected GWAS, 2 - traits from literature, 3 - current focus term connecting 1 and 2
 nodes <- bind_rows(
-  lit_detail %>% select(node = `gwas.trait`) %>% distinct() %>% mutate(color = "red"),
-  lit_detail %>% select(node = `assoc_gwas.trait`) %>% distinct() %>% mutate(color = "red"),
-  lit_detail %>% select(node = `s1.subject_name`) %>% distinct() %>% mutate(color = "skyblue"),
-  lit_detail %>% select(node = `s2.subject_name`) %>% distinct() %>% mutate(color = "skyblue"),
-  lit_detail %>% select(node = `s1.object_name`) %>% distinct() %>% mutate(color = "skyblue"),
-  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(color = "skyblue")
-) %>% distinct()
+  lit_detail %>% select(node = `gwas.trait`) %>% distinct() %>% mutate(node_type = 1),
+  lit_detail %>% select(node = `assoc_gwas.trait`) %>% distinct() %>% mutate(node_type = 1),
+  lit_detail %>% select(node = `s1.subject_name`) %>% distinct() %>% mutate(node_type = 2),
+  lit_detail %>% select(node = `s2.subject_name`) %>% distinct() %>% mutate(node_type = 2),
+  lit_detail %>% select(node = `s1.object_name`) %>% distinct() %>% mutate(node_type = 2),
+  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(node_type = 2)) %>% 
+  mutate (node_type = ifelse(node == focus_term, 3, node_type)) %>% distinct() 
 nodes
 ```
 
@@ -246,19 +248,42 @@ edges <- bind_rows(
     ) %>%
     distinct()
 ) %>%
-  distinct() %>%
-  mutate(`label.cex` = 0.6)
+  distinct() 
 edges
 ```
 
-```{r}
-graph <- igraph::graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
-graph$layout <- igraph::layout_with_kk
-graph
-```
 
 ```{r}
-plot(graph)
+
+plot_network <- function(edges, nodes, show_edge_labels = F){
+  
+  # default is to not display edge labels
+  if (!show_edge_labels){ edges<-select(edges, -label)}
+  
+  graph <- graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
+  graph$layout <- layout_with_kk
+  
+  # generate colors based on node type
+  colrs <- c("tomato", "steelblue", "gold")
+  V(graph)$color <- colrs[V(graph)$node_type]
+  
+  # set all plot margins to zero
+  par(mar=c(0,0,0,0))
+  
+  plot.igraph(graph,
+              vertex.size=13,
+              vertex.label.color="black",
+              vertex.label.family="Helvetica",
+              vertex.label.cex = 0.8,
+              edge.arrow.size=0.4,
+              edge.label.color="black",
+              edge.label.family="Helvetica",
+              edge.label.cex = 0.5)
+  }
+```
+
+```{r dpi=300}
+plot_network(edges, nodes, show_edge_labels=T)
 ```
 
 ## Checking the source literature
