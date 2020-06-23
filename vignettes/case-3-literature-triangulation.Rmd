@@ -218,8 +218,10 @@ nodes <- bind_rows(
   lit_detail %>% select(node = `s1.subject_name`) %>% distinct() %>% mutate(node_type = 2),
   lit_detail %>% select(node = `s2.subject_name`) %>% distinct() %>% mutate(node_type = 2),
   lit_detail %>% select(node = `s1.object_name`) %>% distinct() %>% mutate(node_type = 2),
-  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(node_type = 2)) %>% 
-  mutate (node_type = ifelse(node == focus_term, 3, node_type)) %>% distinct() 
+  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(node_type = 2)
+) %>%
+  mutate(node_type = ifelse(node == focus_term, 3, node_type)) %>%
+  distinct()
 nodes
 ```
 
@@ -248,42 +250,45 @@ edges <- bind_rows(
     ) %>%
     distinct()
 ) %>%
-  distinct() 
+  distinct()
 edges
 ```
 
 
 ```{r}
 
-plot_network <- function(edges, nodes, show_edge_labels = F){
-  
+plot_network <- function(edges, nodes, show_edge_labels = FALSE) {
+
   # default is to not display edge labels
-  if (!show_edge_labels){ edges<-select(edges, -label)}
-  
+  if (!show_edge_labels) {
+    edges <- select(edges, -label)
+  }
+
   graph <- graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
   graph$layout <- layout_with_kk
-  
+
   # generate colors based on node type
   colrs <- c("tomato", "steelblue", "gold")
   V(graph)$color <- colrs[V(graph)$node_type]
-  
+
   # set all plot margins to zero
-  par(mar=c(0,0,0,0))
-  
+  par(mar = c(0, 0, 0, 0))
+
   plot.igraph(graph,
-              vertex.size=13,
-              vertex.label.color="black",
-              vertex.label.family="Helvetica",
-              vertex.label.cex = 0.8,
-              edge.arrow.size=0.4,
-              edge.label.color="black",
-              edge.label.family="Helvetica",
-              edge.label.cex = 0.5)
-  }
+    vertex.size = 13,
+    vertex.label.color = "black",
+    vertex.label.family = "Helvetica",
+    vertex.label.cex = 0.8,
+    edge.arrow.size = 0.4,
+    edge.label.color = "black",
+    edge.label.family = "Helvetica",
+    edge.label.cex = 0.5
+  )
+}
 ```
 
 ```{r dpi=300}
-plot_network(edges, nodes, show_edge_labels=T)
+plot_network(edges, nodes, show_edge_labels = TRUE)
 ```
 
 ## Checking the source literature
