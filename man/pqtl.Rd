@@ -47,7 +47,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \verb{GET /pqtl/}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{\verb{GET /pqtl/}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{\verb{GET /pqtl/}}
 }
 \examples{
 # Returns a data frame of MR results, while searching for proteins

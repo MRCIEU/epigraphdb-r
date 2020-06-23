@@ -34,7 +34,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /mr}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-mr}{\code{GET /mr}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-mr}{\code{GET /mr}}
 }
 \examples{
 # Returns a data frame

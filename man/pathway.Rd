@@ -21,7 +21,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /pathway}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{\code{GET /pathway}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{\code{GET /pathway}}
 }
 \examples{
 pathway(trait = "Body mass index")

@@ -1,6 +1,6 @@
 #' Return information related to the pQTL analysis
 #'
-#' [`GET /pqtl/`](http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl)
+#' [`GET /pqtl/`](https://docs.epigraphdb.org/api/api-endpoints/#get-pqtl)
 #'
 #' @param query
 #' (Required) A protein coding gene name or a trait name,
@@ -81,7 +81,7 @@ pqtl <- function(query,
 
 #' Return information related to the pleiotropy of SNPs
 #'
-#' [`GET /pqtl/pleio/`](http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio)
+#' [`GET /pqtl/pleio/`](https://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio)
 #'
 #' @param rsid
 #' (Required) A SNP identified by rsID which cannot be `NULL`.
@@ -133,7 +133,7 @@ pqtl_pleio <- function(rsid = NULL,
 #' Return a list of all proteins/exposures or traits/outcomes
 #' available in the database
 #'
-#' [`GET /pqtl/list/`](http://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist)
+#' [`GET /pqtl/list/`](https://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist)
 #'
 #' @param flag
 #' (Optional) A flag which indicates whether the list of

@@ -1,6 +1,6 @@
 #' Ontology association between EFO term and Gwas
 #'
-#' [`GET /ontology/gwas-efo`](http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo)
+#' [`GET /ontology/gwas-efo`](https://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo)
 #'
 #' @param trait trait name, e.g. "body mass"
 #' @param efo_term EFO term, e.g. "systolic blood pressure"

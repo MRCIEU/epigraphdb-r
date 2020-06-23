@@ -7,7 +7,7 @@
 #' returned status.
 #'
 #' @param route An EpiGraphDB API endpoint route, e.g. `"/mr"` or `"/confounder"`.
-#' Consult the [EpiGraphDB API documentation](http://api.epigraphdb.org).
+#' Consult the [EpiGraphDB API documentation](https://api.epigraphdb.org).
 #' @param params A list of parameters associated with the query endpoint.
 #' @param mode `c("raw", "table")`, if `"table"` then the query handler will try
 #' to convert the returned data to a tibble dataframe.

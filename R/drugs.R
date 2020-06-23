@@ -1,6 +1,6 @@
 #' Drugs for risk factors
 #'
-#' [`GET /drugs/risk-factors`](http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors)
+#' [`GET /drugs/risk-factors`](https://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors)
 #'
 #' @param trait A trait name
 #' @inheritParams mr

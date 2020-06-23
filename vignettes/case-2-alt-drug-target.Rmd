@@ -70,7 +70,7 @@ In this example, we consider only genes that were found to interact with IL23R v
 The thousands of genes are classified with regard to their druggability by Finan et al. 2017, where the **Tier 1** category refers to  approved drugs or those in clinical testing while for other tier categories the druggability confidence drops in order **Tier 2** and then **Tier 3**.
 
 Here we use the
-[GET /gene/druggability/ppi](http://docs.epigraphdb.org/api/api-endpoints/#get-genedruggabilityppi)
+[GET /gene/druggability/ppi](https://docs.epigraphdb.org/api/api-endpoints/#get-genedruggabilityppi)
 endpoint to get data on the druggable alternative genes.**
 
 ```{r}
@@ -110,8 +110,8 @@ gene_list
 
 The next step is to find out whether any of these genes have a comparable and statistically plausable effect on IBD.
 
-Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (http://epigraphdb.org/xqtl/) via the
-[GET /xqtl/single-snp-mr](http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr)
+Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (https://epigraphdb.org/xqtl/) via the
+[GET /xqtl/single-snp-mr](https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr)
 endpoint.
 
 ```{r}
@@ -147,7 +147,7 @@ xqtl_df
 Can we find evidence in the literature where these genes are found to be associated with IBD to increase our level of confidence in MR results or to provide alternative evidence where MR results to not exist?
 
 We can use the
-[GET /gene/literature](http://docs.epigraphdb.org/api/api-endpoints/#get-geneliterature)
+[GET /gene/literature](https://docs.epigraphdb.org/api/api-endpoints/#get-geneliterature)
 endpoint to get data on the literature evidence for the set of genes.
 
 ```{r}

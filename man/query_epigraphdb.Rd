@@ -13,7 +13,7 @@ query_epigraphdb(
 }
 \arguments{
 \item{route}{An EpiGraphDB API endpoint route, e.g. \code{"/mr"} or \code{"/confounder"}.
-Consult the \href{http://api.epigraphdb.org}{EpiGraphDB API documentation}.}
+Consult the \href{https://api.epigraphdb.org}{EpiGraphDB API documentation}.}
 
 \item{params}{A list of parameters associated with the query endpoint.}
 

@@ -1,6 +1,6 @@
 #' Observational correlations between traits
 #'
-#' [`GET /obs-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor)
+#' [`GET /obs-cor`](https://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor)
 #'
 #' @param trait name of the trait, e.g. "body mass index"
 #' @param cor_coef_threshold correlation coefficient threshold

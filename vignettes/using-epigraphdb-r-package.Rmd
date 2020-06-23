@@ -23,7 +23,7 @@ library("epigraphdb")
 We provide a
 [list of functions](https://mrcieu.github.io/epigraphdb-r/index.html#functionalities)
 that are equivalent to the
-[upstream API endpoints](http://api.epigraphdb.org)
+[upstream API endpoints](https://api.epigraphdb.org)
 for users to use.
 For endpoints that don't have equivalent functions, users can use the
 [`query_epigraphdb`](https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html)
@@ -34,7 +34,7 @@ Here we show the two approaches to query MR data from EpiGraphDB, using the
 using
 [`query_epigraphdb`](https://mrcieu.github.io/epigraphdb-r/reference/query_epigraphdb.html)
 to query the
-[`GET /mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-mr)
+[`GET /mr`](https://docs.epigraphdb.org/api/api-endpoints/#get-mr)
 endpoint.
 
 ### `mr`
@@ -65,8 +65,8 @@ df
 
 For more information on the API endpoints, please visit:
 
-- The API Swagger interface http://api.epigraphdb.org
-- The documentation on API endpoints http://docs.epigraphdb.org/api/api-endpoints/
+- The API Swagger interface https://api.epigraphdb.org
+- The documentation on API endpoints https://docs.epigraphdb.org/api/api-endpoints/
 
 ## Returned data format
 
@@ -114,6 +114,6 @@ There are several reasons that a `raw` mode might benefit you:
    query that fetches data from the EpiGraphDB neo4j databases.
    EpiGraphDB will offer functionality (forthcoming) for users to
    send cypher queries to the web API that can return more complex query
-   structure (visit our [web app](http://epigraphdb.org) for examples).
+   structure (visit our [web app](https://epigraphdb.org) for examples).
    Once you are sufficiently well-versed in cypher you can construct
    your own refined queries to better suit your needs.

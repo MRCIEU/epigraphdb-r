@@ -1,6 +1,6 @@
 #' Pathway evidence
 #'
-#' [`GET /pathway`](http://docs.epigraphdb.org/api/api-endpoints/#get-pathway)
+#' [`GET /pathway`](https://docs.epigraphdb.org/api/api-endpoints/#get-pathway)
 #'
 #' @param trait A trait name
 #' @inheritParams mr

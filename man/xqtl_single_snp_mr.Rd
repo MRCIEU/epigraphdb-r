@@ -34,7 +34,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GEET /xqtl/single-snp-mr}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr}{\code{GET /xqtl/single-snp-mr}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr}{\code{GET /xqtl/single-snp-mr}}
 }
 \examples{
 xqtl_single_snp_mr(outcome_trait = "Coronary heart disease")

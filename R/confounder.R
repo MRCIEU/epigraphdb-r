@@ -1,12 +1,12 @@
 #' MR evidence on confounding traits between exposure and outcome
 #'
-#' [`GET /confounder`](http://docs.epigraphdb.org/api/api-endpoints/#get-confounder)
+#' [`GET /confounder`](https://docs.epigraphdb.org/api/api-endpoints/#get-confounder)
 #'
 #' @param type One in `["confounder", "intermediate",
 #' "reverse_intermediate", "collider"]`
 #' Refer to [
 #'   the confounder view in web application
-#' ](http://epigraphdb.org/confounder)
+#' ](https://epigraphdb.org/confounder)
 #' for details
 #' @inheritParams mr
 #'

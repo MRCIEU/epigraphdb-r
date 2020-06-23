@@ -1,6 +1,6 @@
 #' Return information related to Mendelian Randomisation
 #'
-#' [`GET /mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-mr)
+#' [`GET /mr`](https://docs.epigraphdb.org/api/api-endpoints/#get-mr)
 #'
 #' @param exposure_trait
 #' A trait name, eg. "Body mass index",

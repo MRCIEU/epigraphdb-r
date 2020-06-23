@@ -1,6 +1,6 @@
 #' Genetic correlations between traits
 #'
-#' [`GET /genetic-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor)
+#' [`GET /genetic-cor`](https://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor)
 #'
 #' @inheritParams obs_cor
 #'

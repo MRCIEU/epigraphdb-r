@@ -31,9 +31,9 @@ Here we show the following aspects of the EpiGraphDB platform, and how to use th
 
 For detailed documentation on the API endpoints please visit:
 
-- The Swagger interface: http://api.epigraphdb.org
+- The Swagger interface: https://api.epigraphdb.org
 - The sections regarding API endpoints on the documentation site:
-  http://docs.epigraphdb.org/api/api-endpoints/
+  https://docs.epigraphdb.org/api/api-endpoints/
 
 ```{r}
 library("magrittr")
@@ -126,11 +126,11 @@ plot(graph)
 
 A detailed version of the shema plot can be obtained from the API:
 
-![schema_plot](http://api.epigraphdb.org/meta/schema?graphviz=true&plot=true)
+![schema_plot](https://api.epigraphdb.org/meta/schema?graphviz=true&plot=true)
 
 ## Search for specific node
 
-Users can use [the explorer on the Web UI](http://dev.epigraphdb.org/explore) to search for a specific node by:
+Users can use [the explorer on the Web UI](https://dev.epigraphdb.org/explore) to search for a specific node by:
 
 - fuzzy matching by "name" field.
 - exact matching by "ID" field if you know the its ID (e.g. the ID to a GWAS from IEU GWAS Database).
