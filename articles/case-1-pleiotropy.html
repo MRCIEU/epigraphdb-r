@@ -339,17 +339,26 @@
 <span class="co">#&gt; # … with 62 more rows</span>
 </pre></div>
 <p>We can further query EpiGraphDB regarding the detailed pathway information using <code>GET /meta/nodes/Pathway/search</code>.</p>
-<pre><code>get_pathway_info = function(reactome_id) {
-    endpoint = "/meta/nodes/Pathway/search"
-    params = list(id=reactome_id)
-    df = query_epigraphdb(route=endpoint, params=params, mode="table")
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="kw">get_pathway_info</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">reactome_id</span>) {
+    <span class="kw">endpoint</span> <span class="op">=</span> <span class="st">"/meta/nodes/Pathway/search"</span>
+    <span class="kw">params</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(id=<span class="kw">reactome_id</span>)
+    <span class="kw">df</span> <span class="op">=</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(route=<span class="kw">endpoint</span>, params=<span class="kw">params</span>, mode=<span class="st">"table"</span>)
+    <span class="kw">df</span>
 }
 
-pathway = shared_pathway_df %&gt;% pull(shared_pathway) %&gt;%
-    unlist() %&gt;% unique()
+<span class="kw">pathway</span> <span class="op">&lt;-</span> <span class="kw">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">shared_pathway</span>) <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
 
-pathway_info = pathway %&gt;% map_df(get_pathway_info)
-pathway_info %&gt;% print()</code></pre>
+<span class="kw">pathway_info</span> <span class="op">&lt;-</span> <span class="kw">pathway</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="kw">get_pathway_info</span>)
+<span class="kw">pathway_info</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()
+<span class="co">#&gt; # A tibble: 3 x 3</span>
+<span class="co">#&gt;   node.in_disease node.name                                     node.reactome_id</span>
+<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                                         &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 FALSE           Interleukin-4 and Interleukin-13 signaling    R-HSA-6785807   </span>
+<span class="co">#&gt; 2 FALSE           Integrin cell surface interactions            R-HSA-216083    </span>
+<span class="co">#&gt; 3 FALSE           Immunoregulatory interactions between a Lymp… R-HSA-198933</span>
+</pre></div>
 <p>In order to extract protein groups from the shared pathways, the last step for this query is to convert the shared pathway data into a graph where</p>
 <ul>
 <li>Proteins are represented as nodes.</li>
@@ -403,7 +412,7 @@ pathway_info %&gt;% print()</code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pathway_protein_graph</span>)
 </pre></div>
-<p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
 <div id="retrieving-shared-protein-protein-interactions" class="section level2">
 <h2 class="hasAnchor">
@@ -529,7 +538,7 @@ pathway_info %&gt;% print()</code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">ppi_protein_graph</span>)
 </pre></div>
-<p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
