@@ -1,8 +1,8 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: r
+language: R
 cache: packages
-jobs:
+matrix:
   include:
   - r: release
     after_success:
@@ -14,5 +14,7 @@ jobs:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
       github_token: $GITHUB_TOKEN
+      skip_cleanup: true
+      keep_history: true
       on:
         branch: master
