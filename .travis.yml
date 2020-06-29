@@ -14,7 +14,5 @@ jobs:
       provider: script
       script: Rscript -e 'pkgdown::deploy_site_github()'
       github_token: $GITHUB_TOKEN
-      cleanup: true
-      keep_history: true
       on:
         branch: master
