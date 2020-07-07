@@ -230,7 +230,7 @@ Please cite EpiGraphDB as
 ```
 @article {epigraphdb2020,
   author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
-  title = {{EpiGraphDB}: A database and data mining platform for health data science},
+  title = {The {EpiGraphDB} platform supports data mining for health data science},
   url = {https://epigraphdb.org}
 }
 ```
