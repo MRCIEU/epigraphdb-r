@@ -14,7 +14,7 @@
 literature_gwas <- function(trait, semmed_predicate = NULL,
                             mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/literature/gwas",
     params = list(
       trait = trait,

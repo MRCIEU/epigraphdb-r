@@ -18,7 +18,7 @@
 #' @export
 obs_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/obs-cor",
     params = list(
       trait = trait, cor_coef_threshold = cor_coef_threshold

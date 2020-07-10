@@ -24,7 +24,7 @@ confounder <- function(exposure_trait = NULL, outcome_trait = NULL,
                        mode = c("table", "raw")) {
   mode <- match.arg(mode)
   type <- match.arg(type)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/confounder",
     params = list(
       exposure_trait = exposure_trait, outcome_trait = outcome_trait,

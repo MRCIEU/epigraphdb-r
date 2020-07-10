@@ -13,7 +13,7 @@ pathway <- function(trait,
                     pval_threshold = 0.00001,
                     mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/pathway",
     params = list(
       trait = trait,

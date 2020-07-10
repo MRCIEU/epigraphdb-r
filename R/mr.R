@@ -40,7 +40,7 @@ mr <- function(exposure_trait = NULL, outcome_trait = NULL,
                pval_threshold = 1e-5,
                mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/mr",
     params = list(
       exposure_trait = exposure_trait, outcome_trait = outcome_trait,

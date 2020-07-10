@@ -20,7 +20,7 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
   mode <- match.arg(mode)
   mr_method <- match.arg(mr_method)
   qtl_type <- match.arg(qtl_type)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/xqtl/multi-snp-mr",
     params = list(
       exposure_gene = exposure_gene,
@@ -52,7 +52,7 @@ xqtl_single_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
                                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   qtl_type <- match.arg(qtl_type)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/xqtl/single-snp-mr",
     params = list(
       exposure_gene = exposure_gene,

@@ -179,14 +179,16 @@ We can further query EpiGraphDB regarding the detailed pathway information using
 
 ```{r}
 get_pathway_info <- function(reactome_id) {
-    endpoint = "/meta/nodes/Pathway/search"
-    params = list(id=reactome_id)
-    df = query_epigraphdb(route=endpoint, params=params, mode="table")
-    df
+  endpoint <- "/meta/nodes/Pathway/search"
+  params <- list(id = reactome_id)
+  df <- query_epigraphdb(route = endpoint, params = params, mode = "table")
+  df
 }
 
-pathway <- shared_pathway_df %>% pull(shared_pathway) %>%
-    unlist() %>% unique()
+pathway <- shared_pathway_df %>%
+  pull(shared_pathway) %>%
+  unlist() %>%
+  unique()
 
 pathway_info <- pathway %>% map_df(get_pathway_info)
 pathway_info %>% print()
