@@ -209,6 +209,22 @@ We also provide a list of functions (see the table below) that are equivalent to
         <a href="https://mrcieu.github.io/epigraphdb-r/reference/literature_gwas.html"><code>literature_gwas</code></a>
       </td>
     </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-proteinin-pathway"><code>POST /protein/in-pathway</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/protein_in_pathway.html"><code>protein_in_pathway</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/mappings_gene_to_protein.html"><code>mappings_gene_to_protein</code></a>
+      </td>
+    </tr>
   </tbody>
 </table>
 

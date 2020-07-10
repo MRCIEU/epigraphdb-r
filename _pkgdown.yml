@@ -53,3 +53,5 @@ reference:
       - pqtl_pleio
       - xqtl_multi_snp_mr
       - xqtl_single_snp_mr
+      - protein_in_pathway
+      - mappings_gene_to_protein
