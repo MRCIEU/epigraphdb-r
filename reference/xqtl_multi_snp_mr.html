@@ -210,7 +210,13 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /xqtl/multi-snp-mr</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/xqtl_multi_snp_mr.html'>xqtl_multi_snp_mr</a></span>(outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 11 x 7
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/xqtl_multi_snp_mr.html'>xqtl_multi_snp_mr</a></span>(outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 11 x 7
 #&gt;    gene.ensembl_id gene.name   gwas.id gwas.trait         r.beta   r.se      r.p
 #&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
 #&gt;  1 ENSG00000134222 PSRC1       ieu-a-7 Coronary heart d… -0.214  0.0270 1.98e-15

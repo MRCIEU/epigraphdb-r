@@ -199,7 +199,13 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Returns a data frame of associated proteins</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_pleio.html'>pqtl_pleio</a></span>(rsid = <span class='st'>"rs1260326"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 1
+<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_pleio.html'>pqtl_pleio</a></span>(rsid = <span class='st'>"rs1260326"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 3 x 1
 #&gt;   expID
 #&gt;   &lt;chr&gt;
 #&gt; 1 FST  

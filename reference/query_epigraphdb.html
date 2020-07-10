@@ -224,7 +224,13 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
     outcome_trait = <span class='st'>"Coronary heart disease"</span>
   ),
   mode = <span class='st'>"table"</span>
-)</div><div class='output co'>#&gt; # A tibble: 6 x 10
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 6 x 10
 #&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval
 #&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
 #&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15
@@ -257,7 +263,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.00539
+#&gt; [1] 0.003914
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE

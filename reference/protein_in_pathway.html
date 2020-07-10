@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return a list of all proteins/exposures or traits/outcomes
-available in the database — pqtl_list • epigraphdb</title>
+<title>For the list of proteins, returns their associated pathway data — protein_in_pathway • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -49,9 +48,8 @@ available in the database — pqtl_list • epigraphdb</title>
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Return a list of all proteins/exposures or traits/outcomes
-available in the database — pqtl_list" />
-<meta property="og:description" content="GET /pqtl/list/" />
+<meta property="og:title" content="For the list of proteins, returns their associated pathway data — protein_in_pathway" />
+<meta property="og:description" content="POST /protein/in-pathway" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -156,26 +154,23 @@ available in the database — pqtl_list" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return a list of all proteins/exposures or traits/outcomes
-available in the database</h1>
+    <h1>For the list of proteins, returns their associated pathway data</h1>
     
-    <div class="hidden name"><code>pqtl_list.Rd</code></div>
+    <div class="hidden name"><code>protein_in_pathway.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist'><code>GET /pqtl/list/</code></a></p>
+    <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#post-proteinin-pathway'><code>POST /protein/in-pathway</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_list.html'>pqtl_list</a></span>(flag = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"exposures"</span>, <span class='st'>"outcomes"</span>), mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/protein_in_pathway.html'>protein_in_pathway</a></span>(<span class='kw'>uniprot_id_list</span>, mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>flag</th>
-      <td><p>(Optional) A flag which indicates whether the list of
-exposures (if "exposures") or outcomes (if "outcomes")
-should be returned. The DEFAULT is "exposures".</p></td>
+      <th>uniprot_id_list</th>
+      <td><p>A list of protein UniProt IDs</p></td>
     </tr>
     <tr>
       <th>mode</th>
@@ -189,52 +184,19 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data from <code>GET /pqtl/list/</code></p>
+    <p>Data from <code>POST /protein/in-pathway</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Returns a list of available proteins (exposures)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_list.html'>pqtl_list</a></span>()</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/protein_in_pathway.html'>protein_in_pathway</a></span>(uniprot_id_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"014933"</span>, <span class='st'>"060674"</span>, <span class='st'>"P32455"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
 #&gt; <span class='warning'></span>
 #&gt; <span class='warning'>We detected these problematic arguments:</span>
 #&gt; <span class='warning'>* `needs_dots`</span>
 #&gt; <span class='warning'></span>
 #&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 989 x 1
-#&gt;    expID   
-#&gt;    &lt;chr&gt;   
-#&gt;  1 A1CF    
-#&gt;  2 ACP1    
-#&gt;  3 ACP2    
-#&gt;  4 ACP5    
-#&gt;  5 ADA2    
-#&gt;  6 ADAM15  
-#&gt;  7 ADAM23  
-#&gt;  8 ADAMTS13
-#&gt;  9 ADAMTS5 
-#&gt; 10 ADGRE2  
-#&gt; # … with 979 more rows</div><div class='input'>
-<span class='co'># Returns a list of available traits (outcomes)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl_list.html'>pqtl_list</a></span>(flag = <span class='st'>"outcomes"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 225 x 1
-#&gt;    outID                                                                  
-#&gt;    &lt;chr&gt;                                                                  
-#&gt;  1 Cancer code  self-reported: basal cell carcinoma                       
-#&gt;  2 Cancer code  self-reported: malignant melanoma                         
-#&gt;  3 Cancer code  self-reported: small intestine or small bowel cancer      
-#&gt;  4 Breast cancer (Combined Oncoarray; iCOGS; GWAS meta analysis)          
-#&gt;  5 Serum creatinine (eGFRcrea)                                            
-#&gt;  6 Serum cystatin C (eGFRcys)                                             
-#&gt;  7 Eye problems or disorders: Cataract                                    
-#&gt;  8 Eye problems or disorders: Diabetes related eye disease                
-#&gt;  9 Eye problems or disorders: Glaucoma                                    
-#&gt; 10 Eye problems or disorders: Injury or trauma resulting in loss of vision
-#&gt; # … with 215 more rows</div></pre>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 1 x 3
+#&gt;   uniprot_id pathway_count pathway_reactome_id
+#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;list&gt;             
+#&gt; 1 P32455                 1 &lt;chr [1]&gt;          </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

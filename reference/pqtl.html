@@ -221,7 +221,13 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame of MR results, while searching for proteins</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>)</div><div class='output co'>#&gt; # A tibble: 16 x 8
+<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 16 x 8
 #&gt;    expID  outID             outID_mrbase  nsnp method      beta      se   pvalue
 #&gt;    &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
 #&gt;  1 ADAM19 Forced expirator… UKB-a:337        1 Wald r…  6.82e-2 8.92e-3 2.10e-14
@@ -245,7 +251,13 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
   query = <span class='st'>"Inflammatory bowel disease"</span>,
   rtype = <span class='st'>"inst"</span>,
   searchflag = <span class='st'>"traits"</span>
-)</div><div class='output co'>#&gt; # A tibble: 56 x 13
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 56 x 13
 #&gt;    rsID  expID outID outID_mrbase ea    nea   eaf_exp sample_exp sample_out
 #&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
 #&gt;  1 rs11… IL23R Infl… 294          A     G      0.0669       3301      65642
@@ -266,7 +278,13 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
   rtype = <span class='st'>"inst"</span>,
   pvalue = <span class='fl'>1.0</span>,
   searchflag = <span class='st'>"traits"</span>
-)</div><div class='output co'>#&gt; # A tibble: 156 x 13
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>We detected these problematic arguments:</span>
+#&gt; <span class='warning'>* `needs_dots`</span>
+#&gt; <span class='warning'></span>
+#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
+#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 156 x 13
 #&gt;    rsID  expID outID outID_mrbase ea    nea   eaf_exp sample_exp sample_out
 #&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
 #&gt;  1 rs11… IL23R Infl… 294          A     G      0.0669       3301      65642
