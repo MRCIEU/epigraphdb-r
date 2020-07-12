@@ -313,13 +313,6 @@
 <span class="kw">meta_node_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">meta_node</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="kw">count</span>, big.mark = <span class="st">","</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 13 x 2</span>
 <span class="co">#&gt;    meta_node    count       </span>
 <span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;       </span>
@@ -367,13 +360,6 @@
 <span class="kw">meta_rel_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">from_node</span>, <span class="kw">to_node</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="kw">count</span>, big.mark = <span class="st">","</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 42 x 4</span>
 <span class="co">#&gt;    meta_rel                        count        from_node to_node   </span>
 <span class="co">#&gt;    &lt;chr&gt;                           &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
@@ -533,13 +519,6 @@
   route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>
 )
 <span class="kw">results</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 10 x 18</span>
 <span class="co">#&gt;    node.note node.access node.year node.mr node.author node.consortium node.sex</span>
 <span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   </span>
@@ -573,13 +552,6 @@
   route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>
 )
 <span class="kw">results</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 1 x 17</span>
 <span class="co">#&gt;   node.access node.year node.mr node.author node.consortium node.sex</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;lgl&gt;           &lt;chr&gt;   </span>
@@ -613,13 +585,6 @@
   mode = <span class="st">"table"</span>
 )
 <span class="kw">results</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 2 x 45</span>
 <span class="co">#&gt;   exposure.access exposure.year exposure.mr exposure.author exposure.consor…</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;lgl&gt;           </span>
@@ -673,10 +638,10 @@
 <span class="co">#&gt;  [5] fansi_0.4.1        httr_1.4.1         stringr_1.4.0      tools_4.0.0       </span>
 <span class="co">#&gt;  [9] xfun_0.15          utf8_1.1.4         cli_2.0.2          htmltools_0.5.0   </span>
 <span class="co">#&gt; [13] ellipsis_0.3.1     yaml_2.2.1         assertthat_0.2.1   rprojroot_1.3-2   </span>
-<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.2       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
+<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.3       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
 <span class="co">#&gt; [21] crayon_1.3.4       vctrs_0.3.1        fs_1.4.2           curl_4.3          </span>
 <span class="co">#&gt; [25] memoise_1.1.0      glue_1.4.1         evaluate_0.14      rmarkdown_2.3.2   </span>
-<span class="co">#&gt; [29] stringi_1.4.6      compiler_4.0.0     pillar_1.4.5       desc_1.2.0        </span>
+<span class="co">#&gt; [29] stringi_1.4.6      compiler_4.0.0     pillar_1.4.6       desc_1.2.0        </span>
 <span class="co">#&gt; [33] generics_0.0.2     backports_1.1.8    jsonlite_1.7.0     pkgconfig_2.0.3</span>
 </pre></div>
 </div>

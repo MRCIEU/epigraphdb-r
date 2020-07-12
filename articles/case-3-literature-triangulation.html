@@ -235,13 +235,6 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(disease = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(<span class="kw">`outcome.trait`</span>, <span class="kw">trait_to_disease</span>)) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span>(<span class="kw">`disease`</span>, <span class="fu">function</span>(<span class="kw">x</span>) <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="kw">x</span>)))
 <span class="kw">disease_df</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 5 x 11</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait     mr.b   mr.se  mr.pval</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -312,13 +305,6 @@
 <span class="kw">lit_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="kw">`s1.predicate`</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">n</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 8 x 2</span>
 <span class="co">#&gt;   s1.predicate           n</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt;</span>
@@ -336,13 +322,6 @@
 <span class="kw">lit_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="kw">`s2.predicate`</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">n</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 15 x 2</span>
 <span class="co">#&gt;    s2.predicate        n</span>
 <span class="co">#&gt;    &lt;chr&gt;           &lt;int&gt;</span>
@@ -377,13 +356,6 @@
 <span class="kw">lit_df_filter</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="kw">`s1.predicate`</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">n</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 6 x 2</span>
 <span class="co">#&gt;   s1.predicate           n</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt;</span>
@@ -398,13 +370,6 @@
 <span class="kw">lit_df_filter</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="kw">`s2.predicate`</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">n</span>))
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 13 x 2</span>
 <span class="co">#&gt;    s2.predicate       n</span>
 <span class="co">#&gt;    &lt;chr&gt;          &lt;int&gt;</span>
@@ -435,13 +400,6 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span>(<span class="kw">`st.type`</span>, <span class="kw">`st.name`</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">`st.type`</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">`n`</span>))
 <span class="kw">lit_counts</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(n = <span class="fl">30</span>)
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 21 x 3</span>
 <span class="co">#&gt;    st.type st.name                   n</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;                 &lt;int&gt;</span>
@@ -477,13 +435,6 @@
 <span class="kw">focus_term</span> <span class="op">&lt;-</span> <span class="st">"Leptin"</span>
 <span class="kw">lit_detail</span> <span class="op">&lt;-</span> <span class="kw">lit_df_filter</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">`st.name`</span> <span class="op">==</span> <span class="kw">focus_term</span>)
 <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 6 x 18</span>
 <span class="co">#&gt;   gwas.trait gwas.id gs1.localCount gs1.pval s1.subject_name s1.predicate s1.id</span>
 <span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;            &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;</span>
@@ -515,13 +466,6 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(node_type = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="kw">node</span> <span class="op">==</span> <span class="kw">focus_term</span>, <span class="fl">3</span>, <span class="kw">node_type</span>)) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
 <span class="kw">nodes</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 10 x 2</span>
 <span class="co">#&gt;    node                      node_type</span>
 <span class="co">#&gt;    &lt;chr&gt;                         &lt;dbl&gt;</span>
@@ -563,13 +507,6 @@
 ) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>()
 <span class="kw">edges</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 14 x 3</span>
 <span class="co">#&gt;    node                      assoc_node                label         </span>
 <span class="co">#&gt;    &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;         </span>
@@ -652,13 +589,6 @@
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span>() <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="fu">function</span>(<span class="kw">x</span>) <span class="fu">get_literature</span>(<span class="kw">x</span><span class="op">$</span><span class="kw">gwas_id</span>, <span class="kw">x</span><span class="op">$</span><span class="kw">semmed_triple_id</span>))
 <span class="kw">pub_df</span>
-<span class="co">#&gt; Warning: `...` is not empty.</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; We detected these problematic arguments:</span>
-<span class="co">#&gt; * `needs_dots`</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; These dots only exist to allow future extensions and should be empty.</span>
-<span class="co">#&gt; Did you misspecify an argument?</span>
 <span class="co">#&gt; # A tibble: 15 x 2</span>
 <span class="co">#&gt;    triple.id                                 lit.pubmed_id</span>
 <span class="co">#&gt;    &lt;chr&gt;                                     &lt;chr&gt;        </span>
@@ -713,10 +643,10 @@
 <span class="co">#&gt;  [5] fansi_0.4.1        httr_1.4.1         stringr_1.4.0      tools_4.0.0       </span>
 <span class="co">#&gt;  [9] xfun_0.15          utf8_1.1.4         cli_2.0.2          htmltools_0.5.0   </span>
 <span class="co">#&gt; [13] ellipsis_0.3.1     yaml_2.2.1         assertthat_0.2.1   rprojroot_1.3-2   </span>
-<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.2       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
+<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.3       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
 <span class="co">#&gt; [21] crayon_1.3.4       vctrs_0.3.1        fs_1.4.2           curl_4.3          </span>
 <span class="co">#&gt; [25] memoise_1.1.0      evaluate_0.14      rmarkdown_2.3.2    stringi_1.4.6     </span>
-<span class="co">#&gt; [29] compiler_4.0.0     pillar_1.4.5       desc_1.2.0         generics_0.0.2    </span>
+<span class="co">#&gt; [29] compiler_4.0.0     pillar_1.4.6       desc_1.2.0         generics_0.0.2    </span>
 <span class="co">#&gt; [33] backports_1.1.8    jsonlite_1.7.0     pkgconfig_2.0.3</span>
 </pre></div>
 </div>

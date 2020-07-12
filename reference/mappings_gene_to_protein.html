@@ -207,26 +207,14 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># By HGNC symbols</span>
 <span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/mappings_gene_to_protein.html'>mappings_gene_to_protein</a></span>(gene_name_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GCH1"</span>, <span class='st'>"MYOF"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span>
-#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
 #&gt;   gene.name gene.ensembl_id protein.uniprot_id
 #&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;             
 #&gt; 1 GCH1      ENSG00000131979 P30793            
 #&gt; 2 MYOF      ENSG00000138119 Q9NZM1            </div><div class='input'>
 <span class='co'># By Enselbl Ids</span>
 <span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/mappings_gene_to_protein.html'>mappings_gene_to_protein</a></span>(gene_id_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ENSG00000162594"</span>, <span class='st'>"ENSG00000113302"</span>), by_gene_id = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span>
-#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `...` is not empty.</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>We detected these problematic arguments:</span>
-#&gt; <span class='warning'>* `needs_dots`</span>
-#&gt; <span class='warning'></span>
-#&gt; <span class='warning'>These dots only exist to allow future extensions and should be empty.</span>
-#&gt; <span class='warning'>Did you misspecify an argument?</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
 #&gt;   gene.name gene.ensembl_id protein.uniprot_id
 #&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;             
 #&gt; 1 IL23R     ENSG00000162594 Q5VWK5            
