@@ -47,6 +47,7 @@ library("magrittr")
 library("dplyr")
 library("purrr")
 library("glue")
+library("ggplot2")
 library("igraph")
 library("epigraphdb")
 ```
@@ -194,6 +195,25 @@ lit_counts %>% print(n = 30)
 Note, the SemMedDB semantic types have been pre-filtered to only include a subset of possibilities.
 
 Further examples of these term IDs and descriptions can be found here - [https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml](https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml)
+
+### Plotting the overlapping term frequencies
+
+We can also visualise the above table as a bar chart. In this case we will remove Ethanol as it is an outlier.
+
+```{r}
+lit_counts %>% filter(n < 100) %>%
+  {
+    ggplot(.) +
+    aes(x = `st.name`, y = `n`, fill = `st.type`) +
+    geom_col() +
+    geom_text(
+      aes(label = `n`),
+      position = position_dodge(0.9),
+      hjust = 0
+    ) +
+    coord_flip()
+  }
+```
 
 ### Look in detail at one overlapping term
 
