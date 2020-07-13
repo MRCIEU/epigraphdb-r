@@ -155,6 +155,7 @@
 <span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     collapse</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://ggplot2.tidyverse.org">"ggplot2"</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://igraph.org">"igraph"</a></span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'igraph'</span>
@@ -427,11 +428,31 @@
 </pre></div>
 <p>Note, the SemMedDB semantic types have been pre-filtered to only include a subset of possibilities.</p>
 <p>Further examples of these term IDs and descriptions can be found here - <a href="https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml" class="uri">https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml</a></p>
+<div id="plotting-the-overlapping-term-frequencies" class="section level3">
+<h3 class="hasAnchor">
+<a href="#plotting-the-overlapping-term-frequencies" class="anchor"></a>Plotting the overlapping term frequencies</h3>
+<p>We can also visualise the above table as a bar chart. In this case we will remove Ethanol as it is an outlier.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="kw">lit_counts</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">n</span> <span class="op">&lt;</span> <span class="fl">100</span>) <span class="op">%&gt;%</span>
+  {
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">.</span>) <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">`st.name`</span>, y = <span class="kw">`n`</span>, fill = <span class="kw">`st.type`</span>) <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(label = <span class="kw">`n`</span>),
+      position = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span>(<span class="fl">0.9</span>),
+      hjust = <span class="fl">0</span>
+    ) <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()
+  }
+</pre></div>
+<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+</div>
 <div id="look-in-detail-at-one-overlapping-term" class="section level3">
 <h3 class="hasAnchor">
 <a href="#look-in-detail-at-one-overlapping-term" class="anchor"></a>Look in detail at one overlapping term</h3>
 <p>Here we look at cases where <code>Leptin</code> is the central overlapping term.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="kw">focus_term</span> <span class="op">&lt;-</span> <span class="st">"Leptin"</span>
 <span class="kw">lit_detail</span> <span class="op">&lt;-</span> <span class="kw">lit_df_filter</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">`st.name`</span> <span class="op">==</span> <span class="kw">focus_term</span>)
 <span class="kw">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>()
@@ -450,7 +471,7 @@
 <span class="co">#&gt; #   assoc_gwas.trait &lt;chr&gt;, assoc_gwas.id &lt;chr&gt;</span>
 </pre></div>
 <p>We can create a network diagram to visualise these relationships.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
+<div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="kw">lit_detail</span> <span class="op">&lt;-</span> <span class="kw">lit_detail</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="kw">`gwas.trait`</span>, <span class="kw">`assoc_gwas.trait`</span>), <span class="kw">stringr</span>::<span class="kw"><a href="https://stringr.tidyverse.org/reference/case.html">str_to_upper</a></span>)
 
@@ -480,7 +501,7 @@
 <span class="co">#&gt;  9 Adiponectin                       2</span>
 <span class="co">#&gt; 10 Insulin                           2</span>
 </pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
+<div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="kw">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span>(
   <span class="co"># exposure -&gt; s1 subject</span>
   <span class="kw">lit_detail</span> <span class="op">%&gt;%</span>
@@ -525,7 +546,7 @@
 <span class="co">#&gt; 13 Leptin                    Adiponectin               STIMULATES    </span>
 <span class="co">#&gt; 14 Leptin                    Insulin                   INTERACTS_WITH</span>
 </pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit">
+<div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="kw">plot_network</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, <span class="kw">show_edge_labels</span> = <span class="fl">FALSE</span>) {
 
   <span class="co"># default is to not display edge labels</span>
@@ -555,17 +576,17 @@
   )
 }
 </pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit">
+<div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="fu">plot_network</span>(<span class="kw">edges</span>, <span class="kw">nodes</span>, show_edge_labels = <span class="fl">TRUE</span>)
 </pre></div>
-<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-16-1.png" width="2187.5"></p>
+<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-17-1.png" width="2187.5"></p>
 </div>
 </div>
 <div id="checking-the-source-literature" class="section level2">
 <h2 class="hasAnchor">
 <a href="#checking-the-source-literature" class="anchor"></a>Checking the source literature</h2>
 <p>We can refer back to the articles to check the text that was used to derive the SemMedDB data. This is important due to the imperfect nature of the SemRep annotation process (<a href="https://semrep.nlm.nih.gov/" class="uri">https://semrep.nlm.nih.gov/</a>).</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
+<div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="kw">get_literature</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gwas_id</span>, <span class="kw">semmed_triple_id</span>) {
   <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/literature/gwas"</span>
   <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
@@ -613,7 +634,7 @@
 <h2 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
-<div class="sourceCode" id="cb17"><pre class="downlit">
+<div class="sourceCode" id="cb18"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
 <span class="co">#&gt; R version 4.0.0 (2020-04-24)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
@@ -635,19 +656,21 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] epigraphdb_0.2 igraph_1.2.5   glue_1.4.1     purrr_0.3.4    dplyr_1.0.0   </span>
-<span class="co">#&gt; [6] magrittr_1.5  </span>
+<span class="co">#&gt; [1] epigraphdb_0.2 igraph_1.2.5   ggplot2_3.3.2  glue_1.4.1     purrr_0.3.4   </span>
+<span class="co">#&gt; [6] dplyr_1.0.0    magrittr_1.5  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] knitr_1.29         tidyselect_1.1.0   R6_2.4.1           rlang_0.4.7       </span>
-<span class="co">#&gt;  [5] fansi_0.4.1        httr_1.4.1         stringr_1.4.0      tools_4.0.0       </span>
-<span class="co">#&gt;  [9] xfun_0.15          utf8_1.1.4         cli_2.0.2          htmltools_0.5.0   </span>
-<span class="co">#&gt; [13] ellipsis_0.3.1     yaml_2.2.1         assertthat_0.2.1   rprojroot_1.3-2   </span>
-<span class="co">#&gt; [17] digest_0.6.25      tibble_3.0.3       lifecycle_0.2.0    pkgdown_1.5.1.9000</span>
-<span class="co">#&gt; [21] crayon_1.3.4       vctrs_0.3.1        fs_1.4.2           curl_4.3          </span>
-<span class="co">#&gt; [25] memoise_1.1.0      evaluate_0.14      rmarkdown_2.3.2    stringi_1.4.6     </span>
-<span class="co">#&gt; [29] compiler_4.0.0     pillar_1.4.6       desc_1.2.0         generics_0.0.2    </span>
-<span class="co">#&gt; [33] backports_1.1.8    jsonlite_1.7.0     pkgconfig_2.0.3</span>
+<span class="co">#&gt;  [1] pillar_1.4.6       compiler_4.0.0     tools_4.0.0        digest_0.6.25     </span>
+<span class="co">#&gt;  [5] jsonlite_1.7.0     evaluate_0.14      memoise_1.1.0      lifecycle_0.2.0   </span>
+<span class="co">#&gt;  [9] tibble_3.0.3       gtable_0.3.0       pkgconfig_2.0.3    rlang_0.4.7       </span>
+<span class="co">#&gt; [13] cli_2.0.2          curl_4.3           yaml_2.2.1         pkgdown_1.5.1.9000</span>
+<span class="co">#&gt; [17] xfun_0.15          withr_2.2.0        stringr_1.4.0      httr_1.4.1        </span>
+<span class="co">#&gt; [21] knitr_1.29         generics_0.0.2     desc_1.2.0         fs_1.4.2          </span>
+<span class="co">#&gt; [25] vctrs_0.3.1        rprojroot_1.3-2    grid_4.0.0         tidyselect_1.1.0  </span>
+<span class="co">#&gt; [29] R6_2.4.1           fansi_0.4.1        rmarkdown_2.3.2    farver_2.0.3      </span>
+<span class="co">#&gt; [33] backports_1.1.8    scales_1.1.1       ellipsis_0.3.1     htmltools_0.5.0   </span>
+<span class="co">#&gt; [37] assertthat_0.2.1   colorspace_1.4-1   labeling_0.3       utf8_1.1.4        </span>
+<span class="co">#&gt; [41] stringi_1.4.6      munsell_0.5.0      crayon_1.3.4</span>
 </pre></div>
 </div>
   </div>
