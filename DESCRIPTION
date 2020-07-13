@@ -45,6 +45,7 @@ Imports:
     jsonlite,
     igraph,
     gtools,
-    stringr
+    stringr,
+    ggplot2
 VignetteBuilder: knitr
 Language: en-GB
