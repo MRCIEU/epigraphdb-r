@@ -163,7 +163,7 @@
     <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#get-pqtl'><code>GET /pqtl/</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(
+    <pre class="usage"><span class='fu'>pqtl</span>(
   <span class='kw'>query</span>,
   rtype = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mrres"</span>, <span class='st'>"simple"</span>, <span class='st'>"sglmr"</span>, <span class='st'>"inst"</span>, <span class='st'>"sense"</span>),
   pvalue = <span class='fl'>0.05</span>,
@@ -221,7 +221,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame of MR results, while searching for proteins</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>)</div><div class='output co'>#&gt; # A tibble: 16 x 8
+<span class='fu'>pqtl</span>(query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>)</div><div class='output co'>#&gt; # A tibble: 16 x 8
 #&gt;    expID  outID             outID_mrbase  nsnp method      beta      se   pvalue
 #&gt;    &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
 #&gt;  1 ADAM19 Forced expirator… UKB-a:337        1 Wald r…  6.82e-2 8.92e-3 2.10e-14
@@ -241,7 +241,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt; 15 ADAM19 Systolic blood p… UKB-a:360        1 Wald r… -2.11e-2 1.05e-2 4.51e- 2
 #&gt; 16 ADAM19 Diagnoses - main… UKB-a:574        1 Wald r… -3.70e-1 1.85e-1 4.58e- 2</div><div class='input'>
 <span class='co'># Returns a data frame with SNP information, while searching for traits</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(
+<span class='fu'>pqtl</span>(
   query = <span class='st'>"Inflammatory bowel disease"</span>,
   rtype = <span class='st'>"inst"</span>,
   searchflag = <span class='st'>"traits"</span>
@@ -261,7 +261,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt; # … with 46 more rows, and 4 more variables: author_exp &lt;chr&gt;,
 #&gt; #   author_out &lt;chr&gt;, trans_cis &lt;chr&gt;, pvalue &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Change a pvalue threshold (the default is 0.05)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(
+<span class='fu'>pqtl</span>(
   query = <span class='st'>"Inflammatory bowel disease"</span>,
   rtype = <span class='st'>"inst"</span>,
   pvalue = <span class='fl'>1.0</span>,
@@ -282,7 +282,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt; # … with 146 more rows, and 4 more variables: author_exp &lt;chr&gt;,
 #&gt; #   author_out &lt;chr&gt;, trans_cis &lt;chr&gt;, pvalue &lt;dbl&gt;</div><div class='input'>
 <span class='co'># Returns raw response if mode="raw"</span>
-<span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/pqtl.html'>pqtl</a></span>(
+<span class='fu'>pqtl</span>(
   query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>,
   mode = <span class='st'>"raw"</span>
 ) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 16

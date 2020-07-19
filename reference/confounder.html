@@ -163,7 +163,7 @@
     <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#get-confounder'><code>GET /confounder</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/confounder.html'>confounder</a></span>(
+    <pre class="usage"><span class='fu'>confounder</span>(
   exposure_trait = <span class='kw'>NULL</span>,
   outcome_trait = <span class='kw'>NULL</span>,
   type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"confounder"</span>, <span class='st'>"intermediate"</span>, <span class='st'>"reverse_intermediate"</span>, <span class='st'>"collider"</span>),
@@ -213,7 +213,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /confounder</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/confounder.html'>confounder</a></span>(exposure_trait = <span class='st'>"Body mass index"</span>, outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 91 x 24
+    <pre class="examples"><div class='input'><span class='fu'>confounder</span>(exposure_trait = <span class='st'>"Body mass index"</span>, outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 91 x 24
 #&gt;    exposure.id exposure.trait outcome.id outcome.trait cf.id cf.trait  r1.b
 #&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
 #&gt;  1 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.817

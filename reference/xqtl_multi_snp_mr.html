@@ -163,7 +163,7 @@
     <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr'><code>GET /xqtl/multi-snp-mr</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/xqtl_multi_snp_mr.html'>xqtl_multi_snp_mr</a></span>(
+    <pre class="usage"><span class='fu'>xqtl_multi_snp_mr</span>(
   exposure_gene = <span class='kw'>NULL</span>,
   outcome_trait = <span class='kw'>NULL</span>,
   mr_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"IVW"</span>, <span class='st'>"Egger"</span>),
@@ -210,7 +210,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /xqtl/multi-snp-mr</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/xqtl_multi_snp_mr.html'>xqtl_multi_snp_mr</a></span>(outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 11 x 7
+    <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span>(outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 11 x 7
 #&gt;    gene.ensembl_id gene.name   gwas.id gwas.trait         r.beta   r.se      r.p
 #&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;               &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
 #&gt;  1 ENSG00000134222 PSRC1       ieu-a-7 Coronary heart d… -0.214  0.0270 1.98e-15

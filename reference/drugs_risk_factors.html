@@ -163,7 +163,7 @@
     <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors'><code>GET /drugs/risk-factors</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/drugs_risk_factors.html'>drugs_risk_factors</a></span>(<span class='kw'>trait</span>, pval_threshold = <span class='fl'>1e-08</span>, mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
+    <pre class="usage"><span class='fu'>drugs_risk_factors</span>(<span class='kw'>trait</span>, pval_threshold = <span class='fl'>1e-08</span>, mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,7 +191,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /drugs/risk-factors</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/epigraphdb/man/drugs_risk_factors.html'>drugs_risk_factors</a></span>(trait = <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 6,684 x 13
+    <pre class="examples"><div class='input'><span class='fu'>drugs_risk_factors</span>(trait = <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 6,684 x 13
 #&gt;    trait.id trait.trait assoc_trait.id assoc_trait.tra… variant.name gene.name
 #&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;    
 #&gt;  1 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
