@@ -3,12 +3,12 @@
 #' [`GET /mr`](https://docs.epigraphdb.org/api/api-endpoints/#get-mr)
 #'
 #' @param exposure_trait
-#' A trait name, eg. "Body mass index",
+#' A trait name, e.g. "Body mass index",
 #' leaving `exposure_trait` as `NULL` will return MR information
 #' related to a specific `outcome`.
 #' **NOTE**: `exposure_trait` and `outcome_trait` cannot be both `NULL`.
 #' @param outcome_trait
-#' A trait name, eg. "Coronary heart disease",
+#' A trait name, e.g. "Coronary heart disease",
 #' leaving `outcome_trait` as `NULL` will return MR information
 #' related to a specific `exposure_trait`.
 #' **NOTE**: `exposure_trait` and `outcome_trait` cannot be both `NULL`.

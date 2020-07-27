@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 EpiGraphDB currently offers two API URLs
 
-- prodcution (default): https://api.epigraphdb.org
+- production (default): https://api.epigraphdb.org
 - development: http://dev-api.epigraphdb.org
 
 To switch to the development API, do

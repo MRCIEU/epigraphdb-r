@@ -4,7 +4,7 @@
 #'
 #' @param query
 #' (Required) A protein coding gene name or a trait name,
-#' eg. "ADAM19" or "Inflammatory bowel disease"
+#' e.g. "ADAM19" or "Inflammatory bowel disease"
 #' which cannot be `NULL`.
 #' @param rtype
 #' (Optional) A type of data to be extracted, which can be one of these options:
@@ -170,7 +170,7 @@ pqtl_list <- function(flag = c("exposures", "outcomes"),
 }
 
 
-#' Reformat reponse from pQTL results into a table
+#' Reformat response from pQTL results into a table
 #'
 #' @param response response for pQTL analysis
 #'

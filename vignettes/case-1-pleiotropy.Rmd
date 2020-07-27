@@ -39,8 +39,8 @@ In a graph representation, we will show that:
 
 This case study goes as follows:
 
-- For a list of genes that we wish to assess their pleiotropic profiles (against a variant of interests), we retrive from EpiGraphDB their mapped protein products.
-- Then respecively from the evidence on shared pathway network and protein-protein interaction network, we can extract the proteins groups formed in these networks as connected communities to assess the pleiotropic profiles of the genes.
+- For a list of genes that we wish to assess their pleiotropic profiles (against a variant of interests), we retrieve from EpiGraphDB their mapped protein products.
+- Then respectively from the evidence on shared pathway network and protein-protein interaction network, we can extract the proteins groups formed in these networks as connected communities to assess the pleiotropic profiles of the genes.
 
 ```{r}
 library("magrittr")
@@ -240,7 +240,7 @@ plot(pathway_protein_graph)
 ## Retrieving shared protein-protein interactions
 
 We can complement the information given by pathway ontologies with data of interactions between proteins.
-For each pair of proteins, we retrieve shared protein-protein interactions, either a direct interaction or an interaction where there's one mediator protein in the middle (see paramaters section).
+For each pair of proteins, we retrieve shared protein-protein interactions, either a direct interaction or an interaction where there's one mediator protein in the middle (see parameters section).
 
 ```{r}
 get_ppi <- function(gene_protein_df, n_intermediate_proteins = 0) {

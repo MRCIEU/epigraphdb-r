@@ -72,7 +72,7 @@ For more information on the API endpoints, please visit:
 
 As a general principle, we offer two modes of the returned data:
 a `table` mode (default) that returns a data frame,
-and a `raw` mode that preserves the hierachical structure of the upstream
+and a `raw` mode that preserves the hierarchical structure of the upstream
 json data and contains other information that might benefit users.
 
 ### `mode = "table"`
@@ -104,7 +104,7 @@ response %>% str(2)
 
 There are several reasons that a `raw` mode might benefit you:
 
-1. The `results` component preserves the upstream hierachical json structure
+1. The `results` component preserves the upstream hierarchical json structure
    that might be useful for users aiming for specific tasks
    such as rendering network plots or batch post-processing the returned data
    in a large scale.

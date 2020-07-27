@@ -108,7 +108,7 @@ gene_list
 
 ## Using Mendelian randomization results for causal effect estimation
 
-The next step is to find out whether any of these genes have a comparable and statistically plausable effect on IBD.
+The next step is to find out whether any of these genes have a comparable and statistically plausible effect on IBD.
 
 Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (https://epigraphdb.org/xqtl/) via the
 [GET /xqtl/single-snp-mr](https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr)

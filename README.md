@@ -67,7 +67,7 @@ how to use the API in R please check out the following articles:
 | Article  |
 |---|
 | [Using EpiGraphDB R package](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html) |
-| [Using EpiGraphDB API (from R and commandline) ](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html) |
+| [Using EpiGraphDB API (from R and command line) ](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html) |
 | [Package options](https://mrcieu.github.io/epigraphdb-r/articles/options.html)|
 | [Meta functionalities of the EpiGraphDB platform](https://mrcieu.github.io/epigraphdb-r/articles/meta-functionalities.html)|
 | [Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations](https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html)|

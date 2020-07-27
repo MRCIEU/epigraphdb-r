@@ -20,7 +20,7 @@ api_request(
 \item{mode}{Either \code{"table"} (returns tibble) or
 \code{"raw"} (returns raw response parsed from json to R list).}
 
-\item{method}{A specifc request handler, e.g. \code{epi_get_request}}
+\item{method}{A specific request handler, e.g. \code{epi_get_request}}
 
 \item{call}{The function call to identify the original function
 when things go wrong}

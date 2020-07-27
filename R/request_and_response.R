@@ -126,7 +126,7 @@ api_post_request <- function(route, params, call = sys.call(-1)) {
 #' @param params A list of parameters to send
 #' @param mode Either `"table"` (returns tibble) or
 #' `"raw"` (returns raw response parsed from json to R list).
-#' @param method A specifc request handler, e.g. `epi_get_request`
+#' @param method A specific request handler, e.g. `epi_get_request`
 #' @param call The function call to identify the original function
 #' when things go wrong
 #'

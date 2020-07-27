@@ -2,7 +2,7 @@
 % Please edit documentation in R/pqtl.R
 \name{pqtl_table}
 \alias{pqtl_table}
-\title{Reformat reponse from pQTL results into a table}
+\title{Reformat response from pQTL results into a table}
 \usage{
 pqtl_table(response)
 }
@@ -10,6 +10,6 @@ pqtl_table(response)
 \item{response}{response for pQTL analysis}
 }
 \description{
-Reformat reponse from pQTL results into a table
+Reformat response from pQTL results into a table
 }
 \keyword{internal}

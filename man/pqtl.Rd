@@ -14,7 +14,7 @@ pqtl(
 }
 \arguments{
 \item{query}{(Required) A protein coding gene name or a trait name,
-eg. "ADAM19" or "Inflammatory bowel disease"
+e.g. "ADAM19" or "Inflammatory bowel disease"
 which cannot be \code{NULL}.}
 
 \item{rtype}{(Optional) A type of data to be extracted, which can be one of these options:

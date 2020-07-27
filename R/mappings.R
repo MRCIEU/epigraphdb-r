@@ -18,7 +18,9 @@
 #'
 #' # By Enselbl Ids
 #' mappings_gene_to_protein(gene_id_list = c("ENSG00000162594", "ENSG00000113302"), by_gene_id = TRUE)
-mappings_gene_to_protein <- function(gene_name_list = NULL, gene_id_list = NULL, by_gene_id = FALSE, mode = c("table", "raw")) {
+mappings_gene_to_protein <- function(gene_name_list = NULL, gene_id_list = NULL,
+                                     by_gene_id = FALSE,
+                                     mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- query_epigraphdb(
     route = "/mappings/gene-to-protein",
