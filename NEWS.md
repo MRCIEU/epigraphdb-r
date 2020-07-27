@@ -2,6 +2,7 @@
 
 Current ongoing development
 
+- Shortened the startup message.
 - Added functions `protein_in_pathway`, `mappings_gene_to_protein`
 - Added RMarkdown vignettes to the equivalent Jupyter notebooks in the
   [EpiGraphDB Github repo](https://github.com/MRCIEU/epigraphdb).

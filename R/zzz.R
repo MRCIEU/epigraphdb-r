@@ -1,12 +1,7 @@
 .onAttach <- function(libname, pkgname) { # nolint
-  packageStartupMessage(glue::glue("
-    EpiGraphDB v0.3
-
-    Web API: https://api.epigraphdb.org
-
-    To turn off this message, use
-    suppressPackageStartupMessages({{library(\"epigraphdb\")}})
-  "))
+  packageStartupMessage("
+    EpiGraphDB v0.3 (API: https://api.epigraphdb.org)
+  ")
 }
 
 .onLoad <- function(libname, pkgname) { # nolint
