@@ -55,3 +55,8 @@ reference:
       - xqtl_single_snp_mr
       - protein_in_pathway
       - mappings_gene_to_protein
+      - meta_nodes_list
+      - meta_rels_list
+      - meta_nodes_list_node
+      - meta_rels_list_rel
+      - cypher

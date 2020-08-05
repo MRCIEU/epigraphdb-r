@@ -6,7 +6,7 @@
 \usage{
 query_epigraphdb(
   route,
-  params,
+  params = NULL,
   mode = c("raw", "table"),
   method = c("GET", "POST")
 )

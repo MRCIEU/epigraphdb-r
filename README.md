@@ -218,11 +218,63 @@ We also provide a list of functions (see the table below) that are equivalent to
       </td>
     </tr>
     <tr>
+      <td><strong>Utilities</strong></td>
+      <td></td>
+    </tr>
+    <tr>
       <td>
         <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a>
       </td>
       <td>
         <a href="https://mrcieu.github.io/epigraphdb-r/reference/mappings_gene_to_protein.html"><code>mappings_gene_to_protein</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist"><code>GET /meta/nodes/list</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_nodes_list.html"><code>meta_nodes_list</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanrelslist"><code>GET /meta/rels/list</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_rels_list.html"><code>meta_rels_list</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist"><code>GET /meta/nodes/{meta_node}/list</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_nodes_list_node.html"><code>meta_nodes_list_node</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist"><code>GET /meta/rels/{meta_rel}/list</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_rels_list_rel.html"><code>meta_rels_list_rel</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch"><code>GET /meta/nodes/{meta_node}/search</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_nodes_search_node.html"><code>meta_nodes_search_node</code></a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-cypher"><code>POST /cypher</code></a>
+      </td>
+      <td>
+        <a href="https://mrcieu.github.io/epigraphdb-r/reference/cypher.html"><code>cypher</code></a>
       </td>
     </tr>
   </tbody>

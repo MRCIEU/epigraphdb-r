@@ -6,6 +6,8 @@ Current ongoing development
 - Added functions `protein_in_pathway`, `mappings_gene_to_protein`
 - Added RMarkdown vignettes to the equivalent Jupyter notebooks in the
   [EpiGraphDB GitHub repo](https://github.com/MRCIEU/epigraphdb).
+- Added functions `meta_nodes_list`, `meta_rels_list`, `meta_nodes_list_node`, `meta_rels_list_rel`,
+  `meta_nodes_search_node`, `cypher`
 
 # epigraphdb 0.2 (2020-04-21)
 

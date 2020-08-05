@@ -9,6 +9,8 @@
 ^pkgdown$
 ^\.gitlab-ci\.yml$
 ^TODO.org$
+^TODO.md$
+^TAGS$
 ^Makefile$
 ^ci$
 ^\.lintr$

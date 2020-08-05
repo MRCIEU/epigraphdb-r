@@ -69,7 +69,7 @@
 #'   }
 #' )
 #' @export
-query_epigraphdb <- function(route, params, mode = c("raw", "table"), method = c("GET", "POST")) {
+query_epigraphdb <- function(route, params = NULL, mode = c("raw", "table"), method = c("GET", "POST")) {
   mode <- match.arg(mode)
   method <- match.arg(method)
   # NOTE: Add POST at a later date
