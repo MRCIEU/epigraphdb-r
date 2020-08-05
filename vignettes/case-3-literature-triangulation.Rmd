@@ -201,17 +201,18 @@ Further examples of these term IDs and descriptions can be found here - [https:/
 We can also visualise the above table as a bar chart. In this case we will remove Ethanol as it is an outlier.
 
 ```{r}
-lit_counts %>% filter(n < 100) %>%
+lit_counts %>%
+  filter(n < 100) %>%
   {
     ggplot(.) +
-    aes(x = `st.name`, y = `n`, fill = `st.type`) +
-    geom_col() +
-    geom_text(
-      aes(label = `n`),
-      position = position_dodge(0.9),
-      hjust = 0
-    ) +
-    coord_flip()
+      aes(x = `st.name`, y = `n`, fill = `st.type`) +
+      geom_col() +
+      geom_text(
+        aes(label = `n`),
+        position = position_dodge(0.9),
+        hjust = 0
+      ) +
+      coord_flip()
   }
 ```
 
