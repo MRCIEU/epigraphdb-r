@@ -241,12 +241,15 @@ We also provide a list of functions (see the table below) that are equivalent to
 
 Please cite EpiGraphDB as
 
-> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. *The EpiGraphDB platform supports data mining for health data science*. https://epigraphdb.org
+> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. 2020. EpiGraphDB: a database and data mining platform for health data science. *bioRxiv*. doi:10.1101/2020.08.01.230193.
 
 ```
 @article {epigraphdb2020,
   author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
-  title = {The {EpiGraphDB} platform supports data mining for health data science},
+  title = {{EpiGraphDB}: a database and data mining platform for health data science},
+  journal = {bioRxiv},
+  year = {2020},
+  doi = {10.1101/2020.08.01.230193},
   url = {https://epigraphdb.org}
 }
 ```
