@@ -49,7 +49,9 @@ docs:
 
 ## Check for CRAN
 check-cran:
-	Rscript -e "rhub::check_for_cran()"
+	# NOTE: the env_var tries to deal with utf8 issues
+	# https://github.com/r-hub/rhub/issues/374
+	Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
 
 #################################################################################
 # Self Documenting Commands                                                     #
