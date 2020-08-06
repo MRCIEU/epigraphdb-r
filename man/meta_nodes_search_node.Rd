@@ -35,7 +35,7 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \value{
-Data from \code{GET /meta/rels/{meta_rel}/list}
+Data from \code{GET /meta/nodes/{meta_node}/search}
 }
 \description{
 Note

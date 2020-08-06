@@ -2,6 +2,7 @@
 
 export("%>%")
 export(confounder)
+export(cypher)
 export(drugs_risk_factors)
 export(genetic_cor)
 export(literature_gwas)

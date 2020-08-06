@@ -5,7 +5,7 @@
 \title{List meta rels (e.g. MR, etc.)
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metarelslist}{\code{GET /meta/rels/list}}}
 \usage{
-meta_rels_list(mode = c("table", "raw"))
+meta_rels_list(mode = c("raw"))
 }
 \arguments{
 \item{mode}{If \code{mode = "table"}, returns a data frame

@@ -5,7 +5,7 @@
 \title{List meta nodes (e.g. Gwas, Gene, etc.)
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist}{\code{GET /meta/nodes/list}}}
 \usage{
-meta_nodes_list(mode = c("table", "raw"))
+meta_nodes_list(mode = c("raw"))
 }
 \arguments{
 \item{mode}{If \code{mode = "table"}, returns a data frame
