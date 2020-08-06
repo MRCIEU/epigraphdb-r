@@ -9,6 +9,7 @@ test_that("/xqtl/multi-snp-mr", {
     )
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("/xqtl/single-snp-mr", {
@@ -20,6 +21,7 @@ test_that("/xqtl/single-snp-mr", {
     )
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("xqtl_multi_snp_mr", {

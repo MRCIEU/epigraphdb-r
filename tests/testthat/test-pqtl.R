@@ -15,6 +15,7 @@ test_that("pqtl protein endpoint", {
     )
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("pqtl trait endpoint", {

@@ -11,6 +11,7 @@ test_that("/confounder", {
     )
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("confounder", {

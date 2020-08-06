@@ -9,6 +9,7 @@ test_that("genetic_cor endpoint", {
     )
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("genetic_cor mode = \"table\"", {

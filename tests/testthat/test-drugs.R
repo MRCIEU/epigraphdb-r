@@ -9,6 +9,7 @@ test_that("/drugs/risk-factors", {
     )
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("drugs_risk_factors", {

@@ -13,6 +13,7 @@ test_that("POST /protein/in-pathway", {
     httr::add_headers(.headers = c("client-type" = "R"))
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("protein_in_pathway", {
