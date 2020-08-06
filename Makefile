@@ -31,12 +31,13 @@ lint:
 fmt:
 	Rscript -e "styler::style_pkg(filetype=c('R', 'Rmd'))"
 
-## Build package and install locally
+## Build package
 build:
-	Rscript -e "devtools::install()"
+	Rscript -e "devtools::build()"
 
 ## Build package and install locally
-install: build
+install:
+	Rscript -e "devtools::install()"
 
 ## Uninstall
 uninstall:
@@ -47,11 +48,15 @@ docs:
 	Rscript -e "devtools::document()"
 	Rscript -e "pkgdown::build_site(preview = TRUE)"
 
-## Check for CRAN
+## Check for CRAN submission (via rhub)
 check-cran:
 	# NOTE: the env_var tries to deal with utf8 issues
 	# https://github.com/r-hub/rhub/issues/374
 	Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+
+## Check for MS windows compatibility (via devtools::check_win_devel)
+check-windows:
+	Rscript -e "devtools::check_win_devel()"
 
 #################################################################################
 # Self Documenting Commands                                                     #

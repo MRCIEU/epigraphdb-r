@@ -18,12 +18,19 @@ EpiGraphDB aims to support appropriate application and interpretation of causal 
 
 ## Installation
 
-[`devtools`](https://devtools.r-lib.org/)
-is required to install from github:
-
+To install the latest development version from github (
+[`devtools`](https://devtools.r-lib.org/) is required
+):
 ```r
 # install.packages("devtools")
 devtools::install_github("MRCIEU/epigraphdb-r")
+```
+
+To install a stable version from CRAN (
+we are in the process of submitting `epigraphdb` to CRAN
+):
+```r
+install.packages("epigraphdb")
 ```
 
 **NOTE**: while the package repository is "epigraphdb-r",
