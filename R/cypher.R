@@ -1,4 +1,5 @@
 #' Send a query in Cypher to EpiGraphDB
+#'
 #' NOTE: this function is intended for advanced uses.
 #' Regular users are recommended to use standard query functions
 #'

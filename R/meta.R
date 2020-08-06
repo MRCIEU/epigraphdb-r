@@ -1,4 +1,5 @@
 #' List meta nodes (e.g. Gwas, Gene, etc.)
+#'
 #' [`GET /meta/nodes/list`](https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist)
 #'
 #' @inheritParams mr
@@ -20,6 +21,7 @@ meta_nodes_list <- function(mode = c("raw")) {
 }
 
 #' List meta rels (e.g. MR, etc.)
+#'
 #' [`GET /meta/rels/list`](https://docs.epigraphdb.org/api/api-endpoints/#get-metarelslist)
 #'
 #' @inheritParams mr
@@ -41,9 +43,8 @@ meta_rels_list <- function(mode = c("raw")) {
 }
 
 #' List nodes under a meta node
-#' [`GET /meta/nodes/{meta_node}/list`](https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist)
 #'
-#' Note
+#' [`GET /meta/nodes/{meta_node}/list`](https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist)
 #'
 #' @inheritParams mr
 #' @param meta_node
@@ -79,9 +80,8 @@ meta_nodes_list_node <- function(meta_node, full_data = TRUE, limit = 10, offset
 }
 
 #' List relationships under a meta relationship
-#' [`GET /meta/rels/{meta_rel}/list`](https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist)
 #'
-#' Note
+#' [`GET /meta/rels/{meta_rel}/list`](https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist)
 #'
 #' @inheritParams mr
 #' @param meta_rel
@@ -111,9 +111,8 @@ meta_rels_list_rel <- function(meta_rel, limit = 10, offset = 0,
 }
 
 #' Search a node by its id field, or its name field
-#' [`GET /meta/nodes/{meta_node}/search`](https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch)
 #'
-#' Note
+#' [`GET /meta/nodes/{meta_node}/search`](https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch)
 #'
 #' @inheritParams mr
 #' @param meta_node

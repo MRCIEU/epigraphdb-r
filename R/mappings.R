@@ -1,4 +1,5 @@
 #' Return protein uniprot_id from associated genes
+#'
 #' [`POST /mappings/gene-to-protein`](https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein)
 #'
 #' @param gene_name_list
