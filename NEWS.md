@@ -2,7 +2,7 @@
 
 Current ongoing development.
 
-# epigraphdb 0.2.1
+# epigraphdb 0.2.1 (2020-08-06)
 
 - Shortened the startup message.
 - Added functions `protein_in_pathway`, `mappings_gene_to_protein`
