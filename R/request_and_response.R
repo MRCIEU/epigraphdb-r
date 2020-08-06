@@ -142,7 +142,7 @@ api_request <- function(route, params,
   if (mode == "table") {
     return(flatten_response(response))
   }
-  response %>% httr::content(as = "parsed", encoding = "utf-8")
+  response %>% httr::content(as = "parsed")
 }
 
 #' Flatten the "results" field from an API response to a tibble df
@@ -158,7 +158,7 @@ api_request <- function(route, params,
 #' @keywords internal
 flatten_response <- function(response, field = "results") {
   response %>%
-    httr::content(as = "text", encoding = "utf-8") %>%
+    httr::content(as = "text") %>%
     jsonlite::fromJSON(flatten = TRUE) %>%
     purrr::pluck(field) %>%
     tibble::as_tibble()

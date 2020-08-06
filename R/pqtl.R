@@ -70,7 +70,7 @@ pqtl <- function(query,
       searchflag = searchflag
     )
   ) %>%
-    httr::content(encoding = "utf-8") %>%
+    httr::content() %>%
     purrr::pluck("results")
   if (mode == "table" && length(response) > 0) {
     return(pqtl_table(response))
@@ -119,7 +119,7 @@ pqtl_pleio <- function(rsid = NULL,
       prflag = prflag
     )
   ) %>%
-    httr::content(encoding = "utf-8") %>%
+    httr::content() %>%
     purrr::pluck("results")
 
   if (mode == "table" && length(response) > 0 &&
@@ -160,7 +160,7 @@ pqtl_list <- function(flag = c("exposures", "outcomes"),
     route = "/pqtl/list/",
     params = list(flag = flag)
   ) %>%
-    httr::content(encoding = "utf-8") %>%
+    httr::content() %>%
     purrr::pluck("results")
 
   if (mode == "table" && length(response) > 0) {
