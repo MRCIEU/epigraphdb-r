@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catch error for an HTTP response — stop_for_status • epigraphdb</title>
+<title>Send a query in Cypher to EpiGraphDB
+NOTE: this function is intended for advanced uses.
+Regular users are recommended to use standard query functions — cypher • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +50,12 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Catch error for an HTTP response — stop_for_status" />
-<meta property="og:description" content="Modifies from httr::stop_for_status" />
+<meta property="og:title" content="Send a query in Cypher to EpiGraphDB
+NOTE: this function is intended for advanced uses.
+Regular users are recommended to use standard query functions — cypher" />
+<meta property="og:description" content="Send a query in Cypher to EpiGraphDB
+NOTE: this function is intended for advanced uses.
+Regular users are recommended to use standard query functions" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -154,27 +160,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Catch error for an HTTP response</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/request_and_response.R'><code>R/request_and_response.R</code></a></small>
-    <div class="hidden name"><code>stop_for_status.Rd</code></div>
+    <h1>Send a query in Cypher to EpiGraphDB
+NOTE: this function is intended for advanced uses.
+Regular users are recommended to use standard query functions</h1>
+    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/cypher.R'><code>R/cypher.R</code></a></small>
+    <div class="hidden name"><code>cypher.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Modifies from httr::stop_for_status</p>
+    <p>Send a query in Cypher to EpiGraphDB
+NOTE: this function is intended for advanced uses.
+Regular users are recommended to use standard query functions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stop_for_status</span>(<span class='kw'>response</span>, call = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(<span class='op'>-</span><span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>cypher</span>(<span class='kw'>query</span>, mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>response</th>
-      <td><p>An httr response</p></td>
+      <th>query</th>
+      <td><p>A Cypher query.</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>cypher</span>(<span class='st'>"MATCH (n:Gwas) RETURN n LIMIT 2"</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 16
+#&gt;   n.note n.access n.year n.mr  n.author n.consortium n.sex n.priority
+#&gt;   &lt;lgl&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;lgl&gt;        &lt;chr&gt; &lt;chr&gt;     
+#&gt; 1 NA     public   2018   1     Vosa U   NA           Male… 0         
+#&gt; 2 NA     public   2018   1     Vosa U   NA           Male… 0         
+#&gt; # … with 8 more variables: n.population &lt;chr&gt;, n.unit &lt;lgl&gt;,
+#&gt; #   n.sample_size &lt;chr&gt;, n.nsnp &lt;chr&gt;, n.trait &lt;chr&gt;, n.id &lt;chr&gt;,
+#&gt; #   n.subcategory &lt;lgl&gt;, n.category &lt;lgl&gt;</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

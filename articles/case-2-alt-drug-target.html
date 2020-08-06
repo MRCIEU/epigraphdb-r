@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Case study 2: Identification of potential drug targets</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/case-2-alt-drug-target.Rmd"><code>vignettes/case-2-alt-drug-target.Rmd</code></a></small>
       <div class="hidden name"><code>case-2-alt-drug-target.Rmd</code></div>
 
     </div>
@@ -157,13 +157,10 @@
 <span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     collapse</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
-<span class="co">#&gt;   EpiGraphDB v0.3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
+<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
 </pre></div>
 <p>Here we configure the parameters used in the case study example. We illustrate this approach using IL23R, an established drug target for inflammatory bowel disease (IBD) (Duerr et al., 2006; Momozawa et al., 2011).</p>
 <p>While specific IL23R interventions are still undergoing trials, there is a possibility that these therapies may not be effective for all or even the majority of patients. This case study therefore explores potential alternative drug targets.</p>
@@ -230,7 +227,7 @@
 <div id="using-mendelian-randomization-results-for-causal-effect-estimation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-mendelian-randomization-results-for-causal-effect-estimation" class="anchor"></a>Using Mendelian randomization results for causal effect estimation</h2>
-<p>The next step is to find out whether any of these genes have a comparable and statistically plausable effect on IBD.</p>
+<p>The next step is to find out whether any of these genes have a comparable and statistically plausible effect on IBD.</p>
 <p>Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (<a href="https://epigraphdb.org/xqtl/" class="uri">https://epigraphdb.org/xqtl/</a>) via the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr">GET /xqtl/single-snp-mr</a> endpoint.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">extract_mr</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">outcome_trait</span>, <span class="kw">gene_list</span>, <span class="kw">qtl_type</span>) {
@@ -368,7 +365,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

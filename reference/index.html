@@ -186,7 +186,7 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-topics" class="hasAnchor"><a href="#section-topics" class="anchor"></a>Topics</h2>
+          <h2 id="section-topic-queries" class="hasAnchor"><a href="#section-topic-queries" class="anchor"></a>Topic queries</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -280,13 +280,69 @@ available in the database</p></td>
           <p><code><a href="protein_in_pathway.html">protein_in_pathway()</a></code> </p>
         </td>
         <td><p>For the list of proteins, returns their associated pathway data</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-utilities" class="hasAnchor"><a href="#section-utilities" class="anchor"></a>Utilities</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="mappings_gene_to_protein.html">mappings_gene_to_protein()</a></code> </p>
         </td>
         <td><p>Return protein uniprot_id from associated genes
 <a href='https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein'><code>POST /mappings/gene-to-protein</code></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="meta_nodes_list.html">meta_nodes_list()</a></code> </p>
+        </td>
+        <td><p>List meta nodes (e.g. Gwas, Gene, etc.)
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist'><code>GET /meta/nodes/list</code></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="meta_rels_list.html">meta_rels_list()</a></code> </p>
+        </td>
+        <td><p>List meta rels (e.g. MR, etc.)
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metarelslist'><code>GET /meta/rels/list</code></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="meta_nodes_list_node.html">meta_nodes_list_node()</a></code> </p>
+        </td>
+        <td><p>List nodes under a meta node
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist'><code>GET /meta/nodes/{meta_node}/list</code></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="meta_rels_list_rel.html">meta_rels_list_rel()</a></code> </p>
+        </td>
+        <td><p>List relationships under a meta relationship
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist'><code>GET /meta/rels/{meta_rel}/list</code></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="meta_nodes_search_node.html">meta_nodes_search_node()</a></code> </p>
+        </td>
+        <td><p>Search a node by its id field, or its name field
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch'><code>GET /meta/nodes/{meta_node}/search</code></a></p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cypher.html">cypher()</a></code> </p>
+        </td>
+        <td><p>Send a query in Cypher to EpiGraphDB
+NOTE: this function is intended for advanced uses.
+Regular users are recommended to use standard query functions</p></td>
       </tr>
     </tbody>
     </table>
@@ -302,7 +358,7 @@ available in the database</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href='https://yiliu6240.github.io'>Yi Liu</a>, Valeriia Haberland, <a href='https://marinalearning.netlify.com'>Marina Vabistsevits</a>, <a href='http://www.biocompute.org.uk/'>Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

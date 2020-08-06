@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catch error for an HTTP response — stop_for_status • epigraphdb</title>
+<title>List relationships under a meta relationship
+GET /meta/rels/{meta_rel}/list — meta_rels_list_rel • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +49,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Catch error for an HTTP response — stop_for_status" />
-<meta property="og:description" content="Modifies from httr::stop_for_status" />
+<meta property="og:title" content="List relationships under a meta relationship
+GET /meta/rels/{meta_rel}/list — meta_rels_list_rel" />
+<meta property="og:description" content="Note" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -154,27 +156,67 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Catch error for an HTTP response</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/request_and_response.R'><code>R/request_and_response.R</code></a></small>
-    <div class="hidden name"><code>stop_for_status.Rd</code></div>
+    <h1>List relationships under a meta relationship
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist'><code>GET /meta/rels/{meta_rel}/list</code></a></h1>
+    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/meta.R'><code>R/meta.R</code></a></small>
+    <div class="hidden name"><code>meta_rels_list_rel.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Modifies from httr::stop_for_status</p>
+    <p>Note</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stop_for_status</span>(<span class='kw'>response</span>, call = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(<span class='op'>-</span><span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>meta_rels_list_rel</span>(<span class='kw'>meta_rel</span>, limit = <span class='fl'>10</span>, offset = <span class='fl'>0</span>, mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>response</th>
-      <td><p>An httr response</p></td>
+      <th>meta_rel</th>
+      <td><p>Name of a meta relationship (e.g. MR). Use <code>meta_rels_list</code> to get the full list of meta relationships.</p></td>
+    </tr>
+    <tr>
+      <th>limit</th>
+      <td><p>Max number of items to retrieve.</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>Number of items to skip. Use <code>limit</code> and <code>offset</code> in combination to do pagination.</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Data from <code>GET /meta/rels/{meta_rel}/list</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># List the first 5 MR relationships</span>
+<span class='fu'>meta_rels_list_rel</span>(meta_rel = <span class='st'>"MR"</span>, limit = <span class='fl'>5</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 46
+#&gt;   n.note n.ncase n.access n.year n.mr  n.author n.consortium n.sex n.priority
+#&gt;   &lt;lgl&gt;  &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;     
+#&gt; 1 NA     8718    public   2017   1     Neale    Neale Lab    Male… 1         
+#&gt; 2 NA     118     public   2017   1     Neale    Neale Lab    Male… 1         
+#&gt; 3 NA     1489    public   2017   1     Neale    Neale Lab    Male… 1         
+#&gt; 4 NA     2469    public   2017   1     Neale    Neale Lab    Male… 1         
+#&gt; 5 NA     4609    public   2017   1     Neale    Neale Lab    Male… 1         
+#&gt; # … with 37 more variables: n.population &lt;chr&gt;, n.unit &lt;chr&gt;,
+#&gt; #   n.sample_size &lt;chr&gt;, n.nsnp &lt;chr&gt;, n.ncontrol &lt;chr&gt;, n.trait &lt;chr&gt;,
+#&gt; #   n.id &lt;chr&gt;, n.subcategory &lt;lgl&gt;, n.category &lt;lgl&gt;, r.b &lt;dbl&gt;, r.se &lt;dbl&gt;,
+#&gt; #   r.method &lt;chr&gt;, r.nsnp &lt;int&gt;, r.selection &lt;chr&gt;, r.pval &lt;dbl&gt;,
+#&gt; #   r.ci_upp &lt;dbl&gt;, r.log10pval &lt;dbl&gt;, r.ci_low &lt;dbl&gt;, r.moescore &lt;dbl&gt;,
+#&gt; #   m.ncase &lt;chr&gt;, m.access &lt;chr&gt;, m.year &lt;chr&gt;, m.mr &lt;chr&gt;, m.author &lt;chr&gt;,
+#&gt; #   m.consortium &lt;lgl&gt;, m.sex &lt;chr&gt;, m.priority &lt;chr&gt;, m.pmid &lt;chr&gt;,
+#&gt; #   m.population &lt;chr&gt;, m.unit &lt;lgl&gt;, m.sample_size &lt;chr&gt;, m.nsnp &lt;chr&gt;,
+#&gt; #   m.ncontrol &lt;chr&gt;, m.trait &lt;chr&gt;, m.id &lt;chr&gt;, m.subcategory &lt;chr&gt;,
+#&gt; #   m.category &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

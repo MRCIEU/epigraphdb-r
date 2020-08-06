@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catch error for an HTTP response — stop_for_status • epigraphdb</title>
+<title>List meta nodes (e.g. Gwas, Gene, etc.)
+GET /meta/nodes/list — meta_nodes_list • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +49,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Catch error for an HTTP response — stop_for_status" />
-<meta property="og:description" content="Modifies from httr::stop_for_status" />
+<meta property="og:title" content="List meta nodes (e.g. Gwas, Gene, etc.)
+GET /meta/nodes/list — meta_nodes_list" />
+<meta property="og:description" content="List meta nodes (e.g. Gwas, Gene, etc.)
+GET /meta/nodes/list" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -154,27 +157,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Catch error for an HTTP response</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/request_and_response.R'><code>R/request_and_response.R</code></a></small>
-    <div class="hidden name"><code>stop_for_status.Rd</code></div>
+    <h1>List meta nodes (e.g. Gwas, Gene, etc.)
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist'><code>GET /meta/nodes/list</code></a></h1>
+    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/meta.R'><code>R/meta.R</code></a></small>
+    <div class="hidden name"><code>meta_nodes_list.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Modifies from httr::stop_for_status</p>
+    <p>List meta nodes (e.g. Gwas, Gene, etc.)
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist'><code>GET /meta/nodes/list</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>stop_for_status</span>(<span class='kw'>response</span>, call = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(<span class='op'>-</span><span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>meta_nodes_list</span>(mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>response</th>
-      <td><p>An httr response</p></td>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Data from <code>GET /meta/nodes/list</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>meta_nodes_list</span>()</div><div class='output co'>#&gt; [[1]]
+#&gt; [1] "Gwas"
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] "Disease"
+#&gt; 
+#&gt; [[3]]
+#&gt; [1] "Drug"
+#&gt; 
+#&gt; [[4]]
+#&gt; [1] "Efo"
+#&gt; 
+#&gt; [[5]]
+#&gt; [1] "Event"
+#&gt; 
+#&gt; [[6]]
+#&gt; [1] "Gene"
+#&gt; 
+#&gt; [[7]]
+#&gt; [1] "Tissue"
+#&gt; 
+#&gt; [[8]]
+#&gt; [1] "Literature"
+#&gt; 
+#&gt; [[9]]
+#&gt; [1] "Pathway"
+#&gt; 
+#&gt; [[10]]
+#&gt; [1] "Protein"
+#&gt; 
+#&gt; [[11]]
+#&gt; [1] "SemmedTerm"
+#&gt; 
+#&gt; [[12]]
+#&gt; [1] "Variant"
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

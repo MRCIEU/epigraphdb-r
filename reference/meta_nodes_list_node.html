@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Catch error for an HTTP response — stop_for_status • epigraphdb</title>
+<title>List nodes under a meta node
+GET /meta/nodes/{meta_node}/list — meta_nodes_list_node • epigraphdb</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +49,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Catch error for an HTTP response — stop_for_status" />
-<meta property="og:description" content="Modifies from httr::stop_for_status" />
+<meta property="og:title" content="List nodes under a meta node
+GET /meta/nodes/{meta_node}/list — meta_nodes_list_node" />
+<meta property="og:description" content="Note" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -154,27 +156,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Catch error for an HTTP response</h1>
-    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/request_and_response.R'><code>R/request_and_response.R</code></a></small>
-    <div class="hidden name"><code>stop_for_status.Rd</code></div>
+    <h1>List nodes under a meta node
+<a href='https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist'><code>GET /meta/nodes/{meta_node}/list</code></a></h1>
+    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/meta.R'><code>R/meta.R</code></a></small>
+    <div class="hidden name"><code>meta_nodes_list_node.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Modifies from httr::stop_for_status</p>
+    <p>Note</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stop_for_status</span>(<span class='kw'>response</span>, call = <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>sys.call</a></span>(<span class='op'>-</span><span class='fl'>1</span>))</pre>
+    <pre class="usage"><span class='fu'>meta_nodes_list_node</span>(
+  <span class='kw'>meta_node</span>,
+  full_data = <span class='fl'>TRUE</span>,
+  limit = <span class='fl'>10</span>,
+  offset = <span class='fl'>0</span>,
+  mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>response</th>
-      <td><p>An httr response</p></td>
+      <th>meta_node</th>
+      <td><p>Name of a meta node (e.g. Gwas). Use <code>meta_nodes_list</code> to get the full list of meta nodes.</p></td>
+    </tr>
+    <tr>
+      <th>full_data</th>
+      <td><p>When False, only return the id and name fields (their specific names differ in specific nodes) for a node.
+This is useful if you want your queries to return results faster with smaller amount of data requested.</p></td>
+    </tr>
+    <tr>
+      <th>limit</th>
+      <td><p>Max number of items to retrieve.</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>Number of items to skip. Use <code>limit</code> and <code>offset</code> in combination to do pagination.</p></td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>If <code>mode = "table"</code>, returns a data frame
+(a <a href='https://tibble.tidyverse.org/'><code>tibble</code></a> as per
+<a href='https://style.tidyverse.org/'><code>tidyverse</code></a> convention).
+If <code>mode = "raw"</code>, returns a raw response from EpiGraphDB API
+with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code></a>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>Data from <code>GET /meta/nodes/{meta_node}/list</code></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># List the first 5 Gwas nodes, with only id and name fields</span>
+<span class='fu'>meta_nodes_list_node</span>(meta_node = <span class='st'>"Gwas"</span>, full_data = <span class='fl'>FALSE</span>, limit = <span class='fl'>5</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 2
+#&gt;   id                     name                  
+#&gt;   &lt;chr&gt;                  &lt;chr&gt;                 
+#&gt; 1 eqtl-a-ENSG00000261662 ENSG00000261662       
+#&gt; 2 eqtl-a-ENSG00000160460 ENSG00000160460       
+#&gt; 3 eqtl-a-ENSG00000205426 ENSG00000205426       
+#&gt; 4 ieu-a-9                Coronary heart disease
+#&gt; 5 eqtl-a-ENSG00000003436 ENSG00000003436       </div><div class='input'>
+<span class='co'># List the 6th - 10th Disease nodes, with full properties</span>
+<span class='fu'>meta_nodes_list_node</span>(meta_node = <span class='st'>"Disease"</span>, full_data = <span class='fl'>TRUE</span>, limit = <span class='fl'>5</span>, offset = <span class='fl'>0</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 9
+#&gt;   n.doid  n.umls  n.definition      n.id    n.label  n.icd9 n.mesh n.efo n.icd10
+#&gt;   &lt;list&gt;  &lt;list&gt;  &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;    &lt;list&gt; &lt;list&gt; &lt;lis&gt; &lt;list&gt; 
+#&gt; 1 &lt;chr [… &lt;lgl [… A primary or met… http:/… cervica… &lt;chr … &lt;lgl … &lt;lgl… &lt;chr […
+#&gt; 2 &lt;chr [… &lt;chr [… A hordeolum that… http:/… hordeol… &lt;chr … &lt;lgl … &lt;lgl… &lt;chr […
+#&gt; 3 &lt;chr [… &lt;lgl [… A disease caused… http:/… Alkhurm… &lt;lgl … &lt;lgl … &lt;lgl… &lt;lgl […
+#&gt; 4 &lt;chr [… &lt;lgl [… Preeclampsia wit… http:/… severe … &lt;chr … &lt;lgl … &lt;lgl… &lt;lgl […
+#&gt; 5 &lt;chr [… &lt;chr [… A melanoma that … http:/… maligna… &lt;lgl … &lt;lgl … &lt;lgl… &lt;lgl […</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

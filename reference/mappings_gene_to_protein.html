@@ -159,7 +159,7 @@ POST /mappings/gene-to-protein" />
     <div class="page-header">
     <h1>Return protein uniprot_id from associated genes
 <a href='https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein'><code>POST /mappings/gene-to-protein</code></a></h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mappings.R'><code>R/mappings.R</code></a></small>
     <div class="hidden name"><code>mappings_gene_to_protein.Rd</code></div>
     </div>
 
@@ -206,15 +206,13 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># By HGNC symbols</span>
-<span class='fu'>mappings_gene_to_protein</span>(gene_name_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GCH1"</span>, <span class='st'>"MYOF"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span>
-#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
+<span class='fu'>mappings_gene_to_protein</span>(gene_name_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GCH1"</span>, <span class='st'>"MYOF"</span>))</div><div class='output co'>#&gt; # A tibble: 2 x 3
 #&gt;   gene.name gene.ensembl_id protein.uniprot_id
 #&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;             
 #&gt; 1 GCH1      ENSG00000131979 P30793            
 #&gt; 2 MYOF      ENSG00000138119 Q9NZM1            </div><div class='input'>
 <span class='co'># By Enselbl Ids</span>
-<span class='fu'>mappings_gene_to_protein</span>(gene_id_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ENSG00000162594"</span>, <span class='st'>"ENSG00000113302"</span>), by_gene_id = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.</span>
-#&gt; <span class='warning'>  Consider 'structure(list(), *)' instead.</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
+<span class='fu'>mappings_gene_to_protein</span>(gene_id_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ENSG00000162594"</span>, <span class='st'>"ENSG00000113302"</span>), by_gene_id = <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 3
 #&gt;   gene.name gene.ensembl_id protein.uniprot_id
 #&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;             
 #&gt; 1 IL23R     ENSG00000162594 Q5VWK5            
@@ -230,7 +228,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href='https://yiliu6240.github.io'>Yi Liu</a>, Valeriia Haberland, <a href='https://marinalearning.netlify.com'>Marina Vabistsevits</a>, <a href='http://www.biocompute.org.uk/'>Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

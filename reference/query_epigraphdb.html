@@ -159,7 +159,7 @@ returned status." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Send data request to an EpiGraphDB API endpoint</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/MRCIEU/epigraphdb-r/blob/master/R/request_and_response.R'><code>R/request_and_response.R</code></a></small>
     <div class="hidden name"><code>query_epigraphdb.Rd</code></div>
     </div>
 
@@ -173,7 +173,7 @@ returned status.</p>
 
     <pre class="usage"><span class='fu'>query_epigraphdb</span>(
   <span class='kw'>route</span>,
-  <span class='kw'>params</span>,
+  params = <span class='kw'>NULL</span>,
   mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"table"</span>),
   method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>)
 )</pre>
@@ -257,7 +257,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.003452
+#&gt; [1] 0.003488
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE
@@ -965,7 +965,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href='https://yiliu6240.github.io'>Yi Liu</a>, Valeriia Haberland, <a href='https://marinalearning.netlify.com'>Marina Vabistsevits</a>, <a href='http://www.biocompute.org.uk/'>Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

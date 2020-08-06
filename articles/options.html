@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Options</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/options.Rmd"><code>vignettes/options.Rmd</code></a></small>
       <div class="hidden name"><code>options.Rmd</code></div>
 
     </div>
@@ -126,7 +126,7 @@
 <a href="#change-the-api-url" class="anchor"></a>Change the API URL</h2>
 <p>EpiGraphDB currently offers two API URLs</p>
 <ul>
-<li>prodcution (default): <a href="https://api.epigraphdb.org" class="uri">https://api.epigraphdb.org</a>
+<li>production (default): <a href="https://api.epigraphdb.org" class="uri">https://api.epigraphdb.org</a>
 </li>
 <li>development: <a href="http://dev-api.epigraphdb.org" class="uri">http://dev-api.epigraphdb.org</a>
 </li>
@@ -139,6 +139,14 @@
 <span class="co">#&gt; [1] "http://dev-api.epigraphdb.org"</span>
 </pre></div>
 <p>NOTE: you can make this change persistent by placing the changes in <a href="https://www.statmethods.net/interface/customizing.html"><code>.Rprofile</code></a>.</p>
+</div>
+<div id="suppress-start-up-message" class="section level2">
+<h2 class="hasAnchor">
+<a href="#suppress-start-up-message" class="anchor"></a>Suppress start up message</h2>
+<p>If you would like to turn off the start up message that displays the current version of EpiGraphDB service, use the following code to load the package:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>({<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)})
+</pre></div>
 </div>
   </div>
 
@@ -153,7 +161,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

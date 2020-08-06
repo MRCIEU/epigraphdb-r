@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Case study 3: Triangulating causal estimates with literature evidence</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/case-3-literature-triangulation.Rmd"><code>vignettes/case-3-literature-triangulation.Rmd</code></a></small>
       <div class="hidden name"><code>case-3-literature-triangulation.Rmd</code></div>
 
     </div>
@@ -171,13 +171,10 @@
 <span class="co">#&gt; The following object is masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
-<span class="co">#&gt;   EpiGraphDB v0.3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
+<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
 </pre></div>
 <p>Here we set the starting trait, which we will use to explore associated disease traits.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
@@ -433,17 +430,18 @@
 <a href="#plotting-the-overlapping-term-frequencies" class="anchor"></a>Plotting the overlapping term frequencies</h3>
 <p>We can also visualise the above table as a bar chart. In this case we will remove Ethanol as it is an outlier.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">lit_counts</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">n</span> <span class="op">&lt;</span> <span class="fl">100</span>) <span class="op">%&gt;%</span>
+<span class="kw">lit_counts</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">n</span> <span class="op">&lt;</span> <span class="fl">100</span>) <span class="op">%&gt;%</span>
   {
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="kw">.</span>) <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">`st.name`</span>, y = <span class="kw">`n`</span>, fill = <span class="kw">`st.type`</span>) <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(label = <span class="kw">`n`</span>),
-      position = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span>(<span class="fl">0.9</span>),
-      hjust = <span class="fl">0</span>
-    ) <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(x = <span class="kw">`st.name`</span>, y = <span class="kw">`n`</span>, fill = <span class="kw">`st.type`</span>) <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>() <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span>(
+        <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(label = <span class="kw">`n`</span>),
+        position = <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge</a></span>(<span class="fl">0.9</span>),
+        hjust = <span class="fl">0</span>
+      ) <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>()
   }
 </pre></div>
 <p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
@@ -686,7 +684,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/case-1-pleiotropy.Rmd"><code>vignettes/case-1-pleiotropy.Rmd</code></a></small>
       <div class="hidden name"><code>case-1-pleiotropy.Rmd</code></div>
 
     </div>
@@ -133,8 +133,8 @@
 </ul>
 <p>This case study goes as follows:</p>
 <ul>
-<li>For a list of genes that we wish to assess their pleiotropic profiles (against a variant of interests), we retrive from EpiGraphDB their mapped protein products.</li>
-<li>Then respecively from the evidence on shared pathway network and protein-protein interaction network, we can extract the proteins groups formed in these networks as connected communities to assess the pleiotropic profiles of the genes.</li>
+<li>For a list of genes that we wish to assess their pleiotropic profiles (against a variant of interests), we retrieve from EpiGraphDB their mapped protein products.</li>
+<li>Then respectively from the evidence on shared pathway network and protein-protein interaction network, we can extract the proteins groups formed in these networks as connected communities to assess the pleiotropic profiles of the genes.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
@@ -174,13 +174,10 @@
 <span class="co">#&gt; The following object is masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
-<span class="co">#&gt;   EpiGraphDB v0.3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
+<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
 </pre></div>
 <p>Here we configure the parameters used in the case study example. In this example we will look at the variant <strong>rs12720356</strong>, a SNP located in chromosome 19 that has been associated with Crohn’s disease and psoriasis.**</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
@@ -419,7 +416,7 @@
 <div id="retrieving-shared-protein-protein-interactions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#retrieving-shared-protein-protein-interactions" class="anchor"></a>Retrieving shared protein-protein interactions</h2>
-<p>We can complement the information given by pathway ontologies with data of interactions between proteins. For each pair of proteins, we retrieve shared protein-protein interactions, either a direct interaction or an interaction where there’s one mediator protein in the middle (see paramaters section).</p>
+<p>We can complement the information given by pathway ontologies with data of interactions between proteins. For each pair of proteins, we retrieve shared protein-protein interactions, either a direct interaction or an interaction where there’s one mediator protein in the middle (see parameters section).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="kw">get_ppi</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_protein_df</span>, <span class="kw">n_intermediate_proteins</span> = <span class="fl">0</span>) {
   <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/protein/ppi/pairwise"</span>
@@ -596,7 +593,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

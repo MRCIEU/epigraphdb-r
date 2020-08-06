@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Using EpiGraphDB R package</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/using-epigraphdb-r-package.Rmd"><code>vignettes/using-epigraphdb-r-package.Rmd</code></a></small>
       <div class="hidden name"><code>using-epigraphdb-r-package.Rmd</code></div>
 
     </div>
@@ -122,13 +122,10 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
-<span class="co">#&gt;   EpiGraphDB v0.3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
+<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
 </pre></div>
 <div id="methods-to-query-epigraphdb" class="section level2">
 <h2 class="hasAnchor">
@@ -198,7 +195,7 @@
 <div id="returned-data-format" class="section level2">
 <h2 class="hasAnchor">
 <a href="#returned-data-format" class="anchor"></a>Returned data format</h2>
-<p>As a general principle, we offer two modes of the returned data: a <code>table</code> mode (default) that returns a data frame, and a <code>raw</code> mode that preserves the hierachical structure of the upstream json data and contains other information that might benefit users.</p>
+<p>As a general principle, we offer two modes of the returned data: a <code>table</code> mode (default) that returns a data frame, and a <code>raw</code> mode that preserves the hierarchical structure of the upstream json data and contains other information that might benefit users.</p>
 <div id="mode-table" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mode-table" class="anchor"></a><code>mode = "table"</code>
@@ -238,7 +235,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.0113</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.00796</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -250,7 +247,7 @@
 </pre></div>
 <p>There are several reasons that a <code>raw</code> mode might benefit you:</p>
 <ol style="list-style-type: decimal">
-<li><p>The <code>results</code> component preserves the upstream hierachical json structure that might be useful for users aiming for specific tasks such as rendering network plots or batch post-processing the returned data in a large scale.</p></li>
+<li><p>The <code>results</code> component preserves the upstream hierarchical json structure that might be useful for users aiming for specific tasks such as rendering network plots or batch post-processing the returned data in a large scale.</p></li>
 <li><p>The <code>query</code> component returns the <a href="https://neo4j.com/developer/cypher-query-language/">cypher</a> query that fetches data from the EpiGraphDB neo4j databases. EpiGraphDB will offer functionality (forthcoming) for users to send cypher queries to the web API that can return more complex query structure (visit our <a href="https://epigraphdb.org">web app</a> for examples). Once you are sufficiently well-versed in cypher you can construct your own refined queries to better suit your needs.</p></li>
 </ol>
 </div>
@@ -268,7 +265,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

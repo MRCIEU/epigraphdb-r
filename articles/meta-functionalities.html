@@ -114,7 +114,7 @@
       <h1 data-toc-skip>Meta functionalities of the EpiGraphDB platform</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/meta-functionalities.Rmd"><code>vignettes/meta-functionalities.Rmd</code></a></small>
       <div class="hidden name"><code>meta-functionalities.Rmd</code></div>
 
     </div>
@@ -167,13 +167,10 @@
 <span class="co">#&gt; The following object is masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
-<span class="co">#&gt;   EpiGraphDB v0.3</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
+<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
 </pre></div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
@@ -248,8 +245,7 @@
 <span class="co">#&gt;   ..$ GWAS_TO_VARIANT                      :List of 2</span>
 <span class="co">#&gt;   ..$ GENE_TO_PROTEIN                      :List of 2</span>
 <span class="co">#&gt;   ..$ SEM_TO_LIT                           :List of 2</span>
-<span class="co">#&gt;  $ connections:List of 42</span>
-<span class="co">#&gt;   ..$ :List of 4</span>
+<span class="co">#&gt;  $ connections:List of 41</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
@@ -360,20 +356,20 @@
 <span class="kw">meta_rel_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="kw">from_node</span>, <span class="kw">to_node</span>) <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(count = <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span>(<span class="kw">count</span>, big.mark = <span class="st">","</span>))
-<span class="co">#&gt; # A tibble: 42 x 4</span>
-<span class="co">#&gt;    meta_rel                        count        from_node to_node   </span>
-<span class="co">#&gt;    &lt;chr&gt;                           &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
-<span class="co">#&gt;  1 MONDO_MAP_EFO                   "     2,822" Disease   Efo       </span>
-<span class="co">#&gt;  2 MONDO_MAP_UMLS                  "     3,414" Disease   SemmedTerm</span>
-<span class="co">#&gt;  3 OPENTARGETS_DRUG_TO_DISEASE     "     2,486" Drug      Disease   </span>
-<span class="co">#&gt;  4 CPIC                            "       355" Drug      Gene      </span>
-<span class="co">#&gt;  5 OPENTARGETS_DRUG_TO_TARGET      "     6,024" Drug      Gene      </span>
-<span class="co">#&gt;  6 EFO_CHILD_OF                    "    43,154" Efo       Efo       </span>
-<span class="co">#&gt;  7 PRECEDING_EVENT                 "    10,418" Event     Event     </span>
-<span class="co">#&gt;  8 INTACT_INTERACTS_WITH_GENE_GENE "         2" Gene      Gene      </span>
-<span class="co">#&gt;  9 XQTL_MULTI_SNP_MR               " 3,098,049" Gene      Gwas      </span>
-<span class="co">#&gt; 10 XQTL_SINGLE_SNP_MR_GENE_GWAS    " 8,703,863" Gene      Gwas      </span>
-<span class="co">#&gt; # … with 32 more rows</span>
+<span class="co">#&gt; # A tibble: 41 x 4</span>
+<span class="co">#&gt;    meta_rel                     count        from_node to_node   </span>
+<span class="co">#&gt;    &lt;chr&gt;                        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
+<span class="co">#&gt;  1 MONDO_MAP_EFO                "     2,822" Disease   Efo       </span>
+<span class="co">#&gt;  2 MONDO_MAP_UMLS               "     3,414" Disease   SemmedTerm</span>
+<span class="co">#&gt;  3 OPENTARGETS_DRUG_TO_DISEASE  "     2,486" Drug      Disease   </span>
+<span class="co">#&gt;  4 CPIC                         "       355" Drug      Gene      </span>
+<span class="co">#&gt;  5 OPENTARGETS_DRUG_TO_TARGET   "     6,024" Drug      Gene      </span>
+<span class="co">#&gt;  6 EFO_CHILD_OF                 "    43,154" Efo       Efo       </span>
+<span class="co">#&gt;  7 PRECEDING_EVENT              "    10,418" Event     Event     </span>
+<span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,098,049" Gene      Gwas      </span>
+<span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,703,863" Gene      Gwas      </span>
+<span class="co">#&gt; 10 GENE_TO_LITERATURE           "       771" Gene      Literature</span>
+<span class="co">#&gt; # … with 31 more rows</span>
 </pre></div>
 </div>
 <div id="schema-plot" class="section level3">
@@ -387,7 +383,7 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">graph</span>)
 </pre></div>
 <p><img src="meta-functionalities_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
-<p>A detailed version of the shema plot can be obtained from the API:</p>
+<p>A detailed version of the schema plot can be obtained from the API:</p>
 <div class="figure">
 <img src="https://api.epigraphdb.org/meta/schema?graphviz=true&amp;plot=true" alt="schema_plot"><p class="caption">schema_plot</p>
 </div>
@@ -658,7 +654,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">

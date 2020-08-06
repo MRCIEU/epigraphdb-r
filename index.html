@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EpiGraphDB • epigraphdb</title>
+<title>EpiGraphDB Interface Package • epigraphdb</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -18,8 +18,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="EpiGraphDB">
-<meta property="og:description" content="R package for getting EpiGraphDB data.">
+<meta property="og:title" content="EpiGraphDB Interface Package">
+<meta property="og:description" content="epigraphdb is an interface package to get data from the
+    EpiGraphDB &lt;https://epigraphdb.org&gt; platform.
+    It provides easy access to the EpiGraphDB platform with functions that
+    queries the corresponding REST endpoints on the API &lt;https://api.epigraphdb.org&gt;
+    and returns the response data in the tibble data frame format.">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -136,7 +140,7 @@
 </h2>
 <p><code>epigraphdb</code> provides a simple and intuitive way to query the API, as:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"epigraphdb"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt;</span>
 <span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
@@ -173,7 +177,7 @@
 <td><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html">Using EpiGraphDB R package</a></td>
 </tr>
 <tr class="even">
-<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html">Using EpiGraphDB API (from R and commandline)</a></td>
+<td><a href="https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html">Using EpiGraphDB API (from R and command line)</a></td>
 </tr>
 <tr class="odd">
 <td><a href="https://mrcieu.github.io/epigraphdb-r/articles/options.html">Package options</a></td>
@@ -342,10 +346,65 @@
 </tr>
 <tr>
 <td>
+<strong>Utilities</strong>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a>
 </td>
 <td>
 <a href="https://mrcieu.github.io/epigraphdb-r/reference/mappings_gene_to_protein.html"><code>mappings_gene_to_protein</code></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist"><code>GET /meta/nodes/list</code></a>
+</td>
+<td>
+<a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_nodes_list.html"><code>meta_nodes_list</code></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanrelslist"><code>GET /meta/rels/list</code></a>
+</td>
+<td>
+<a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_rels_list.html"><code>meta_rels_list</code></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist"><code>GET /meta/nodes/{meta_node}/list</code></a>
+</td>
+<td>
+<a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_nodes_list_node.html"><code>meta_nodes_list_node</code></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist"><code>GET /meta/rels/{meta_rel}/list</code></a>
+</td>
+<td>
+<a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_rels_list_rel.html"><code>meta_rels_list_rel</code></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch"><code>GET /meta/nodes/{meta_node}/search</code></a>
+</td>
+<td>
+<a href="https://mrcieu.github.io/epigraphdb-r/reference/meta_nodes_search_node.html"><code>meta_nodes_search_node</code></a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://docs.epigraphdb.org/api/api-endpoints/#post-cypher"><code>POST /cypher</code></a>
+</td>
+<td>
+<a href="https://mrcieu.github.io/epigraphdb-r/reference/cypher.html"><code>cypher</code></a>
 </td>
 </tr>
 </tbody>
@@ -409,7 +468,16 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/MRCIEU/epigraphdb-r/">https://​github.com/​MRCIEU/​epigraphdb-r/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/MRCIEU/epigraphdb-r/issues">https://​github.com/​MRCIEU/​epigraphdb-r/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -419,11 +487,14 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Yi Liu <br><small class="roles"> Author, maintainer </small>  </li>
+<li>
+<a href="https://yiliu6240.github.io">Yi Liu</a> <br><small class="roles"> Maintainer, author </small>  </li>
 <li>Valeriia Haberland <br><small class="roles"> Author </small>  </li>
-<li>Pau Erola <br><small class="roles"> Author </small>  </li>
-<li>Benjamin Elsworth <br><small class="roles"> Author </small>  </li>
-<li>Tom Gaunt <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="https://marinalearning.netlify.com">Marina Vabistsevits</a> <br><small class="roles"> Author </small>  </li>
+<li>
+<a href="http://www.biocompute.org.uk/">Tom Gaunt</a> <br><small class="roles"> Author </small>  </li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
@@ -440,7 +511,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yi Liu, Valeriia Haberland, Pau Erola, Benjamin Elsworth, Tom Gaunt.</p>
+  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">
