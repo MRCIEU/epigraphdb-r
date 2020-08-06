@@ -1,5 +1,15 @@
 destination: docs
 
+authors:
+  Yi Liu:
+    href: https://yiliu6240.github.io
+  Marina Vabistsevits:
+    href: https://marinalearning.netlify.com
+  Tom Gaunt:
+    href: http://www.biocompute.org.uk/
+  MRC IEU:
+    href: https://mrcieu.github.io/
+
 navbar:
   title: "epigraphdb"
   type: inverse
@@ -38,7 +48,7 @@ reference:
   - title: General query
     contents:
       - query_epigraphdb
-  - title: Topics
+  - title: Topic queries
     contents:
       - confounder
       - drugs_risk_factors
@@ -54,9 +64,12 @@ reference:
       - xqtl_multi_snp_mr
       - xqtl_single_snp_mr
       - protein_in_pathway
+  - title: Utilities
+    contents:
       - mappings_gene_to_protein
       - meta_nodes_list
       - meta_rels_list
       - meta_nodes_list_node
       - meta_rels_list_rel
+      - meta_nodes_search_node
       - cypher

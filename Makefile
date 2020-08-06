@@ -18,9 +18,10 @@ init:
 ## Check package infrastructure and perform unit tests
 tests:
 	Rscript -e "devtools::check()"
-	Rscript -e "devtools::test()"
 
 test: tests
+
+check: tests
 
 ## Lint codebase
 lint:
@@ -45,6 +46,10 @@ uninstall:
 docs:
 	Rscript -e "devtools::document()"
 	Rscript -e "pkgdown::build_site(preview = TRUE)"
+
+## Check for CRAN
+check-cran:
+	Rscript -e "rhub::check_for_cran()"
 
 #################################################################################
 # Self Documenting Commands                                                     #

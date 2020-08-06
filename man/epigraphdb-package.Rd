@@ -4,11 +4,23 @@
 \name{epigraphdb-package}
 \alias{epigraphdb}
 \alias{epigraphdb-package}
-\title{epigraphdb: EpiGraphDB}
+\title{epigraphdb: EpiGraphDB Interface Package}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-R package for getting EpiGraphDB data.
+'epigraphdb' is an interface package to get data from the
+    EpiGraphDB <https://epigraphdb.org> platform.
+    It provides easy access to the EpiGraphDB platform with functions that
+    queries the corresponding REST endpoints on the API <https://api.epigraphdb.org>
+    and returns the response data in the 'tibble' data frame format.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://mrcieu.github.io/epigraphdb-r}
+  \item Report bugs at \url{https://github.com/MRCIEU/epigraphdb-r/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Yi Liu \email{yi6240.liu@bristol.ac.uk}
@@ -16,9 +28,13 @@ R package for getting EpiGraphDB data.
 Authors:
 \itemize{
   \item Valeriia Haberland \email{valeriia.haberland@bristol.ac.uk}
-  \item Pau Erola \email{pau.erola@bristol.ac.uk}
-  \item Benjamin Elsworth \email{ben.elsworth@bristol.ac.uk}
+  \item Marina Vabistsevits \email{ny19205@bristol.ac.uk}
   \item Tom Gaunt \email{Tom.Gaunt@bristol.ac.uk}
+}
+
+Other contributors:
+\itemize{
+  \item MRC IEU [copyright holder]
 }
 
 }
