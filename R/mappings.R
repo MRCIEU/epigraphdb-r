@@ -22,11 +22,22 @@ mappings_gene_to_protein <- function(gene_name_list = NULL, gene_id_list = NULL,
                                      by_gene_id = FALSE,
                                      mode = c("table", "raw")) {
   mode <- match.arg(mode)
+  # Resolve singletons
+  if (!is.null(gene_name_list)) {
+    gene_name_list <- I(gene_name_list)
+  } else {
+    gene_name_list <- list()
+  }
+  if (!is.null(gene_id_list)) {
+    gene_id_list <- I(gene_id_list)
+  } else {
+    gene_id_list <- list()
+  }
   response <- query_epigraphdb(
     route = "/mappings/gene-to-protein",
     params = list(
-      gene_name_list = I(gene_name_list),
-      gene_id_list = I(gene_id_list),
+      gene_name_list = gene_name_list,
+      gene_id_list = gene_id_list,
       by_gene_id = by_gene_id
     ),
     mode = mode,
