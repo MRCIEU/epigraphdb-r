@@ -48,8 +48,14 @@ docs:
 	Rscript -e "devtools::document()"
 	Rscript -e "pkgdown::build_site(preview = TRUE)"
 
-## Check for CRAN submission (via rhub)
-check-cran:
+## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
+check-cran-local:
+	# NOTE: the env_var tries to deal with utf8 issues
+	# https://github.com/r-hub/rhub/issues/374
+	Rscript -e "rhub::local_check_linux(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+
+## Check for CRAN submission (via rhub's remote specs)
+check-cran-rhub:
 	# NOTE: the env_var tries to deal with utf8 issues
 	# https://github.com/r-hub/rhub/issues/374
 	Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
