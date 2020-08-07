@@ -72,7 +72,7 @@ In fact, currently the `epigraphdb::mr` function is a
 [wrapper](https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R)
 of `httr::get`.
 Please consult with
-[`httr` documentation](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html)
+[`httr` documentation](https://httr.r-lib.org/index.html)
 for details of usage.
 
 ## Using `curl`
