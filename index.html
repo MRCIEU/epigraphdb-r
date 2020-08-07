@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EpiGraphDB Interface Package • epigraphdb</title>
+<title>Interface Package for the EpiGraphDB Platform • epigraphdb</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="EpiGraphDB Interface Package">
-<meta property="og:description" content="epigraphdb is an interface package to get data from the
+<meta property="og:title" content="Interface Package for the EpiGraphDB Platform">
+<meta property="og:description" content="The interface package to access data from the
     EpiGraphDB &lt;https://epigraphdb.org&gt; platform.
     It provides easy access to the EpiGraphDB platform with functions that
     query the corresponding REST endpoints on the API &lt;https://api.epigraphdb.org&gt;
@@ -127,10 +127,14 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><a href="https://devtools.r-lib.org/"><code>devtools</code></a> is required to install from github:</p>
+<p>To install the latest development version from github ( <a href="https://devtools.r-lib.org/"><code>devtools</code></a> is required ):</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="co"># install.packages("devtools")</span>
 <span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"MRCIEU/epigraphdb-r"</span>)
+</pre></div>
+<p>To install a stable version from CRAN ( we are in the process of submitting <code>epigraphdb</code> to CRAN ):</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"epigraphdb"</span>)
 </pre></div>
 <p><strong>NOTE</strong>: while the package repository is “epigraphdb-r”, the R package name is “epigraphdb”.</p>
 </div>
@@ -139,7 +143,7 @@
 <a href="#using-epigraphdb" class="anchor"></a>Using <code>epigraphdb</code>
 </h2>
 <p><code>epigraphdb</code> provides a simple and intuitive way to query the API, as:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
 <span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt;</span>
