@@ -123,10 +123,9 @@ graph$layout <- igraph::layout_with_kk
 plot(graph)
 ```
 
-
-A detailed version of the schema plot can be obtained from the API:
-
-![schema_plot](https://api.epigraphdb.org/meta/schema?graphviz=true&plot=true)
+A detailed version of the
+[schema_plot](https://api.epigraphdb.org/meta/schema?graphviz=true&plot=true)
+can be obtained from the API.
 
 ## Search for specific node
 
