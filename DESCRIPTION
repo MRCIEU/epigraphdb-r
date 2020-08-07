@@ -1,5 +1,5 @@
 Package: epigraphdb
-Title: EpiGraphDB Interface Package
+Title: Interface Package for the EpiGraphDB Platform
 Version: 0.2.1
 Authors@R: c(
     person("Yi", "Liu", email = "yi6240.liu@bristol.ac.uk",
@@ -16,7 +16,7 @@ Authors@R: c(
     ),
     person(given = "MRC IEU", role = c("cph"))
     )
-Description: 'epigraphdb' is an interface package to get data from the
+Description: The interface package to access data from the
     EpiGraphDB <https://epigraphdb.org> platform.
     It provides easy access to the EpiGraphDB platform with functions that
     query the corresponding REST endpoints on the API <https://api.epigraphdb.org>
