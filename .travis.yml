@@ -21,4 +21,4 @@ matrix:
 
 branches:
   except:
-  - dev
+  - /^dev.*$/
