@@ -17,7 +17,7 @@ The interface package to access data from the
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://mrcieu.github.io/epigraphdb-r}
+  \item \url{https://mrcieu.github.io/epigraphdb-r/}
   \item Report bugs at \url{https://github.com/MRCIEU/epigraphdb-r/issues}
 }
 

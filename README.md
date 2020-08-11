@@ -1,6 +1,6 @@
 # EpiGraphDB R package `epigraphdb`
 
-<a href="http://epigraphdb.org"><img src="man/figures/logo_wide.png" alt="" height="60" style="padding:10px"/></a> <span class="pull-right"> <a href="https://www.bristol.ac.uk"><img src="man/figures/ieu40.png" alt="" height="60" style="padding:10px"/></a> <a href="http://www.bristol.ac.uk/integrative-epidemiology"><img src="man/figures/uob40.png" alt="" height="60" style="padding:10px"/></a> </span>
+<a href="http://epigraphdb.org"><img src="man/figures/logo_wide.png" alt="" height="60" style="padding:10px"/></a> <span class="pull-right"> <a href="https://www.bristol.ac.uk"><img src="man/figures/ieu40.png" alt="" height="60" style="padding:10px"/></a> <a href="http://www.bristol.ac.uk/integrative-epidemiology/"><img src="man/figures/uob40.png" alt="" height="60" style="padding:10px"/></a> </span>
 
 <!-- badges: start -->
 
