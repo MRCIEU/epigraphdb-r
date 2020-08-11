@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta.R
 \name{meta_nodes_list_node}
 \alias{meta_nodes_list_node}
-\title{List nodes under a meta node
-\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist}{\code{GET /meta/nodes/{meta_node}/list}}}
+\title{List nodes under a meta node}
 \usage{
 meta_nodes_list_node(
   meta_node,
@@ -33,7 +32,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /meta/nodes/{meta_node}/list}
 }
 \description{
-Note
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodelist}{\code{GET /meta/nodes/{meta_node}/list}}
 }
 \examples{
 # List the first 5 Gwas nodes, with only id and name fields

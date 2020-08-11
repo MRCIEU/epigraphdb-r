@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta.R
 \name{meta_nodes_list}
 \alias{meta_nodes_list}
-\title{List meta nodes (e.g. Gwas, Gene, etc.)
-\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist}{\code{GET /meta/nodes/list}}}
+\title{List meta nodes (e.g. Gwas, Gene, etc.)}
 \usage{
 meta_nodes_list(mode = c("raw"))
 }
@@ -18,7 +17,6 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /meta/nodes/list}
 }
 \description{
-List meta nodes (e.g. Gwas, Gene, etc.)
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist}{\code{GET /meta/nodes/list}}
 }
 \examples{

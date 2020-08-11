@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta.R
 \name{meta_nodes_search_node}
 \alias{meta_nodes_search_node}
-\title{Search a node by its id field, or its name field
-\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch}{\code{GET /meta/nodes/{meta_node}/search}}}
+\title{Search a node by its id field, or its name field}
 \usage{
 meta_nodes_search_node(
   meta_node,
@@ -38,7 +37,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /meta/nodes/{meta_node}/search}
 }
 \description{
-Note
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch}{\code{GET /meta/nodes/{meta_node}/search}}
 }
 \examples{
 # List the first 5 MR relationships

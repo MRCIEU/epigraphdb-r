@@ -2,8 +2,7 @@
 % Please edit documentation in R/mappings.R
 \name{mappings_gene_to_protein}
 \alias{mappings_gene_to_protein}
-\title{Return protein uniprot_id from associated genes
-\href{https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein}{\code{POST /mappings/gene-to-protein}}}
+\title{Return protein uniprot_id from associated genes}
 \usage{
 mappings_gene_to_protein(
   gene_name_list = NULL,
@@ -29,7 +28,6 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{POST /mappings/gene-to-protein}
 }
 \description{
-Return protein uniprot_id from associated genes
 \href{https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein}{\code{POST /mappings/gene-to-protein}}
 }
 \examples{

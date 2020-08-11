@@ -16,10 +16,10 @@ init:
 	Rscript -e "devtools::install(dependencies = TRUE)"
 
 ## Check package infrastructure and perform unit tests
-tests:
+test:
 	Rscript -e "devtools::check()"
 
-test: tests
+tests: test
 
 check: tests
 
