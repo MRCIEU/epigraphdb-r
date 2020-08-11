@@ -92,9 +92,12 @@ query_epigraphdb <- function(route, params = NULL, mode = c("raw", "table"), met
 #' @keywords internal
 api_get_request <- function(route, params, call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
-  response <- httr::GET(glue::glue("{api_url}{route}"),
-    query = params,
-    httr::add_headers(.headers = c("client-type" = "R"))
+  url <- glue::glue("{api_url}{route}")
+  config <- httr::add_headers(.headers = c("client-type" = "R"))
+  response <- httr::RETRY(
+    "GET",
+    url = url, query = params, config = config,
+    times = 5, pause_min = 2
   )
   stop_for_status(response, call = sys.call(-1))
   response
@@ -110,11 +113,13 @@ api_get_request <- function(route, params, call = sys.call(-1)) {
 #' @keywords internal
 api_post_request <- function(route, params, call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
+  url <- glue::glue("{api_url}{route}")
+  config <- httr::add_headers(.headers = c("client-type" = "R"))
   body <- jsonlite::toJSON(params, auto_unbox = TRUE)
-  response <- httr::POST(glue::glue("{api_url}{route}"),
-    body = body,
-    endcode = "json",
-    httr::add_headers(.headers = c("client-type" = "R"))
+  response <- httr::RETRY(
+    "POST",
+    url = url, body = body, config = config,
+    times = 5, pause_min = 2
   )
   stop_for_status(response, call = sys.call(-1))
   response

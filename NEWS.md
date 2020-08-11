@@ -4,6 +4,7 @@ Current ongoing development.
 
 # epigraphdb 0.2.1 (2020-08-06)
 
+- use `httr::RETRY` to mitigate problems due to network errors.
 - Shortened the startup message.
 - Added functions `protein_in_pathway`, `mappings_gene_to_protein`
 - Added RMarkdown vignettes to the equivalent Jupyter notebooks in the
