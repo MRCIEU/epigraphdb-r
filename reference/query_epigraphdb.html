@@ -257,7 +257,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.004587
+#&gt; [1] 0.003685
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE
@@ -949,7 +949,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
   error = <span class='fu'>function</span>(<span class='kw'>e</span>) {
     <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='kw'>e</span>)
   }
-)</div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
+)</div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 2 seconds...</span></div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 3.3 seconds...</span></div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 4.8 seconds...</span></div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 2.5 seconds...</span></div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
 #&gt; <span class='error'>Detail:</span>
 #&gt; <span class='error'>$detail</span>
 #&gt; <span class='error'>[1] "At least one of the following parameters should be non-missing: [exposure_trait, outcome_trait]"</span>

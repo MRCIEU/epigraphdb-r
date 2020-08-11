@@ -235,7 +235,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.00435</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.00747</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -248,7 +248,7 @@
 <p>There are several reasons that a <code>raw</code> mode might benefit you:</p>
 <ol style="list-style-type: decimal">
 <li><p>The <code>results</code> component preserves the upstream hierarchical json structure that might be useful for users aiming for specific tasks such as rendering network plots or batch post-processing the returned data in a large scale.</p></li>
-<li><p>The <code>query</code> component returns the <a href="https://neo4j.com/developer/cypher-query-language/">cypher</a> query that fetches data from the EpiGraphDB neo4j databases. EpiGraphDB will offer functionality (forthcoming) for users to send cypher queries to the web API that can return more complex query structure (visit our <a href="https://epigraphdb.org">web app</a> for examples). Once you are sufficiently well-versed in cypher you can construct your own refined queries to better suit your needs.</p></li>
+<li><p>The <code>query</code> component returns the <a href="https://neo4j.com/developer/cypher/">cypher</a> query that fetches data from the EpiGraphDB neo4j databases. EpiGraphDB will offer functionality (forthcoming) for users to send cypher queries to the web API that can return more complex query structure (visit our <a href="https://epigraphdb.org">web app</a> for examples). Once you are sufficiently well-versed in cypher you can construct your own refined queries to better suit your needs.</p></li>
 </ol>
 </div>
 </div>
