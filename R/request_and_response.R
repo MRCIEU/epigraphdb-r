@@ -97,7 +97,7 @@ api_get_request <- function(route, params, call = sys.call(-1)) {
   response <- httr::RETRY(
     "GET",
     url = url, query = params, config = config,
-    times = 5, pause_min = 2
+    times = 5, pause_min = 5
   )
   stop_for_status(response, call = sys.call(-1))
   response
@@ -119,7 +119,7 @@ api_post_request <- function(route, params, call = sys.call(-1)) {
   response <- httr::RETRY(
     "POST",
     url = url, body = body, config = config,
-    times = 5, pause_min = 2
+    times = 5, pause_min = 5
   )
   stop_for_status(response, call = sys.call(-1))
   response
