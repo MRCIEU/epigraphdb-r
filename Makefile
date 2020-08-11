@@ -58,11 +58,13 @@ check-cran-local:
 check-cran-rhub:
 	# NOTE: the env_var tries to deal with utf8 issues
 	# https://github.com/r-hub/rhub/issues/374
-	Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+	# Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+	Rscript -e "devtools::check_rhub(interactive = FALSE)"
 
 ## Check for MS windows compatibility (via devtools::check_win_devel)
 check-windows:
 	Rscript -e "devtools::check_win_devel()"
+	Rscript -e "devtools::check_win_release()"
 
 #################################################################################
 # Self Documenting Commands                                                     #
