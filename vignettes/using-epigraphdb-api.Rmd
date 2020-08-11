@@ -50,7 +50,7 @@ payload <- list(
   exposure_trait = "Body mass index",
   outcome_trait = "Coronary heart disease"
 )
-r <- httr::GET(glue::glue("{url}/mr"), query = payload)
+r <- httr::RETRY("GET", glue::glue("{url}/mr"), query = payload)
 r %>%
   httr::content(as = "parsed") %>%
   str(2)

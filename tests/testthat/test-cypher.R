@@ -5,7 +5,8 @@ test_that("POST /cypher", {
   route <- "/cypher"
   query <- "MATCH (n:Gwas) RETURN n LIMIT 2"
   body <- jsonlite::toJSON(list(query = query), auto_unbox = TRUE)
-  r <- httr::POST(
+  r <- httr::RETRY(
+    "POST",
     glue::glue("{url}{route}"),
     body = body,
     encode = "json"

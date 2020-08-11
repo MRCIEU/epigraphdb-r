@@ -3,7 +3,7 @@ context("drugs")
 test_that("/drugs/risk-factors", {
   url <- getOption("epigraphdb.api.url")
   trait <- "Body mass index"
-  r <- httr::GET(glue::glue("{url}/drugs/risk-factors"),
+  r <- httr::RETRY("GET", glue::glue("{url}/drugs/risk-factors"),
     query = list(
       trait = trait
     )

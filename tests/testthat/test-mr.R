@@ -4,7 +4,7 @@ test_that("mr endpoint", {
   url <- getOption("epigraphdb.api.url")
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
-  r <- httr::GET(glue::glue("{url}/mr"),
+  r <- httr::RETRY("GET", glue::glue("{url}/mr"),
     query = list(
       exposure_trait = exposure,
       outcome_trait = outcome

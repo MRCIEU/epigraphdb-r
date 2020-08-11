@@ -3,7 +3,7 @@ context("obs_cor")
 test_that("obs_cor endpoint", {
   url <- getOption("epigraphdb.api.url")
   trait <- "body mass index"
-  r <- httr::GET(glue::glue("{url}/obs-cor"),
+  r <- httr::RETRY("GET", glue::glue("{url}/obs-cor"),
     query = list(
       trait = trait
     )

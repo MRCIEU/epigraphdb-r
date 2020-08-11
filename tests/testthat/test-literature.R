@@ -4,7 +4,7 @@ test_that("/literature/gwas", {
   url <- getOption("epigraphdb.api.url")
   trait <- "Body mass index"
   semmed_predicate <- NULL
-  r <- httr::GET(glue::glue("{url}/literature/gwas"),
+  r <- httr::RETRY("GET", glue::glue("{url}/literature/gwas"),
     query = list(
       trait = trait,
       semmed_predicate = semmed_predicate

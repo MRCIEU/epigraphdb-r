@@ -6,7 +6,7 @@ test_that("pqtl protein endpoint", {
   rtype <- "mrres"
   pvalue <- 0.05
   searchflag <- "proteins"
-  r <- httr::GET(glue::glue("{url}/pqtl/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/"),
     query = list(
       query = query,
       rtype = rtype,
@@ -24,7 +24,7 @@ test_that("pqtl trait endpoint", {
   rtype <- "mrres"
   pvalue <- 0.05
   searchflag <- "traits"
-  r <- httr::GET(glue::glue("{url}/pqtl/"),
+  r <- httr::RETRY("GET" ,glue::glue("{url}/pqtl/"),
     query = list(
       query = query,
       rtype = rtype,
@@ -39,7 +39,7 @@ test_that("pqtl_pleio endpoint", {
   url <- getOption("epigraphdb.api.url")
   rsid <- "rs1260326"
   prflag <- "proteins"
-  r <- httr::GET(glue::glue("{url}/pqtl/pleio/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/pleio/"),
     query = list(
       rsid = rsid,
       prflag = prflag
@@ -51,7 +51,7 @@ test_that("pqtl_pleio endpoint", {
 test_that("pqtl_list endpoint", {
   url <- getOption("epigraphdb.api.url")
   flag <- "exposures"
-  r <- httr::GET(glue::glue("{url}/pqtl/list/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/list/"),
     query = list(
       flag = flag
     )

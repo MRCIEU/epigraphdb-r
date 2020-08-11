@@ -6,11 +6,12 @@ test_that("POST /protein/in-pathway", {
   params <- list(
     uniprot_id_list = uniprot_id_list
   )
-  r <- httr::POST(
+  r <- httr::RETRY(
+    "POST",
     glue::glue("{url}/protein/in-pathway"),
     body = jsonlite::toJSON(params, auto_unbox = TRUE),
     encode = "json",
-    httr::add_headers(.headers = c("client-type" = "R"))
+    config = httr::add_headers(.headers = c("client-type" = "R"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

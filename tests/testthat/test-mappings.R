@@ -6,11 +6,12 @@ test_that("POST /mappings/gene-to-protein", {
   params <- list(
     gene_name_list = I(gene_name_list)
   )
-  r <- httr::POST(
+  r <- httr::RETRY(
+    "POST",
     glue::glue("{url}/mappings/gene-to-protein"),
     body = jsonlite::toJSON(params, auto_unbox = TRUE),
     encode = "json",
-    httr::add_headers(.headers = c("client-type" = "R"))
+    config = httr::add_headers(.headers = c("client-type" = "R"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

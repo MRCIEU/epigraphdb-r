@@ -4,7 +4,7 @@ test_that("/confounder", {
   url <- getOption("epigraphdb.api.url")
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
-  r <- httr::GET(glue::glue("{url}/confounder"),
+  r <- httr::RETRY("GET", glue::glue("{url}/confounder"),
     query = list(
       exposure_trait = exposure,
       outcome_trait = outcome
