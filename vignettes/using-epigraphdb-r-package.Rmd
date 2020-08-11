@@ -110,7 +110,7 @@ There are several reasons that a `raw` mode might benefit you:
    in a large scale.
 
 2. The `query` component returns
-   the [cypher](https://neo4j.com/developer/cypher-query-language/)
+   the [cypher](https://neo4j.com/developer/cypher/)
    query that fetches data from the EpiGraphDB neo4j databases.
    EpiGraphDB will offer functionality (forthcoming) for users to
    send cypher queries to the web API that can return more complex query

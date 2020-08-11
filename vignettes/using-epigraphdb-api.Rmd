@@ -185,7 +185,6 @@ Alternatively, you can use other commonly used tools to query the web API:
 
 - [command line: httpie](https://github.com/jakubroztocil/httpie)
 - [python: requests](https://realpython.com/python-requests/)
-- [GUI client: insomnia](https://support.brightcove.com/use-insomnia-api-requests)
 - [GUI client: postman](https://www.guru99.com/postman-tutorial.html)
 
 For details of the EpiGraphDB RESTful API and related services,
