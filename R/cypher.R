@@ -9,7 +9,6 @@
 #'
 #' @examples
 #' cypher("MATCH (n:Gwas) RETURN n LIMIT 2")
-#'
 #' @export
 cypher <- function(query, mode = c("table", "raw")) {
   mode <- match.arg(mode)

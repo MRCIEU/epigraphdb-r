@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta.R
 \name{meta_rels_list_rel}
 \alias{meta_rels_list_rel}
-\title{List relationships under a meta relationship
-\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist}{\code{GET /meta/rels/{meta_rel}/list}}}
+\title{List relationships under a meta relationship}
 \usage{
 meta_rels_list_rel(meta_rel, limit = 10, offset = 0, mode = c("table", "raw"))
 }
@@ -24,7 +23,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /meta/rels/{meta_rel}/list}
 }
 \description{
-Note
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metarelsmeta_rellist}{\code{GET /meta/rels/{meta_rel}/list}}
 }
 \examples{
 # List the first 5 MR relationships

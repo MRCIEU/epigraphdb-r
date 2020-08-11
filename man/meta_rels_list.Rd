@@ -2,8 +2,7 @@
 % Please edit documentation in R/meta.R
 \name{meta_rels_list}
 \alias{meta_rels_list}
-\title{List meta rels (e.g. MR, etc.)
-\href{https://docs.epigraphdb.org/api/api-endpoints/#get-metarelslist}{\code{GET /meta/rels/list}}}
+\title{List meta rels (e.g. MR, etc.)}
 \usage{
 meta_rels_list(mode = c("raw"))
 }
@@ -18,7 +17,6 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /meta/rels/list}
 }
 \description{
-List meta rels (e.g. MR, etc.)
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metarelslist}{\code{GET /meta/rels/list}}
 }
 \examples{

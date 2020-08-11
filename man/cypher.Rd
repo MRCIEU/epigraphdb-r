@@ -2,9 +2,7 @@
 % Please edit documentation in R/cypher.R
 \name{cypher}
 \alias{cypher}
-\title{Send a query in Cypher to EpiGraphDB
-NOTE: this function is intended for advanced uses.
-Regular users are recommended to use standard query functions}
+\title{Send a query in Cypher to EpiGraphDB}
 \usage{
 cypher(query, mode = c("table", "raw"))
 }
@@ -18,11 +16,9 @@ If \code{mode = "raw"}, returns a raw response from EpiGraphDB API
 with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 }
 \description{
-Send a query in Cypher to EpiGraphDB
 NOTE: this function is intended for advanced uses.
 Regular users are recommended to use standard query functions
 }
 \examples{
 cypher("MATCH (n:Gwas) RETURN n LIMIT 2")
-
 }
