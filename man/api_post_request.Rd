@@ -4,7 +4,13 @@
 \alias{api_post_request}
 \title{Wrapper of httr::POST that handles status errors and custom headers}
 \usage{
-api_post_request(route, params, call = sys.call(-1))
+api_post_request(
+  route,
+  params,
+  retry_times,
+  retry_pause_min,
+  call = sys.call(-1)
+)
 }
 \arguments{
 \item{route}{An EpiGraphDB API endpoint route, e.g. "/mr"}

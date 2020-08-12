@@ -9,6 +9,8 @@ api_request(
   params,
   mode = c("table", "raw"),
   method = api_get_request,
+  retry_times,
+  retry_pause_min,
   call = sys.call(-1)
 )
 }
