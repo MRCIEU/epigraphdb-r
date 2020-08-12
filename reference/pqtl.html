@@ -285,151 +285,156 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 <span class='fu'>pqtl</span>(
   query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>,
   mode = <span class='st'>"raw"</span>
-) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 16
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Forced expiratory volume in 1-second (FEV1)"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:337"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 0.0682
-#&gt;   ..$ se          : num 0.00892
-#&gt;   ..$ pvalue      : num 2.1e-14
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Height"
-#&gt;   ..$ outID_mrbase: chr "89"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 0.0488
-#&gt;   ..$ se          : num 0.0126
-#&gt;   ..$ pvalue      : num 0.000108
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Non-cancer illness code  self-reported: asthma"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:66"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.126
-#&gt;   ..$ se          : num 0.0328
-#&gt;   ..$ pvalue      : num 0.000121
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Hippocampus volume"
-#&gt;   ..$ outID_mrbase: chr "1045"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 63.7
-#&gt;   ..$ se          : num 20
-#&gt;   ..$ pvalue      : num 0.00148
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Forced vital capacity (FVC)"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:336"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 0.0245
-#&gt;   ..$ se          : num 0.00846
-#&gt;   ..$ pvalue      : num 0.00371
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Diagnoses - main ICD10: R10 Abdominal and pelvic pain"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:582"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.157
-#&gt;   ..$ se          : num 0.0585
-#&gt;   ..$ pvalue      : num 0.00714
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Intracranial volume"
-#&gt;   ..$ outID_mrbase: chr "1041"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 19878
-#&gt;   ..$ se          : num 8174
-#&gt;   ..$ pvalue      : num 0.015
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Neo-conscientiousness"
-#&gt;   ..$ outID_mrbase: chr "114"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.748
-#&gt;   ..$ se          : num 0.312
-#&gt;   ..$ pvalue      : num 0.0166
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Subjective well being"
-#&gt;   ..$ outID_mrbase: chr "1009"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 0.0285
-#&gt;   ..$ se          : num 0.0122
-#&gt;   ..$ pvalue      : num 0.0196
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Invasive mucinous ovarian cancer"
-#&gt;   ..$ outID_mrbase: chr "1123"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num 0.396
-#&gt;   ..$ se          : num 0.173
-#&gt;   ..$ pvalue      : num 0.0218
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "HDL cholesterol"
-#&gt;   ..$ outID_mrbase: chr "299"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.0419
-#&gt;   ..$ se          : num 0.0199
-#&gt;   ..$ pvalue      : num 0.0355
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Paget's disease"
-#&gt;   ..$ outID_mrbase: chr "975"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.524
-#&gt;   ..$ se          : num 0.249
-#&gt;   ..$ pvalue      : num 0.0356
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Fractured bone site(s): Other bones"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:441"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.104
-#&gt;   ..$ se          : num 0.0499
-#&gt;   ..$ pvalue      : num 0.0369
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Diagnoses - main ICD10: K80 Cholelithiasis"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:559"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.177
-#&gt;   ..$ se          : num 0.0864
-#&gt;   ..$ pvalue      : num 0.0409
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Systolic blood pressure  automated reading"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:360"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.0211
-#&gt;   ..$ se          : num 0.0105
-#&gt;   ..$ pvalue      : num 0.0451
-#&gt;  $ :List of 8
-#&gt;   ..$ expID       : chr "ADAM19"
-#&gt;   ..$ outID       : chr "Diagnoses - main ICD10: N20 Calculus of kidney and ureter"
-#&gt;   ..$ outID_mrbase: chr "UKB-a:574"
-#&gt;   ..$ nsnp        : int 1
-#&gt;   ..$ method      : chr "Wald ratio"
-#&gt;   ..$ beta        : num -0.37
-#&gt;   ..$ se          : num 0.185
-#&gt;   ..$ pvalue      : num 0.0458</div></pre>
+) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 2
+#&gt;  $ metadata:List of 3
+#&gt;   ..$ query        : chr "MATCH (e:Exposure)&lt;-[n:SENS_EXP]-(s)-[m:SENS_OUT]-&gt; (o:Outcome)&lt;-[r:MR]-(e:Exposure) WHERE e.expID = \"ADAM19\""| __truncated__
+#&gt;   ..$ total_seconds: NULL
+#&gt;   ..$ empty_results: logi FALSE
+#&gt;  $ results :List of 16
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Forced expiratory volume in 1-second (FEV1)"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:337"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 0.0682
+#&gt;   .. ..$ se          : num 0.00892
+#&gt;   .. ..$ pvalue      : num 2.1e-14
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Height"
+#&gt;   .. ..$ outID_mrbase: chr "89"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 0.0488
+#&gt;   .. ..$ se          : num 0.0126
+#&gt;   .. ..$ pvalue      : num 0.000108
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Non-cancer illness code  self-reported: asthma"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:66"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.126
+#&gt;   .. ..$ se          : num 0.0328
+#&gt;   .. ..$ pvalue      : num 0.000121
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Hippocampus volume"
+#&gt;   .. ..$ outID_mrbase: chr "1045"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 63.7
+#&gt;   .. ..$ se          : num 20
+#&gt;   .. ..$ pvalue      : num 0.00148
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Forced vital capacity (FVC)"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:336"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 0.0245
+#&gt;   .. ..$ se          : num 0.00846
+#&gt;   .. ..$ pvalue      : num 0.00371
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Diagnoses - main ICD10: R10 Abdominal and pelvic pain"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:582"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.157
+#&gt;   .. ..$ se          : num 0.0585
+#&gt;   .. ..$ pvalue      : num 0.00714
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Intracranial volume"
+#&gt;   .. ..$ outID_mrbase: chr "1041"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 19878
+#&gt;   .. ..$ se          : num 8174
+#&gt;   .. ..$ pvalue      : num 0.015
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Neo-conscientiousness"
+#&gt;   .. ..$ outID_mrbase: chr "114"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.748
+#&gt;   .. ..$ se          : num 0.312
+#&gt;   .. ..$ pvalue      : num 0.0166
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Subjective well being"
+#&gt;   .. ..$ outID_mrbase: chr "1009"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 0.0285
+#&gt;   .. ..$ se          : num 0.0122
+#&gt;   .. ..$ pvalue      : num 0.0196
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Invasive mucinous ovarian cancer"
+#&gt;   .. ..$ outID_mrbase: chr "1123"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num 0.396
+#&gt;   .. ..$ se          : num 0.173
+#&gt;   .. ..$ pvalue      : num 0.0218
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "HDL cholesterol"
+#&gt;   .. ..$ outID_mrbase: chr "299"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.0419
+#&gt;   .. ..$ se          : num 0.0199
+#&gt;   .. ..$ pvalue      : num 0.0355
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Paget's disease"
+#&gt;   .. ..$ outID_mrbase: chr "975"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.524
+#&gt;   .. ..$ se          : num 0.249
+#&gt;   .. ..$ pvalue      : num 0.0356
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Fractured bone site(s): Other bones"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:441"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.104
+#&gt;   .. ..$ se          : num 0.0499
+#&gt;   .. ..$ pvalue      : num 0.0369
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Diagnoses - main ICD10: K80 Cholelithiasis"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:559"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.177
+#&gt;   .. ..$ se          : num 0.0864
+#&gt;   .. ..$ pvalue      : num 0.0409
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Systolic blood pressure  automated reading"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:360"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.0211
+#&gt;   .. ..$ se          : num 0.0105
+#&gt;   .. ..$ pvalue      : num 0.0451
+#&gt;   ..$ :List of 8
+#&gt;   .. ..$ expID       : chr "ADAM19"
+#&gt;   .. ..$ outID       : chr "Diagnoses - main ICD10: N20 Calculus of kidney and ureter"
+#&gt;   .. ..$ outID_mrbase: chr "UKB-a:574"
+#&gt;   .. ..$ nsnp        : int 1
+#&gt;   .. ..$ method      : chr "Wald ratio"
+#&gt;   .. ..$ beta        : num -0.37
+#&gt;   .. ..$ se          : num 0.185
+#&gt;   .. ..$ pvalue      : num 0.0458</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

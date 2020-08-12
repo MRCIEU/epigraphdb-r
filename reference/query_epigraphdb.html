@@ -175,7 +175,9 @@ returned status.</p>
   <span class='kw'>route</span>,
   params = <span class='kw'>NULL</span>,
   mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"raw"</span>, <span class='st'>"table"</span>),
-  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>)
+  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GET"</span>, <span class='st'>"POST"</span>),
+  retry_times = <span class='fl'>5</span>,
+  retry_pause_min = <span class='fl'>4</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -207,6 +209,14 @@ Explicitly specify <code>mode = "table"</code> when needed.</p></td>
 and if the equivalent in R is a vector of length 1, you should wrap this parameter
 in <code><a href='https://rdrr.io/r/base/AsIs.html'>I()</a></code>, e.g. I(c("APOE")) to avoid auto unboxing.
 For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html'><code><a href='https://httr.r-lib.org/reference/POST.html'>httr::POST</a></code></a></p></td>
+    </tr>
+    <tr>
+      <th>retry_times</th>
+      <td><p>Number of times the function will retry the request to the API.</p></td>
+    </tr>
+    <tr>
+      <th>retry_pause_min</th>
+      <td><p>Minimum number of seconds to wait for the next retry.</p></td>
     </tr>
     </table>
 
@@ -257,7 +267,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.003685
+#&gt; [1] 0.00618
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE
@@ -944,16 +954,17 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
     params = <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
       exposure_trait = <span class='kw'>NULL</span>,
       outcome_trait = <span class='kw'>NULL</span>
-    )
+    ),
+    retry_times = <span class='fl'>0</span>
   ),
   error = <span class='fu'>function</span>(<span class='kw'>e</span>) {
     <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='kw'>e</span>)
   }
-)</div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 2 seconds...</span></div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 3.3 seconds...</span></div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 4.8 seconds...</span></div><div class='output co'>#&gt; <span class='message'>Request failed [422]. Retrying in 2.5 seconds...</span></div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
+)</div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
 #&gt; <span class='error'>Detail:</span>
 #&gt; <span class='error'>$detail</span>
 #&gt; <span class='error'>[1] "At least one of the following parameters should be non-missing: [exposure_trait, outcome_trait]"</span>
-#&gt; <span class='error'>do.call(method, args = list(route = route, params = params, call = call))</span></div></pre>
+#&gt; <span class='error'>do.call(method, args = list(route = route, params = params, retry_times = retry_times, retry_pause_min = retry_pause_min, call = call))</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
