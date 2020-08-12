@@ -4,12 +4,12 @@
 \name{epigraphdb-package}
 \alias{epigraphdb}
 \alias{epigraphdb-package}
-\title{epigraphdb: Interface Package for the EpiGraphDB Platform}
+\title{epigraphdb: Interface Package for the 'EpiGraphDB' Platform}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 The interface package to access data from the
-    EpiGraphDB <https://epigraphdb.org> platform.
+    'EpiGraphDB' <https://epigraphdb.org> platform.
     It provides easy access to the EpiGraphDB platform with functions that
     query the corresponding REST endpoints on the API <https://api.epigraphdb.org>
     and return the response data in the 'tibble' data frame format.
