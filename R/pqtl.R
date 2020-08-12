@@ -61,20 +61,16 @@ pqtl <- function(query,
   mode <- match.arg(mode)
   rtype <- match.arg(rtype)
   searchflag <- match.arg(searchflag)
-  response <- api_get_request(
+  response <- query_epigraphdb(
     route = "/pqtl/",
     params = list(
       query = query,
       rtype = rtype,
       pvalue = pvalue,
       searchflag = searchflag
-    )
-  ) %>%
-    httr::content(encoding = "utf-8") %>%
-    purrr::pluck("results")
-  if (mode == "table" && length(response) > 0) {
-    return(pqtl_table(response))
-  }
+    ),
+    mode = mode
+  )
   response
 }
 
@@ -112,19 +108,17 @@ pqtl_pleio <- function(rsid = NULL,
                        mode = c("table", "raw")) {
   mode <- match.arg(mode)
   prflag <- match.arg(prflag)
-  response <- api_get_request(
+  response <- query_epigraphdb(
     route = "/pqtl/pleio/",
     params = list(
       rsid = rsid,
       prflag = prflag
-    )
-  ) %>%
-    httr::content(encoding = "utf-8") %>%
-    purrr::pluck("results")
-
-  if (mode == "table" && length(response) > 0 &&
-    prflag == "proteins") {
-    return(pqtl_table(response))
+    ),
+    mode = mode
+  )
+  # special cases
+  if (prflag == "count") {
+    response <- as.integer(response)
   }
   response
 }
@@ -156,28 +150,10 @@ pqtl_list <- function(flag = c("exposures", "outcomes"),
                       mode = c("table", "raw")) {
   mode <- match.arg(mode)
   flag <- match.arg(flag)
-  response <- api_get_request(
+  response <- query_epigraphdb(
     route = "/pqtl/list/",
-    params = list(flag = flag)
-  ) %>%
-    httr::content(encoding = "utf-8") %>%
-    purrr::pluck("results")
-
-  if (mode == "table" && length(response) > 0) {
-    return(pqtl_table(response))
-  }
+    params = list(flag = flag),
+    mode = mode
+  )
   response
-}
-
-
-#' Reformat response from pQTL results into a table
-#'
-#' @param response response for pQTL analysis
-#'
-#' @keywords internal
-pqtl_table <- function(response) {
-  response %>%
-    purrr::transpose() %>%
-    tibble::as_tibble() %>%
-    dplyr::mutate_all(unlist)
 }

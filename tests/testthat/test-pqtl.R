@@ -24,7 +24,7 @@ test_that("pqtl trait endpoint", {
   rtype <- "mrres"
   pvalue <- 0.05
   searchflag <- "traits"
-  r <- httr::RETRY("GET" ,glue::glue("{url}/pqtl/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/"),
     query = list(
       query = query,
       rtype = rtype,
@@ -101,7 +101,7 @@ test_that("pqtl not found input", {
     pvalue = pvalue,
     searchflag = searchflag
   )
-  expect_equal(r, NULL)
+  expect_equal(dim(r), c(0, 0))
 })
 
 test_that("pqtl_pleio correct input for a list of proteins", {
@@ -142,7 +142,7 @@ test_that("pqtl_pleio not found input", {
     rsid = rsid,
     prflag = prflag
   )
-  expect_equal(r, NULL)
+  expect_equal(dim(r), c(0, 0))
 })
 
 test_that("pqtl_list raw", {
