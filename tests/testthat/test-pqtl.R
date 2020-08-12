@@ -145,6 +145,15 @@ test_that("pqtl_pleio not found input", {
   expect_equal(r, NULL)
 })
 
+test_that("pqtl_list raw", {
+  flag <- "exposures"
+  r <- pqtl_list(
+    flag = flag,
+    mode = "raw"
+  )
+  expect_true(length(r) > 1)
+})
+
 test_that("pqtl_list correct exposures input", {
   flag <- "exposures"
   r <- pqtl_list(
