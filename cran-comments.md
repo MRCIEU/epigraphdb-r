@@ -1,3 +1,15 @@
+## Resubmission (2020-08-12)
+
+In this resubmission I have made the following changes:
+
+- All functions that involve calling API queries now conformed with
+  the retry mechanism which try to reduce chances of
+  functions returning errors due to network issues.
+
+NOTE: a side effect is random occurrence of
+"Examples with CPU (user + system) or elapsed time > 10s"
+issues. These are due to network issues and should be ignored.
+
 ## Resubmission (2020-08-11)
 
 In this resubmission I have made the following changes:
