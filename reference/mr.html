@@ -50,7 +50,6 @@
 
 <meta property="og:title" content="Return information related to Mendelian Randomisation — mr" />
 <meta property="og:description" content="GET /mr" />
-<meta property="og:image" content="/logo.png" />
 
 
 
@@ -225,7 +224,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 ) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 2
 #&gt;  $ metadata:List of 3
 #&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__
-#&gt;   ..$ total_seconds: num 0.00736
+#&gt;   ..$ total_seconds: num 0.016
 #&gt;   ..$ empty_results: logi FALSE
 #&gt;  $ results :List of 6
 #&gt;   ..$ :List of 3
