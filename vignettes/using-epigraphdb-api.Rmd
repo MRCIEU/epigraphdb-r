@@ -183,7 +183,7 @@ The returned data will look like this:
 
 Alternatively, you can use other commonly used tools to query the web API:
 
-- [command line: httpie](https://github.com/jakubroztocil/httpie)
+- [command line: httpie](https://github.com/httpie/httpie)
 - [python: requests](https://realpython.com/python-requests/)
 - [GUI client: postman](https://www.guru99.com/postman-tutorial.html)
 
