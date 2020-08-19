@@ -24,9 +24,14 @@ EpiGraphDB currently offers two API URLs
 To switch to the development API, do
 
 ```r
+# Get default option
+default_api_url <- getOptions("epigraphdb.api.url")
+# Change to the development API
 options(epigraphdb.api.url = "http://dev-api.epigraphdb.org")
 # Verify current URL
 getOption("epigraphdb.api.url")
+# Switch back
+options(epigraphdb.api.url = default_api_url)
 ```
 
 NOTE: you can make this change persistent by placing the changes in
