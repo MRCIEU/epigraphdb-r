@@ -1,36 +1,14 @@
-## Resubmission (2020-08-12)
+## Resubmission (2020-08-19)
 
 In this resubmission I have made the following changes:
 
-- All functions that involve calling API queries now conformed with
-  the retry mechanism which try to reduce chances of
-  functions returning errors due to network issues.
+- Fixed the formatting of DESCRIPTION in accordance with CRAN policies
+- I disabled live changes of options in runtime in the examples (the code block is now static)
+- Fixed a few minor issues in package dependency and urls as identified by checks.
 
-NOTE: a side effect is random occurrence of
-"Examples with CPU (user + system) or elapsed time > 10s"
-issues. These are due to network issues and should be ignored.
-
-## Resubmission (2020-08-11)
-
-In this resubmission I have made the following changes:
-
-1. Fixed several broken urls that were identified from last submission.
-2. A few errors from last submission were related to network issues, so I added
-   a retry mechanism for API calls and it should reduce the chances
-   of errors due to network issues.
-
-Please note that it is likely that some tests will take longer time to finish and
-the checks will give **NOTE**s to these issues.
-These NOTEs can be safely ignored as they simply mean those functions are retrying
-API calls.
-
-## Resubmission (2020-08-07)
-
-In this resubmission I have made the following changes:
-
-- Updated DESCRIPTION to conform with CRAN policies (checked with a local rhub environment `rhub::local_check_linux()`).
-- Updated the URL link of a CRAN package.
-- Fixed a few other minor issues identified by rhub's local check `rhub::local_check_linux()`.
+NOTE that when building the package it is plausible (though very rare) that the issue "Examples with CPU (user + system) or elapsed time > 10s" could occur randomly.
+This is usually caused by network issues and the package attempts to resend requests to the API service.
+This issue should be safely ignored as its occurrence is usually random and rare.
 
 ## Test environments
 * local macOS install, R 3.6.1
