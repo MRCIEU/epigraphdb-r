@@ -19,3 +19,4 @@
 ^\.Rprofile$
 ^\.covrignore$
 ^CRAN-RELEASE$
+^\.Rcheck$

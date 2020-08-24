@@ -1,13 +1,6 @@
 .PHONY: lint docs build test tests fmt init
 
 #################################################################################
-# GLOBALS                                                                       #
-#################################################################################
-
-PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PROJECT_NAME = epigraphdb-r
-
-#################################################################################
 # Rules
 #################################################################################
 
@@ -25,19 +18,20 @@ lint:
 fmt:
 	Rscript -e "styler::style_pkg(filetype=c('R', 'Rmd'))"
 
+## Update rd docs
+roxygen:
+	Rscript -e "devtools::document()"
+
 ## Check package infrastructure and perform unit tests
 test:
 	Rscript -e "devtools::check()"
 
 tests: test
 
-check: tests
-
 ## ==== build and install ====
 
-## Build package: generate rd docs and build the bundle
+## Build package
 build:
-	Rscript -e "devtools::document()"
 	Rscript -e "devtools::build(vignettes = TRUE, manual = TRUE)"
 
 ## Build pkgdown documentation
@@ -53,6 +47,10 @@ uninstall:
 	Rscript -e "devtools::uninstall()"
 
 ## ==== CRAN related ====
+
+## Check for CRAN submission; `make check BUNDLE={/path/to/bundle}`
+check:
+	R CMD check --as-cran $$BUNDLE
 
 ## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
 check-cran-local:
