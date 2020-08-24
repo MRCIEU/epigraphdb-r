@@ -11,17 +11,11 @@ PROJECT_NAME = epigraphdb-r
 # Rules
 #################################################################################
 
+## ==== codebase ====
+
 ## Init (install a local copy and its development dependencies)
 init:
 	Rscript -e "devtools::install(dependencies = TRUE)"
-
-## Check package infrastructure and perform unit tests
-test:
-	Rscript -e "devtools::check()"
-
-tests: test
-
-check: tests
 
 ## Lint codebase
 lint:
@@ -31,9 +25,24 @@ lint:
 fmt:
 	Rscript -e "styler::style_pkg(filetype=c('R', 'Rmd'))"
 
-## Build package
+## Check package infrastructure and perform unit tests
+test:
+	Rscript -e "devtools::check()"
+
+tests: test
+
+check: tests
+
+## ==== build and install ====
+
+## Build package: generate rd docs and build the bundle
 build:
-	Rscript -e "devtools::build()"
+	Rscript -e "devtools::document()"
+	Rscript -e "devtools::build(vignettes = TRUE, manual = TRUE)"
+
+## Build pkgdown documentation
+docs:
+	Rscript -e "pkgdown::build_site(preview = TRUE)"
 
 ## Build package and install locally
 install:
@@ -43,10 +52,7 @@ install:
 uninstall:
 	Rscript -e "devtools::uninstall()"
 
-## Build documentation
-docs:
-	Rscript -e "devtools::document()"
-	Rscript -e "pkgdown::build_site(preview = TRUE)"
+## ==== CRAN related ====
 
 ## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
 check-cran-local:
