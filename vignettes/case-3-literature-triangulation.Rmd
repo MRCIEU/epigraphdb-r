@@ -291,8 +291,10 @@ plot_network <- function(edges, nodes, show_edge_labels = FALSE) {
   colrs <- c("tomato", "steelblue", "gold")
   V(graph)$color <- colrs[V(graph)$node_type]
 
-  # set all plot margins to zero
-  par(mar = c(0, 0, 0, 0))
+  # Configure canvas
+  default_mar <- par("mar")
+  new_mar <- c(0, 0, 0, 0)
+  par(mar = new_mar)
 
   plot.igraph(graph,
     vertex.size = 13,
@@ -304,6 +306,7 @@ plot_network <- function(edges, nodes, show_edge_labels = FALSE) {
     edge.label.family = "Helvetica",
     edge.label.cex = 0.5
   )
+  par(mar = default_mar)
 }
 ```
 
