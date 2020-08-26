@@ -558,8 +558,10 @@
   <span class="kw">colrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"tomato"</span>, <span class="st">"steelblue"</span>, <span class="st">"gold"</span>)
   <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(<span class="kw">graph</span>)<span class="op">$</span><span class="kw">color</span> <span class="op">&lt;-</span> <span class="kw">colrs</span>[<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span>(<span class="kw">graph</span>)<span class="op">$</span><span class="kw">node_type</span>]
 
-  <span class="co"># set all plot margins to zero</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>))
+  <span class="co"># Configure canvas</span>
+  <span class="kw">default_mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="st">"mar"</span>)
+  <span class="kw">new_mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>)
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar = <span class="kw">new_mar</span>)
 
   <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/plot.igraph.html">plot.igraph</a></span>(<span class="kw">graph</span>,
     vertex.size = <span class="fl">13</span>,
@@ -571,6 +573,7 @@
     edge.label.family = <span class="st">"Helvetica"</span>,
     edge.label.cex = <span class="fl">0.5</span>
   )
+  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mar = <span class="kw">default_mar</span>)
 }
 </pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit">
@@ -657,17 +660,18 @@
 <span class="co">#&gt; [5] purrr_0.3.4      dplyr_1.0.2      magrittr_1.5    </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] pillar_1.4.6       compiler_4.0.0     tools_4.0.0        digest_0.6.25     </span>
+<span class="co">#&gt;  [1] compiler_4.0.0     pillar_1.4.6       tools_4.0.0        digest_0.6.25     </span>
 <span class="co">#&gt;  [5] jsonlite_1.7.0     evaluate_0.14      memoise_1.1.0      lifecycle_0.2.0   </span>
 <span class="co">#&gt;  [9] tibble_3.0.3       gtable_0.3.0       pkgconfig_2.0.3    rlang_0.4.7       </span>
 <span class="co">#&gt; [13] cli_2.0.2          curl_4.3           yaml_2.2.1         pkgdown_1.5.1.9000</span>
 <span class="co">#&gt; [17] xfun_0.16          withr_2.2.0        stringr_1.4.0      httr_1.4.2        </span>
 <span class="co">#&gt; [21] knitr_1.29         generics_0.0.2     desc_1.2.0         fs_1.5.0          </span>
-<span class="co">#&gt; [25] vctrs_0.3.2        rprojroot_1.3-2    grid_4.0.0         tidyselect_1.1.0  </span>
-<span class="co">#&gt; [29] R6_2.4.1           fansi_0.4.1        rmarkdown_2.3.3    farver_2.0.3      </span>
-<span class="co">#&gt; [33] backports_1.1.8    scales_1.1.1       ellipsis_0.3.1     htmltools_0.5.0   </span>
-<span class="co">#&gt; [37] assertthat_0.2.1   colorspace_1.4-1   labeling_0.3       utf8_1.1.4        </span>
-<span class="co">#&gt; [41] stringi_1.4.6      munsell_0.5.0      crayon_1.3.4</span>
+<span class="co">#&gt; [25] vctrs_0.3.2        systemfonts_0.2.3  rprojroot_1.3-2    grid_4.0.0        </span>
+<span class="co">#&gt; [29] tidyselect_1.1.0   R6_2.4.1           fansi_0.4.1        rmarkdown_2.3.3   </span>
+<span class="co">#&gt; [33] farver_2.0.3       backports_1.1.9    scales_1.1.1       ellipsis_0.3.1    </span>
+<span class="co">#&gt; [37] htmltools_0.5.0    assertthat_0.2.1   colorspace_1.4-1   labeling_0.3      </span>
+<span class="co">#&gt; [41] ragg_0.3.1         utf8_1.1.4         stringi_1.4.6      munsell_0.5.0     </span>
+<span class="co">#&gt; [45] crayon_1.3.4</span>
 </pre></div>
 </div>
   </div>
