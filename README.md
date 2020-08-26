@@ -44,13 +44,8 @@ the R package name is "epigraphdb".
 
 ```r
 library("epigraphdb")
-#>   EpiGraphDB v0.3
 #>
-#>   Web API: https://api.epigraphdb.org
-#>
-#>   To turn off this message, use
-#>   suppressPackageStartupMessages({library("epigraphdb")})
-#>
+#>   EpiGraphDB v0.3 (API: https://api.epigraphdb.org)
 #>
 mr(outcome_trait = "Body mass index")
 #> # A tibble: 370 x 12
