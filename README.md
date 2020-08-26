@@ -30,9 +30,7 @@ To install the latest development version from github (
 devtools::install_github("MRCIEU/epigraphdb-r")
 ```
 
-To install a stable version from CRAN (
-we are in the process of submitting `epigraphdb` to CRAN
-):
+To install a stable version from CRAN:
 ```r
 install.packages("epigraphdb")
 ```
