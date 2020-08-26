@@ -131,7 +131,7 @@
 <span class="co"># install.packages("devtools")</span>
 <span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"MRCIEU/epigraphdb-r"</span>)
 </pre></div>
-<p>To install a stable version from CRAN ( we are in the process of submitting <code>epigraphdb</code> to CRAN ):</p>
+<p>To install a stable version from CRAN:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"epigraphdb"</span>)
 </pre></div>
@@ -144,13 +144,8 @@
 <p><code>epigraphdb</code> provides a simple and intuitive way to query the API, as:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
-<span class="co">#&gt;   EpiGraphDB v0.3</span>
 <span class="co">#&gt;</span>
-<span class="co">#&gt;   Web API: https://api.epigraphdb.org</span>
-<span class="co">#&gt;</span>
-<span class="co">#&gt;   To turn off this message, use</span>
-<span class="co">#&gt;   suppressPackageStartupMessages({library("epigraphdb")})</span>
-<span class="co">#&gt;</span>
+<span class="co">#&gt;   EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt;</span>
 <span class="fu"><a href="reference/mr.html">mr</a></span>(outcome_trait = <span class="st">"Body mass index"</span>)
 <span class="co">#&gt; # A tibble: 370 x 12</span>
