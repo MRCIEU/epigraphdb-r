@@ -3,7 +3,10 @@ context("meta")
 test_that("GET /meta/nodes/list", {
   url <- getOption("epigraphdb.api.url")
   route <- "/meta/nodes/list"
-  r <- httr::RETRY("GET", url = glue::glue("{url}{route}"))
+  r <- httr::RETRY("GET",
+    url = glue::glue("{url}{route}"),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
+  )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)
 })
@@ -11,7 +14,10 @@ test_that("GET /meta/nodes/list", {
 test_that("GET /meta/rels/list", {
   url <- getOption("epigraphdb.api.url")
   route <- "/meta/rels/list"
-  r <- httr::RETRY("GET", url = glue::glue("{url}{route}"))
+  r <- httr::RETRY("GET",
+    url = glue::glue("{url}{route}"),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
+  )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)
 })

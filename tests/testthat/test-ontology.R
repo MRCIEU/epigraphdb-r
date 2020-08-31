@@ -6,7 +6,8 @@ test_that("ontology endpoint", {
   r <- httr::RETRY("GET", glue::glue("{url}/ontology/gwas-efo"),
     query = list(
       efo_term = efo_term
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

@@ -5,12 +5,16 @@
 }
 
 .onLoad <- function(libname, pkgname) { # nolint
-  op <- options()
-  op.epigraphdb <- list( # nolint
-    epigraphdb.api.url = "https://api.epigraphdb.org"
+  current_options <- options()
+  package_options <- list(
+    # URL to EpiGraphDB API
+    epigraphdb.api.url = "https://api.epigraphdb.org",
+    # Are the requests for CI usage
+    epigraphdb.ci = Sys.getenv(x = "CI", unset = c(CI = "false")) %>%
+      as.logical()
   )
-  toset <- !(names(op.epigraphdb) %in% names(op))
-  if (any(toset)) options(op.epigraphdb[toset])
+  to_set <- !(names(package_options) %in% names(current_options))
+  if (any(to_set)) options(package_options[to_set])
 
   invisible()
 }

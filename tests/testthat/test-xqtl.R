@@ -6,7 +6,8 @@ test_that("/xqtl/multi-snp-mr", {
   r <- httr::RETRY("GET", glue::glue("{url}/xqtl/multi-snp-mr"),
     query = list(
       outcome_trait = outcome_trait
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)
@@ -18,7 +19,8 @@ test_that("/xqtl/single-snp-mr", {
   r <- httr::RETRY("GET", glue::glue("{url}/xqtl/single-snp-mr"),
     query = list(
       outcome_trait = outcome_trait
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

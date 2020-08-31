@@ -8,7 +8,8 @@ test_that("/confounder", {
     query = list(
       exposure_trait = exposure,
       outcome_trait = outcome
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

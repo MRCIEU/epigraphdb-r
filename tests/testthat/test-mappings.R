@@ -11,7 +11,7 @@ test_that("POST /mappings/gene-to-protein", {
     glue::glue("{url}/mappings/gene-to-protein"),
     body = jsonlite::toJSON(params, auto_unbox = TRUE),
     encode = "json",
-    config = httr::add_headers(.headers = c("client-type" = "R"))
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

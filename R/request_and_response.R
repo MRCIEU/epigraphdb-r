@@ -106,7 +106,10 @@ api_get_request <- function(route, params,
                             call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
   url <- glue::glue("{api_url}{route}")
-  config <- httr::add_headers(.headers = c("client-type" = "R"))
+  is_ci <- getOption("epigraphdb.ci") %>%
+    as.character() %>%
+    tolower()
+  config <- httr::add_headers(.headers = c("client-type" = "R", "ci" = is_ci))
   response <- httr::RETRY(
     "GET",
     url = url, query = params, config = config,
@@ -129,7 +132,10 @@ api_post_request <- function(route, params,
                              call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
   url <- glue::glue("{api_url}{route}")
-  config <- httr::add_headers(.headers = c("client-type" = "R"))
+  is_ci <- getOption("epigraphdb.ci") %>%
+    as.character() %>%
+    tolower()
+  config <- httr::add_headers(.headers = c("client-type" = "R", "ci" = is_ci))
   body <- jsonlite::toJSON(params, auto_unbox = TRUE)
   response <- httr::RETRY(
     "POST",

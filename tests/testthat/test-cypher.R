@@ -9,7 +9,8 @@ test_that("POST /cypher", {
     "POST",
     glue::glue("{url}{route}"),
     body = body,
-    encode = "json"
+    encode = "json",
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)

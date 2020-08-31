@@ -12,7 +12,8 @@ test_that("pqtl protein endpoint", {
       rtype = rtype,
       pvalue = pvalue,
       searchflag = searchflag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
   expect_true(length(httr::content(r)) > 0)
@@ -30,7 +31,8 @@ test_that("pqtl trait endpoint", {
       rtype = rtype,
       pvalue = pvalue,
       searchflag = searchflag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
 })
@@ -43,7 +45,8 @@ test_that("pqtl_pleio endpoint", {
     query = list(
       rsid = rsid,
       prflag = prflag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
 })
@@ -54,7 +57,8 @@ test_that("pqtl_list endpoint", {
   r <- httr::RETRY("GET", glue::glue("{url}/pqtl/list/"),
     query = list(
       flag = flag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
 })

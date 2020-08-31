@@ -20,11 +20,11 @@ fmt:
 
 ## Update rd docs
 roxygen:
-	Rscript -e "devtools::document()"
+	CI=true Rscript -e "devtools::document()"
 
 ## Check package infrastructure and perform unit tests
 test:
-	Rscript -e "devtools::check()"
+	CI=true Rscript -e "devtools::check()"
 
 tests: test
 
@@ -32,11 +32,11 @@ tests: test
 
 ## Build package
 build:
-	Rscript -e "devtools::build(vignettes = TRUE, manual = TRUE)"
+	CI=true Rscript -e "devtools::build(vignettes = TRUE, manual = TRUE)"
 
 ## Build pkgdown documentation
 docs:
-	Rscript -e "pkgdown::build_site(preview = TRUE)"
+	CI=true Rscript -e "pkgdown::build_site(preview = TRUE)"
 
 ## Build package and install locally
 install:
@@ -50,7 +50,7 @@ uninstall:
 
 ## Check for CRAN submission; `make check BUNDLE={/path/to/bundle}`
 check:
-	R CMD check --as-cran $$BUNDLE
+	CI=true R CMD check --as-cran $$BUNDLE
 
 ## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
 check-cran-local:
