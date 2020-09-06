@@ -212,24 +212,25 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /confounder</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>confounder</span>(exposure_trait = <span class='st'>"Body mass index"</span>, outcome_trait = <span class='st'>"Coronary heart disease"</span>)</div><div class='output co'>#&gt; # A tibble: 91 x 24
+    <pre class="examples"><div class='input'><span class='fu'>confounder</span>(exposure_trait = <span class='st'>"Body mass index"</span>, outcome_trait = <span class='st'>"Coronary heart disease"</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 91 x 24</span><span>
 #&gt;    exposure.id exposure.trait outcome.id outcome.trait cf.id cf.trait  r1.b
-#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;
-#&gt;  1 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.817
-#&gt;  2 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.851
-#&gt;  3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.929
-#&gt;  4 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 1.04 
-#&gt;  5 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.340
-#&gt;  6 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.349
-#&gt;  7 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.378
-#&gt;  8 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.360
-#&gt;  9 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ukb-… Trunk f… 0.587
-#&gt; 10 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ukb-… Trunk f… 0.594
-#&gt; # … with 81 more rows, and 17 more variables: r1.se &lt;dbl&gt;, r1.pval &lt;dbl&gt;,
-#&gt; #   r1.method &lt;chr&gt;, r1.selection &lt;chr&gt;, r1.moescore &lt;dbl&gt;, r2.b &lt;dbl&gt;,
-#&gt; #   r2.se &lt;dbl&gt;, r2.pval &lt;dbl&gt;, r2.method &lt;chr&gt;, r2.selection &lt;chr&gt;,
-#&gt; #   r2.moescore &lt;dbl&gt;, r3.b &lt;dbl&gt;, r3.se &lt;dbl&gt;, r3.pval &lt;dbl&gt;, r3.method &lt;chr&gt;,
-#&gt; #   r3.selection &lt;chr&gt;, r3.moescore &lt;dbl&gt;</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.817
+#&gt; </span><span style='color: #555555;'> 2</span><span> ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.851
+#&gt; </span><span style='color: #555555;'> 3</span><span> ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 0.929
+#&gt; </span><span style='color: #555555;'> 4</span><span> ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… ieu-… Hip cir… 1.04 
+#&gt; </span><span style='color: #555555;'> 5</span><span> ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.340
+#&gt; </span><span style='color: #555555;'> 6</span><span> ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.349
+#&gt; </span><span style='color: #555555;'> 7</span><span> ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.378
+#&gt; </span><span style='color: #555555;'> 8</span><span> ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… ieu-… Obesity… 0.360
+#&gt; </span><span style='color: #555555;'> 9</span><span> ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… ukb-… Trunk f… 0.587
+#&gt; </span><span style='color: #555555;'>10</span><span> ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… ukb-… Trunk f… 0.594
+#&gt; </span><span style='color: #555555;'># … with 81 more rows, and 17 more variables: r1.se </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r1.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   r1.method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, r1.selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, r1.moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r2.b </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   r2.se </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r2.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r2.method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, r2.selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   r2.moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r3.b </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r3.se </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r3.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, r3.method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   r3.selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, r3.moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

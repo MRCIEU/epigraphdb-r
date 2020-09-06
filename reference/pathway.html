@@ -190,22 +190,23 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /pathway</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>pathway</span>(trait = <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 88 x 11
+    <pre class="examples"><div class='input'><span class='fu'>pathway</span>(trait = <span class='st'>"Body mass index"</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 88 x 11</span><span>
 #&gt;    gwas.id gwas.trait gwas_to_variant… gwas_to_variant… gwas_to_variant…
-#&gt;    &lt;chr&gt;   &lt;chr&gt;                 &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-#&gt;  1 ieu-a-2 Body mass…           0.0803          0.00300         0.      
-#&gt;  2 ieu-a-… Body mass…           0.0840          0.00410         0.      
-#&gt;  3 ieu-a-… Body mass…           0.0818          0.00310         0.      
-#&gt;  4 ieu-a-… Body mass…           0.0774          0.00390         0.      
-#&gt;  5 ieu-a-… Body mass…           0.0850          0.00640         1.14e-40
-#&gt;  6 ieu-a-… Body mass…           0.0760          0.00630         6.00e-34
-#&gt;  7 ieu-a-2 Body mass…          -0.0416          0.0037          6.66e-30
-#&gt;  8 ieu-a-… Body mass…          -0.0414          0.00380         5.56e-28
-#&gt;  9 ieu-a-… Body mass…           0.0334          0.00310         2.66e-26
-#&gt; 10 ieu-a-2 Body mass…           0.0311          0.00300         3.45e-25
-#&gt; # … with 78 more rows, and 6 more variables: gwas_to_variant.samplesize &lt;dbl&gt;,
-#&gt; #   variant.name &lt;chr&gt;, gene.name &lt;chr&gt;, protein.uniprot_id &lt;chr&gt;,
-#&gt; #   pathway.reactome_id &lt;chr&gt;, pathway.name &lt;chr&gt;</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> ieu-a-2 Body mass…           0.080</span><span style='text-decoration: underline;'>3</span><span>          0.003</span><span style='text-decoration: underline;'>00</span><span>         0.  </span><span style='color: #555555;'> </span><span>   
+#&gt; </span><span style='color: #555555;'> 2</span><span> ieu-a-… Body mass…           0.084</span><span style='text-decoration: underline;'>0</span><span>          0.004</span><span style='text-decoration: underline;'>10</span><span>         0.  </span><span style='color: #555555;'> </span><span>   
+#&gt; </span><span style='color: #555555;'> 3</span><span> ieu-a-… Body mass…           0.081</span><span style='text-decoration: underline;'>8</span><span>          0.003</span><span style='text-decoration: underline;'>10</span><span>         0.  </span><span style='color: #555555;'> </span><span>   
+#&gt; </span><span style='color: #555555;'> 4</span><span> ieu-a-… Body mass…           0.077</span><span style='text-decoration: underline;'>4</span><span>          0.003</span><span style='text-decoration: underline;'>90</span><span>         0.  </span><span style='color: #555555;'> </span><span>   
+#&gt; </span><span style='color: #555555;'> 5</span><span> ieu-a-… Body mass…           0.085</span><span style='text-decoration: underline;'>0</span><span>          0.006</span><span style='text-decoration: underline;'>40</span><span>         1.14</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-40</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> ieu-a-… Body mass…           0.076</span><span style='text-decoration: underline;'>0</span><span>          0.006</span><span style='text-decoration: underline;'>30</span><span>         6.00</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-34</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> ieu-a-2 Body mass…          -</span><span style='color: #BB0000;'>0.041</span><span style='color: #BB0000;text-decoration: underline;'>6</span><span>          0.003</span><span style='text-decoration: underline;'>7</span><span>          6.66</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-30</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> ieu-a-… Body mass…          -</span><span style='color: #BB0000;'>0.041</span><span style='color: #BB0000;text-decoration: underline;'>4</span><span>          0.003</span><span style='text-decoration: underline;'>80</span><span>         5.56</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-28</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> ieu-a-… Body mass…           0.033</span><span style='text-decoration: underline;'>4</span><span>          0.003</span><span style='text-decoration: underline;'>10</span><span>         2.66</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-26</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> ieu-a-2 Body mass…           0.031</span><span style='text-decoration: underline;'>1</span><span>          0.003</span><span style='text-decoration: underline;'>00</span><span>         3.45</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-25</span><span>
+#&gt; </span><span style='color: #555555;'># … with 78 more rows, and 6 more variables: gwas_to_variant.samplesize </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   variant.name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, gene.name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, protein.uniprot_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   pathway.reactome_id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, pathway.name </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

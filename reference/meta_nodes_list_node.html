@@ -206,23 +206,25 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># List the first 5 Gwas nodes, with only id and name fields</span>
-<span class='fu'>meta_nodes_list_node</span>(meta_node = <span class='st'>"Gwas"</span>, full_data = <span class='fl'>FALSE</span>, limit = <span class='fl'>5</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 2
+<span class='fu'>meta_nodes_list_node</span>(meta_node = <span class='st'>"Gwas"</span>, full_data = <span class='fl'>FALSE</span>, limit = <span class='fl'>5</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 5 x 2</span><span>
 #&gt;   id                     name                  
-#&gt;   &lt;chr&gt;                  &lt;chr&gt;                 
-#&gt; 1 eqtl-a-ENSG00000261662 ENSG00000261662       
-#&gt; 2 eqtl-a-ENSG00000160460 ENSG00000160460       
-#&gt; 3 eqtl-a-ENSG00000205426 ENSG00000205426       
-#&gt; 4 ieu-a-9                Coronary heart disease
-#&gt; 5 eqtl-a-ENSG00000003436 ENSG00000003436       </div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                 
+#&gt; </span><span style='color: #555555;'>1</span><span> eqtl-a-ENSG00000261662 ENSG00000261662       
+#&gt; </span><span style='color: #555555;'>2</span><span> eqtl-a-ENSG00000160460 ENSG00000160460       
+#&gt; </span><span style='color: #555555;'>3</span><span> eqtl-a-ENSG00000205426 ENSG00000205426       
+#&gt; </span><span style='color: #555555;'>4</span><span> ieu-a-9                Coronary heart disease
+#&gt; </span><span style='color: #555555;'>5</span><span> eqtl-a-ENSG00000003436 ENSG00000003436       </div><div class='input'>
 <span class='co'># List the 6th - 10th Disease nodes, with full properties</span>
-<span class='fu'>meta_nodes_list_node</span>(meta_node = <span class='st'>"Disease"</span>, full_data = <span class='fl'>TRUE</span>, limit = <span class='fl'>5</span>, offset = <span class='fl'>0</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 9
+<span class='fu'>meta_nodes_list_node</span>(meta_node = <span class='st'>"Disease"</span>, full_data = <span class='fl'>TRUE</span>, limit = <span class='fl'>5</span>, offset = <span class='fl'>0</span>)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 5 x 9</span><span>
 #&gt;   n.doid  n.umls  n.definition      n.id    n.label  n.icd9 n.mesh n.efo n.icd10
-#&gt;   &lt;list&gt;  &lt;list&gt;  &lt;chr&gt;             &lt;chr&gt;   &lt;chr&gt;    &lt;list&gt; &lt;list&gt; &lt;lis&gt; &lt;list&gt; 
-#&gt; 1 &lt;chr [… &lt;lgl [… A primary or met… http:/… cervica… &lt;chr … &lt;lgl … &lt;lgl… &lt;chr […
-#&gt; 2 &lt;chr [… &lt;chr [… A hordeolum that… http:/… hordeol… &lt;chr … &lt;lgl … &lt;lgl… &lt;chr […
-#&gt; 3 &lt;chr [… &lt;lgl [… A disease caused… http:/… Alkhurm… &lt;lgl … &lt;lgl … &lt;lgl… &lt;lgl […
-#&gt; 4 &lt;chr [… &lt;lgl [… Preeclampsia wit… http:/… severe … &lt;chr … &lt;lgl … &lt;lgl… &lt;lgl […
-#&gt; 5 &lt;chr [… &lt;chr [… A melanoma that … http:/… maligna… &lt;lgl … &lt;lgl … &lt;lgl… &lt;lgl […</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;lis&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;list&gt;</span><span> 
+#&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='color: #555555;'>&lt;chr [</span><span>… </span><span style='color: #555555;'>&lt;lgl [</span><span>… A primary or met… http:/… cervica… </span><span style='color: #555555;'>&lt;chr </span><span>… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl</span><span>… </span><span style='color: #555555;'>&lt;chr [</span><span>…
+#&gt; </span><span style='color: #555555;'>2</span><span> </span><span style='color: #555555;'>&lt;chr [</span><span>… </span><span style='color: #555555;'>&lt;chr [</span><span>… A hordeolum that… http:/… hordeol… </span><span style='color: #555555;'>&lt;chr </span><span>… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl</span><span>… </span><span style='color: #555555;'>&lt;chr [</span><span>…
+#&gt; </span><span style='color: #555555;'>3</span><span> </span><span style='color: #555555;'>&lt;chr [</span><span>… </span><span style='color: #555555;'>&lt;lgl [</span><span>… A disease caused… http:/… Alkhurm… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl</span><span>… </span><span style='color: #555555;'>&lt;lgl [</span><span>…
+#&gt; </span><span style='color: #555555;'>4</span><span> </span><span style='color: #555555;'>&lt;chr [</span><span>… </span><span style='color: #555555;'>&lt;lgl [</span><span>… Preeclampsia wit… http:/… severe … </span><span style='color: #555555;'>&lt;chr </span><span>… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl</span><span>… </span><span style='color: #555555;'>&lt;lgl [</span><span>…
+#&gt; </span><span style='color: #555555;'>5</span><span> </span><span style='color: #555555;'>&lt;chr [</span><span>… </span><span style='color: #555555;'>&lt;chr [</span><span>… A melanoma that … http:/… maligna… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl </span><span>… </span><span style='color: #555555;'>&lt;lgl</span><span>… </span><span style='color: #555555;'>&lt;lgl [</span><span>…</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

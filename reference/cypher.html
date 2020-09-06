@@ -185,14 +185,15 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>cypher</span>(<span class='st'>"MATCH (n:Gwas) RETURN n LIMIT 2"</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 16
+    <pre class="examples"><div class='input'><span class='fu'>cypher</span>(<span class='st'>"MATCH (n:Gwas) RETURN n LIMIT 2"</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 2 x 16</span><span>
 #&gt;   n.note n.access n.year n.mr  n.author n.consortium n.sex n.priority
-#&gt;   &lt;lgl&gt;  &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;lgl&gt;        &lt;chr&gt; &lt;chr&gt;     
-#&gt; 1 NA     public   2018   1     Vosa U   NA           Male… 0         
-#&gt; 2 NA     public   2018   1     Vosa U   NA           Male… 0         
-#&gt; # … with 8 more variables: n.population &lt;chr&gt;, n.unit &lt;lgl&gt;,
-#&gt; #   n.sample_size &lt;chr&gt;, n.nsnp &lt;chr&gt;, n.trait &lt;chr&gt;, n.id &lt;chr&gt;,
-#&gt; #   n.subcategory &lt;lgl&gt;, n.category &lt;lgl&gt;</div></pre>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
+#&gt; </span><span style='color: #555555;'>1</span><span> </span><span style='color: #BB0000;'>NA</span><span>     public   2018   1     Vosa U   </span><span style='color: #BB0000;'>NA</span><span>           Male… 0         
+#&gt; </span><span style='color: #555555;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>     public   2018   1     Vosa U   </span><span style='color: #BB0000;'>NA</span><span>           Male… 0         
+#&gt; </span><span style='color: #555555;'># … with 8 more variables: n.population </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, n.unit </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   n.sample_size </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, n.nsnp </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, n.trait </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, n.id </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   n.subcategory </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span style='color: #555555;'>, n.category </span><span style='color: #555555;font-style: italic;'>&lt;lgl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

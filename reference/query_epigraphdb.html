@@ -233,17 +233,18 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
     outcome_trait = <span class='st'>"Coronary heart disease"</span>
   ),
   mode = <span class='st'>"table"</span>
-)</div><div class='output co'>#&gt; # A tibble: 6 x 10
+)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6 x 10</span><span>
 #&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval
-#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15
-#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8
-#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6
-#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6
-#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6
-#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6
-#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,
-#&gt; #   mr.moescore &lt;dbl&gt;</div><div class='input'>
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt; </span><span style='color: #555555;'>2</span><span> ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.072</span><span style='text-decoration: underline;'>7</span><span> 4.79</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #555555;'>3</span><span> ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.093</span><span style='text-decoration: underline;'>1</span><span> 1.02</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'>4</span><span> ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.068</span><span style='text-decoration: underline;'>4</span><span> 1.31</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'>5</span><span> ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.075</span><span style='text-decoration: underline;'>6</span><span> 1.94</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'>6</span><span> ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #555555;'># … with 3 more variables: mr.method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, mr.selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   mr.moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># GET /meta/nodes/Gwas/list</span>
 <span class='fu'>query_epigraphdb</span>(
   route = <span class='st'>"/meta/nodes/Gwas/list"</span>,
@@ -251,7 +252,8 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
     limit = <span class='fl'>5</span>,
     offset = <span class='fl'>0</span>
   )
-) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fl'>1</span>)</div><div class='output co'>#&gt; List of 2
+) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fl'>1</span>)
+</div><div class='output co'>#&gt; List of 2
 #&gt;  $ metadata:List of 3
 #&gt;  $ results :List of 5</div><div class='input'>
 <span class='co'># POST /protein/ppi</span>
@@ -261,12 +263,13 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
     uniprot_id_list = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"P30793"</span>, <span class='st'>"Q9NZM1"</span>, <span class='st'>"O95236"</span>)
   ),
   method = <span class='st'>"POST"</span>
-)</div><div class='output co'>#&gt; $metadata
+)
+</div><div class='output co'>#&gt; $metadata
 #&gt; $metadata$query
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.008155
+#&gt; [1] 0.008733
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE
@@ -959,11 +962,12 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
   error = <span class='fu'>function</span>(<span class='kw'>e</span>) {
     <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span>(<span class='kw'>e</span>)
   }
-)</div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
+)
+</div><div class='output co'>#&gt; <span class='error'>Error in stop_for_status(response, call = sys.call(-1)): Unprocessable Entity (WebDAV; RFC 4918) (HTTP 422).</span>
 #&gt; <span class='error'>Detail:</span>
 #&gt; <span class='error'>$detail</span>
 #&gt; <span class='error'>[1] "At least one of the following parameters should be non-missing: [exposure_trait, outcome_trait]"</span>
-#&gt; <span class='error'>do.call(method, args = list(route = route, params = params, retry_times = retry_times, retry_pause_min = retry_pause_min, call = call))</span></div></pre>
+#&gt; <span class='error'>do.call(method, args = list(route = route, params = params, retry_times = retry_times, retry_pause_min = retry_pause_min, call = call))</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

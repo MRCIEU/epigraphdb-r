@@ -220,71 +220,75 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame of MR results, while searching for proteins</span>
-<span class='fu'>pqtl</span>(query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>)</div><div class='output co'>#&gt; # A tibble: 16 x 8
+<span class='fu'>pqtl</span>(query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 16 x 8</span><span>
 #&gt;    expID  outID             outID_mrbase  nsnp method      beta      se   pvalue
-#&gt;    &lt;chr&gt;  &lt;chr&gt;             &lt;chr&gt;        &lt;int&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
-#&gt;  1 ADAM19 Forced expirator… UKB-a:337        1 Wald r…  6.82e-2 8.92e-3 2.10e-14
-#&gt;  2 ADAM19 Height            89               1 Wald r…  4.88e-2 1.26e-2 1.08e- 4
-#&gt;  3 ADAM19 Non-cancer illne… UKB-a:66         1 Wald r… -1.26e-1 3.28e-2 1.21e- 4
-#&gt;  4 ADAM19 Hippocampus volu… 1045             1 Wald r…  6.37e+1 2.00e+1 1.48e- 3
-#&gt;  5 ADAM19 Forced vital cap… UKB-a:336        1 Wald r…  2.45e-2 8.46e-3 3.71e- 3
-#&gt;  6 ADAM19 Diagnoses - main… UKB-a:582        1 Wald r… -1.57e-1 5.85e-2 7.14e- 3
-#&gt;  7 ADAM19 Intracranial vol… 1041             1 Wald r…  1.99e+4 8.17e+3 1.50e- 2
-#&gt;  8 ADAM19 Neo-conscientiou… 114              1 Wald r… -7.48e-1 3.12e-1 1.66e- 2
-#&gt;  9 ADAM19 Subjective well … 1009             1 Wald r…  2.85e-2 1.22e-2 1.96e- 2
-#&gt; 10 ADAM19 Invasive mucinou… 1123             1 Wald r…  3.96e-1 1.73e-1 2.18e- 2
-#&gt; 11 ADAM19 HDL cholesterol   299              1 Wald r… -4.19e-2 1.99e-2 3.55e- 2
-#&gt; 12 ADAM19 Paget's disease   975              1 Wald r… -5.24e-1 2.49e-1 3.56e- 2
-#&gt; 13 ADAM19 Fractured bone s… UKB-a:441        1 Wald r… -1.04e-1 4.99e-2 3.69e- 2
-#&gt; 14 ADAM19 Diagnoses - main… UKB-a:559        1 Wald r… -1.77e-1 8.64e-2 4.09e- 2
-#&gt; 15 ADAM19 Systolic blood p… UKB-a:360        1 Wald r… -2.11e-2 1.05e-2 4.51e- 2
-#&gt; 16 ADAM19 Diagnoses - main… UKB-a:574        1 Wald r… -3.70e-1 1.85e-1 4.58e- 2</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> ADAM19 Forced expirator… UKB-a:337        1 Wald r…  6.82</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 8.92</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 2.10</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-14</span><span>
+#&gt; </span><span style='color: #555555;'> 2</span><span> ADAM19 Height            89               1 Wald r…  4.88</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.26</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.08</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>
+#&gt; </span><span style='color: #555555;'> 3</span><span> ADAM19 Non-cancer illne… UKB-a:66         1 Wald r… -</span><span style='color: #BB0000;'>1.26</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.28</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.21</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 4</span><span>
+#&gt; </span><span style='color: #555555;'> 4</span><span> ADAM19 Hippocampus volu… 1045             1 Wald r…  6.37</span><span style='color: #555555;'>e</span><span>+1 2.00</span><span style='color: #555555;'>e</span><span>+1 1.48</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span>
+#&gt; </span><span style='color: #555555;'> 5</span><span> ADAM19 Forced vital cap… UKB-a:336        1 Wald r…  2.45</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 8.46</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-3</span><span> 3.71</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span>
+#&gt; </span><span style='color: #555555;'> 6</span><span> ADAM19 Diagnoses - main… UKB-a:582        1 Wald r… -</span><span style='color: #BB0000;'>1.57</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 5.85</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 7.14</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 3</span><span>
+#&gt; </span><span style='color: #555555;'> 7</span><span> ADAM19 Intracranial vol… 1041             1 Wald r…  1.99</span><span style='color: #555555;'>e</span><span>+4 8.17</span><span style='color: #555555;'>e</span><span>+3 1.50</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'> 8</span><span> ADAM19 Neo-conscientiou… 114              1 Wald r… -</span><span style='color: #BB0000;'>7.48</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.12</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 1.66</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'> 9</span><span> ADAM19 Subjective well … 1009             1 Wald r…  2.85</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.22</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.96</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>10</span><span> ADAM19 Invasive mucinou… 1123             1 Wald r…  3.96</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 1.73</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 2.18</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>11</span><span> ADAM19 HDL cholesterol   299              1 Wald r… -</span><span style='color: #BB0000;'>4.19</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.99</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 3.55</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>12</span><span> ADAM19 Paget's disease   975              1 Wald r… -</span><span style='color: #BB0000;'>5.24</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 2.49</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 3.56</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>13</span><span> ADAM19 Fractured bone s… UKB-a:441        1 Wald r… -</span><span style='color: #BB0000;'>1.04</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.99</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 3.69</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>14</span><span> ADAM19 Diagnoses - main… UKB-a:559        1 Wald r… -</span><span style='color: #BB0000;'>1.77</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 8.64</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 4.09</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>15</span><span> ADAM19 Systolic blood p… UKB-a:360        1 Wald r… -</span><span style='color: #BB0000;'>2.11</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 1.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-2</span><span> 4.51</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span>
+#&gt; </span><span style='color: #555555;'>16</span><span> ADAM19 Diagnoses - main… UKB-a:574        1 Wald r… -</span><span style='color: #BB0000;'>3.70</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 1.85</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-1</span><span> 4.58</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 2</span><span></div><div class='input'>
 <span class='co'># Returns a data frame with SNP information, while searching for traits</span>
 <span class='fu'>pqtl</span>(
   query = <span class='st'>"Inflammatory bowel disease"</span>,
   rtype = <span class='st'>"inst"</span>,
   searchflag = <span class='st'>"traits"</span>
-)</div><div class='output co'>#&gt; # A tibble: 56 x 13
+)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 56 x 13</span><span>
 #&gt;    rsID  expID outID outID_mrbase ea    nea   eaf_exp sample_exp sample_out
-#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-#&gt;  1 rs11… IL23R Infl… 294          A     G      0.0669       3301      65642
-#&gt;  2 rs18… FCGR… Infl… 294          G     A      0.533        3301      65642
-#&gt;  3 rs49… IL12B Infl… 294          C     T      0.678        3301      65642
-#&gt;  4 rs11… C1QT… Infl… 294          A     G      0.472        3301      65642
-#&gt;  5 rs98… TXND… Infl… 294          T     G      0.110        3301      65642
-#&gt;  6 rs18… IL27  Infl… 294          T     G      0.327        3301      65642
-#&gt;  7 rs10… IL1R… Infl… 294          G     T      0.521        3301      65642
-#&gt;  8 rs12… FST   Infl… 294          T     C      0.44         3394      65642
-#&gt;  9 rs46… IGFB… Infl… 294          C     T      0.555        6861      65642
-#&gt; 10 rs12… KLKB1 Infl… 294          T     C      0.448        6861      65642
-#&gt; # … with 46 more rows, and 4 more variables: author_exp &lt;chr&gt;,
-#&gt; #   author_out &lt;chr&gt;, trans_cis &lt;chr&gt;, pvalue &lt;dbl&gt;</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> rs11… IL23R Infl… 294          A     G      0.066</span><span style='text-decoration: underline;'>9</span><span>       </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 2</span><span> rs18… FCGR… Infl… 294          G     A      0.533        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 3</span><span> rs49… IL12B Infl… 294          C     T      0.678        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 4</span><span> rs11… C1QT… Infl… 294          A     G      0.472        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 5</span><span> rs98… TXND… Infl… 294          T     G      0.110        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 6</span><span> rs18… IL27  Infl… 294          T     G      0.327        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 7</span><span> rs10… IL1R… Infl… 294          G     T      0.521        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 8</span><span> rs12… FST   Infl… 294          T     C      0.44         </span><span style='text-decoration: underline;'>3</span><span>394      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 9</span><span> rs46… IGFB… Infl… 294          C     T      0.555        </span><span style='text-decoration: underline;'>6</span><span>861      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'>10</span><span> rs12… KLKB1 Infl… 294          T     C      0.448        </span><span style='text-decoration: underline;'>6</span><span>861      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'># … with 46 more rows, and 4 more variables: author_exp </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   author_out </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, trans_cis </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, pvalue </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Change a pvalue threshold (the default is 0.05)</span>
 <span class='fu'>pqtl</span>(
   query = <span class='st'>"Inflammatory bowel disease"</span>,
   rtype = <span class='st'>"inst"</span>,
   pvalue = <span class='fl'>1.0</span>,
   searchflag = <span class='st'>"traits"</span>
-)</div><div class='output co'>#&gt; # A tibble: 156 x 13
+)
+</div><div class='output co'>#&gt; </span><span style='color: #555555;'># A tibble: 156 x 13</span><span>
 #&gt;    rsID  expID outID outID_mrbase ea    nea   eaf_exp sample_exp sample_out
-#&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-#&gt;  1 rs11… IL23R Infl… 294          A     G      0.0669       3301      65642
-#&gt;  2 rs18… FCGR… Infl… 294          G     A      0.533        3301      65642
-#&gt;  3 rs49… IL12B Infl… 294          C     T      0.678        3301      65642
-#&gt;  4 rs11… C1QT… Infl… 294          A     G      0.472        3301      65642
-#&gt;  5 rs98… TXND… Infl… 294          T     G      0.110        3301      65642
-#&gt;  6 rs18… IL27  Infl… 294          T     G      0.327        3301      65642
-#&gt;  7 rs10… IL1R… Infl… 294          G     T      0.521        3301      65642
-#&gt;  8 rs12… FST   Infl… 294          T     C      0.44         3394      65642
-#&gt;  9 rs46… IGFB… Infl… 294          C     T      0.555        6861      65642
-#&gt; 10 rs12… KLKB1 Infl… 294          T     C      0.448        6861      65642
-#&gt; # … with 146 more rows, and 4 more variables: author_exp &lt;chr&gt;,
-#&gt; #   author_out &lt;chr&gt;, trans_cis &lt;chr&gt;, pvalue &lt;dbl&gt;</div><div class='input'>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> rs11… IL23R Infl… 294          A     G      0.066</span><span style='text-decoration: underline;'>9</span><span>       </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 2</span><span> rs18… FCGR… Infl… 294          G     A      0.533        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 3</span><span> rs49… IL12B Infl… 294          C     T      0.678        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 4</span><span> rs11… C1QT… Infl… 294          A     G      0.472        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 5</span><span> rs98… TXND… Infl… 294          T     G      0.110        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 6</span><span> rs18… IL27  Infl… 294          T     G      0.327        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 7</span><span> rs10… IL1R… Infl… 294          G     T      0.521        </span><span style='text-decoration: underline;'>3</span><span>301      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 8</span><span> rs12… FST   Infl… 294          T     C      0.44         </span><span style='text-decoration: underline;'>3</span><span>394      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'> 9</span><span> rs46… IGFB… Infl… 294          C     T      0.555        </span><span style='text-decoration: underline;'>6</span><span>861      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'>10</span><span> rs12… KLKB1 Infl… 294          T     C      0.448        </span><span style='text-decoration: underline;'>6</span><span>861      </span><span style='text-decoration: underline;'>65</span><span>642
+#&gt; </span><span style='color: #555555;'># … with 146 more rows, and 4 more variables: author_exp </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   author_out </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, trans_cis </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, pvalue </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Returns raw response if mode="raw"</span>
 <span class='fu'>pqtl</span>(
   query = <span class='st'>"ADAM19"</span>, searchflag = <span class='st'>"proteins"</span>,
   mode = <span class='st'>"raw"</span>
-) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()</div><div class='output co'>#&gt; List of 2
+) <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>()
+</div><div class='output co'>#&gt; List of 2
 #&gt;  $ metadata:List of 3
 #&gt;   ..$ query        : chr "MATCH (e:Exposure)&lt;-[n:SENS_EXP]-(s)-[m:SENS_OUT]-&gt; (o:Outcome)&lt;-[r:MR]-(e:Exposure) WHERE e.expID = \"ADAM19\""| __truncated__
 #&gt;   ..$ total_seconds: NULL
@@ -433,7 +437,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt;   .. ..$ method      : chr "Wald ratio"
 #&gt;   .. ..$ beta        : num -0.37
 #&gt;   .. ..$ se          : num 0.185
-#&gt;   .. ..$ pvalue      : num 0.0458</div></pre>
+#&gt;   .. ..$ pvalue      : num 0.0458</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

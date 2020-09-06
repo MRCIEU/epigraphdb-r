@@ -190,22 +190,23 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /drugs/risk-factors</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>drugs_risk_factors</span>(trait = <span class='st'>"Body mass index"</span>)</div><div class='output co'>#&gt; # A tibble: 6,684 x 13
+    <pre class="examples"><div class='input'><span class='fu'>drugs_risk_factors</span>(trait = <span class='st'>"Body mass index"</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 6,684 x 13</span><span>
 #&gt;    trait.id trait.trait assoc_trait.id assoc_trait.tra… variant.name gene.name
-#&gt;    &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;        &lt;chr&gt;    
-#&gt;  1 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
-#&gt;  2 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
-#&gt;  3 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
-#&gt;  4 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
-#&gt;  5 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
-#&gt;  6 ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
-#&gt;  7 ieu-a-2  Body mass … ieu-a-60       Waist circumfer… rs7903146    TCF7L2   
-#&gt;  8 ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
-#&gt;  9 ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
-#&gt; 10 ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
-#&gt; # … with 6,674 more rows, and 7 more variables: drug.label &lt;chr&gt;, mr.b &lt;dbl&gt;,
-#&gt; #   mr.se &lt;dbl&gt;, mr.pval &lt;dbl&gt;, mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,
-#&gt; #   mr.moescore &lt;dbl&gt;</div></pre>
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    
+#&gt; </span><span style='color: #555555;'> 1</span><span> ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt; </span><span style='color: #555555;'> 2</span><span> ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt; </span><span style='color: #555555;'> 3</span><span> ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt; </span><span style='color: #555555;'> 4</span><span> ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt; </span><span style='color: #555555;'> 5</span><span> ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt; </span><span style='color: #555555;'> 6</span><span> ieu-a-2  Body mass … ukb-a-344      Difficulty not … rs8040868    CHRNA3   
+#&gt; </span><span style='color: #555555;'> 7</span><span> ieu-a-2  Body mass … ieu-a-60       Waist circumfer… rs7903146    TCF7L2   
+#&gt; </span><span style='color: #555555;'> 8</span><span> ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
+#&gt; </span><span style='color: #555555;'> 9</span><span> ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
+#&gt; </span><span style='color: #555555;'>10</span><span> ieu-a-7… Body mass … ukb-a-323      Age started ora… rs9311507    CACNA1D  
+#&gt; </span><span style='color: #555555;'># … with 6,674 more rows, and 7 more variables: drug.label </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, mr.b </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   mr.se </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, mr.pval </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span style='color: #555555;'>, mr.method </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, mr.selection </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   mr.moescore </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
