@@ -6,14 +6,16 @@
 \usage{
 query_epigraphdb(
   route,
-  params,
+  params = NULL,
   mode = c("raw", "table"),
-  method = c("GET", "POST")
+  method = c("GET", "POST"),
+  retry_times = 5,
+  retry_pause_min = 4
 )
 }
 \arguments{
 \item{route}{An EpiGraphDB API endpoint route, e.g. \code{"/mr"} or \code{"/confounder"}.
-Consult the \href{http://api.epigraphdb.org}{EpiGraphDB API documentation}.}
+Consult the \href{https://api.epigraphdb.org}{EpiGraphDB API documentation}.}
 
 \item{params}{A list of parameters associated with the query endpoint.}
 
@@ -31,6 +33,10 @@ NOTE: When sending a POST request where a specific parameter is specified as a l
 and if the equivalent in R is a vector of length 1, you should wrap this parameter
 in \code{I()}, e.g. I(c("APOE")) to avoid auto unboxing.
 For details, please refer to \href{https://httr.r-lib.org/reference/POST.html}{\code{httr::POST}}}
+
+\item{retry_times}{Number of times the function will retry the request to the API.}
+
+\item{retry_pause_min}{Minimum number of seconds to wait for the next retry.}
 }
 \value{
 Data from an EpiGraphDB API endpoint.
@@ -79,7 +85,8 @@ tryCatch(
     params = list(
       exposure_trait = NULL,
       outcome_trait = NULL
-    )
+    ),
+    retry_times = 0
   ),
   error = function(e) {
     message(e)

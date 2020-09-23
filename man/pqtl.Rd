@@ -14,7 +14,7 @@ pqtl(
 }
 \arguments{
 \item{query}{(Required) A protein coding gene name or a trait name,
-eg. "ADAM19" or "Inflammatory bowel disease"
+e.g. "ADAM19" or "Inflammatory bowel disease"
 which cannot be \code{NULL}.}
 
 \item{rtype}{(Optional) A type of data to be extracted, which can be one of these options:
@@ -47,7 +47,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \verb{GET /pqtl/}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{\verb{GET /pqtl/}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-pqtl}{\verb{GET /pqtl/}}
 }
 \examples{
 # Returns a data frame of MR results, while searching for proteins

@@ -1,6 +1,6 @@
 #' Literature evidence regarding a GWAS trait
 #'
-#' [`GET /literature/gwas`](http://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas)
+#' [`GET /literature/gwas`](https://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas)
 #'
 #' @param trait A trait name
 #' @param semmed_predicate Either NULL which returns entries from
@@ -14,7 +14,7 @@
 literature_gwas <- function(trait, semmed_predicate = NULL,
                             mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/literature/gwas",
     params = list(
       trait = trait,

@@ -1,21 +1,20 @@
 .onAttach <- function(libname, pkgname) { # nolint
-  packageStartupMessage(glue::glue("
-    EpiGraphDB v0.3
-
-    Web API: http://api.epigraphdb.org
-
-    To turn off this message, use
-    suppressPackageStartupMessages({{library(\"epigraphdb\")}})
-  "))
+  packageStartupMessage("
+    EpiGraphDB v0.3 (API: https://api.epigraphdb.org)
+  ")
 }
 
 .onLoad <- function(libname, pkgname) { # nolint
-  op <- options()
-  op.epigraphdb <- list( # nolint
-    epigraphdb.api.url = "http://api.epigraphdb.org"
+  current_options <- options()
+  package_options <- list(
+    # URL to EpiGraphDB API
+    epigraphdb.api.url = "https://api.epigraphdb.org",
+    # Are the requests for CI usage
+    epigraphdb.ci = Sys.getenv(x = "CI", unset = c(CI = "false")) %>%
+      as.logical()
   )
-  toset <- !(names(op.epigraphdb) %in% names(op))
-  if (any(toset)) options(op.epigraphdb[toset])
+  to_set <- !(names(package_options) %in% names(current_options))
+  if (any(to_set)) options(package_options[to_set])
 
   invisible()
 }

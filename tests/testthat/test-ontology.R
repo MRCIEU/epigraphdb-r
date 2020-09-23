@@ -3,12 +3,14 @@ context("ontology")
 test_that("ontology endpoint", {
   url <- getOption("epigraphdb.api.url")
   efo_term <- "blood pressure"
-  r <- httr::GET(glue::glue("{url}/ontology/gwas-efo"),
+  r <- httr::RETRY("GET", glue::glue("{url}/ontology/gwas-efo"),
     query = list(
       efo_term = efo_term
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("ontology mode = \"table\"", {

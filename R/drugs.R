@@ -1,6 +1,6 @@
 #' Drugs for risk factors
 #'
-#' [`GET /drugs/risk-factors`](http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors)
+#' [`GET /drugs/risk-factors`](https://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors)
 #'
 #' @param trait A trait name
 #' @inheritParams mr
@@ -12,7 +12,7 @@
 drugs_risk_factors <- function(trait, pval_threshold = 1e-8,
                                mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/drugs/risk-factors",
     params = list(
       trait = trait,

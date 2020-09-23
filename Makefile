@@ -1,26 +1,14 @@
 .PHONY: lint docs build test tests fmt init
 
 #################################################################################
-# GLOBALS                                                                       #
-#################################################################################
-
-PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PROJECT_NAME = epigraphdb-r
-
-#################################################################################
 # Rules
 #################################################################################
+
+## ==== codebase ====
 
 ## Init (install a local copy and its development dependencies)
 init:
 	Rscript -e "devtools::install(dependencies = TRUE)"
-
-## Check package infrastructure and perform unit tests
-tests:
-	Rscript -e "devtools::check()"
-	Rscript -e "devtools::test()"
-
-test: tests
 
 ## Lint codebase
 lint:
@@ -30,21 +18,57 @@ lint:
 fmt:
 	Rscript -e "styler::style_pkg(filetype=c('R', 'Rmd'))"
 
-## Build package and install locally
+## Update rd docs
+roxygen:
+	CI=true Rscript -e "devtools::document()"
+
+## Check package infrastructure and perform unit tests
+test:
+	CI=true Rscript -e "devtools::check()"
+
+tests: test
+
+## ==== build and install ====
+
+## Build package
 build:
-	Rscript -e "devtools::install()"
+	CI=true Rscript -e "devtools::build(vignettes = TRUE, manual = TRUE)"
+
+## Build pkgdown documentation
+docs:
+	CI=true Rscript -e "pkgdown::build_site(preview = TRUE)"
 
 ## Build package and install locally
-install: build
+install:
+	Rscript -e "devtools::install()"
 
 ## Uninstall
 uninstall:
 	Rscript -e "devtools::uninstall()"
 
-## Build documentation
-docs:
-	Rscript -e "devtools::document()"
-	Rscript -e "pkgdown::build_site(preview = TRUE)"
+## ==== CRAN related ====
+
+## Check for CRAN submission; `make check BUNDLE={/path/to/bundle}`
+check:
+	CI=true R CMD check --as-cran $$BUNDLE
+
+## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
+check-cran-local:
+	# NOTE: the env_var tries to deal with utf8 issues
+	# https://github.com/r-hub/rhub/issues/374
+	Rscript -e "rhub::local_check_linux(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+
+## Check for CRAN submission (via rhub's remote specs)
+check-cran-rhub:
+	# NOTE: the env_var tries to deal with utf8 issues
+	# https://github.com/r-hub/rhub/issues/374
+	# Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+	Rscript -e "devtools::check_rhub(interactive = FALSE, env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+
+## Check for MS windows compatibility (via devtools::check_win_devel)
+check-windows:
+	Rscript -e "devtools::check_win_devel()"
+	Rscript -e "devtools::check_win_release()"
 
 #################################################################################
 # Self Documenting Commands                                                     #

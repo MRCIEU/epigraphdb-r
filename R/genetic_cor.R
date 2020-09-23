@@ -1,6 +1,6 @@
 #' Genetic correlations between traits
 #'
-#' [`GET /genetic-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor)
+#' [`GET /genetic-cor`](https://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor)
 #'
 #' @inheritParams obs_cor
 #'
@@ -17,15 +17,12 @@
 genetic_cor <- function(trait, cor_coef_threshold = 0.8,
                         mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_get_request(
+  response <- query_epigraphdb(
     route = "/genetic-cor",
     params = list(
-      trait = trait,
-      cor_coef_threshold = cor_coef_threshold
-    )
+      trait = trait, cor_coef_threshold = cor_coef_threshold
+    ),
+    mode = mode
   )
-  if (mode == "table") {
-    return(flatten_response(response))
-  }
-  httr::content(response, as = "parsed", encoding = "utf-8")
+  response
 }

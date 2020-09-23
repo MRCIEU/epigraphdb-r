@@ -6,15 +6,17 @@ test_that("pqtl protein endpoint", {
   rtype <- "mrres"
   pvalue <- 0.05
   searchflag <- "proteins"
-  r <- httr::GET(glue::glue("{url}/pqtl/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/"),
     query = list(
       query = query,
       rtype = rtype,
       pvalue = pvalue,
       searchflag = searchflag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("pqtl trait endpoint", {
@@ -23,13 +25,14 @@ test_that("pqtl trait endpoint", {
   rtype <- "mrres"
   pvalue <- 0.05
   searchflag <- "traits"
-  r <- httr::GET(glue::glue("{url}/pqtl/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/"),
     query = list(
       query = query,
       rtype = rtype,
       pvalue = pvalue,
       searchflag = searchflag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
 })
@@ -38,11 +41,12 @@ test_that("pqtl_pleio endpoint", {
   url <- getOption("epigraphdb.api.url")
   rsid <- "rs1260326"
   prflag <- "proteins"
-  r <- httr::GET(glue::glue("{url}/pqtl/pleio/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/pleio/"),
     query = list(
       rsid = rsid,
       prflag = prflag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
 })
@@ -50,10 +54,11 @@ test_that("pqtl_pleio endpoint", {
 test_that("pqtl_list endpoint", {
   url <- getOption("epigraphdb.api.url")
   flag <- "exposures"
-  r <- httr::GET(glue::glue("{url}/pqtl/list/"),
+  r <- httr::RETRY("GET", glue::glue("{url}/pqtl/list/"),
     query = list(
       flag = flag
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
 })
@@ -100,7 +105,7 @@ test_that("pqtl not found input", {
     pvalue = pvalue,
     searchflag = searchflag
   )
-  expect_equal(r, NULL)
+  expect_equal(dim(r), c(0, 0))
 })
 
 test_that("pqtl_pleio correct input for a list of proteins", {
@@ -141,7 +146,16 @@ test_that("pqtl_pleio not found input", {
     rsid = rsid,
     prflag = prflag
   )
-  expect_equal(r, NULL)
+  expect_equal(dim(r), c(0, 0))
+})
+
+test_that("pqtl_list raw", {
+  flag <- "exposures"
+  r <- pqtl_list(
+    flag = flag,
+    mode = "raw"
+  )
+  expect_true(length(r) > 1)
 })
 
 test_that("pqtl_list correct exposures input", {

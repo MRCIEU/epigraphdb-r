@@ -18,16 +18,29 @@ knitr::opts_chunk$set(
 
 EpiGraphDB currently offers two API URLs
 
-- prodcution (default): http://api.epigraphdb.org
+- production (default): https://api.epigraphdb.org
 - development: http://dev-api.epigraphdb.org
 
 To switch to the development API, do
 
-```{r}
+```r
+# Get default option
+default_api_url <- getOptions("epigraphdb.api.url")
+# Change to the development API
 options(epigraphdb.api.url = "http://dev-api.epigraphdb.org")
-# verify current URL
+# Verify current URL
 getOption("epigraphdb.api.url")
+# Switch back
+options(epigraphdb.api.url = default_api_url)
 ```
 
 NOTE: you can make this change persistent by placing the changes in
 [`.Rprofile`](https://www.statmethods.net/interface/customizing.html).
+
+## Suppress start up message
+
+If you would like to turn off the start up message that displays the current version of EpiGraphDB service, use the following code to load the package:
+
+```r
+suppressPackageStartupMessages({library("epigraphdb")})
+```

@@ -27,7 +27,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \verb{GET /pqtl/pleio/}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio}{\verb{GET /pqtl/pleio/}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-pqtlpleio}{\verb{GET /pqtl/pleio/}}
 }
 \examples{
 

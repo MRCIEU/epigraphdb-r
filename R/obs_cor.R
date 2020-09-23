@@ -1,6 +1,6 @@
 #' Observational correlations between traits
 #'
-#' [`GET /obs-cor`](http://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor)
+#' [`GET /obs-cor`](https://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor)
 #'
 #' @param trait name of the trait, e.g. "body mass index"
 #' @param cor_coef_threshold correlation coefficient threshold
@@ -18,7 +18,7 @@
 #' @export
 obs_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
   mode <- match.arg(mode)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/obs-cor",
     params = list(
       trait = trait, cor_coef_threshold = cor_coef_threshold

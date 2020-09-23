@@ -22,7 +22,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \verb{GET /pqtl/list/}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist}{\verb{GET /pqtl/list/}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-pqtllist}{\verb{GET /pqtl/list/}}
 }
 \examples{
 

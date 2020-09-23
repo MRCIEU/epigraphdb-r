@@ -28,7 +28,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /ontology/gwas-efo}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo}{\code{GET /ontology/gwas-efo}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo}{\code{GET /ontology/gwas-efo}}
 }
 \examples{
 ontology_gwas_efo(trait = "blood", fuzzy = FALSE)

@@ -1,6 +1,6 @@
 #' Multi SNP QTL MR evidence
 #'
-#' [`GET /xqtl/multi-snp-mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr)
+#' [`GET /xqtl/multi-snp-mr`](https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr)
 #'
 #' @param exposure_gene Name of the exposure gene
 #' @param outcome_trait Name of the outcome trait
@@ -20,7 +20,7 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
   mode <- match.arg(mode)
   mr_method <- match.arg(mr_method)
   qtl_type <- match.arg(qtl_type)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/xqtl/multi-snp-mr",
     params = list(
       exposure_gene = exposure_gene,
@@ -36,7 +36,7 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
 
 #' Single SNP QTL MR evidence
 #'
-#' [`GET /xqtl/single-snp-mr`](http://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr)
+#' [`GET /xqtl/single-snp-mr`](https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr)
 #'
 #' @param snp SNP rsid
 #' @inheritParams xqtl_multi_snp_mr
@@ -52,7 +52,7 @@ xqtl_single_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
                                mode = c("table", "raw")) {
   mode <- match.arg(mode)
   qtl_type <- match.arg(qtl_type)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/xqtl/single-snp-mr",
     params = list(
       exposure_gene = exposure_gene,

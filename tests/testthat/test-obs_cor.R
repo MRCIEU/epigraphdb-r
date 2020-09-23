@@ -3,12 +3,14 @@ context("obs_cor")
 test_that("obs_cor endpoint", {
   url <- getOption("epigraphdb.api.url")
   trait <- "body mass index"
-  r <- httr::GET(glue::glue("{url}/obs-cor"),
+  r <- httr::RETRY("GET", glue::glue("{url}/obs-cor"),
     query = list(
       trait = trait
-    )
+    ),
+    config = httr::add_headers(.headers = c("client-type" = "R", "ci" = "true"))
   )
   expect_equal(httr::status_code(r), 200)
+  expect_true(length(httr::content(r)) > 0)
 })
 
 test_that("obs_cor mode = \"table\"", {

@@ -12,12 +12,12 @@ mr(
 )
 }
 \arguments{
-\item{exposure_trait}{A trait name, eg. "Body mass index",
+\item{exposure_trait}{A trait name, e.g. "Body mass index",
 leaving \code{exposure_trait} as \code{NULL} will return MR information
 related to a specific \code{outcome}.
 \strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
-\item{outcome_trait}{A trait name, eg. "Coronary heart disease",
+\item{outcome_trait}{A trait name, e.g. "Coronary heart disease",
 leaving \code{outcome_trait} as \code{NULL} will return MR information
 related to a specific \code{exposure_trait}.
 \strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
@@ -34,7 +34,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /mr}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-mr}{\code{GET /mr}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-mr}{\code{GET /mr}}
 }
 \examples{
 # Returns a data frame

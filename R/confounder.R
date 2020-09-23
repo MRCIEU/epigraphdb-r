@@ -1,12 +1,12 @@
 #' MR evidence on confounding traits between exposure and outcome
 #'
-#' [`GET /confounder`](http://docs.epigraphdb.org/api/api-endpoints/#get-confounder)
+#' [`GET /confounder`](https://docs.epigraphdb.org/api/api-endpoints/#get-confounder)
 #'
 #' @param type One in `["confounder", "intermediate",
 #' "reverse_intermediate", "collider"]`
 #' Refer to [
 #'   the confounder view in web application
-#' ](http://epigraphdb.org/confounder)
+#' ](https://epigraphdb.org/confounder)
 #' for details
 #' @inheritParams mr
 #'
@@ -24,7 +24,7 @@ confounder <- function(exposure_trait = NULL, outcome_trait = NULL,
                        mode = c("table", "raw")) {
   mode <- match.arg(mode)
   type <- match.arg(type)
-  response <- api_request(
+  response <- query_epigraphdb(
     route = "/confounder",
     params = list(
       exposure_trait = exposure_trait, outcome_trait = outcome_trait,

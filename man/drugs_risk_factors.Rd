@@ -21,7 +21,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /drugs/risk-factors}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors}{\code{GET /drugs/risk-factors}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors}{\code{GET /drugs/risk-factors}}
 }
 \examples{
 drugs_risk_factors(trait = "Body mass index")

@@ -22,7 +22,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /literature/gwas}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas}{\code{GET /literature/gwas}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas}{\code{GET /literature/gwas}}
 }
 \examples{
 literature_gwas(trait = "Body mass index")

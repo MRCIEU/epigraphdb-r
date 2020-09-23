@@ -18,13 +18,13 @@ knitr::opts_chunk$set(
 
 EpiGraphDB as a collated resource offers rich integrative epidemiological
 evidence for researchers to use, which can be queried from our
-[RESTful API service](http://api.epigraphdb.org).
+[RESTful API service](https://api.epigraphdb.org).
 
-EpiGraphDB [web application](http://epigraphdb.org):
+EpiGraphDB [web application](https://epigraphdb.org):
 
 ![web application](figures/epigraphdb-xqtl-view.png)
 
-EpiGraphDB [web API (OpenAPI / swagger interface)](http://api.epigraphdb.org):
+EpiGraphDB [web API (OpenAPI / swagger interface)](https://api.epigraphdb.org):
 
 ![web API](figures/epigraphdb-api-swagger.png)
 
@@ -50,7 +50,7 @@ payload <- list(
   exposure_trait = "Body mass index",
   outcome_trait = "Coronary heart disease"
 )
-r <- httr::GET(glue::glue("{url}/mr"), query = payload)
+r <- httr::RETRY("GET", glue::glue("{url}/mr"), query = payload)
 r %>%
   httr::content(as = "parsed") %>%
   str(2)
@@ -72,7 +72,7 @@ In fact, currently the `epigraphdb::mr` function is a
 [wrapper](https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R)
 of `httr::get`.
 Please consult with
-[`httr` documentation](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html)
+[`httr` documentation](https://httr.r-lib.org/index.html)
 for details of usage.
 
 ## Using `curl`
@@ -82,7 +82,7 @@ Here is an example in using `curl` to get data and using
 post processing the returned json data:
 
 ```shell
-curl -X 'GET' 'http://api.epigraphdb.org/mr?exposure=Body+mass+index&outcome=Coronary+heart+disease' | jq
+curl -X 'GET' 'https://api.epigraphdb.org/mr?exposure=Body+mass+index&outcome=Coronary+heart+disease' | jq
 ```
 
 The returned data will look like this:
@@ -183,10 +183,9 @@ The returned data will look like this:
 
 Alternatively, you can use other commonly used tools to query the web API:
 
-- [command line: httpie](https://github.com/jakubroztocil/httpie)
+- [command line: httpie](https://github.com/httpie/httpie)
 - [python: requests](https://realpython.com/python-requests/)
-- [GUI client: insomnia](https://support.brightcove.com/use-insomnia-api-requests)
 - [GUI client: postman](https://www.guru99.com/postman-tutorial.html)
 
 For details of the EpiGraphDB RESTful API and related services,
-please visit our [documentation site](http://docs.epigraphdb.org).
+please visit our [documentation site](https://docs.epigraphdb.org).

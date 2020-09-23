@@ -9,9 +9,14 @@
 ^pkgdown$
 ^\.gitlab-ci\.yml$
 ^TODO.org$
+^TODO.md$
+^TAGS$
 ^Makefile$
 ^ci$
 ^\.lintr$
 ^\.travis\.yml$
 ^codecov\.yml$
 ^\.Rprofile$
+^\.covrignore$
+^CRAN-RELEASE$
+^\.Rcheck$

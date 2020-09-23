@@ -7,7 +7,7 @@
 #' returned status.
 #'
 #' @param route An EpiGraphDB API endpoint route, e.g. `"/mr"` or `"/confounder"`.
-#' Consult the [EpiGraphDB API documentation](http://api.epigraphdb.org).
+#' Consult the [EpiGraphDB API documentation](https://api.epigraphdb.org).
 #' @param params A list of parameters associated with the query endpoint.
 #' @param mode `c("raw", "table")`, if `"table"` then the query handler will try
 #' to convert the returned data to a tibble dataframe.
@@ -22,6 +22,9 @@
 #'       and if the equivalent in R is a vector of length 1, you should wrap this parameter
 #'       in `I()`, e.g. I(c("APOE")) to avoid auto unboxing.
 #'       For details, please refer to [`httr::POST`](https://httr.r-lib.org/reference/POST.html)
+#'
+#' @param retry_times Number of times the function will retry the request to the API.
+#' @param retry_pause_min Minimum number of seconds to wait for the next retry.
 #'
 #' @return Data from an EpiGraphDB API endpoint.
 #'
@@ -62,14 +65,19 @@
 #'     params = list(
 #'       exposure_trait = NULL,
 #'       outcome_trait = NULL
-#'     )
+#'     ),
+#'     retry_times = 0
 #'   ),
 #'   error = function(e) {
 #'     message(e)
 #'   }
 #' )
 #' @export
-query_epigraphdb <- function(route, params, mode = c("raw", "table"), method = c("GET", "POST")) {
+query_epigraphdb <- function(route, params = NULL,
+                             mode = c("raw", "table"),
+                             method = c("GET", "POST"),
+                             retry_times = 5,
+                             retry_pause_min = 4) {
   mode <- match.arg(mode)
   method <- match.arg(method)
   # NOTE: Add POST at a later date
@@ -78,7 +86,10 @@ query_epigraphdb <- function(route, params, mode = c("raw", "table"), method = c
   } else if (method == "POST") {
     method_func <- api_post_request
   }
-  res <- api_request(route = route, params = params, mode = mode, method = method_func)
+  res <- api_request(
+    route = route, params = params, mode = mode, method = method_func,
+    retry_times = retry_times, retry_pause_min = retry_pause_min
+  )
   res
 }
 
@@ -90,11 +101,19 @@ query_epigraphdb <- function(route, params, mode = c("raw", "table"), method = c
 #' when things go wrong
 #'
 #' @keywords internal
-api_get_request <- function(route, params, call = sys.call(-1)) {
+api_get_request <- function(route, params,
+                            retry_times, retry_pause_min,
+                            call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
-  response <- httr::GET(glue::glue("{api_url}{route}"),
-    query = params,
-    httr::add_headers(.headers = c("client-type" = "R"))
+  url <- glue::glue("{api_url}{route}")
+  is_ci <- getOption("epigraphdb.ci") %>%
+    as.character() %>%
+    tolower()
+  config <- httr::add_headers(.headers = c("client-type" = "R", "ci" = is_ci))
+  response <- httr::RETRY(
+    "GET",
+    url = url, query = params, config = config,
+    times = retry_times, pause_min = retry_pause_min
   )
   stop_for_status(response, call = sys.call(-1))
   response
@@ -108,13 +127,20 @@ api_get_request <- function(route, params, call = sys.call(-1)) {
 #' when things go wrong
 #'
 #' @keywords internal
-api_post_request <- function(route, params, call = sys.call(-1)) {
+api_post_request <- function(route, params,
+                             retry_times, retry_pause_min,
+                             call = sys.call(-1)) {
   api_url <- getOption("epigraphdb.api.url") # nolint
+  url <- glue::glue("{api_url}{route}")
+  is_ci <- getOption("epigraphdb.ci") %>%
+    as.character() %>%
+    tolower()
+  config <- httr::add_headers(.headers = c("client-type" = "R", "ci" = is_ci))
   body <- jsonlite::toJSON(params, auto_unbox = TRUE)
-  response <- httr::POST(glue::glue("{api_url}{route}"),
-    body = body,
-    endcode = "json",
-    httr::add_headers(.headers = c("client-type" = "R"))
+  response <- httr::RETRY(
+    "POST",
+    url = url, body = body, config = config,
+    times = retry_times, pause_min = retry_pause_min
   )
   stop_for_status(response, call = sys.call(-1))
   response
@@ -126,7 +152,7 @@ api_post_request <- function(route, params, call = sys.call(-1)) {
 #' @param params A list of parameters to send
 #' @param mode Either `"table"` (returns tibble) or
 #' `"raw"` (returns raw response parsed from json to R list).
-#' @param method A specifc request handler, e.g. `epi_get_request`
+#' @param method A specific request handler, e.g. `epi_get_request`
 #' @param call The function call to identify the original function
 #' when things go wrong
 #'
@@ -134,10 +160,13 @@ api_post_request <- function(route, params, call = sys.call(-1)) {
 api_request <- function(route, params,
                         mode = c("table", "raw"),
                         method = api_get_request,
+                        retry_times, retry_pause_min,
                         call = sys.call(-1)) {
   mode <- match.arg(mode)
   response <- do.call(method, args = list(
-    route = route, params = params, call = call
+    route = route, params = params,
+    retry_times = retry_times, retry_pause_min = retry_pause_min,
+    call = call
   ))
   if (mode == "table") {
     return(flatten_response(response))

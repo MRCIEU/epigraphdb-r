@@ -13,18 +13,18 @@ confounder(
 )
 }
 \arguments{
-\item{exposure_trait}{A trait name, eg. "Body mass index",
+\item{exposure_trait}{A trait name, e.g. "Body mass index",
 leaving \code{exposure_trait} as \code{NULL} will return MR information
 related to a specific \code{outcome}.
 \strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
-\item{outcome_trait}{A trait name, eg. "Coronary heart disease",
+\item{outcome_trait}{A trait name, e.g. "Coronary heart disease",
 leaving \code{outcome_trait} as \code{NULL} will return MR information
 related to a specific \code{exposure_trait}.
 \strong{NOTE}: \code{exposure_trait} and \code{outcome_trait} cannot be both \code{NULL}.}
 
 \item{type}{One in \verb{["confounder", "intermediate", "reverse_intermediate", "collider"]}
-Refer to \href{http://epigraphdb.org/confounder}{ the confounder view in web application }
+Refer to \href{https://epigraphdb.org/confounder}{ the confounder view in web application }
 for details}
 
 \item{pval_threshold}{P-value threshold}
@@ -39,7 +39,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /confounder}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{\code{GET /confounder}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{\code{GET /confounder}}
 }
 \examples{
 confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")

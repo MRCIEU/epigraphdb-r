@@ -47,6 +47,7 @@ library("magrittr")
 library("dplyr")
 library("purrr")
 library("glue")
+library("ggplot2")
 library("igraph")
 library("epigraphdb")
 ```
@@ -195,6 +196,26 @@ Note, the SemMedDB semantic types have been pre-filtered to only include a subse
 
 Further examples of these term IDs and descriptions can be found here - [https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml](https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml)
 
+### Plotting the overlapping term frequencies
+
+We can also visualise the above table as a bar chart. In this case we will remove Ethanol as it is an outlier.
+
+```{r}
+lit_counts %>%
+  filter(n < 100) %>%
+  {
+    ggplot(.) +
+      aes(x = `st.name`, y = `n`, fill = `st.type`) +
+      geom_col() +
+      geom_text(
+        aes(label = `n`),
+        position = position_dodge(0.9),
+        hjust = 0
+      ) +
+      coord_flip()
+  }
+```
+
 ### Look in detail at one overlapping term
 
 Here we look at cases where `Leptin` is the central overlapping term.
@@ -210,14 +231,18 @@ We can create a network diagram to visualise these relationships.
 ```{r}
 lit_detail <- lit_detail %>%
   mutate_at(vars(`gwas.trait`, `assoc_gwas.trait`), stringr::str_to_upper)
+
+# add node types: 1 - selected GWAS, 2 - traits from literature, 3 - current focus term connecting 1 and 2
 nodes <- bind_rows(
-  lit_detail %>% select(node = `gwas.trait`) %>% distinct() %>% mutate(color = "red"),
-  lit_detail %>% select(node = `assoc_gwas.trait`) %>% distinct() %>% mutate(color = "red"),
-  lit_detail %>% select(node = `s1.subject_name`) %>% distinct() %>% mutate(color = "skyblue"),
-  lit_detail %>% select(node = `s2.subject_name`) %>% distinct() %>% mutate(color = "skyblue"),
-  lit_detail %>% select(node = `s1.object_name`) %>% distinct() %>% mutate(color = "skyblue"),
-  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(color = "skyblue")
-) %>% distinct()
+  lit_detail %>% select(node = `gwas.trait`) %>% distinct() %>% mutate(node_type = 1),
+  lit_detail %>% select(node = `assoc_gwas.trait`) %>% distinct() %>% mutate(node_type = 1),
+  lit_detail %>% select(node = `s1.subject_name`) %>% distinct() %>% mutate(node_type = 2),
+  lit_detail %>% select(node = `s2.subject_name`) %>% distinct() %>% mutate(node_type = 2),
+  lit_detail %>% select(node = `s1.object_name`) %>% distinct() %>% mutate(node_type = 2),
+  lit_detail %>% select(node = `s2.object_name`) %>% distinct() %>% mutate(node_type = 2)
+) %>%
+  mutate(node_type = ifelse(node == focus_term, 3, node_type)) %>%
+  distinct()
 nodes
 ```
 
@@ -246,19 +271,47 @@ edges <- bind_rows(
     ) %>%
     distinct()
 ) %>%
-  distinct() %>%
-  mutate(`label.cex` = 0.6)
+  distinct()
 edges
 ```
 
-```{r}
-graph <- igraph::graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
-graph$layout <- igraph::layout_with_kk
-graph
-```
 
 ```{r}
-plot(graph)
+plot_network <- function(edges, nodes, show_edge_labels = FALSE) {
+
+  # default is to not display edge labels
+  if (!show_edge_labels) {
+    edges <- select(edges, -label)
+  }
+
+  graph <- graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
+  graph$layout <- layout_with_kk
+
+  # generate colors based on node type
+  colrs <- c("tomato", "steelblue", "gold")
+  V(graph)$color <- colrs[V(graph)$node_type]
+
+  # Configure canvas
+  default_mar <- par("mar")
+  new_mar <- c(0, 0, 0, 0)
+  par(mar = new_mar)
+
+  plot.igraph(graph,
+    vertex.size = 13,
+    vertex.label.color = "black",
+    vertex.label.family = "Helvetica",
+    vertex.label.cex = 0.8,
+    edge.arrow.size = 0.4,
+    edge.label.color = "black",
+    edge.label.family = "Helvetica",
+    edge.label.cex = 0.5
+  )
+  par(mar = default_mar)
+}
+```
+
+```{r dpi=300}
+plot_network(edges, nodes, show_edge_labels = TRUE)
 ```
 
 ## Checking the source literature

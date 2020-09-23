@@ -21,7 +21,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /genetic_cor}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor}{\code{GET /genetic-cor}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor}{\code{GET /genetic-cor}}
 }
 \examples{
 genetic_cor(trait = "Body mass index") \%>\%

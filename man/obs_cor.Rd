@@ -21,7 +21,7 @@ with minimal parsing done by \href{https://httr.r-lib.org/}{\code{httr}}.}
 Data from \code{GET /obs-cor}
 }
 \description{
-\href{http://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor}{\code{GET /obs-cor}}
+\href{https://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor}{\code{GET /obs-cor}}
 }
 \examples{
 obs_cor(trait = "Body mass index (BMI)") \%>\%
