@@ -62,7 +62,7 @@ metadata %>% str(2)
 
 ### Meta nodes
 
-We can extract the specific meta node information as a pandas dataframe from the metadata.
+We can extract the specific meta node information as a dataframe from the metadata.
 
 ```{r}
 meta_node_df <- metadata %>%
