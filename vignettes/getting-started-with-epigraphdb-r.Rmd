@@ -49,7 +49,8 @@ proteins <- query_epigraphdb(
     mode = "table",
     method = "POST"
   )
-  
+
+# This shows Uniprot and Ensembl protein IDs for the queried genes  
 proteins
 ```
 ### Mapping proteins to pathways
@@ -57,16 +58,19 @@ proteins
 ```{r}
 endpoint <- "/protein/in-pathway"
 
-proteins_uniprot_ids <- c("P04637", "P04637") ## to fix
+proteins_uniprot_ids <- c("P04637", "P04637") ## to fix - @Yi  - why can't I give it just a single item (giving x2 to overcome this)
 
 pathway_df <- query_epigraphdb(route = endpoint,
                        params = list(uniprot_id_list = proteins_uniprot_ids),
                        mode = "table", 
                        method = "POST")
 
+# Check out how many pathways this protein is found in
 pathway_df
-pathways <- pathway_df$pathway_reactome_id[[1]]
-pathways
+
+# Get pathways names
+pathway_df$pathway_reactome_id[[1]]
+
 ```
 
 
