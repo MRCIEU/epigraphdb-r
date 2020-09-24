@@ -1,0 +1,219 @@
+---
+title: "Getting started with EpiGraphDB in R"
+output: rmarkdown::html_vignette
+---
+
+```{r message=F}
+#install.packages("epigraphdb")
+library(epigraphdb)
+library(dplyr)
+```
+
+
+## Part 1: Using EpiGraphDB to obtain biological mappings
+
+With EpiGraphDB you can map variants to genes, genes to proteins, proteins to pathways, pathways to diesease, and so one, as shown in the network diagramn [here][1]
+
+In this part we want to show how to get started with using `epigraphdb` R package syntax and show how to map genes to proteins (i.e. their UniProtID), proteins to pathways they are found in (using Reactome data), and extract information on the specific pathways identified. 
+
+But first, let's talk about the basic questing syntax. 
+
+```{r,  eval=F}
+
+# main function to interface 
+query_epigraphdb(route = endpoint, #supply the endpoint (see below)
+                 params = list(... = ...), # supply the parameters 
+                 mode = "table", # mode
+                 method = "POST") #method (ignore this for now)
+
+```
+
+
+* `endpoint` is the 'address' within EpiGraphDB of where you want query the data from, and there is a specific one for each case. e.g.  `"/mappings/gene-to-protein"` is used to query gene-to-proteins mappings. 
+
+* `params` is where you supply the list of things you want query about (can be list of genes, GWAS trait, MR outcome of interest)
+
+* `mode` is the format in which the results are returned. Use "table" for basic cases, for more advanced stuff you may need to use "raw" - more on this later. 
+
+### Mapping genes to proteins
+```{r}
+
+genes = c("TP53", "BRCA1", "TNF") # can be a list of genes
+
+endpoint <- "/mappings/gene-to-protein"
+
+  
+proteins <- query_epigraphdb(
+    route = endpoint,
+    params = list(gene_name_list = genes) %>% I(),
+    mode = "table",
+    method = "POST"
+  )
+  
+proteins
+```
+### Mapping proteins to pathways
+
+```{r}
+endpoint <- "/protein/in-pathway"
+
+proteins_uniprot_ids <- c("P04637", "P04637") ## to fix
+
+pathway_df <- query_epigraphdb(route = endpoint,
+                       params = list(uniprot_id_list = proteins_uniprot_ids),
+                       mode = "table", 
+                       method = "POST")
+
+pathway_df
+pathways <- pathway_df$pathway_reactome_id[[1]]
+pathways
+```
+
+
+### Get pathway info
+```{r}
+endpoint = "/meta/nodes/Pathway/search"
+
+reactome_id = "R-HSA-6804754"
+
+pathway_info <- query_epigraphdb(route = endpoint,
+                         params = list(id = reactome_id),
+                         mode = "table")
+pathway_info
+```
+
+If you are interested in this type of analysis, check out Case study 1 and 2 [todo: add links] for further details on pathways analysis, PPI, mapping drugs to targets etc.
+
+
+
+
+## Part 2: Bla bla epidemilogical relationships
+
+
+In this part we are going to show how to do queries that may be of interest to epidemiologists
+
+### Look up GWAS studies
+
+First, we want to check what GWAS are available within EpiGraphDB for our trait of interest, e.g. 'body mass index'. Doing this query is equivalent doing a look-up using [EpiGraphDB Web UI](https://dev.epigraphdb.org/explore). 
+
+```{r}
+# for example we want to see what GWAS are availeble for the 'body mass index' trait 
+trait <- "body mass index" # mention fuzzy matching
+
+endpoint <- "/meta/nodes/Gwas/search"
+
+results <- query_epigraphdb(
+              route = endpoint, 
+              params = list(name = trait),
+              mode = "table"
+              )
+results %>% select(node.trait, node.id, node.sample_size, node.year, node.author, node.consortium)
+```
+
+### Explore Mendelian Randomisation studies
+
+In these example, we show how to look up MR results for our exposure, outcome, or both, traits of interest. 
+
+```{r}
+# Look up MR for exposure
+
+#Given an exposure trait, find all traits with causal evidence. This method searches the causal evidence data for cases where our exposure trait has a potential casual effect on an outcome trait.
+
+trait1 <- "Body mass index" # NB here trait name has to specific - no fuzzy matching; use as given in available GWAS table
+endpoint <- "/mr"
+
+mr_df <- query_epigraphdb(route = endpoint, 
+                          params = list(exposure_trait = trait1,
+                                        pval_threshold = 5e-08),
+                          mode = "table")
+mr_df
+
+```
+
+```{r}
+# Look up MR for outcome
+
+trait2 <- "Falls in the last year"
+mr_df <- query_epigraphdb(route = endpoint, 
+                          params = list(outcome_trait = trait2,
+                                        pval_threshold = 5e-08),
+                          mode = "table")
+mr_df
+```
+
+
+```{r}
+# look up a specific pair of exposure+outcome
+
+#TODO: redo this using not mr fucntion
+
+df <- mr(
+  exposure_trait = "Body mass index",
+  outcome_trait = "Coronary heart disease",
+  mode = "table"
+)
+
+
+
+```
+
+```{r}
+# show how to query by trait ID?
+```
+
+
+
+
+
+## Part 3. Looking for literature evidence 
+
+Can we find evidence in the literature where a gene is found to be associated with a certain disease? This can be used for hypothesis generation or to provide alternative evidence an existing putative relationship (e.g. from MR or association result)
+
+
+```{r}
+# get all lit where a gene is mentioned related to a trait
+
+#gene <- "BRCA2"
+#trait <- "Breast cancer" # why is this not working?
+
+
+gene <- "IL23R"
+trait <- "Inflammatory bowel disease"
+
+endpoint <- "/gene/literature"
+
+lit_df <- query_epigraphdb(route = endpoint, 
+                       params = list(gene_name = gene,
+                                object_name = trait %>% stringr::str_to_lower()), 
+                       mode = "table")
+
+lit_df
+
+```
+
+If interested in that, check out case studies 2 and 3 to see how literature can be used to help analysis.
+
+
+
+#### WIP
+
+```{r}
+
+trait <- "body mass index"
+
+endpoint <- "/meta/nodes/Gwas/search"
+
+response <- query_epigraphdb(
+              route = endpoint, 
+              params = list(name = trait),
+              mode = "raw"
+              )
+response$metadata$query
+
+```
+
+
+
+
+
+[1]: https://epigraphdb.org/about
