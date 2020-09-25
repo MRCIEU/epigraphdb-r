@@ -9,6 +9,7 @@ vignette: >
 
 
 This is an introductory tutorial to functionality available in EpiGraphDB and how to access it via `epigraphdb` R package.
+[more text]
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -115,9 +116,9 @@ If you are interested in this type of analysis, check out Case studies [1][3] an
 
 
 
-## Part 2: Bla bla epidemilogical relationships
+## Part 2: Eepidemilogical relationships analysis
 
-In this part we will demonstrate queries that may be relevant in epidemiology research
+In this part we will demonstrate queries that may be relevant in epidemiology research.
 
 ### Look up GWAS studies
 
@@ -196,7 +197,7 @@ print(mr_df)
 ```{r}
 # show how to query by trait ID?
 
-#TODO: @Yi -- what is the right syntax for querying MR results by GWAS id? 
+# TODO: @Yi -- what is the right syntax for querying MR results by GWAS id? 
 
 
 ```
@@ -215,7 +216,7 @@ EpiGraphDB allows users to find evidence in the literature for a pair of biologi
 
 #gene <- "BRCA2"
 #trait <- "Breast cancer" 
-#TODO: why is this not working?
+# TODO: why is this not working?
 
 gene <- "IL23R"
 trait <- "Inflammatory bowel disease"
@@ -257,7 +258,7 @@ response <- query_epigraphdb(
 response$metadata$query
 ```
 
-This is what the native Cypher query looks like: 
+This is what a native Cypher query looks like: 
 
 ```{r}
 query <- "
@@ -281,14 +282,16 @@ results <- query_epigraphdb(
 )
 
 # The result should be identical to the example in Part 2
-results
+results %>% 
+  select(node.trait, node.id, node.sample_size,
+         node.year, node.author) 
 ```
 
 Next step: let's modify Cypher query:
 
 ```{r}
 # Let's return GWAS with sample sizes > 300,000
-# TODO: I have no idea what I'm doing and this quesry does not work
+# TODO: I have no idea what I'm doing and this query does not work
 query <- "
     MATCH (node: Gwas)                              
     WHERE node.trait =~ \"(?i).*body mass index.*\"  
