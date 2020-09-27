@@ -136,8 +136,8 @@
 <li>Then respectively from the evidence on shared pathway network and protein-protein interaction network, we can extract the proteins groups formed in these networks as connected communities to assess the pleiotropic profiles of the genes.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"magrittr"</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"magrittr"</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -146,19 +146,19 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'purrr'</span>
 <span class="co">#&gt; The following object is masked from 'package:magrittr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     set_names</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://github.com/tidyverse/glue">"glue"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidyverse/glue">"glue"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'glue'</span>
 <span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     collapse</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="http://igraph.org">"igraph"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://igraph.org">"igraph"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'igraph'</span>
 <span class="co">#&gt; The following objects are masked from 'package:purrr':</span>
@@ -173,49 +173,47 @@
 <span class="co">#&gt; The following object is masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     union</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span>
-</pre></div>
+<span class="co">#&gt; </span></pre></div>
 <p>Here we configure the parameters used in the case study example. In this example we will look at the variant <strong>rs12720356</strong>, a SNP located in chromosome 19 that has been associated with Crohn’s disease and psoriasis.**</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">SNP</span> <span class="op">&lt;-</span> <span class="st">"rs12720356"</span>
+<span class="va">SNP</span> <span class="op">&lt;-</span> <span class="st">"rs12720356"</span>
 
-<span class="kw">GENELIST</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"ZGLP1"</span>, <span class="st">"FDX1L"</span>, <span class="st">"MRPL4"</span>, <span class="st">"ICAM5"</span>, <span class="st">"TYK2"</span>, <span class="st">"GRAP2"</span>, <span class="st">"KRI1"</span>, <span class="st">"TMED1"</span>, <span class="st">"ICAM1"</span>)
+<span class="va">GENELIST</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ZGLP1"</span>, <span class="st">"FDX1L"</span>, <span class="st">"MRPL4"</span>, <span class="st">"ICAM5"</span>, <span class="st">"TYK2"</span>, <span class="st">"GRAP2"</span>, <span class="st">"KRI1"</span>, <span class="st">"TMED1"</span>, <span class="st">"ICAM1"</span><span class="op">)</span>
 
-<span class="kw">PPI_N_INTERMEDIATE_PROTEINS</span> <span class="op">&lt;-</span> <span class="fl">1</span>
-</pre></div>
+<span class="va">PPI_N_INTERMEDIATE_PROTEINS</span> <span class="op">&lt;-</span> <span class="fl">1</span></pre></div>
 </div>
 <div id="mapping-genes-to-proteins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mapping-genes-to-proteins" class="anchor"></a>Mapping genes to proteins</h2>
 <p>The first step of the analysis is to map each of these genes to their protein product.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">get_gene_protein</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">genelist</span>) {
-  <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mappings/gene-to-protein"</span>
-  <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    gene_name_list = <span class="kw">genelist</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>()
-  )
-  <span class="kw">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-    route = <span class="kw">endpoint</span>,
-    params = <span class="kw">params</span>,
-    mode = <span class="st">"table"</span>,
-    method = <span class="st">"POST"</span>
-  )
-  <span class="kw">protein_df</span> <span class="op">&lt;-</span> <span class="kw">r</span>
-  <span class="co">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">protein_df</span>) <span class="op">&gt;</span> <span class="fl">0</span>) {
-    <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">protein_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(protein_name = <span class="kw">`gene.name`</span>, uniprot_id = <span class="kw">`protein.uniprot_id`</span>)
-  } <span class="co">else</span> {
-    <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>() <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/magrittr/man/aliases.html">set_names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"protein_name"</span>, <span class="st">"uniprot_id"</span>))
-  }
+<span class="va">get_gene_protein</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">genelist</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mappings/gene-to-protein"</span>
+  <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    gene_name_list <span class="op">=</span> <span class="va">genelist</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="op">)</span>
+  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+    route <span class="op">=</span> <span class="va">endpoint</span>,
+    params <span class="op">=</span> <span class="va">params</span>,
+    mode <span class="op">=</span> <span class="st">"table"</span>,
+    method <span class="op">=</span> <span class="st">"POST"</span>
+  <span class="op">)</span>
+  <span class="va">protein_df</span> <span class="op">&lt;-</span> <span class="va">r</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">protein_df</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">protein_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>protein_name <span class="op">=</span> <span class="va">`gene.name`</span>, uniprot_id <span class="op">=</span> <span class="va">`protein.uniprot_id`</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/magrittr/man/aliases.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"protein_name"</span>, <span class="st">"uniprot_id"</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span>
 
-  <span class="kw">res_df</span>
-}
+  <span class="va">res_df</span>
+<span class="op">}</span>
 
-<span class="kw">gene_protein_df</span> <span class="op">&lt;-</span> <span class="fu">get_gene_protein</span>(genelist = <span class="kw">GENELIST</span>)
-<span class="kw">gene_protein_df</span>
+<span class="va">gene_protein_df</span> <span class="op">&lt;-</span> <span class="fu">get_gene_protein</span><span class="op">(</span>genelist <span class="op">=</span> <span class="va">GENELIST</span><span class="op">)</span>
+<span class="va">gene_protein_df</span>
 <span class="co">#&gt; # A tibble: 9 x 2</span>
 <span class="co">#&gt;   protein_name uniprot_id</span>
 <span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;     </span>
@@ -227,40 +225,39 @@
 <span class="co">#&gt; 6 GRAP2        O75791    </span>
 <span class="co">#&gt; 7 ICAM1        P05362    </span>
 <span class="co">#&gt; 8 ICAM5        Q9UMF0    </span>
-<span class="co">#&gt; 9 ZGLP1        P0C6A0</span>
-</pre></div>
+<span class="co">#&gt; 9 ZGLP1        P0C6A0</span></pre></div>
 </div>
 <div id="identifying-the-involvement-in-the-same-biological-pathways" class="section level2">
 <h2 class="hasAnchor">
 <a href="#identifying-the-involvement-in-the-same-biological-pathways" class="anchor"></a>Identifying the involvement in the same biological pathways</h2>
 <p>For each protein we retrieve the pathways they are involved in.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw">get_protein_pathway</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_protein_df</span>) {
-  <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/protein/in-pathway"</span>
-  <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    uniprot_id_list = <span class="kw">gene_protein_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">`uniprot_id`</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>()
-  )
-  <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>, method = <span class="st">"POST"</span>)
+<span class="va">get_protein_pathway</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">gene_protein_df</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/protein/in-pathway"</span>
+  <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    uniprot_id_list <span class="op">=</span> <span class="va">gene_protein_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">`uniprot_id`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="op">)</span>
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="va">params</span>, mode <span class="op">=</span> <span class="st">"table"</span>, method <span class="op">=</span> <span class="st">"POST"</span><span class="op">)</span>
 
-  <span class="co">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">df</span>) <span class="op">&gt;</span> <span class="fl">0</span>) {
-    <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">gene_protein_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">`uniprot_id`</span>) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="kw">df</span>, by = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"uniprot_id"</span>))
-  } <span class="co">else</span> {
-    <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">gene_protein_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw">`uniprot_id`</span>) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(pathway_count = <span class="fl">NA_integer_</span>, pathway_reactome_id = <span class="fl">NA_character_</span>)
-  }
-  <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">res_df</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-      pathway_count = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">pathway_count</span>), <span class="fl">0L</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span>(<span class="kw">pathway_count</span>)),
-      pathway_reactome_id = <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span>(<span class="kw">pathway_reactome_id</span>), <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(), <span class="kw">pathway_reactome_id</span>)
-    )
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">gene_protein_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`uniprot_id`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"uniprot_id"</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">gene_protein_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`uniprot_id`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>pathway_count <span class="op">=</span> <span class="cn">NA_integer_</span>, pathway_reactome_id <span class="op">=</span> <span class="cn">NA_character_</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">res_df</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+      pathway_count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">pathway_count</span><span class="op">)</span>, <span class="fl">0L</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">pathway_count</span><span class="op">)</span><span class="op">)</span>,
+      pathway_reactome_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">pathway_reactome_id</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">pathway_reactome_id</span><span class="op">)</span>
+    <span class="op">)</span>
 
-  <span class="kw">res_df</span>
-}
-<span class="kw">pathway_df</span> <span class="op">&lt;-</span> <span class="fu">get_protein_pathway</span>(gene_protein_df = <span class="kw">gene_protein_df</span>)
-<span class="kw">pathway_df</span>
+  <span class="va">res_df</span>
+<span class="op">}</span>
+<span class="va">pathway_df</span> <span class="op">&lt;-</span> <span class="fu">get_protein_pathway</span><span class="op">(</span>gene_protein_df <span class="op">=</span> <span class="va">gene_protein_df</span><span class="op">)</span>
+<span class="va">pathway_df</span>
 <span class="co">#&gt; # A tibble: 9 x 3</span>
 <span class="co">#&gt;   uniprot_id pathway_count pathway_reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;list&gt;             </span>
@@ -272,53 +269,52 @@
 <span class="co">#&gt; 6 O75791                 3 &lt;chr [3]&gt;          </span>
 <span class="co">#&gt; 7 P05362                 5 &lt;chr [5]&gt;          </span>
 <span class="co">#&gt; 8 Q9UMF0                 2 &lt;chr [2]&gt;          </span>
-<span class="co">#&gt; 9 P0C6A0                 0 &lt;NULL&gt;</span>
-</pre></div>
+<span class="co">#&gt; 9 P0C6A0                 0 &lt;NULL&gt;</span></pre></div>
 <p>Now for each pair of proteins we match the pathways they have in common.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw">get_shared_pathway</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">pathway_df</span>) {
+<span class="va">get_shared_pathway</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pathway_df</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># For the protein-pathway data</span>
   <span class="co"># Get protein-protein permutations where they share pathways</span>
 
-  <span class="kw">per_permutation</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">pathway_df</span>, <span class="kw">permutation</span>) {
-    <span class="kw">df</span> <span class="op">&lt;-</span> <span class="kw">pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">uniprot_id</span> <span class="op">%in%</span> <span class="kw">permutation</span>)
-    <span class="kw">primary_pathway</span> <span class="op">&lt;-</span> <span class="kw">pathway_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">uniprot_id</span> <span class="op">==</span> <span class="kw">permutation</span>[<span class="fl">1</span>]) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">pathway_reactome_id</span>) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>()
-    <span class="kw">assoc_pathway</span> <span class="op">&lt;-</span> <span class="kw">pathway_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">uniprot_id</span> <span class="op">==</span> <span class="kw">permutation</span>[<span class="fl">2</span>]) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">pathway_reactome_id</span>) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>()
-    <span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect</a></span>(<span class="kw">primary_pathway</span>, <span class="kw">assoc_pathway</span>)
-  }
+  <span class="va">per_permutation</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pathway_df</span>, <span class="va">permutation</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">df</span> <span class="op">&lt;-</span> <span class="va">pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">uniprot_id</span> <span class="op">%in%</span> <span class="va">permutation</span><span class="op">)</span>
+    <span class="va">primary_pathway</span> <span class="op">&lt;-</span> <span class="va">pathway_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">uniprot_id</span> <span class="op">==</span> <span class="va">permutation</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pathway_reactome_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
+    <span class="va">assoc_pathway</span> <span class="op">&lt;-</span> <span class="va">pathway_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">uniprot_id</span> <span class="op">==</span> <span class="va">permutation</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pathway_reactome_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/generics/man/setops.html">intersect</a></span><span class="op">(</span><span class="va">primary_pathway</span>, <span class="va">assoc_pathway</span><span class="op">)</span>
+  <span class="op">}</span>
 
-  <span class="kw">pairwise_permutations</span> <span class="op">&lt;-</span> <span class="kw">pathway_df</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">`uniprot_id`</span>) <span class="op">%&gt;%</span>
-    <span class="kw">gtools</span>::<span class="fu"><a href="https://rdrr.io/pkg/gtools/man/combinations.html">permutations</a></span>(n = <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">.</span>), r = <span class="fl">2</span>, v = <span class="kw">.</span>)
-  <span class="kw">shared_pathway_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(
-    protein = <span class="kw">pairwise_permutations</span>[, <span class="fl">1</span>],
-    assoc_protein = <span class="kw">pairwise_permutations</span>[, <span class="fl">2</span>]
-  ) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-      shared_pathway = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(<span class="kw">`protein`</span>, <span class="kw">`assoc_protein`</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>) {
-        <span class="fu">per_permutation</span>(pathway_df = <span class="kw">pathway_df</span>, permutation = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">x</span>, <span class="kw">y</span>))
-      }),
-      combination = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2_chr</a></span>(<span class="kw">`protein`</span>, <span class="kw">`assoc_protein`</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>) {
-        <span class="kw">comb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">x</span>, <span class="kw">y</span>))
-        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">comb</span>, collapse = <span class="st">","</span>)
-      }),
-      count = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="kw">`shared_pathway`</span>, <span class="fu">function</span>(<span class="kw">x</span>) <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span>(<span class="kw">x</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>()),
-      connected = <span class="kw">count</span> <span class="op">&gt;</span> <span class="fl">0</span>
-    )
+  <span class="va">pairwise_permutations</span> <span class="op">&lt;-</span> <span class="va">pathway_df</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">`uniprot_id`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">gtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gtools/man/combinations.html">permutations</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, r <span class="op">=</span> <span class="fl">2</span>, v <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
+  <span class="va">shared_pathway_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+    protein <span class="op">=</span> <span class="va">pairwise_permutations</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,
+    assoc_protein <span class="op">=</span> <span class="va">pairwise_permutations</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+      shared_pathway <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span><span class="op">(</span><span class="va">`protein`</span>, <span class="va">`assoc_protein`</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+        <span class="fu">per_permutation</span><span class="op">(</span>pathway_df <span class="op">=</span> <span class="va">pathway_df</span>, permutation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span>
+      <span class="op">}</span><span class="op">)</span>,
+      combination <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2_chr</a></span><span class="op">(</span><span class="va">`protein`</span>, <span class="va">`assoc_protein`</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+        <span class="va">comb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">comb</span>, collapse <span class="op">=</span> <span class="st">","</span><span class="op">)</span>
+      <span class="op">}</span><span class="op">)</span>,
+      count <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">`shared_pathway`</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html">na.omit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,
+      connected <span class="op">=</span> <span class="va">count</span> <span class="op">&gt;</span> <span class="fl">0</span>
+    <span class="op">)</span>
 
-  <span class="kw">shared_pathway_df</span>
-}
-<span class="kw">shared_pathway_df</span> <span class="op">&lt;-</span> <span class="fu">get_shared_pathway</span>(<span class="kw">pathway_df</span>)
-<span class="kw">n_pairs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">count</span> <span class="op">&gt;</span> <span class="fl">0</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">glue</span>::<span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"Num. shared_pathway pairs: {n_pairs}"</span>))
+  <span class="va">shared_pathway_df</span>
+<span class="op">}</span>
+<span class="va">shared_pathway_df</span> <span class="op">&lt;-</span> <span class="fu">get_shared_pathway</span><span class="op">(</span><span class="va">pathway_df</span><span class="op">)</span>
+<span class="va">n_pairs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">count</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"Num. shared_pathway pairs: {n_pairs}"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Num. shared_pathway pairs: 6</span>
-<span class="kw">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">count</span>))
+<span class="va">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 72 x 6</span>
 <span class="co">#&gt;    protein assoc_protein shared_pathway combination   count connected</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;         &lt;list&gt;         &lt;chr&gt;         &lt;int&gt; &lt;lgl&gt;    </span>
@@ -332,31 +328,29 @@
 <span class="co">#&gt;  8 O75791  Q13445        &lt;NULL&gt;         O75791,Q13445     0 FALSE    </span>
 <span class="co">#&gt;  9 O75791  Q6P4F2        &lt;chr [0]&gt;      O75791,Q6P4F2     0 FALSE    </span>
 <span class="co">#&gt; 10 O75791  Q8N9T8        &lt;NULL&gt;         O75791,Q8N9T8     0 FALSE    </span>
-<span class="co">#&gt; # … with 62 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 62 more rows</span></pre></div>
 <p>We can further query EpiGraphDB regarding the detailed pathway information using <code>GET /meta/nodes/Pathway/search</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="kw">get_pathway_info</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">reactome_id</span>) {
-  <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Pathway/search"</span>
-  <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(id = <span class="kw">reactome_id</span>)
-  <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(route = <span class="kw">endpoint</span>, params = <span class="kw">params</span>, mode = <span class="st">"table"</span>)
-  <span class="kw">df</span>
-}
+<span class="va">get_pathway_info</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">reactome_id</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Pathway/search"</span>
+  <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">reactome_id</span><span class="op">)</span>
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="va">params</span>, mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  <span class="va">df</span>
+<span class="op">}</span>
 
-<span class="kw">pathway</span> <span class="op">&lt;-</span> <span class="kw">shared_pathway_df</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">shared_pathway</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span>() <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
+<span class="va">pathway</span> <span class="op">&lt;-</span> <span class="va">shared_pathway_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">shared_pathway</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="kw">pathway_info</span> <span class="op">&lt;-</span> <span class="kw">pathway</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span>(<span class="kw">get_pathway_info</span>)
-<span class="kw">pathway_info</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>()
+<span class="va">pathway_info</span> <span class="op">&lt;-</span> <span class="va">pathway</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">get_pathway_info</span><span class="op">)</span>
+<span class="va">pathway_info</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 3</span>
 <span class="co">#&gt;   node.in_disease node.name                                     node.reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                                         &lt;chr&gt;           </span>
 <span class="co">#&gt; 1 FALSE           Interleukin-4 and Interleukin-13 signaling    R-HSA-6785807   </span>
 <span class="co">#&gt; 2 FALSE           Integrin cell surface interactions            R-HSA-216083    </span>
-<span class="co">#&gt; 3 FALSE           Immunoregulatory interactions between a Lymp… R-HSA-198933</span>
-</pre></div>
+<span class="co">#&gt; 3 FALSE           Immunoregulatory interactions between a Lymp… R-HSA-198933</span></pre></div>
 <p>In order to extract protein groups from the shared pathways, the last step for this query is to convert the shared pathway data into a graph where</p>
 <ul>
 <li>Proteins are represented as nodes.</li>
@@ -365,33 +359,33 @@
 </ul>
 <p>We then count the number of nodes in each connected community and plot the graph.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">protein_df_to_graph</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">df</span>) {
-  <span class="kw">df_connected</span> <span class="op">&lt;-</span> <span class="kw">df</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">connected</span>) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span>(<span class="kw">`combination`</span>, .keep_all = <span class="fl">TRUE</span>)
-  <span class="kw">nodes</span> <span class="op">&lt;-</span> <span class="kw">df</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">protein</span>) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>()
-  <span class="kw">graph</span> <span class="op">&lt;-</span> <span class="kw">igraph</span>::<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span>(
-    <span class="kw">df_connected</span>,
-    directed = <span class="fl">FALSE</span>, vertices = <span class="kw">nodes</span>
-  )
-  <span class="kw">graph</span><span class="op">$</span><span class="kw">layout</span> <span class="op">&lt;-</span> <span class="kw">igraph</span>::<span class="kw"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
-  <span class="kw">graph</span>
-}
+<span class="va">protein_df_to_graph</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">df_connected</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">connected</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">`combination`</span>, .keep_all <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="va">nodes</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">protein</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span>
+    <span class="va">df_connected</span>,
+    directed <span class="op">=</span> <span class="cn">FALSE</span>, vertices <span class="op">=</span> <span class="va">nodes</span>
+  <span class="op">)</span>
+  <span class="va">graph</span><span class="op">$</span><span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
+  <span class="va">graph</span>
+<span class="op">}</span>
 
-<span class="kw">graph_to_protein_groups</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">graph</span>) {
-  <span class="kw">graph</span> <span class="op">%&gt;%</span>
-    <span class="kw">igraph</span>::<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/components.html">components</a></span>() <span class="op">%&gt;%</span>
-    <span class="kw">igraph</span>::<span class="fu"><a href="https://rdrr.io/pkg/igraph/man/groups.html">groups</a></span>() <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(group_member = <span class="kw">.</span>) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(group_size = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span>(<span class="kw">`group_member`</span>, <span class="kw">length</span>)) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span>(<span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span>(<span class="kw">group_size</span>))
-}
+<span class="va">graph_to_protein_groups</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">graph</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">graph</span> <span class="op">%&gt;%</span>
+    <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/components.html">components</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/groups.html">groups</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>group_member <span class="op">=</span> <span class="va">.</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>group_size <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_int</a></span><span class="op">(</span><span class="va">`group_member`</span>, <span class="va">length</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">group_size</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
 
-<span class="kw">pathway_protein_graph</span> <span class="op">&lt;-</span> <span class="kw">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu">protein_df_to_graph</span>()
-<span class="kw">pathway_protein_groups</span> <span class="op">&lt;-</span> <span class="kw">pathway_protein_graph</span> <span class="op">%&gt;%</span> <span class="fu">graph_to_protein_groups</span>()
-<span class="kw">pathway_protein_groups</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>()
+<span class="va">pathway_protein_graph</span> <span class="op">&lt;-</span> <span class="va">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu">protein_df_to_graph</span><span class="op">(</span><span class="op">)</span>
+<span class="va">pathway_protein_groups</span> <span class="op">&lt;-</span> <span class="va">pathway_protein_graph</span> <span class="op">%&gt;%</span> <span class="fu">graph_to_protein_groups</span><span class="op">(</span><span class="op">)</span>
+<span class="va">pathway_protein_groups</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; tibble [7 × 2] (S3: tbl_df/tbl/data.frame)</span>
 <span class="co">#&gt;  $ group_member:List of 7</span>
 <span class="co">#&gt;   ..$ 2: chr [1:3] "P05362" "P29597" "Q9UMF0"</span>
@@ -405,11 +399,9 @@
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 1</span>
 <span class="co">#&gt;   .. ..$ : chr [1:7] "2" "1" "3" "4" ...</span>
 <span class="co">#&gt;  $ group_size  : Named int [1:7] 3 1 1 1 1 1 1</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:7] "2" "1" "3" "4" ...</span>
-</pre></div>
+<span class="co">#&gt;   ..- attr(*, "names")= chr [1:7] "2" "1" "3" "4" ...</span></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pathway_protein_graph</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pathway_protein_graph</span><span class="op">)</span></pre></div>
 <p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
 <div id="retrieving-shared-protein-protein-interactions" class="section level2">
@@ -417,32 +409,32 @@
 <a href="#retrieving-shared-protein-protein-interactions" class="anchor"></a>Retrieving shared protein-protein interactions</h2>
 <p>We can complement the information given by pathway ontologies with data of interactions between proteins. For each pair of proteins, we retrieve shared protein-protein interactions, either a direct interaction or an interaction where there’s one mediator protein in the middle (see parameters section).</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">get_ppi</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">gene_protein_df</span>, <span class="kw">n_intermediate_proteins</span> = <span class="fl">0</span>) {
-  <span class="kw">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/protein/ppi/pairwise"</span>
-  <span class="kw">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-    uniprot_id_list = <span class="kw">gene_protein_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="st">"uniprot_id"</span>) <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span>(),
-    n_intermediate_proteins = <span class="kw">n_intermediate_proteins</span>
-  )
-  <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span>(
-    route = <span class="kw">endpoint</span>,
-    params = <span class="kw">params</span>,
-    mode = <span class="st">"table"</span>,
-    method = <span class="st">"POST"</span>
-  )
+<span class="va">get_ppi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">gene_protein_df</span>, <span class="va">n_intermediate_proteins</span> <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/protein/ppi/pairwise"</span>
+  <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    uniprot_id_list <span class="op">=</span> <span class="va">gene_protein_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="st">"uniprot_id"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="op">)</span>,
+    n_intermediate_proteins <span class="op">=</span> <span class="va">n_intermediate_proteins</span>
+  <span class="op">)</span>
+  <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+    route <span class="op">=</span> <span class="va">endpoint</span>,
+    params <span class="op">=</span> <span class="va">params</span>,
+    mode <span class="op">=</span> <span class="st">"table"</span>,
+    method <span class="op">=</span> <span class="st">"POST"</span>
+  <span class="op">)</span>
 
-  <span class="co">if</span> (<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw">df</span>) <span class="op">&gt;</span> <span class="fl">0</span>) {
-    <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">gene_protein_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(protein = <span class="kw">uniprot_id</span>) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="kw">df</span>, by = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"protein"</span>))
-  } <span class="co">else</span> {
-    <span class="kw">res_df</span> <span class="op">&lt;-</span> <span class="kw">gene_protein_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(protein = <span class="kw">uniprot_id</span>) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(assoc_protein = <span class="fl">NA_character_</span>, path_size = <span class="fl">NA_integer_</span>)
-  }
-  <span class="kw">res_df</span>
-}
-<span class="kw">ppi_df</span> <span class="op">&lt;-</span> <span class="fu">get_ppi</span>(<span class="kw">gene_protein_df</span>, n_intermediate_proteins = <span class="kw">PPI_N_INTERMEDIATE_PROTEINS</span>)
-<span class="kw">ppi_df</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">gene_protein_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>protein <span class="op">=</span> <span class="va">uniprot_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">df</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"protein"</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">gene_protein_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>protein <span class="op">=</span> <span class="va">uniprot_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>assoc_protein <span class="op">=</span> <span class="cn">NA_character_</span>, path_size <span class="op">=</span> <span class="cn">NA_integer_</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="va">res_df</span>
+<span class="op">}</span>
+<span class="va">ppi_df</span> <span class="op">&lt;-</span> <span class="fu">get_ppi</span><span class="op">(</span><span class="va">gene_protein_df</span>, n_intermediate_proteins <span class="op">=</span> <span class="va">PPI_N_INTERMEDIATE_PROTEINS</span><span class="op">)</span>
+<span class="va">ppi_df</span>
 <span class="co">#&gt; # A tibble: 77 x 3</span>
 <span class="co">#&gt;    protein assoc_protein path_size</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;</span>
@@ -456,51 +448,50 @@
 <span class="co">#&gt;  8 P29597  P05362                2</span>
 <span class="co">#&gt;  9 P29597  P05362                2</span>
 <span class="co">#&gt; 10 P29597  O75791                2</span>
-<span class="co">#&gt; # … with 67 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 67 more rows</span></pre></div>
 <p>Like in the query for pathway data, we convert and analyse these results as a graph.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">get_shared_ppi</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">ppi_df</span>) {
-  <span class="kw">per_row</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">ppi_df</span>, <span class="kw">x</span>, <span class="kw">y</span>) {
-    <span class="kw">res</span> <span class="op">&lt;-</span> <span class="kw">ppi_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
-        <span class="kw">`protein`</span> <span class="op">==</span> <span class="kw">x</span>,
-        <span class="kw">`assoc_protein`</span> <span class="op">==</span> <span class="kw">y</span>
-      ) <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>() <span class="op">%&gt;%</span>
-      <span class="fu">`&gt;`</span>(<span class="fl">0</span>)
-    <span class="kw">res</span>
-  }
+<span class="va">get_shared_ppi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ppi_df</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">per_row</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ppi_df</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">res</span> <span class="op">&lt;-</span> <span class="va">ppi_df</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+        <span class="va">`protein`</span> <span class="op">==</span> <span class="va">x</span>,
+        <span class="va">`assoc_protein`</span> <span class="op">==</span> <span class="va">y</span>
+      <span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+      <span class="fu">`&gt;`</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>
+    <span class="va">res</span>
+  <span class="op">}</span>
 
-  <span class="kw">pairwise_permutations</span> <span class="op">&lt;-</span> <span class="kw">ppi_df</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">`protein`</span>) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>() <span class="op">%&gt;%</span>
-    <span class="kw">gtools</span>::<span class="fu"><a href="https://rdrr.io/pkg/gtools/man/combinations.html">permutations</a></span>(n = <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="kw">.</span>), r = <span class="fl">2</span>, v = <span class="kw">.</span>)
-  <span class="kw">shared_ppi_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span>(
-    protein = <span class="kw">pairwise_permutations</span>[, <span class="fl">1</span>],
-    assoc_protein = <span class="kw">pairwise_permutations</span>[, <span class="fl">2</span>]
-  ) <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-      shared_ppi = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2_lgl</a></span>(<span class="kw">`protein`</span>, <span class="kw">`assoc_protein`</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>) {
-        <span class="fu">per_row</span>(ppi_df = <span class="kw">ppi_df</span>, x = <span class="kw">x</span>, y = <span class="kw">y</span>)
-      }),
-      combination = <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2_chr</a></span>(<span class="kw">`protein`</span>, <span class="kw">`assoc_protein`</span>, <span class="fu">function</span>(<span class="kw">x</span>, <span class="kw">y</span>) {
-        <span class="kw">comb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="kw">x</span>, <span class="kw">y</span>))
-        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="kw">comb</span>, collapse = <span class="st">","</span>)
-      }),
-      connected = <span class="kw">shared_ppi</span>
-    )
+  <span class="va">pairwise_permutations</span> <span class="op">&lt;-</span> <span class="va">ppi_df</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">`protein`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">gtools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gtools/man/combinations.html">permutations</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>, r <span class="op">=</span> <span class="fl">2</span>, v <span class="op">=</span> <span class="va">.</span><span class="op">)</span>
+  <span class="va">shared_ppi_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>
+    protein <span class="op">=</span> <span class="va">pairwise_permutations</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>,
+    assoc_protein <span class="op">=</span> <span class="va">pairwise_permutations</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
+      shared_ppi <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2_lgl</a></span><span class="op">(</span><span class="va">`protein`</span>, <span class="va">`assoc_protein`</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+        <span class="fu">per_row</span><span class="op">(</span>ppi_df <span class="op">=</span> <span class="va">ppi_df</span>, x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>
+      <span class="op">}</span><span class="op">)</span>,
+      combination <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html">map2_chr</a></span><span class="op">(</span><span class="va">`protein`</span>, <span class="va">`assoc_protein`</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> <span class="op">{</span>
+        <span class="va">comb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">comb</span>, collapse <span class="op">=</span> <span class="st">","</span><span class="op">)</span>
+      <span class="op">}</span><span class="op">)</span>,
+      connected <span class="op">=</span> <span class="va">shared_ppi</span>
+    <span class="op">)</span>
 
-  <span class="kw">shared_ppi_df</span>
-}
+  <span class="va">shared_ppi_df</span>
+<span class="op">}</span>
 
-<span class="kw">shared_ppi_df</span> <span class="op">&lt;-</span> <span class="fu">get_shared_ppi</span>(<span class="kw">ppi_df</span>)
-<span class="kw">n_ppi_pairs</span> <span class="op">&lt;-</span> <span class="kw">shared_ppi_df</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">shared_ppi</span>) <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>()
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="kw">glue</span>::<span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span>(<span class="st">"Num. shared_ppi pairs: {n_ppi_pairs}"</span>))
+<span class="va">shared_ppi_df</span> <span class="op">&lt;-</span> <span class="fu">get_shared_ppi</span><span class="op">(</span><span class="va">ppi_df</span><span class="op">)</span>
+<span class="va">n_ppi_pairs</span> <span class="op">&lt;-</span> <span class="va">shared_ppi_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">shared_ppi</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"Num. shared_ppi pairs: {n_ppi_pairs}"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Num. shared_ppi pairs: 10</span>
-<span class="kw">shared_ppi_df</span>
+<span class="va">shared_ppi_df</span>
 <span class="co">#&gt; # A tibble: 72 x 5</span>
 <span class="co">#&gt;    protein assoc_protein shared_ppi combination   connected</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;         &lt;lgl&gt;      &lt;chr&gt;         &lt;lgl&gt;    </span>
@@ -514,12 +505,11 @@
 <span class="co">#&gt;  8 O75791  Q9UMF0        FALSE      O75791,Q9UMF0 FALSE    </span>
 <span class="co">#&gt;  9 P05362  O75791        TRUE       O75791,P05362 TRUE     </span>
 <span class="co">#&gt; 10 P05362  P0C6A0        FALSE      P05362,P0C6A0 FALSE    </span>
-<span class="co">#&gt; # … with 62 more rows</span>
-</pre></div>
+<span class="co">#&gt; # … with 62 more rows</span></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">ppi_protein_graph</span> <span class="op">&lt;-</span> <span class="fu">protein_df_to_graph</span>(<span class="kw">shared_ppi_df</span>)
-<span class="kw">ppi_protein_groups</span> <span class="op">&lt;-</span> <span class="fu">graph_to_protein_groups</span>(<span class="kw">ppi_protein_graph</span>)
-<span class="kw">ppi_protein_groups</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>()
+<span class="va">ppi_protein_graph</span> <span class="op">&lt;-</span> <span class="fu">protein_df_to_graph</span><span class="op">(</span><span class="va">shared_ppi_df</span><span class="op">)</span>
+<span class="va">ppi_protein_groups</span> <span class="op">&lt;-</span> <span class="fu">graph_to_protein_groups</span><span class="op">(</span><span class="va">ppi_protein_graph</span><span class="op">)</span>
+<span class="va">ppi_protein_groups</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; tibble [5 × 2] (S3: tbl_df/tbl/data.frame)</span>
 <span class="co">#&gt;  $ group_member:List of 5</span>
 <span class="co">#&gt;   ..$ 1: chr [1:4] "O75791" "P05362" "P29597" "Q9UMF0"</span>
@@ -531,11 +521,9 @@
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 1</span>
 <span class="co">#&gt;   .. ..$ : chr [1:5] "1" "5" "2" "3" ...</span>
 <span class="co">#&gt;  $ group_size  : Named int [1:5] 4 2 1 1 1</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:5] "1" "5" "2" "3" ...</span>
-</pre></div>
+<span class="co">#&gt;   ..- attr(*, "names")= chr [1:5] "1" "5" "2" "3" ...</span></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">ppi_protein_graph</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">ppi_protein_graph</span><span class="op">)</span></pre></div>
 <p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 </div>
 <div id="sessioninfo" class="section level2">
@@ -543,7 +531,7 @@
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
 <div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()
+<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.0.2 (2020-06-22)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span>
@@ -568,7 +556,7 @@
 <span class="co">#&gt; [5] dplyr_1.0.2      magrittr_1.5    </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] cpp11_0.2.1        knitr_1.29         tidyselect_1.1.0   R6_2.4.1          </span>
+<span class="co">#&gt;  [1] cpp11_0.2.1        knitr_1.30         tidyselect_1.1.0   R6_2.4.1          </span>
 <span class="co">#&gt;  [5] ragg_0.3.1         rlang_0.4.7        fansi_0.4.1        httr_1.4.2        </span>
 <span class="co">#&gt;  [9] stringr_1.4.0      tools_4.0.2        xfun_0.17          utf8_1.1.4        </span>
 <span class="co">#&gt; [13] cli_2.0.2          gtools_3.8.2       ellipsis_0.3.1     htmltools_0.5.0   </span>
@@ -577,8 +565,7 @@
 <span class="co">#&gt; [25] crayon_1.3.4       vctrs_0.3.4        fs_1.5.0           curl_4.3          </span>
 <span class="co">#&gt; [29] memoise_1.1.0      evaluate_0.14      rmarkdown_2.3      stringi_1.5.3     </span>
 <span class="co">#&gt; [33] pillar_1.4.6       compiler_4.0.2     desc_1.2.0         generics_0.0.2    </span>
-<span class="co">#&gt; [37] backports_1.1.10   jsonlite_1.7.1     pkgconfig_2.0.3</span>
-</pre></div>
+<span class="co">#&gt; [37] backports_1.1.10   jsonlite_1.7.1     pkgconfig_2.0.3</span></pre></div>
 </div>
   </div>
 

@@ -133,14 +133,13 @@
 <p>To switch to the development API, do</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="co"># Get default option</span>
-<span class="kw">default_api_url</span> <span class="op">&lt;-</span> <span class="fu">getOptions</span>(<span class="st">"epigraphdb.api.url"</span>)
+<span class="va">default_api_url</span> <span class="op">&lt;-</span> <span class="fu">getOptions</span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
 <span class="co"># Change to the development API</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(epigraphdb.api.url = <span class="st">"http://dev-api.epigraphdb.org"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>epigraphdb.api.url <span class="op">=</span> <span class="st">"http://dev-api.epigraphdb.org"</span><span class="op">)</span>
 <span class="co"># Verify current URL</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span>(<span class="st">"epigraphdb.api.url"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
 <span class="co"># Switch back</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(epigraphdb.api.url = <span class="kw">default_api_url</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>epigraphdb.api.url <span class="op">=</span> <span class="va">default_api_url</span><span class="op">)</span></pre></div>
 <p>NOTE: you can make this change persistent by placing the changes in <a href="https://www.statmethods.net/interface/customizing.html"><code>.Rprofile</code></a>.</p>
 </div>
 <div id="suppress-start-up-message" class="section level2">
@@ -148,8 +147,7 @@
 <a href="#suppress-start-up-message" class="anchor"></a>Suppress start up message</h2>
 <p>If you would like to turn off the start up message that displays the current version of EpiGraphDB service, use the following code to load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span>({<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st"><a href="https://mrcieu.github.io/epigraphdb-r">"epigraphdb"</a></span>)})
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span><span class="op">}</span><span class="op">)</span></pre></div>
 </div>
   </div>
 

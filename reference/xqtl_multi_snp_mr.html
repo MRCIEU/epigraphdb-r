@@ -162,14 +162,14 @@
     <p><a href='https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlmulti-snp-mr'><code>GET /xqtl/multi-snp-mr</code></a></p>
     </div>
 
-    <pre class="usage"><span class='fu'>xqtl_multi_snp_mr</span>(
-  exposure_gene = <span class='kw'>NULL</span>,
-  outcome_trait = <span class='kw'>NULL</span>,
-  mr_method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"IVW"</span>, <span class='st'>"Egger"</span>),
-  qtl_type = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"eQTL"</span>, <span class='st'>"pQTL"</span>),
-  pval_threshold = <span class='fl'>1e-05</span>,
-  mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"table"</span>, <span class='st'>"raw"</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>xqtl_multi_snp_mr</span><span class='op'>(</span>
+  exposure_gene <span class='op'>=</span> <span class='cn'>NULL</span>,
+  outcome_trait <span class='op'>=</span> <span class='cn'>NULL</span>,
+  mr_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"IVW"</span>, <span class='st'>"Egger"</span><span class='op'>)</span>,
+  qtl_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"eQTL"</span>, <span class='st'>"pQTL"</span><span class='op'>)</span>,
+  pval_threshold <span class='op'>=</span> <span class='fl'>1e-05</span>,
+  mode <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"table"</span>, <span class='st'>"raw"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -209,7 +209,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <p>Data from <code>GET /xqtl/multi-snp-mr</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span>(outcome_trait = <span class='st'>"Coronary heart disease"</span>)
+    <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span><span class='op'>(</span>outcome_trait <span class='op'>=</span> <span class='st'>"Coronary heart disease"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 11 x 7</span><span>
 #&gt;    gene.ensembl_id gene.name   gwas.id gwas.trait         r.beta   r.se      r.p
 #&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
