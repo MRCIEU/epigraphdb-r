@@ -22,14 +22,12 @@ navbar:
       menu:
       - text: "Articles"
         href: articles/index.html
-      - text: "Using R package"
-        href: articles/using-epigraphdb-r-package.html
-      - text: "Using API"
-        href: articles/using-epigraphdb-api.html
-      - text: "Options"
-        href: "articles/options.html"
       - text: "About EpiGraphDB"
         href: "articles/about.html"
+      - text: "Getting started with EpiGraphDB in R"
+        href: "articles/getting-started-with-epigraphdb-r.html"
+      - text: "Using R package"
+        href: articles/using-epigraphdb-r-package.html
       - text: "Meta functionalities of the EpiGraphDB platform"
         href: "articles/meta-functionalities.html"
       - text: "Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations"
@@ -38,6 +36,10 @@ navbar:
         href: "articles/case-2-alt-drug-target.html"
       - text: "Case study 3: Triangulating causal estimates with literature evidence"
         href: "articles/case-3-literature-triangulation.html"
+      - text: "Using API"
+        href: articles/using-epigraphdb-api.html
+      - text: "Options"
+        href: "articles/options.html"
     - text: "CHANGELOG"
       href: "news/index.html"
   right:
