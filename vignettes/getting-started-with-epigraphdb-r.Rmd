@@ -2,14 +2,13 @@
 title: "Getting started with EpiGraphDB in R"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting started with EpiGraphDB}
+  %\VignetteIndexEntry{Getting started with EpiGraphDB in R}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+This article is provided as a brief introductory guide to working with the EpiGraphDB platform through `epigraphdb` R package. Here we will demonstrate a few basic operations that can be carried out using the platform, but for more advanced methods please refer to the [API endpoint documentation][2].
 
-This is an introductory tutorial to functionality available in EpiGraphDB and how to access it via `epigraphdb` R package.
-[more text]
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -29,9 +28,9 @@ library(dplyr)
 
 With EpiGraphDB you can map genetic variants to genes, genes to proteins, proteins to pathways, pathways to diseases and so on, as shown in the network diagram [here][1].
 
-In this part we want to demonstrate how to do basic mappings between biological entities. We are going to map genes to proteins (i.e. their UniProtID), proteins to pathways they are found in (using Reactome data), and extract information on the specific pathways identified. 
+In this part, we want to demonstrate how to do basic mappings between biological entities. We are going to map genes to proteins (i.e. their UniProtID), proteins to pathways that they are found in (using Reactome data), and then extract information on the specific pathways identified. 
 
-But first, let's talk about the basic querying syntax. `query_epigraphdb` is the main querying function in the package, it is used to communicate with EpiGraphDB by specifying API endpoints.
+But first, let's talk about the basic querying syntax. `query_epigraphdb` is the main querying function in the package; it is used to communicate with EpiGraphDB by specifying API endpoints.
 
 ```{r,  eval=F}
 query_epigraphdb(route = endpoint, # supply the endpoint (see below)
@@ -41,16 +40,17 @@ query_epigraphdb(route = endpoint, # supply the endpoint (see below)
 
 ```
 
+* `endpoint` is the 'address' within EpiGraphDB of where you want to query the data from, and there is a specific one for each case. e.g.  `"/mappings/gene-to-protein"` is used to query gene-to-proteins mappings. See the full list of currently available endpoints [here][2]
 
-* `endpoint` is the 'address' within EpiGraphDB of where you want query the data from, and there is a specific one for each case. e.g.  `"/mappings/gene-to-protein"` is used to query gene-to-proteins mappings. See full list of currently available endpoints [here][2]
-
-* `params` is where you supply the list of things you want query about (can be list of genes, GWAS trait, MR outcome of interest)
+* `params` is where you supply the list of things you want to query about (can be a list of genes, GWAS trait, MR outcome of interest)
 
 * `mode` is the format in which the results are returned. Use "table" for basic cases, for more advanced stuff you may need to use "raw" - more on this later. 
 
 
 
 ### Mapping genes to proteins
+
+In this first section, we will take an arbitrary list of genes and query the EpiGraphDB API to find the proteins that they map to. 
 
 ```{r}
 # Let's test this on few genes
@@ -70,14 +70,17 @@ proteins <- query_epigraphdb(
 print(proteins)
 ```
 
+In the above data frame, we see the output from querying EpiGraphDB for the proteins that have been mapped to the genes TP53, BRCA1, and TNF. Our query returned the UniProt and Ensembl IDs for those genes.
 
 
 ### Mapping proteins to pathways 
 
+Next, to demonstrate the mapping of proteins to pathways, we are going to take one protein from the previous example, P04637, and query EpiGraphDB for all pathways it is known to be involved in. 
+
 ```{r}
 # Let's see what pathways the protein product of TP53 gene is involved in 
 
-proteins_uniprot_ids <- c("P04637", "P04637") # TODO: to fix - @Yi  - why can't I give it just a single item (giving x2 to overcome this)
+proteins_uniprot_ids <- c("P04637") %>% I() # use I()/(AsIs) function when providing a list of one
 
 endpoint <- "/protein/in-pathway"
 
@@ -94,8 +97,10 @@ print(pathway_df)
 print(pathway_df$pathway_reactome_id[[1]])
 ```
 
+P04637 is involved in five pathways. Next, let's get pathway info for one of them. 
 
 ### Get pathway info
+
 ```{r}
 # Let's see what exactly this pathway is
 reactome_id = "R-HSA-6804754"
@@ -116,7 +121,7 @@ If you are interested in this type of analysis, check out Case studies [1][3] an
 
 
 
-## Part 2: Eepidemilogical relationships analysis
+## Part 2: Epidemilogical relationships analysis
 
 In this part we will demonstrate queries that may be relevant in epidemiology research.
 
@@ -143,30 +148,42 @@ results %>%
 
 ### Explore Mendelian Randomisation studies
 
-In these example, we show how to extract pre-computed MR results for the specified exposure, outcome, or both, traits of interest. 
+In these example, we show how to extract [pre-computed MR results][6] for the specified exposure, outcome, or both, traits of interest. 
+
+#### Specify exposure trait
 
 ```{r}
 # Look up all MR analyses where a trait was used as exposure
 # and find all outcome traits with causal evidence from it.
 
 trait1 <- "Body mass index" 
-# NB: here, trait name has to specific (not fuzzy): use the exact trait name wording as `node.trait` (previous example)
+# NB: here, trait name has to specific (not fuzzy):
+# use the exact trait name wording as in GWAS `node.trait` (previous example)
 
 endpoint <- "/mr"
 
 mr_df <- query_epigraphdb(route = endpoint, 
                           params = list(exposure_trait = trait1,
-                                        pval_threshold = 5e-08),
+                                        pval_threshold = 5e-08 ),
                           mode = "table")
 print(mr_df)
 ```
+The returned data frame includes all MR analysis with `exposure.trait` being "Body mass index". However, there are several GWAS with this names. If you are interested in a specific GWAS, you will need to filter by `exposure.id`. 
 
+```{r}
+# Show how many MR analyses were done for each Body mass index GWAS
+mr_df %>% count(exposure.id)
+```
+
+#### Specify outcome trait
+
+Next, we can check all available MR analyses for an outcome trait of interest. 
 
 ```{r}
 # Look up all MR for a specified outcome trait
 # and find all exposure traits with causal evidence on it.
 
-trait2 <- "Falls in the last year"
+trait2 <- "Waist circumference"
 
 endpoint <- "/mr"
 
@@ -176,7 +193,9 @@ mr_df <- query_epigraphdb(route = endpoint,
                           mode = "table")
 print(mr_df)
 ```
+#### Specify both exposure and outcome traits
 
+Finally, we can  look up MR causal inference results for a pair of exposure and outcome. 
 
 ```{r}
 # Look up a specific pair of exposure+outcome
@@ -194,29 +213,19 @@ mr_df <- query_epigraphdb(
 print(mr_df)
 ```
 
-```{r}
-# show how to query by trait ID?
-
-# TODO: @Yi -- what is the right syntax for querying MR results by GWAS id? 
-
-
-```
-
+To query EpiGraphDB directly by GWAS ID, you will need to use the advanced functionality. See the end of this article. 
 
 
 
 
 ## Part 3. Looking for literature evidence 
 
-EpiGraphDB allows users to find evidence in the literature for a pair of biological terms, e.g. gene and disease. This can be used for hypothesis generation or to provide alternative evidence for an existing putative relationship (e.g. from MR or association results)
+Accessing information in the literature is a ubiquitous task in research, be it for novel hypothesis generation or as part of evidence triangulation. EpiGraphDB facilitates fast processing of this information by allowing access to a host of literature-mined relationships that have been structured into semantic triples. These take the general form (subject, predicate, object) and have been generated using contemporary natural language processing techniques applied to a massive amount of published biomedical research papers.  
 
+In the following section, we will query the API for the relationship between a given gene and a disease outcome.
 
 ```{r}
-# Idenity all publications where a gene is mentioned with relation to a disease
-
-#gene <- "BRCA2"
-#trait <- "Breast cancer" 
-# TODO: why is this not working?
+# Identity all publications where a gene is mentioned with relation to a disease
 
 gene <- "IL23R"
 trait <- "Inflammatory bowel disease"
@@ -228,9 +237,12 @@ lit_df <- query_epigraphdb(route = endpoint,
                                     object_name = trait), 
                        mode = "table")
 
-# Check out the found evidence in the literature
+# Review the found evidence in the literature
 print(lit_df)
+```
+The data frame above shows that IL23R has been mentioned in 25 publications (`pubmed_id` column) in relation to Inflammatory bowel disease, in four predicates. 
 
+```{r}
 # Get a list of all PubMed IDs
 lit_df %>% pull(pubmed_id) %>% unlist() %>% unique()
 ```
@@ -241,7 +253,7 @@ If you are interested in literature mining analysis, and also matching MR result
 
 ## Advanced examples
 
-The functionality of `epigraphdb` R package is currently limited to a certain nuber of endpoints available via the `query_epigraphdb` function. If you would like to access one of the endpoints that are currently not directly [available][2] through it, we recommend exploring Neo4j Cypher query language to construct native EpiGraphDB queries. 
+The functionality of `epigraphdb` R package is currently limited to a certain number of endpoints available via the `query_epigraphdb` function. If you would like to access one of the endpoints that are currently [not directly available][2] through it, we recommend exploring Neo4j Cypher query language to construct native EpiGraphDB queries. 
 
 To get you started, we want to show that all available `query_epigraphdb` endpoint queries are actually internally Cypher queries. For example, the simple GWAS query we've done in Part 2 using "table" mode, can be executed using "raw" mode to expose the exact Cypher query that was run against the database: 
 
@@ -263,7 +275,7 @@ This is what a native Cypher query looks like:
 ```{r}
 query <- "
     MATCH (node: Gwas)                              
-    WHERE node.trait =~ \"(?i).*body mass index.*\"  
+    WHERE node.trait =~ \"(?i).*body mass index.*\" 
     RETURN node LIMIT 10;
 "
 ```
@@ -271,7 +283,8 @@ query <- "
 This is how you supply a Cypher query to `query_epigraphdb` function:
 
 ```{r}
-endpoint <- "/cypher" # use cypher general endpoint (?)
+# use cypher general endpoint 
+endpoint <- "/cypher"
 params <- list(query = query)
 
 results <- query_epigraphdb(
@@ -287,18 +300,17 @@ results %>%
          node.year, node.author) 
 ```
 
-Next step: let's modify Cypher query:
+Next step: let's modify Cypher query
 
 ```{r}
-# Let's return GWAS with sample sizes > 300,000
-# TODO: I have no idea what I'm doing and this query does not work
+# Let's return Body mass index GWAS that were done by Locke AE
+
 query <- "
     MATCH (node: Gwas)                              
     WHERE node.trait =~ \"(?i).*body mass index.*\"  
-    AND node.sample_size > 300000
+    AND node.author = \"Locke AE\"
     RETURN node;
 "
-
 
 endpoint <- "/cypher"
 params <- list(query = query)
@@ -309,14 +321,74 @@ results_subset <- query_epigraphdb(
                         method = "POST",
                         mode = "table")
 
-# The result should be identical to example in Part 2
-results_subset
+results_subset %>% 
+  select(node.trait, node.id, node.sample_size,
+         node.year, node.author) 
+```
+
+It is important to note, that not all parameters can be queried using Cypher due to the underlying data types. For example, the query above could not be modified to filter by `node.sample_size` because in the underlying dataset (_currently!_) the sample_size column stores data as strings. Please refer to [data dictionary][7] to explore data types before writing native Cypher queries. In the meantime, such filtering will have to done post-query in R. 
+
+<br>
+Now, let's try making queries by specifying a GWAS ID. 
+
+```{r}
+# Extract info only for GWAS 'ieu-a-2'
+query <- "
+    MATCH (node: Gwas)                              
+    WHERE node.id = \"ieu-a-2\"
+    RETURN node;
+"
+endpoint <- "/cypher"
+params <- list(query = query)
+results_subset <- query_epigraphdb(
+                        route = endpoint, 
+                        params = params,
+                        method = "POST",
+                        mode = "table")
+
+results_subset %>% 
+  select(node.trait, node.id, node.sample_size,
+         node.year, node.author) 
 ```
 
 
+```{r}
+# Return MR results only for exposure trait 'ieu-a-2' (body mass index)
+
+# first let's check the MR Cypher query that we run in "table" mode in Part 2
+trait1 <- "Body mass index" 
+endpoint <- "/mr"
+mr_df <- query_epigraphdb(route = endpoint, 
+                          params = list(exposure_trait = trait1,
+                                        pval_threshold = 5e-08 ),
+                          mode = "raw")
+mr_df$metadata$query
 
 
+# modify the query to only return 'ieu-a-2' GWAS results
+query<-"
+  MATCH (exposure:Gwas)-[mr:MR]->(outcome:Gwas) 
+  WHERE exposure.id = \"ieu-a-2\"
+  AND mr.pval < 5e-08 
+  RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore} 
+  ORDER BY mr.pval ;
+"
 
+endpoint <- "/cypher"
+params <- list(query = query)
+results_subset <- query_epigraphdb(
+                        route = endpoint, 
+                        params = params,
+                        method = "POST",
+                        mode = "table")
+results_subset
+
+# check exposures in the results
+results_subset %>% count(exposure.id)
+```
+
+<br>
+Great! You can now use the basic functionality of the R package and make simple Cypher queries to the API. Next, we recommend to work through the [case studies][3] and check out the [Web UI examples][8] and the [EpiGraphDB Gallery][9].
 
 
 
@@ -326,3 +398,8 @@ results_subset
 [3]: https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html
 [4]: https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html
 [5]: https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html
+[6]: https://epigraphdb.org/mr
+[7]: https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas
+[8]: https://epigraphdb.org/explore
+[9]: https://epigraphdb.org/gallery
+
