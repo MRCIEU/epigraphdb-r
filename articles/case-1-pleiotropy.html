@@ -61,16 +61,13 @@
       <a href="../articles/index.html">Articles</a>
     </li>
     <li>
-      <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
-    </li>
-    <li>
-      <a href="../articles/using-epigraphdb-api.html">Using API</a>
-    </li>
-    <li>
-      <a href="../articles/options.html">Options</a>
-    </li>
-    <li>
       <a href="../articles/about.html">About EpiGraphDB</a>
+    </li>
+    <li>
+      <a href="../articles/getting-started-with-epigraphdb-r.html">Getting started with EpiGraphDB in R</a>
+    </li>
+    <li>
+      <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
     </li>
     <li>
       <a href="../articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
@@ -83,6 +80,12 @@
     </li>
     <li>
       <a href="../articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
+    </li>
+    <li>
+      <a href="../articles/using-epigraphdb-api.html">Using API</a>
+    </li>
+    <li>
+      <a href="../articles/options.html">Options</a>
     </li>
   </ul>
 </li>
@@ -138,45 +141,10 @@
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"magrittr"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     filter, lag</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://purrr.tidyverse.org">"purrr"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'purrr'</span>
-<span class="co">#&gt; The following object is masked from 'package:magrittr':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     set_names</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/tidyverse/glue">"glue"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'glue'</span>
-<span class="co">#&gt; The following object is masked from 'package:dplyr':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     collapse</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://igraph.org">"igraph"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'igraph'</span>
-<span class="co">#&gt; The following objects are masked from 'package:purrr':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     compose, simplify</span>
-<span class="co">#&gt; The following objects are masked from 'package:dplyr':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     as_data_frame, groups, union</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     decompose, spectrum</span>
-<span class="co">#&gt; The following object is masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span></pre></div>
 <p>Here we configure the parameters used in the case study example. In this example we will look at the variant <strong>rs12720356</strong>, a SNP located in chromosome 19 that has been associated with Crohn’s disease and psoriasis.**</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="va">SNP</span> <span class="op">&lt;-</span> <span class="st">"rs12720356"</span>
@@ -204,9 +172,9 @@
   <span class="va">protein_df</span> <span class="op">&lt;-</span> <span class="va">r</span>
   <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">protein_df</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="va">protein_df</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>protein_name <span class="op">=</span> <span class="va">`gene.name`</span>, uniprot_id <span class="op">=</span> <span class="va">`protein.uniprot_id`</span><span class="op">)</span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>gene_name <span class="op">=</span> <span class="va">`gene.name`</span>, uniprot_id <span class="op">=</span> <span class="va">`protein.uniprot_id`</span><span class="op">)</span>
   <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
-    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/magrittr/man/aliases.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"protein_name"</span>, <span class="st">"uniprot_id"</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">res_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/magrittr/man/aliases.html">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"gene_name"</span>, <span class="st">"uniprot_id"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">}</span>
 
   <span class="va">res_df</span>
@@ -215,17 +183,17 @@
 <span class="va">gene_protein_df</span> <span class="op">&lt;-</span> <span class="fu">get_gene_protein</span><span class="op">(</span>genelist <span class="op">=</span> <span class="va">GENELIST</span><span class="op">)</span>
 <span class="va">gene_protein_df</span>
 <span class="co">#&gt; # A tibble: 9 x 2</span>
-<span class="co">#&gt;   protein_name uniprot_id</span>
-<span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;     </span>
-<span class="co">#&gt; 1 TMED1        Q13445    </span>
-<span class="co">#&gt; 2 MRPL4        Q9BYD3    </span>
-<span class="co">#&gt; 3 TYK2         P29597    </span>
-<span class="co">#&gt; 4 KRI1         Q8N9T8    </span>
-<span class="co">#&gt; 5 FDX1L        Q6P4F2    </span>
-<span class="co">#&gt; 6 GRAP2        O75791    </span>
-<span class="co">#&gt; 7 ICAM1        P05362    </span>
-<span class="co">#&gt; 8 ICAM5        Q9UMF0    </span>
-<span class="co">#&gt; 9 ZGLP1        P0C6A0</span></pre></div>
+<span class="co">#&gt;   gene_name uniprot_id</span>
+<span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     </span>
+<span class="co">#&gt; 1 TMED1     Q13445    </span>
+<span class="co">#&gt; 2 MRPL4     Q9BYD3    </span>
+<span class="co">#&gt; 3 TYK2      P29597    </span>
+<span class="co">#&gt; 4 KRI1      Q8N9T8    </span>
+<span class="co">#&gt; 5 FDX1L     Q6P4F2    </span>
+<span class="co">#&gt; 6 GRAP2     O75791    </span>
+<span class="co">#&gt; 7 ICAM1     P05362    </span>
+<span class="co">#&gt; 8 ICAM5     Q9UMF0    </span>
+<span class="co">#&gt; 9 ZGLP1     P0C6A0</span></pre></div>
 </div>
 <div id="identifying-the-involvement-in-the-same-biological-pathways" class="section level2">
 <h2 class="hasAnchor">

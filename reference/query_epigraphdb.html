@@ -108,16 +108,13 @@ returned status." />
       <a href="../articles/index.html">Articles</a>
     </li>
     <li>
-      <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
-    </li>
-    <li>
-      <a href="../articles/using-epigraphdb-api.html">Using API</a>
-    </li>
-    <li>
-      <a href="../articles/options.html">Options</a>
-    </li>
-    <li>
       <a href="../articles/about.html">About EpiGraphDB</a>
+    </li>
+    <li>
+      <a href="../articles/getting-started-with-epigraphdb-r.html">Getting started with EpiGraphDB in R</a>
+    </li>
+    <li>
+      <a href="../articles/using-epigraphdb-r-package.html">Using R package</a>
     </li>
     <li>
       <a href="../articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
@@ -130,6 +127,12 @@ returned status." />
     </li>
     <li>
       <a href="../articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
+    </li>
+    <li>
+      <a href="../articles/using-epigraphdb-api.html">Using API</a>
+    </li>
+    <li>
+      <a href="../articles/options.html">Options</a>
     </li>
   </ul>
 </li>
@@ -269,7 +272,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.008163
+#&gt; [1] 0.008548
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE
