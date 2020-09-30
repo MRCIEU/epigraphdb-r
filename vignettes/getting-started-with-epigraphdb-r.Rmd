@@ -47,13 +47,18 @@ query_epigraphdb(route = endpoint, # supply the endpoint (see below)
 * `mode` is the format in which the results are returned. Use "table" for basic cases, for more advanced stuff you may need to use "raw" - more on this later. 
 
 
+<br>
+In this guide, we are going to use the all-purpose `query_epigraphdb` function in all basic examples. However, many of the most common queries have been wrapped in [specific functions][12] within `epigraphdb` R package for the ease of use. Those are very helpful, but to help the understanding of the core principles behind using EpiGraphDB, here we present the ways to run queries in a less abstracted way. 
+
+
 
 ### Mapping genes to proteins
 
 In this first section, we will take an arbitrary list of genes and query the EpiGraphDB API to find the proteins that they map to. 
 
 ```{r}
-# Let's test this on few genes
+
+# Let's test this on a few genes
 genes <- c("TP53", "BRCA1", "TNF") 
 
 # Select the endpoint
@@ -116,12 +121,21 @@ pathway_info <- query_epigraphdb(
 print(pathway_info)
 ```
 
+
+
 If you are interested in this type of analysis, check out Case studies [1][3] and [2][4] for further details on pathways analysis, PPI, mapping drugs to targets etc.
 
+<br>
+_Running the above queries using the [dedicated wrapped functions][12]:_
+```{r}
+mappings_gene_to_protein(genes)
+protein_in_pathway(proteins_uniprot_ids)
+```
 
 
 
-## Part 2: Epidemilogical relationships analysis
+## Part 2: Epidemiological relationships analysis
+
 
 In this part we will demonstrate queries that may be relevant in epidemiology research.
 
@@ -146,9 +160,11 @@ results %>%
          node.year, node.author) 
 ```
 
-### Explore Mendelian Randomisation studies
 
-In these example, we show how to extract [pre-computed MR results][6] for the specified exposure, outcome, or both, traits of interest. 
+### Explore Mendelian randomization studies
+
+In these examples, we show how to extract [pre-computed MR results][6] for the specified exposure, outcome, or both, traits of interest. 
+
 
 #### Specify exposure trait
 
@@ -195,7 +211,9 @@ print(mr_df)
 ```
 #### Specify both exposure and outcome traits
 
-Finally, we can  look up MR causal inference results for a pair of exposure and outcome. 
+
+Finally, we can look up MR causal inference results for a pair of exposure and outcome. 
+
 
 ```{r}
 # Look up a specific pair of exposure+outcome
@@ -217,6 +235,14 @@ To query EpiGraphDB directly by GWAS ID, you will need to use the advanced funct
 
 
 
+<br>
+_Running the above MR query using a [dedicated wrapped function][12]:_
+```{r}
+mr(exposure_trait = trait1,
+    outcome_trait = trait2)
+```
+
+
 
 ## Part 3. Looking for literature evidence 
 
@@ -232,10 +258,13 @@ trait <- "Inflammatory bowel disease"
 
 endpoint <- "/gene/literature"
 
-lit_df <- query_epigraphdb(route = endpoint, 
-                       params = list(gene_name = gene,
-                                    object_name = trait), 
-                       mode = "table")
+
+lit_df <- query_epigraphdb(
+                route = endpoint, 
+                params = list(gene_name = gene,
+                             object_name = trait), 
+                mode = "table")
+
 
 # Review the found evidence in the literature
 print(lit_df)
@@ -249,6 +278,54 @@ lit_df %>% pull(pubmed_id) %>% unlist() %>% unique()
 
 If you are interested in literature mining analysis, and also matching MR results to literature evidence, please refer to more specific examples in case studies [3][5] and [2][4].
 
+
+
+
+## EpiGraphDB node search
+
+EpiGraphDB stores data as nodes (data types) and edges (relationships between nodes). The available nodes can be viewed through the `meta/nodes` endpoint. Let's list the available nodes:
+
+```{r}
+endpoint <- "/meta/nodes/list"
+meta_node_fields <- query_epigraphdb(
+  route = endpoint, params = NULL, mode = "raw")
+meta_node_fields %>% unlist()
+```
+
+The list of nodes is also available in the [documentation][11], along with the node properties, which are useful for running native Cypher queries. In this section, we want to show how to perform node search for a term of interest. Any node can be searched by specifying it in this query: `/meta/nodes/{meta_node}/search`.  
+
+To demonstrate this, we are going to search for 'breast cancer' in various nodes:
+  
+```{r}
+name <- "breast cancer"
+
+endpoint <- "/meta/nodes/Gwas/search"
+results <- query_epigraphdb(
+                route = endpoint, 
+                params = list(name = name), 
+                mode = "table")
+results %>% 
+  select(node.trait, node.id, node.sample_size,
+         node.year, node.author) 
+
+endpoint <- "/meta/nodes/Disease/search"
+results <- query_epigraphdb(
+                route = endpoint, 
+                params = list(name = name), 
+                mode = "table")
+results %>% 
+  select(node.label, node.id, node.definition)
+
+endpoint <- "/meta/nodes/Efo/search"
+results <- query_epigraphdb(
+                route = endpoint, 
+                params = list(name = name), 
+                mode = "table")
+results
+```
+
+
+The queries above can be further expanded using Cypher as will be shown in the next section. To get more information about `meta` endpoint please see the guidelines on [meta functionalities][10].
 
 
 ## Advanced examples
@@ -283,7 +360,8 @@ query <- "
 This is how you supply a Cypher query to `query_epigraphdb` function:
 
 ```{r}
-# use cypher general endpoint 
+# use Cypher general endpoint 
+
 endpoint <- "/cypher"
 params <- list(query = query)
 
@@ -291,8 +369,8 @@ results <- query_epigraphdb(
                 route = endpoint, 
                 params = params,
                 method = "POST",
-                mode = "table"
-)
+                mode = "table")
+
 
 # The result should be identical to the example in Part 2
 results %>% 
@@ -326,7 +404,9 @@ results_subset %>%
          node.year, node.author) 
 ```
 
-It is important to note, that not all parameters can be queried using Cypher due to the underlying data types. For example, the query above could not be modified to filter by `node.sample_size` because in the underlying dataset (_currently!_) the sample_size column stores data as strings. Please refer to [data dictionary][7] to explore data types before writing native Cypher queries. In the meantime, such filtering will have to done post-query in R. 
+
+It is important to note, that not all parameters can be queried using Cypher due to the underlying data types. For example, the query above could not be modified to filter by `node.sample_size` because in the underlying dataset (_currently!_) the sample_size column stores data as strings. Please refer to [data dictionary][7] to explore data types before writing native Cypher queries. In the meantime, such filtering will have to be done post-query in R. 
+
 
 <br>
 Now, let's try making queries by specifying a GWAS ID. 
@@ -387,6 +467,12 @@ results_subset
 results_subset %>% count(exposure.id)
 ```
 
+
+
+
+
+
+
 <br>
 Great! You can now use the basic functionality of the R package and make simple Cypher queries to the API. Next, we recommend to work through the [case studies][3] and check out the [Web UI examples][8] and the [EpiGraphDB Gallery][9].
 
@@ -402,4 +488,8 @@ Great! You can now use the basic functionality of the R package and make simple 
 [7]: https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas
 [8]: https://epigraphdb.org/explore
 [9]: https://epigraphdb.org/gallery
+[10]: https://mrcieu.github.io/epigraphdb-r/articles/meta-functionalities.html
+[11]: https://docs.epigraphdb.org/graph-database/meta-nodes/
+[12]: https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities
+
 
