@@ -70,6 +70,7 @@ how to use the API in R please check out the following articles:
 
 | Article  |
 |---|
+| [Getting started with EpiGraphDB in R](https://mrcieu.github.io/epigraphdb-r/articles/getting-started-with-epigraphdb-r.html) |
 | [Using EpiGraphDB R package](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-r-package.html) |
 | [Using EpiGraphDB API (from R and command line) ](https://mrcieu.github.io/epigraphdb-r/articles/using-epigraphdb-api.html) |
 | [Package options](https://mrcieu.github.io/epigraphdb-r/articles/options.html)|
