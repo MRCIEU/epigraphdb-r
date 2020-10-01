@@ -125,9 +125,19 @@
     
 <p>This article is provided as a brief introductory guide to working with the EpiGraphDB platform through <code>epigraphdb</code> R package. Here we will demonstrate a few basic operations that can be carried out using the platform, but for more advanced methods please refer to the <a href="https://docs.epigraphdb.org/api/api-endpoints/">API endpoint documentation</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co">#install.packages("epigraphdb")</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mrcieu.github.io/epigraphdb-r/">epigraphdb</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'dplyr'</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     filter, lag</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
+<span class="co">#&gt; </span></pre></div>
 <div id="part-1-using-epigraphdb-to-obtain-biological-mappings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-1-using-epigraphdb-to-obtain-biological-mappings" class="anchor"></a>Part 1: Using EpiGraphDB to obtain biological mappings</h2>
@@ -135,13 +145,15 @@
 <p>In this part, we want to demonstrate how to do basic mappings between biological entities. We are going to map genes to proteins (i.e. their UniProtID), proteins to pathways that they are found in (using Reactome data), and then extract information on the specific pathways identified.</p>
 <p>But first, let’s talk about the basic querying syntax. <code>query_epigraphdb</code> is the main querying function in the package; it is used to communicate with EpiGraphDB by specifying API endpoints.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, <span class="co"># supply the endpoint (see below)</span>
-                 params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>... <span class="op">=</span> <span class="va">...</span><span class="op">)</span>, <span class="co"># supply the query parameters </span>
-                 mode <span class="op">=</span> <span class="st">"table"</span>, <span class="co"># mode</span>
-                 method <span class="op">=</span> <span class="st">"POST"</span><span class="op">)</span> <span class="co"># method (ignore this for now)</span></pre></div>
+<span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>, <span class="co"># supply the route / endpoint</span>
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>... <span class="op">=</span> <span class="va">...</span><span class="op">)</span>, <span class="co"># supply the query parameters</span>
+  mode <span class="op">=</span> <span class="st">"table"</span>, <span class="co"># How the results are shown in R</span>
+  method <span class="op">=</span> <span class="st">"GET"</span> <span class="co"># HTTP method, "GET", "POST", etc.</span>
+<span class="op">)</span></pre></div>
 <ul>
-<li><p><code>endpoint</code> is the ‘address’ within EpiGraphDB of where you want to query the data from, and there is a specific one for each case. e.g. <code>"/mappings/gene-to-protein"</code> is used to query gene-to-proteins mappings. See the full list of currently available endpoints <a href="https://docs.epigraphdb.org/api/api-endpoints/">here</a></p></li>
-<li><p><code>params</code> is where you supply the list of things you want to query about (can be a list of genes, GWAS trait, MR outcome of interest)</p></li>
+<li><p><code>endpoint</code> and <code>method</code> consitute the ‘method’ provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a> is used to query gene-to-proteins mappings. See the full list of currently available endpoints <a href="https://docs.epigraphdb.org/api/api-endpoints/">here</a> in the documentation or the <a href="https://api.epigraphdb.org">Swagger interface of the API</a>.</p></li>
+<li><p><code>params</code> is where you supply the list of things you want to query about (can be a list of genes, GWAS trait, MR outcome of interest), subject to what each endpoint accepts and requires.</p></li>
 <li><p><code>mode</code> is the format in which the results are returned. Use “table” for basic cases, for more advanced stuff you may need to use “raw” - more on this later.</p></li>
 </ul>
 <p><br> In this guide, we are going to use the all-purpose <code>query_epigraphdb</code> function in all basic examples. However, many of the most common queries have been wrapped in <a href="https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities">specific functions</a> within <code>epigraphdb</code> R package for the ease of use. Those are very helpful, but to help the understanding of the core principles behind using EpiGraphDB, here we present the ways to run queries in a less abstracted way.</p>
@@ -150,19 +162,20 @@
 <a href="#mapping-genes-to-proteins" class="anchor"></a>Mapping genes to proteins</h3>
 <p>In this first section, we will take an arbitrary list of genes and query the EpiGraphDB API to find the proteins that they map to.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-
 <span class="co"># Let's test this on a few genes</span>
-<span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TP53"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TNF"</span><span class="op">)</span> 
+<span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TP53"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TNF"</span><span class="op">)</span>
 
-<span class="co"># Select the endpoint</span>
+<span class="co"># Select the endpoint "POST /mappings/gene-to-protein"</span>
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mappings/gene-to-protein"</span>
+<span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"POST"</span>
 
 <span class="co"># Build a query</span>
 <span class="va">proteins</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                route <span class="op">=</span> <span class="va">endpoint</span>,
-                params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>gene_name_list <span class="op">=</span> <span class="va">genes</span><span class="op">)</span>,
-                mode <span class="op">=</span> <span class="st">"table"</span>,
-                method <span class="op">=</span> <span class="st">"POST"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>gene_name_list <span class="op">=</span> <span class="va">genes</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>,
+  method <span class="op">=</span> <span class="va">method</span>
+<span class="op">)</span>
 
 <span class="co"># Check the output</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">proteins</span><span class="op">)</span>
@@ -179,17 +192,22 @@
 <a href="#mapping-proteins-to-pathways" class="anchor"></a>Mapping proteins to pathways</h3>
 <p>Next, to demonstrate the mapping of proteins to pathways, we are going to take one protein from the previous example, P04637, and query EpiGraphDB for all pathways it is known to be involved in.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># Let's see what pathways the protein product of TP53 gene is involved in </span>
+<span class="co"># Let's see what pathways the protein product of TP53 gene is involved in</span>
 
-<span class="va">proteins_uniprot_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P04637"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># use I()/(AsIs) function when providing a list of one</span>
+<span class="co"># NOTE: Argument `uniprot_id_list` requires a list of UniProt IDs in</span>
+<span class="co">#       POST /mappings/gene-to-protein.</span>
+<span class="co">#       In this case for the R package, we need to wrap `proteins_uniprot_ids`</span>
+<span class="co">#       with an `I()` function (AsIs) to prevent auto-unpacking by `httr`</span>
+<span class="va">proteins_uniprot_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"P04637"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html">I</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/protein/in-pathway"</span>
 
 <span class="va">pathway_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                  route <span class="op">=</span> <span class="va">endpoint</span>,
-                  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>uniprot_id_list <span class="op">=</span> <span class="va">proteins_uniprot_ids</span><span class="op">)</span>,
-                  mode <span class="op">=</span> <span class="st">"table"</span>, 
-                  method <span class="op">=</span> <span class="st">"POST"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>uniprot_id_list <span class="op">=</span> <span class="va">proteins_uniprot_ids</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>,
+  method <span class="op">=</span> <span class="st">"POST"</span>
+<span class="op">)</span>
 
 <span class="co"># Check out how many pathways this protein is found in</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pathway_df</span><span class="op">)</span>
@@ -209,14 +227,15 @@
 <a href="#get-pathway-info" class="anchor"></a>Get pathway info</h3>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="co"># Let's see what exactly this pathway is</span>
-<span class="va">reactome_id</span> <span class="op">=</span> <span class="st">"R-HSA-6804754"</span>
+<span class="va">reactome_id</span> <span class="op">&lt;-</span> <span class="st">"R-HSA-6804754"</span>
 
-<span class="va">endpoint</span> <span class="op">=</span> <span class="st">"/meta/nodes/Pathway/search"</span>
+<span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Pathway/search"</span>
 
 <span class="va">pathway_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                    route <span class="op">=</span> <span class="va">endpoint</span>,
-                    params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">reactome_id</span><span class="op">)</span>,
-                    mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">reactome_id</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
 <span class="co"># Pathway description</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pathway_info</span><span class="op">)</span>
@@ -224,7 +243,7 @@
 <span class="co">#&gt;   node.in_disease node.name                     node.reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                         &lt;chr&gt;           </span>
 <span class="co">#&gt; 1 FALSE           Regulation of TP53 Expression R-HSA-6804754</span></pre></div>
-<p>If you are interested in this type of analysis, check out Case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">1</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a> for further details on pathways analysis, PPI, mapping drugs to targets etc.</p>
+<p>If you are interested in this type of analysis, check out case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">1</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a> for further details on pathways analysis, PPI, mapping drugs to targets etc.</p>
 <p><br><em>Running the above queries using the <a href="https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities">dedicated wrapped functions</a>:</em></p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="../reference/mappings_gene_to_protein.html">mappings_gene_to_protein</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span>
@@ -248,22 +267,25 @@
 <div id="look-up-gwas-studies" class="section level3">
 <h3 class="hasAnchor">
 <a href="#look-up-gwas-studies" class="anchor"></a>Look up GWAS studies</h3>
-<p>First, we want to check what GWAS are available within EpiGraphDB for our trait of interest, e.g. Body mass index. Doing this query is equivalent doing a look-up using <a href="https://dev.epigraphdb.org/explore">EpiGraphDB Web UI</a>. The fuzzy matching is supported, i.e. ‘body mass index’ or ‘Body Mass Index’ will give you the same set of results.</p>
+<p>First, we want to check what GWAS are available within EpiGraphDB for our trait of interest, e.g. Body mass index. Doing this query is equivalent doing a look-up using <a href="https://dev.epigraphdb.org/explore">EpiGraphDB Web UI</a>. The search functionality is fuzzy search and case insensitive, i.e. ‘body mass index’ or ‘Body Mass Index’ will give you the same set of results.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="co"># Let's see what Body mass index GWAS are available in EpiGraphDB</span>
-<span class="va">trait</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span> 
+<span class="va">trait</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
 
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-              route <span class="op">=</span> <span class="va">endpoint</span>, 
-              params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">trait</span><span class="op">)</span>,
-              mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">trait</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
 <span class="co"># show selected columns in the results</span>
-<span class="va">results</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
-         <span class="va">node.year</span>, <span class="va">node.author</span><span class="op">)</span> 
+<span class="va">results</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
+    <span class="va">node.year</span>, <span class="va">node.author</span>
+  <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 5</span>
 <span class="co">#&gt;    node.trait            node.id          node.sample_size node.year node.author</span>
 <span class="co">#&gt;    &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
@@ -289,16 +311,20 @@
 <span class="co"># Look up all MR analyses where a trait was used as exposure</span>
 <span class="co"># and find all outcome traits with causal evidence from it.</span>
 
-<span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span> 
+<span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span>
 <span class="co"># NB: here, trait name has to specific (not fuzzy):</span>
 <span class="co"># use the exact trait name wording as in GWAS `node.trait` (previous example)</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mr"</span>
 
-<span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, 
-                          params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
-                                        pval_threshold <span class="op">=</span> <span class="fl">5e-08</span> <span class="op">)</span>,
-                          mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+<span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
+    pval_threshold <span class="op">=</span> <span class="fl">5e-08</span>
+  <span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 633 x 10</span>
 <span class="co">#&gt;    exposure.id exposure.trait outcome.id outcome.trait   mr.b   mr.se mr.pval</span>
@@ -341,10 +367,14 @@
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mr"</span>
 
-<span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, 
-                          params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>outcome_trait <span class="op">=</span> <span class="va">trait2</span>,
-                                        pval_threshold <span class="op">=</span> <span class="fl">5e-08</span><span class="op">)</span>,
-                          mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+<span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    outcome_trait <span class="op">=</span> <span class="va">trait2</span>,
+    pval_threshold <span class="op">=</span> <span class="fl">5e-08</span>
+  <span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 842 x 10</span>
 <span class="co">#&gt;    exposure.id exposure.trait outcome.id outcome.trait     mr.b   mr.se mr.pval</span>
@@ -374,10 +404,13 @@
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mr"</span>
 
 <span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-              route <span class="op">=</span> <span class="va">endpoint</span>,
-              params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
-                            outcome_trait <span class="op">=</span> <span class="va">trait2</span><span class="op">)</span>,
-              mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
+    outcome_trait <span class="op">=</span> <span class="va">trait2</span>
+  <span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
@@ -394,8 +427,10 @@
 <p>To query EpiGraphDB directly by GWAS ID, you will need to use the advanced functionality. See the end of this article.</p>
 <p><br><em>Running the above MR query using a <a href="https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities">dedicated wrapped function</a>:</em></p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
-    outcome_trait <span class="op">=</span> <span class="va">trait2</span><span class="op">)</span>
+<span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
+  exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
+  outcome_trait <span class="op">=</span> <span class="va">trait2</span>
+<span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
 <span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
 <span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
@@ -423,13 +458,14 @@
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/gene/literature"</span>
 
-
 <span class="va">lit_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                route <span class="op">=</span> <span class="va">endpoint</span>, 
-                params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>gene_name <span class="op">=</span> <span class="va">gene</span>,
-                             object_name <span class="op">=</span> <span class="va">trait</span><span class="op">)</span>, 
-                mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
-
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    gene_name <span class="op">=</span> <span class="va">gene</span>,
+    object_name <span class="op">=</span> <span class="va">trait</span>
+  <span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
 <span class="co"># Review the found evidence in the literature</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">lit_df</span><span class="op">)</span>
@@ -443,7 +479,10 @@
 <p>The data frame above shows that IL23R has been mentioned in 25 publications (<code>pubmed_id</code> column) in relation to Inflammatory bowel disease, in four predicates.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit">
 <span class="co"># Get a list of all PubMed IDs</span>
-<span class="va">lit_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pubmed_id</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">lit_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pubmed_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "17484863" "21155887" "27852544" "19575361" "19496308" "18383521"</span>
 <span class="co">#&gt;  [7] "18341487" "19817673" "18088064" "29248579" "18047540" "25159710"</span>
 <span class="co">#&gt; [13] "18383363" "19175939" "18698678" "21846945" "20067801" "18368064"</span>
@@ -457,24 +496,28 @@
 <div class="sourceCode" id="cb15"><pre class="downlit">
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/list"</span>
 <span class="va">meta_node_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-  route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="cn">NULL</span>, mode <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="cn">NULL</span>, mode <span class="op">=</span> <span class="st">"raw"</span>
+<span class="op">)</span>
 <span class="va">meta_node_fields</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "Gwas"       "Disease"    "Drug"       "Efo"        "Event"     </span>
 <span class="co">#&gt;  [6] "Gene"       "Tissue"     "Literature" "Pathway"    "Protein"   </span>
 <span class="co">#&gt; [11] "SemmedTerm" "Variant"</span></pre></div>
-<p>The list of nodes is also available in the <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/">documentation</a>, along with the node properties, which are useful for running native Cypher queries. In this section, we want to show how to perform node search for a term of interest. Any node can be searched by specifying it in this query: <code>/meta/nodes/{meta_node}/search</code>.</p>
+<p>The list of nodes is also available in the <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/">documentation</a>, along with the node properties, which are useful for running native Cypher queries. In this section, we want to show how to perform node search for a term of interest. Any node can be searched by specifying it in this query: <code>GET /meta/nodes/{meta_node}/search</code>.</p>
 <p>To demonstrate this, we are going to search for ‘breast cancer’ in various nodes:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit">
 <span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"breast cancer"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                route <span class="op">=</span> <span class="va">endpoint</span>, 
-                params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, 
-                mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
-         <span class="va">node.year</span>, <span class="va">node.author</span><span class="op">)</span> 
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
+<span class="va">results</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
+    <span class="va">node.year</span>, <span class="va">node.author</span>
+  <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 5</span>
 <span class="co">#&gt;    node.trait                  node.id    node.sample_size node.year node.author</span>
 <span class="co">#&gt;    &lt;chr&gt;                       &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
@@ -491,10 +534,11 @@
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Disease/search"</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                route <span class="op">=</span> <span class="va">endpoint</span>, 
-                params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, 
-                mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
-<span class="va">results</span> <span class="op">%&gt;%</span> 
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
+<span class="va">results</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">node.label</span>, <span class="va">node.id</span>, <span class="va">node.definition</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 7 x 3</span>
 <span class="co">#&gt;   node.label             node.id             node.definition                    </span>
@@ -509,9 +553,10 @@
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Efo/search"</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                route <span class="op">=</span> <span class="va">endpoint</span>, 
-                params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>, 
-                mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 <span class="va">results</span>
 <span class="co">#&gt; # A tibble: 10 x 3</span>
 <span class="co">#&gt;    node.type    node.value                       node.id                        </span>
@@ -531,16 +576,18 @@
 <div id="advanced-examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#advanced-examples" class="anchor"></a>Advanced examples</h2>
-<p>The functionality of <code>epigraphdb</code> R package is currently limited to a certain number of endpoints available via the <code>query_epigraphdb</code> function. If you would like to access one of the endpoints that are currently <a href="https://docs.epigraphdb.org/api/api-endpoints/">not directly available</a> through it, we recommend exploring Neo4j Cypher query language to construct native EpiGraphDB queries.</p>
-<p>To get you started, we want to show that all available <code>query_epigraphdb</code> endpoint queries are actually internally Cypher queries. For example, the simple GWAS query we’ve done in Part 2 using “table” mode, can be executed using “raw” mode to expose the exact Cypher query that was run against the database:</p>
+<p>The functionalities of <code>epigraphdb</code> R package and the REST API of EpiGraphDB are currently limited to a certain number of API endpoints available via the <code>query_epigraphdb</code> function, which are simply a small and limited subset of what a graph database offers. If you would like to further customise your query, EpiGraphDB API supports using Neo4j Cypher to directly query the graph database.</p>
+<p>To get you started, we want to show that the majority of API endpoint queries are simple wrappers around Cypher queries which directly request data from the graph database. For example, the simple GWAS query we’ve done in Part 2 using “table” mode, can be executed using “raw” mode to expose the exact Cypher query that was run against the database:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="co"># Running a GWAS query from Part 2</span>
+<span class="co"># Ask for "raw" format (as a list)</span>
 <span class="va">trait</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
 <span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-              route <span class="op">=</span> <span class="va">endpoint</span>, 
-              params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">trait</span><span class="op">)</span>,
-              mode <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span> <span class="co">### asking for raw output </span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">trait</span><span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"raw"</span>
+<span class="op">)</span>
 
 <span class="co"># display the Cypher query</span>
 <span class="va">response</span><span class="op">$</span><span class="va">metadata</span><span class="op">$</span><span class="va">query</span>
@@ -548,28 +595,31 @@
 <p>This is what a native Cypher query looks like:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit">
 <span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
-    MATCH (node: Gwas)                              
-    WHERE node.trait =~ \"(?i).*body mass index.*\" 
+    MATCH (node: Gwas)
+    WHERE node.trait =~ \"(?i).*body mass index.*\"
     RETURN node LIMIT 10;
 "</span></pre></div>
 <p>This is how you supply a Cypher query to <code>query_epigraphdb</code> function:</p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="co"># use Cypher general endpoint </span>
+<span class="co"># use POST /cypher</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/cypher"</span>
+<span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"POST"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span>
 
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                route <span class="op">=</span> <span class="va">endpoint</span>, 
-                params <span class="op">=</span> <span class="va">params</span>,
-                method <span class="op">=</span> <span class="st">"POST"</span>,
-                mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
-
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="va">params</span>,
+  method <span class="op">=</span> <span class="va">method</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
 <span class="co"># The result should be identical to the example in Part 2</span>
-<span class="va">results</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
-         <span class="va">node.year</span>, <span class="va">node.author</span><span class="op">)</span> 
+<span class="va">results</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
+    <span class="va">node.year</span>, <span class="va">node.author</span>
+  <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 5</span>
 <span class="co">#&gt;    node.trait            node.id          node.sample_size node.year node.author</span>
 <span class="co">#&gt;    &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
@@ -588,24 +638,28 @@
 <span class="co"># Let's return Body mass index GWAS that were done by Locke AE</span>
 
 <span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
-    MATCH (node: Gwas)                              
-    WHERE node.trait =~ \"(?i).*body mass index.*\"  
+    MATCH (node: Gwas)
+    WHERE node.trait =~ \"(?i).*body mass index.*\"
     AND node.author = \"Locke AE\"
     RETURN node;
 "</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/cypher"</span>
+<span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"POST"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span>
 
 <span class="va">results_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                        route <span class="op">=</span> <span class="va">endpoint</span>, 
-                        params <span class="op">=</span> <span class="va">params</span>,
-                        method <span class="op">=</span> <span class="st">"POST"</span>,
-                        mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="va">params</span>,
+  method <span class="op">=</span> <span class="va">method</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
-<span class="va">results_subset</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
-         <span class="va">node.year</span>, <span class="va">node.author</span><span class="op">)</span> 
+<span class="va">results_subset</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
+    <span class="va">node.year</span>, <span class="va">node.author</span>
+  <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 4 x 5</span>
 <span class="co">#&gt;   node.trait      node.id   node.sample_size node.year node.author</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
@@ -613,26 +667,29 @@
 <span class="co">#&gt; 2 Body mass index ieu-a-785 152893           2015      Locke AE   </span>
 <span class="co">#&gt; 3 Body mass index ieu-a-835 322154           2015      Locke AE   </span>
 <span class="co">#&gt; 4 Body mass index ieu-a-974 171977           2015      Locke AE</span></pre></div>
-<p>It is important to note, that not all parameters can be queried using Cypher due to the underlying data types. For example, the query above could not be modified to filter by <code>node.sample_size</code> because in the underlying dataset (<em>currently!</em>) the sample_size column stores data as strings. Please refer to <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas">data dictionary</a> to explore data types before writing native Cypher queries. In the meantime, such filtering will have to be done post-query in R.</p>
+<p>NOTE: Be mindful of the data type of each node property. Please refer to <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas">data dictionary</a> to explore data types before writing native Cypher queries.</p>
 <p><br> Now, let’s try making queries by specifying a GWAS ID.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit">
 <span class="co"># Extract info only for GWAS 'ieu-a-2'</span>
 <span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
-    MATCH (node: Gwas)                              
+    MATCH (node: Gwas)
     WHERE node.id = \"ieu-a-2\"
     RETURN node;
 "</span>
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/cypher"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span>
 <span class="va">results_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                        route <span class="op">=</span> <span class="va">endpoint</span>, 
-                        params <span class="op">=</span> <span class="va">params</span>,
-                        method <span class="op">=</span> <span class="st">"POST"</span>,
-                        mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="va">params</span>,
+  method <span class="op">=</span> <span class="st">"POST"</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 
-<span class="va">results_subset</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
-         <span class="va">node.year</span>, <span class="va">node.author</span><span class="op">)</span> 
+<span class="va">results_subset</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
+    <span class="va">node.trait</span>, <span class="va">node.id</span>, <span class="va">node.sample_size</span>,
+    <span class="va">node.year</span>, <span class="va">node.author</span>
+  <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;   node.trait      node.id node.sample_size node.year node.author</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
@@ -641,32 +698,36 @@
 <span class="co"># Return MR results only for exposure trait 'ieu-a-2' (body mass index)</span>
 
 <span class="co"># first let's check the MR Cypher query that we run in "table" mode in Part 2</span>
-<span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span> 
+<span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span>
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/mr"</span>
-<span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, 
-                          params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
-                                        pval_threshold <span class="op">=</span> <span class="fl">5e-08</span> <span class="op">)</span>,
-                          mode <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span>
+<span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
+    pval_threshold <span class="op">=</span> <span class="fl">5e-08</span>
+  <span class="op">)</span>,
+  mode <span class="op">=</span> <span class="st">"raw"</span>
+<span class="op">)</span>
 <span class="va">mr_df</span><span class="op">$</span><span class="va">metadata</span><span class="op">$</span><span class="va">query</span>
 <span class="co">#&gt; [1] "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND mr.pval &lt; 5e-08 RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore} ORDER BY mr.pval ;"</span>
 
-
 <span class="co"># modify the query to only return 'ieu-a-2' GWAS results</span>
-<span class="va">query</span><span class="op">&lt;-</span><span class="st">"
-  MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) 
+<span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
+  MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas)
   WHERE exposure.id = \"ieu-a-2\"
-  AND mr.pval &lt; 5e-08 
-  RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore} 
+  AND mr.pval &lt; 5e-08
+  RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore}
   ORDER BY mr.pval ;
 "</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/cypher"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="va">query</span><span class="op">)</span>
 <span class="va">results_subset</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
-                        route <span class="op">=</span> <span class="va">endpoint</span>, 
-                        params <span class="op">=</span> <span class="va">params</span>,
-                        method <span class="op">=</span> <span class="st">"POST"</span>,
-                        mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
+  route <span class="op">=</span> <span class="va">endpoint</span>,
+  params <span class="op">=</span> <span class="va">params</span>,
+  method <span class="op">=</span> <span class="st">"POST"</span>,
+  mode <span class="op">=</span> <span class="st">"table"</span>
+<span class="op">)</span>
 <span class="va">results_subset</span>
 <span class="co">#&gt; # A tibble: 146 x 10</span>
 <span class="co">#&gt;    exposure.trait exposure.id outcome.trait outcome.id   mr.se   mr.b mr.method</span>
