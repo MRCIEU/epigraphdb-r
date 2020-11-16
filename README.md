@@ -298,16 +298,20 @@ We also provide a list of functions (see the table below) that are equivalent to
 
 Please cite EpiGraphDB as
 
-> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. 2020. EpiGraphDB: a database and data mining platform for health data science. *bioRxiv*. [doi:10.1101/2020.08.01.230193](https://doi.org/10.1101/2020.08.01.230193).
+> Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Oliver Lloyd, Marina Vabistsevits, Tom R Gaunt, EpiGraphDB: a database and data mining platform for health data science, Bioinformatics, btaa961, https://doi.org/10.1093/bioinformatics/btaa961
 
 ```
-@article {epigraphdb2020,
-  author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
-  title = {{EpiGraphDB}: a database and data mining platform for health data science},
-  journal = {bioRxiv},
-  year = {2020},
-  doi = {10.1101/2020.08.01.230193},
-  url = {https://epigraphdb.org}
+@article{epigraphdb2020bioinformatics,
+    author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Lloyd, Oliver and Vabistsevits, Marina and Gaunt, Tom R},
+    title = {{EpiGraphDB}: a database and data mining platform for health data science},
+    journal = {Bioinformatics},
+    year = {2020},
+    month = {11},
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/btaa961},
+    url = {https://doi.org/10.1093/bioinformatics/btaa961},
+    note = {btaa961},
+    eprint = {https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btaa961/34178613/btaa961.pdf}
 }
 ```
 
