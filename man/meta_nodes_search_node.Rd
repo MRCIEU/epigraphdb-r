@@ -40,6 +40,6 @@ Data from \code{GET /meta/nodes/{meta_node}/search}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodesmeta_nodesearch}{\code{GET /meta/nodes/{meta_node}/search}}
 }
 \examples{
-# List the first 5 MR relationships
-meta_rels_list_rel(meta_rel = "MR", limit = 5)
+# Search Gwas nodes
+meta_nodes_search_node(meta_node = "Gwas", name = "body mass index")
 }
