@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="using-epigraphdb-r-package_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using EpiGraphDB R package</h1>
@@ -123,11 +123,11 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span></pre></div>
+<span class="co">#&gt; </span></code></pre></div>
 <div id="methods-to-query-epigraphdb" class="section level2">
 <h2 class="hasAnchor">
 <a href="#methods-to-query-epigraphdb" class="anchor"></a>Methods to query EpiGraphDB</h2>
@@ -137,31 +137,31 @@
 <h3 class="hasAnchor">
 <a href="#mr" class="anchor"></a><code>mr</code>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
   exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>,
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="va">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
+<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
+<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
+<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
+<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="get-mr" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-mr" class="anchor"></a><code>GET /mr</code>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
   route <span class="op">=</span> <span class="st">"/mr"</span>,
   params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
     exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
@@ -172,16 +172,16 @@
 
 <span class="va">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
+<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
+<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
+<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
+<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 <p>For more information on the API endpoints, please visit:</p>
 <ul>
 <li>The API Swagger interface <a href="https://api.epigraphdb.org" class="uri">https://api.epigraphdb.org</a>
@@ -200,31 +200,31 @@
 <a href="#mode-table" class="anchor"></a><code>mode = "table"</code>
 </h3>
 <p>By default, for ease of use, the query returns a data frame which is a tidyverse <a href="https://tibble.tidyverse.org/"><code>tibble</code></a>:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
   exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>
 <span class="op">)</span>
 <span class="va">df</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
+<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
+<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
+<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
+<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="mode-raw" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mode-raw" class="anchor"></a><code>mode = "raw"</code>
 </h3>
 <p>Alternatively, you can use <code>results_type = "raw"</code> to get the unformatted response from EpiGraphDB API.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
   exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>,
   mode <span class="op">=</span> <span class="st">"raw"</span>
@@ -233,7 +233,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.011</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0155</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -241,7 +241,7 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
-<span class="co">#&gt;   ..$ :List of 3</span></pre></div>
+<span class="co">#&gt;   ..$ :List of 3</span></code></pre></div>
 <p>There are several reasons that a <code>raw</code> mode might benefit you:</p>
 <ol style="list-style-type: decimal">
 <li><p>The <code>results</code> component preserves the upstream hierarchical json structure that might be useful for users aiming for specific tasks such as rendering network plots or batch post-processing the returned data in a large scale.</p></li>
@@ -266,7 +266,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

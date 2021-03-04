@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="using-epigraphdb-api_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Using EpiGraphDB API</h1>
@@ -129,11 +129,11 @@
 <p>EpiGraphDB as a collated resource offers rich integrative epidemiological evidence for researchers to use, which can be queried from our <a href="https://api.epigraphdb.org">RESTful API service</a>.</p>
 <p>EpiGraphDB <a href="https://epigraphdb.org">web application</a>:</p>
 <div class="figure">
-<img src="figures/epigraphdb-xqtl-view.png" alt="web application"><p class="caption">web application</p>
+<img src="figures/epigraphdb-xqtl-view.png" alt=""><p class="caption">web application</p>
 </div>
 <p>EpiGraphDB <a href="https://api.epigraphdb.org">web API (OpenAPI / swagger interface)</a>:</p>
 <div class="figure">
-<img src="figures/epigraphdb-api-swagger.png" alt="web API"><p class="caption">web API</p>
+<img src="figures/epigraphdb-api-swagger.png" alt=""><p class="caption">web API</p>
 </div>
 <p>The R package is designed to give users quick access to some of the key resources, but not as a comprehensive replacement of the web API. At the moment EpiGraphDB is still under fast and active development with frequent addition of new API endpoints that might not have corresponding functions available in the R package.</p>
 <p>In this tutorial we will discuss two alternative methods to get data from the EpiGraphDB web API – using <code>httr</code> in R and using <code>curl</code> in the command line.</p>
@@ -143,8 +143,8 @@
 <a href="#using-httr" class="anchor"></a>Using <code>httr</code>
 </h2>
 <p>Here are some examples of querying EpiGraphDB web API using <a href="https://httr.r-lib.org/reference/index.html">httr</a>:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span>
@@ -160,7 +160,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.0148</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0176</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -168,10 +168,10 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
-<span class="co">#&gt;   ..$ :List of 3</span></pre></div>
+<span class="co">#&gt;   ..$ :List of 3</span></code></pre></div>
 <p>And this is the data structure as returned from the <code><a href="../reference/mr.html">epigraphdb::mr</a></code> call with <code>mode = "raw"</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu">epigraphdb</span><span class="fu">::</span><span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">epigraphdb</span><span class="fu">::</span><span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
   exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>,
   mode <span class="op">=</span> <span class="st">"raw"</span>
@@ -180,7 +180,7 @@
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.0112</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0129</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 6</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -188,7 +188,7 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
-<span class="co">#&gt;   ..$ :List of 3</span></pre></div>
+<span class="co">#&gt;   ..$ :List of 3</span></code></pre></div>
 <p>In fact, currently the <code><a href="../reference/mr.html">epigraphdb::mr</a></code> function is a <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R">wrapper</a> of <code>httr::get</code>. Please consult with <a href="https://httr.r-lib.org/index.html"><code>httr</code> documentation</a> for details of usage.</p>
 </div>
 <div id="using-curl" class="section level2">
@@ -198,95 +198,95 @@
 <p>Here is an example in using <code>curl</code> to get data and using <a href="https://stedolan.github.io/jq/"><code>jq</code></a> for post processing the returned json data:</p>
 <pre class="shell"><code>curl -X 'GET' 'https://api.epigraphdb.org/mr?exposure=Body+mass+index&amp;outcome=Coronary+heart+disease' | jq</code></pre>
 <p>The returned data will look like this:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">  <span class="dt">"query"</span><span class="fu">:</span> <span class="st">"MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = </span><span class="ch">\"</span><span class="st">Body mass index</span><span class="ch">\"</span><span class="st"> AND t2.trait = </span><span class="ch">\"</span><span class="st">Coronary heart disease</span><span class="ch">\"</span><span class="st"> AND r.p &lt; 1e-05 RETURN t1.id AS exposure_id, t1.trait AS exposure_name, t2.id AS outcome_id, t2.trait AS outcome_name, r.estimate AS estimate, r.se AS se, r.p AS p, r.ci_upp as ci_upp, r.ci_low AS ci_low, r.selection AS selection, r.method AS method, r.moescore AS moescore ORDER BY r.p ;"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">"results"</span><span class="fu">:</span> <span class="ot">[</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">    <span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"974"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9">      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.388519597717655</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-10" data-line-number="10">      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0493380883899318</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11">      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">3.41730166606158e-15</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12">      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.498022055339364</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13">      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.279017140095947</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14">      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15">      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"FE IVW"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16">      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.89</span></a>
-<a class="sourceLine" id="cb4-17" data-line-number="17">    <span class="fu">}</span><span class="ot">,</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18">    <span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19">      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"2"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20">      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21">      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22">      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23">      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.397101449275362</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-24" data-line-number="24">      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0727452867916401</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25">      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">4.79382740959139e-08</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26">      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.539679591432014</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27">      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.25452330711871</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28">      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"HF"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-29" data-line-number="29">      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"Simple median"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-30" data-line-number="30">      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.92</span></a>
-<a class="sourceLine" id="cb4-31" data-line-number="31">    <span class="fu">}</span><span class="ot">,</span></a>
-<a class="sourceLine" id="cb4-32" data-line-number="32">    <span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-33" data-line-number="33">      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"95"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-34" data-line-number="34">      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-35" data-line-number="35">      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-36" data-line-number="36">      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-37" data-line-number="37">      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.454936804438897</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-38" data-line-number="38">      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0930665978652417</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-39" data-line-number="39">      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">1.01714040121612e-06</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-40" data-line-number="40">      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.637343984418443</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-41" data-line-number="41">      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.272529624459351</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-42" data-line-number="42">      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-43" data-line-number="43">      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"Penalised median"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-44" data-line-number="44">      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.78</span></a>
-<a class="sourceLine" id="cb4-45" data-line-number="45">    <span class="fu">}</span><span class="ot">,</span></a>
-<a class="sourceLine" id="cb4-46" data-line-number="46">    <span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-47" data-line-number="47">      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"2"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-48" data-line-number="48">      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-49" data-line-number="49">      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"8"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-50" data-line-number="50">      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-51" data-line-number="51">      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.330889761641503</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-52" data-line-number="52">      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0683874628196063</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-53" data-line-number="53">      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">1.30851348920923e-06</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-54" data-line-number="54">      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.47183747438535</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-55" data-line-number="55">      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.189942048897655</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-56" data-line-number="56">      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-57" data-line-number="57">      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"FE IVW"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-58" data-line-number="58">      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.75</span></a>
-<a class="sourceLine" id="cb4-59" data-line-number="59">    <span class="fu">}</span><span class="ot">,</span></a>
-<a class="sourceLine" id="cb4-60" data-line-number="60">    <span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-61" data-line-number="61">      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"835"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-62" data-line-number="62">      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-63" data-line-number="63">      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-64" data-line-number="64">      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-65" data-line-number="65">      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.359685792349727</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-66" data-line-number="66">      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0755689310372249</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-67" data-line-number="67">      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">1.93876456579184e-06</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-68" data-line-number="68">      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.507798175532879</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-69" data-line-number="69">      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.211573409166575</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-70" data-line-number="70">      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"Tophits"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-71" data-line-number="71">      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"Simple median"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-72" data-line-number="72">      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.91</span></a>
-<a class="sourceLine" id="cb4-73" data-line-number="73">    <span class="fu">}</span><span class="ot">,</span></a>
-<a class="sourceLine" id="cb4-74" data-line-number="74">    <span class="fu">{</span></a>
-<a class="sourceLine" id="cb4-75" data-line-number="75">      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"974"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-76" data-line-number="76">      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-77" data-line-number="77">      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"8"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-78" data-line-number="78">      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-79" data-line-number="79">      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.32847610101648</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-80" data-line-number="80">      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0730805223133059</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-81" data-line-number="81">      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">6.96632705468264e-06</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-82" data-line-number="82">      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.49537017731629</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-83" data-line-number="83">      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.16158202471667</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-84" data-line-number="84">      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-85" data-line-number="85">      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"FE IVW"</span><span class="fu">,</span></a>
-<a class="sourceLine" id="cb4-86" data-line-number="86">      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.85</span></a>
-<a class="sourceLine" id="cb4-87" data-line-number="87">    <span class="fu">}</span></a>
-<a class="sourceLine" id="cb4-88" data-line-number="88">  <span class="ot">]</span></a>
-<a class="sourceLine" id="cb4-89" data-line-number="89"><span class="fu">}</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="dt">"query"</span><span class="fu">:</span> <span class="st">"MATCH (t1:Gwas)-[r:MR]-&gt;(t2:Gwas) WHERE t1.trait = </span><span class="ch">\"</span><span class="st">Body mass index</span><span class="ch">\"</span><span class="st"> AND t2.trait = </span><span class="ch">\"</span><span class="st">Coronary heart disease</span><span class="ch">\"</span><span class="st"> AND r.p &lt; 1e-05 RETURN t1.id AS exposure_id, t1.trait AS exposure_name, t2.id AS outcome_id, t2.trait AS outcome_name, r.estimate AS estimate, r.se AS se, r.p AS p, r.ci_upp as ci_upp, r.ci_low AS ci_low, r.selection AS selection, r.method AS method, r.moescore AS moescore ORDER BY r.p ;"</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">"results"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="fu">{</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"974"</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.388519597717655</span><span class="fu">,</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0493380883899318</span><span class="fu">,</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">3.41730166606158e-15</span><span class="fu">,</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.498022055339364</span><span class="fu">,</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.279017140095947</span><span class="fu">,</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"FE IVW"</span><span class="fu">,</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.89</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>    <span class="fu">{</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"2"</span><span class="fu">,</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.397101449275362</span><span class="fu">,</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a>      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0727452867916401</span><span class="fu">,</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">4.79382740959139e-08</span><span class="fu">,</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a>      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.539679591432014</span><span class="fu">,</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a>      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.25452330711871</span><span class="fu">,</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"HF"</span><span class="fu">,</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a>      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"Simple median"</span><span class="fu">,</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a>      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.92</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a>    <span class="fu">{</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a>      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"95"</span><span class="fu">,</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a>      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a>      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a>      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a>      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.454936804438897</span><span class="fu">,</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a>      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0930665978652417</span><span class="fu">,</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">1.01714040121612e-06</span><span class="fu">,</span></span>
+<span id="cb4-40"><a href="#cb4-40"></a>      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.637343984418443</span><span class="fu">,</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a>      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.272529624459351</span><span class="fu">,</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a>      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></span>
+<span id="cb4-43"><a href="#cb4-43"></a>      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"Penalised median"</span><span class="fu">,</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a>      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.78</span></span>
+<span id="cb4-45"><a href="#cb4-45"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-46"><a href="#cb4-46"></a>    <span class="fu">{</span></span>
+<span id="cb4-47"><a href="#cb4-47"></a>      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"2"</span><span class="fu">,</span></span>
+<span id="cb4-48"><a href="#cb4-48"></a>      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></span>
+<span id="cb4-49"><a href="#cb4-49"></a>      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"8"</span><span class="fu">,</span></span>
+<span id="cb4-50"><a href="#cb4-50"></a>      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></span>
+<span id="cb4-51"><a href="#cb4-51"></a>      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.330889761641503</span><span class="fu">,</span></span>
+<span id="cb4-52"><a href="#cb4-52"></a>      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0683874628196063</span><span class="fu">,</span></span>
+<span id="cb4-53"><a href="#cb4-53"></a>      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">1.30851348920923e-06</span><span class="fu">,</span></span>
+<span id="cb4-54"><a href="#cb4-54"></a>      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.47183747438535</span><span class="fu">,</span></span>
+<span id="cb4-55"><a href="#cb4-55"></a>      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.189942048897655</span><span class="fu">,</span></span>
+<span id="cb4-56"><a href="#cb4-56"></a>      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></span>
+<span id="cb4-57"><a href="#cb4-57"></a>      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"FE IVW"</span><span class="fu">,</span></span>
+<span id="cb4-58"><a href="#cb4-58"></a>      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.75</span></span>
+<span id="cb4-59"><a href="#cb4-59"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-60"><a href="#cb4-60"></a>    <span class="fu">{</span></span>
+<span id="cb4-61"><a href="#cb4-61"></a>      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"835"</span><span class="fu">,</span></span>
+<span id="cb4-62"><a href="#cb4-62"></a>      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></span>
+<span id="cb4-63"><a href="#cb4-63"></a>      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"7"</span><span class="fu">,</span></span>
+<span id="cb4-64"><a href="#cb4-64"></a>      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></span>
+<span id="cb4-65"><a href="#cb4-65"></a>      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.359685792349727</span><span class="fu">,</span></span>
+<span id="cb4-66"><a href="#cb4-66"></a>      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0755689310372249</span><span class="fu">,</span></span>
+<span id="cb4-67"><a href="#cb4-67"></a>      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">1.93876456579184e-06</span><span class="fu">,</span></span>
+<span id="cb4-68"><a href="#cb4-68"></a>      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.507798175532879</span><span class="fu">,</span></span>
+<span id="cb4-69"><a href="#cb4-69"></a>      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.211573409166575</span><span class="fu">,</span></span>
+<span id="cb4-70"><a href="#cb4-70"></a>      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"Tophits"</span><span class="fu">,</span></span>
+<span id="cb4-71"><a href="#cb4-71"></a>      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"Simple median"</span><span class="fu">,</span></span>
+<span id="cb4-72"><a href="#cb4-72"></a>      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.91</span></span>
+<span id="cb4-73"><a href="#cb4-73"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-74"><a href="#cb4-74"></a>    <span class="fu">{</span></span>
+<span id="cb4-75"><a href="#cb4-75"></a>      <span class="dt">"exposure_id"</span><span class="fu">:</span> <span class="st">"974"</span><span class="fu">,</span></span>
+<span id="cb4-76"><a href="#cb4-76"></a>      <span class="dt">"exposure_name"</span><span class="fu">:</span> <span class="st">"Body mass index"</span><span class="fu">,</span></span>
+<span id="cb4-77"><a href="#cb4-77"></a>      <span class="dt">"outcome_id"</span><span class="fu">:</span> <span class="st">"8"</span><span class="fu">,</span></span>
+<span id="cb4-78"><a href="#cb4-78"></a>      <span class="dt">"outcome_name"</span><span class="fu">:</span> <span class="st">"Coronary heart disease"</span><span class="fu">,</span></span>
+<span id="cb4-79"><a href="#cb4-79"></a>      <span class="dt">"estimate"</span><span class="fu">:</span> <span class="fl">0.32847610101648</span><span class="fu">,</span></span>
+<span id="cb4-80"><a href="#cb4-80"></a>      <span class="dt">"se"</span><span class="fu">:</span> <span class="fl">0.0730805223133059</span><span class="fu">,</span></span>
+<span id="cb4-81"><a href="#cb4-81"></a>      <span class="dt">"p"</span><span class="fu">:</span> <span class="fl">6.96632705468264e-06</span><span class="fu">,</span></span>
+<span id="cb4-82"><a href="#cb4-82"></a>      <span class="dt">"ci_upp"</span><span class="fu">:</span> <span class="fl">0.49537017731629</span><span class="fu">,</span></span>
+<span id="cb4-83"><a href="#cb4-83"></a>      <span class="dt">"ci_low"</span><span class="fu">:</span> <span class="fl">0.16158202471667</span><span class="fu">,</span></span>
+<span id="cb4-84"><a href="#cb4-84"></a>      <span class="dt">"selection"</span><span class="fu">:</span> <span class="st">"DF"</span><span class="fu">,</span></span>
+<span id="cb4-85"><a href="#cb4-85"></a>      <span class="dt">"method"</span><span class="fu">:</span> <span class="st">"FE IVW"</span><span class="fu">,</span></span>
+<span id="cb4-86"><a href="#cb4-86"></a>      <span class="dt">"moescore"</span><span class="fu">:</span> <span class="fl">0.85</span></span>
+<span id="cb4-87"><a href="#cb4-87"></a>    <span class="fu">}</span></span>
+<span id="cb4-88"><a href="#cb4-88"></a>  <span class="ot">]</span></span>
+<span id="cb4-89"><a href="#cb4-89"></a><span class="fu">}</span></span></code></pre></div>
 </div>
 <div id="other-methods" class="section level2">
 <h2 class="hasAnchor">
@@ -316,7 +316,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

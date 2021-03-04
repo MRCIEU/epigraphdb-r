@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="meta-functionalities_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Meta functionalities of the EpiGraphDB platform</h1>
@@ -137,8 +137,8 @@
 <li>The sections regarding API endpoints on the documentation site: <a href="https://docs.epigraphdb.org/api/api-endpoints/" class="uri">https://docs.epigraphdb.org/api/api-endpoints/</a>
 </li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"magrittr"</span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://magrittr.tidyverse.org">"magrittr"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
@@ -154,7 +154,7 @@
 <span class="co">#&gt; The following object is masked from 'package:magrittr':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     set_names</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://igraph.org">"igraph"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://igraph.org">"igraph"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'igraph'</span>
 <span class="co">#&gt; The following objects are masked from 'package:purrr':</span>
@@ -172,13 +172,13 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span></pre></div>
+<span class="co">#&gt; </span></code></pre></div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h2>
 <p>Here we query for the metadata information using the endpoint <code>GET /meta/schema</code>, which will be used for downstream processing.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/schema"</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/schema"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
   graphviz <span class="op">=</span> <span class="cn">FALSE</span>,
   plot <span class="op">=</span> <span class="cn">FALSE</span>
@@ -287,13 +287,13 @@
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
-<span class="co">#&gt;   ..$ :List of 4</span></pre></div>
+<span class="co">#&gt;   ..$ :List of 4</span></code></pre></div>
 <div id="meta-nodes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#meta-nodes" class="anchor"></a>Meta nodes</h3>
 <p>We can extract the specific meta node information as a dataframe from the metadata.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">meta_node_df</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">meta_node_df</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"nodes"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="op">{</span>
     <span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>
@@ -324,14 +324,14 @@
 <span class="co">#&gt; 10 SemmedTerm   "   103,967"</span>
 <span class="co">#&gt; 11 SemmedTriple " 3,428,531"</span>
 <span class="co">#&gt; 12 Tissue       "        53"</span>
-<span class="co">#&gt; 13 Variant      "    88,176"</span></pre></div>
+<span class="co">#&gt; 13 Variant      "    88,176"</span></code></pre></div>
 </div>
 <div id="meta-relationships-and-connections" class="section level3">
 <h3 class="hasAnchor">
 <a href="#meta-relationships-and-connections" class="anchor"></a>Meta relationships and connections</h3>
 <p>We can also extract the meta relationship (edge) information, and the connections.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">meta_rel_df</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">meta_rel_df</span> <span class="op">&lt;-</span> <span class="va">metadata</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"edges"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="op">{</span>
     <span class="va">names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span>
@@ -368,17 +368,17 @@
 <span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,098,049" Gene      Gwas      </span>
 <span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,703,863" Gene      Gwas      </span>
 <span class="co">#&gt; 10 GENE_TO_LITERATURE           "       771" Gene      Literature</span>
-<span class="co">#&gt; # … with 31 more rows</span></pre></div>
+<span class="co">#&gt; # … with 31 more rows</span></code></pre></div>
 </div>
 <div id="schema-plot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#schema-plot" class="anchor"></a>Schema plot</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">graph</span> <span class="op">&lt;-</span> <span class="va">meta_rel_df</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">graph</span> <span class="op">&lt;-</span> <span class="va">meta_rel_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">from_node</span>, <span class="va">to_node</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">igraph</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span>directed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">graph</span><span class="op">$</span><span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu">igraph</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/igraph/man/layout_with_kk.html">layout_with_kk</a></span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span></code></pre></div>
 <p><img src="meta-functionalities_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <p>A detailed version of the <a href="https://api.epigraphdb.org/meta/schema?graphviz=true&amp;plot=true">schema_plot</a> can be obtained from the API.</p>
 </div>
@@ -393,8 +393,8 @@
 </ul>
 <p>Here we show how these are done at the API level using <code>Gwas</code> nodes as an example.</p>
 <p>First we need to know what the “ID” and “name” fields are for the meta nodes using <code>GET /meta/nodes/id-name-schema</code>:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/id-name-schema"</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/id-name-schema"</span>
 <span class="va">meta_node_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
   route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="cn">NULL</span>, mode <span class="op">=</span> <span class="st">"raw"</span>
 <span class="op">)</span>
@@ -492,14 +492,14 @@
 <span class="co">#&gt; [1] "name"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Variant$name</span>
-<span class="co">#&gt; [1] "name"</span></pre></div>
+<span class="co">#&gt; [1] "name"</span></code></pre></div>
 </div>
 <div id="fuzzy-matching" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fuzzy-matching" class="anchor"></a>Fuzzy matching</h2>
 <p>Here we search for nodes can contain “body mass index” in their traits.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">name</span><span class="op">)</span>
@@ -509,29 +509,29 @@
 <span class="op">)</span>
 <span class="va">results</span>
 <span class="co">#&gt; # A tibble: 10 x 18</span>
-<span class="co">#&gt;    node.note node.access node.year node.mr node.author node.consortium node.sex</span>
-<span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   </span>
-<span class="co">#&gt;  1 NA        public      2018      1       Hoffmann TJ NA              NA      </span>
-<span class="co">#&gt;  2 &lt;NA&gt;      public      2015      1       Locke AE    NA              Males a…</span>
-<span class="co">#&gt;  3 &lt;NA&gt;      public      2015      1       Locke AE    NA              Males   </span>
-<span class="co">#&gt;  4 &lt;NA&gt;      public      2015      1       Locke AE    NA              Males a…</span>
-<span class="co">#&gt;  5 NA        public      2017      1       Akiyama M   NA              NA      </span>
-<span class="co">#&gt;  6 Dominanc… public      2016      0       Wood        NA              Males a…</span>
-<span class="co">#&gt;  7 &lt;NA&gt;      public      2015      1       Locke AE    NA              Females </span>
-<span class="co">#&gt;  8 &lt;NA&gt;      public      2013      1       Randall JC  NA              Females </span>
-<span class="co">#&gt;  9 &lt;NA&gt;      public      2013      1       Randall JC  NA              Males   </span>
-<span class="co">#&gt; 10 21001: O… public      2018      1       Ben Elswor… MRC-IEU         Males a…</span>
+<span class="co">#&gt;    node.note  node.access node.year node.mr node.author node.consortium node.sex</span>
+<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   </span>
+<span class="co">#&gt;  1 NA         public      2018      1       Hoffmann TJ NA              NA      </span>
+<span class="co">#&gt;  2 &lt;NA&gt;       public      2015      1       Locke AE    NA              Males a…</span>
+<span class="co">#&gt;  3 &lt;NA&gt;       public      2015      1       Locke AE    NA              Males   </span>
+<span class="co">#&gt;  4 &lt;NA&gt;       public      2015      1       Locke AE    NA              Males a…</span>
+<span class="co">#&gt;  5 NA         public      2017      1       Akiyama M   NA              NA      </span>
+<span class="co">#&gt;  6 Dominance… public      2016      0       Wood        NA              Males a…</span>
+<span class="co">#&gt;  7 &lt;NA&gt;       public      2015      1       Locke AE    NA              Females </span>
+<span class="co">#&gt;  8 &lt;NA&gt;       public      2013      1       Randall JC  NA              Females </span>
+<span class="co">#&gt;  9 &lt;NA&gt;       public      2013      1       Randall JC  NA              Males   </span>
+<span class="co">#&gt; 10 21001: Ou… public      2018      1       Ben Elswor… MRC-IEU         Males a…</span>
 <span class="co">#&gt; # … with 11 more variables: node.priority &lt;chr&gt;, node.pmid &lt;chr&gt;,</span>
 <span class="co">#&gt; #   node.population &lt;chr&gt;, node.unit &lt;chr&gt;, node.sample_size &lt;chr&gt;,</span>
 <span class="co">#&gt; #   node.nsnp &lt;chr&gt;, node.trait &lt;chr&gt;, node.id &lt;chr&gt;, node.subcategory &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.category &lt;chr&gt;, node.sd &lt;chr&gt;</span></pre></div>
+<span class="co">#&gt; #   node.category &lt;chr&gt;, node.sd &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="exact-matching" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exact-matching" class="anchor"></a>Exact matching</h2>
 <p>Similarly, we can exact match a specific node by its ID.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">id</span> <span class="op">&lt;-</span> <span class="st">"ieu-a-2"</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">id</span> <span class="op">&lt;-</span> <span class="st">"ieu-a-2"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
 <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">id</span><span class="op">)</span>
@@ -541,20 +541,20 @@
 <span class="op">)</span>
 <span class="va">results</span>
 <span class="co">#&gt; # A tibble: 1 x 17</span>
-<span class="co">#&gt;   node.access node.year node.mr node.author node.consortium node.sex</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;lgl&gt;           &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 public      2015      1       Locke AE    NA              Males a…</span>
+<span class="co">#&gt;   node.access node.year node.mr node.author node.consortium node.sex         </span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;lgl&gt;           &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 public      2015      1       Locke AE    NA              Males and Females</span>
 <span class="co">#&gt; # … with 11 more variables: node.priority &lt;chr&gt;, node.pmid &lt;chr&gt;,</span>
 <span class="co">#&gt; #   node.population &lt;chr&gt;, node.sd &lt;chr&gt;, node.unit &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   node.sample_size &lt;chr&gt;, node.nsnp &lt;chr&gt;, node.trait &lt;chr&gt;, node.id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;</span></pre></div>
+<span class="co">#&gt; #   node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="cypher-advanced" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cypher-advanced" class="anchor"></a>Cypher (advanced)</h2>
 <p>Advanced users that are familiar with Neo4j Cypher can query the database using Cypher directly.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
     MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas)
     WHERE exposure.trait = 'Body mass index'
     RETURN exposure, outcome, mr LIMIT 2
@@ -570,10 +570,10 @@
 <span class="op">)</span>
 <span class="va">results</span>
 <span class="co">#&gt; # A tibble: 2 x 45</span>
-<span class="co">#&gt;   exposure.access exposure.year exposure.mr exposure.author exposure.consor…</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;lgl&gt;           </span>
-<span class="co">#&gt; 1 public          2015          1           Locke AE        NA              </span>
-<span class="co">#&gt; 2 public          2015          1           Locke AE        NA              </span>
+<span class="co">#&gt;   exposure.access exposure.year exposure.mr exposure.author exposure.consortium</span>
+<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;lgl&gt;              </span>
+<span class="co">#&gt; 1 public          2015          1           Locke AE        NA                 </span>
+<span class="co">#&gt; 2 public          2015          1           Locke AE        NA                 </span>
 <span class="co">#&gt; # … with 40 more variables: exposure.sex &lt;chr&gt;, exposure.priority &lt;chr&gt;,</span>
 <span class="co">#&gt; #   exposure.pmid &lt;chr&gt;, exposure.population &lt;chr&gt;, exposure.sd &lt;chr&gt;,</span>
 <span class="co">#&gt; #   exposure.unit &lt;lgl&gt;, exposure.sample_size &lt;chr&gt;, exposure.nsnp &lt;chr&gt;,</span>
@@ -586,48 +586,44 @@
 <span class="co">#&gt; #   outcome.trait &lt;chr&gt;, outcome.id &lt;chr&gt;, outcome.subcategory &lt;lgl&gt;,</span>
 <span class="co">#&gt; #   outcome.category &lt;lgl&gt;, mr.b &lt;dbl&gt;, mr.se &lt;dbl&gt;, mr.method &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.nsnp &lt;int&gt;, mr.selection &lt;chr&gt;, mr.pval &lt;dbl&gt;, mr.ci_upp &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   mr.log10pval &lt;dbl&gt;, mr.ci_low &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.log10pval &lt;dbl&gt;, mr.ci_low &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.0.2 (2020-06-22)</span>
-<span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
-<span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; R version 4.0.4 (2021-02-15)</span>
+<span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
+<span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /usr/lib/openblas-base/libblas.so.3</span>
-<span class="co">#&gt; LAPACK: /usr/lib/libopenblasp-r0.2.18.so</span>
+<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib</span>
+<span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; locale:</span>
-<span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
-<span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-<span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
-<span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
-<span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-<span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+<span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attached base packages:</span>
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] epigraphdb_0.2.1 igraph_1.2.5     purrr_0.3.4      dplyr_1.0.2     </span>
-<span class="co">#&gt; [5] magrittr_1.5    </span>
+<span class="co">#&gt; [1] epigraphdb_0.2.1 igraph_1.2.6     purrr_0.3.4      dplyr_1.0.4     </span>
+<span class="co">#&gt; [5] magrittr_2.0.1  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] knitr_1.30         tidyselect_1.1.0   R6_2.4.1           ragg_0.3.1        </span>
-<span class="co">#&gt;  [5] rlang_0.4.7        fansi_0.4.1        httr_1.4.2         stringr_1.4.0     </span>
-<span class="co">#&gt;  [9] tools_4.0.2        xfun_0.18          utf8_1.1.4         cli_2.0.2         </span>
-<span class="co">#&gt; [13] htmltools_0.5.0    systemfonts_0.3.2  ellipsis_0.3.1     yaml_2.2.1        </span>
-<span class="co">#&gt; [17] assertthat_0.2.1   rprojroot_1.3-2    digest_0.6.25      tibble_3.0.3      </span>
-<span class="co">#&gt; [21] lifecycle_0.2.0    pkgdown_1.6.1.9000 crayon_1.3.4       vctrs_0.3.4       </span>
-<span class="co">#&gt; [25] fs_1.5.0           curl_4.3           memoise_1.1.0      glue_1.4.2        </span>
-<span class="co">#&gt; [29] evaluate_0.14      rmarkdown_2.4      stringi_1.5.3      pillar_1.4.6      </span>
-<span class="co">#&gt; [33] compiler_4.0.2     desc_1.2.0         generics_0.0.2     backports_1.1.10  </span>
-<span class="co">#&gt; [37] jsonlite_1.7.1     pkgconfig_2.0.3</span></pre></div>
+<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.0      tools_4.0.4      </span>
+<span class="co">#&gt;  [5] digest_0.6.27     jsonlite_1.7.2    evaluate_0.14     memoise_2.0.0    </span>
+<span class="co">#&gt;  [9] lifecycle_1.0.0   tibble_3.1.0      pkgconfig_2.0.3   rlang_0.4.10     </span>
+<span class="co">#&gt; [13] cli_2.3.1         rstudioapi_0.13   curl_4.3          yaml_2.2.1       </span>
+<span class="co">#&gt; [17] pkgdown_1.6.1     xfun_0.21         fastmap_1.1.0     stringr_1.4.0    </span>
+<span class="co">#&gt; [21] httr_1.4.2        knitr_1.31        generics_0.1.0    desc_1.2.0       </span>
+<span class="co">#&gt; [25] fs_1.5.0          vctrs_0.3.6       systemfonts_1.0.1 rprojroot_2.0.2  </span>
+<span class="co">#&gt; [29] tidyselect_1.1.0  glue_1.4.2        R6_2.5.0          textshaping_0.3.1</span>
+<span class="co">#&gt; [33] fansi_0.4.2       rmarkdown_2.7     ps_1.6.0          htmltools_0.5.1.1</span>
+<span class="co">#&gt; [37] ellipsis_0.3.1    assertthat_0.2.1  ragg_1.1.1        utf8_1.1.4       </span>
+<span class="co">#&gt; [41] stringi_1.5.3     cachem_1.0.4      crayon_1.4.1</span></code></pre></div>
 </div>
   </div>
 
@@ -646,7 +642,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

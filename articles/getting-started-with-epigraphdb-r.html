@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="getting-started-with-epigraphdb-r_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Getting started with EpiGraphDB in R</h1>
@@ -124,8 +124,8 @@
     
     
 <p>This article is provided as a brief introductory guide to working with the EpiGraphDB platform through <code>epigraphdb</code> R package. Here we will demonstrate a few basic operations that can be carried out using the platform, but for more advanced methods please refer to the <a href="https://docs.epigraphdb.org/api/api-endpoints/">API endpoint documentation</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -137,22 +137,22 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span></pre></div>
+<span class="co">#&gt; </span></code></pre></div>
 <div id="part-1-using-epigraphdb-to-obtain-biological-mappings" class="section level2">
 <h2 class="hasAnchor">
 <a href="#part-1-using-epigraphdb-to-obtain-biological-mappings" class="anchor"></a>Part 1: Using EpiGraphDB to obtain biological mappings</h2>
 <p>With EpiGraphDB you can map genetic variants to genes, genes to proteins, proteins to pathways, pathways to diseases and so on, as shown in the network diagram <a href="https://epigraphdb.org/about">here</a>.</p>
 <p>In this part, we want to demonstrate how to do basic mappings between biological entities. We are going to map genes to proteins (i.e. their UniProtID), proteins to pathways that they are found in (using Reactome data), and then extract information on the specific pathways identified.</p>
 <p>But first, let’s talk about the basic querying syntax. <code>query_epigraphdb</code> is the main querying function in the package; it is used to communicate with EpiGraphDB by specifying API endpoints.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
   route <span class="op">=</span> <span class="va">endpoint</span>, <span class="co"># supply the route / endpoint</span>
   params <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>... <span class="op">=</span> <span class="va">...</span><span class="op">)</span>, <span class="co"># supply the query parameters</span>
   mode <span class="op">=</span> <span class="st">"table"</span>, <span class="co"># How the results are shown in R</span>
   method <span class="op">=</span> <span class="st">"GET"</span> <span class="co"># HTTP method, "GET", "POST", etc.</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <ul>
-<li><p><code>endpoint</code> and <code>method</code> consitute the ‘method’ provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a> is used to query gene-to-proteins mappings. See the full list of currently available endpoints <a href="https://docs.epigraphdb.org/api/api-endpoints/">here</a> in the documentation or the <a href="https://api.epigraphdb.org">Swagger interface of the API</a>.</p></li>
+<li><p><code>endpoint</code> and <code>method</code> consitute the ‘method’ provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a> is used to query gene-to-proteins mappings. See the full list of currently available endpoints <a href="https://docs.epigraphdb.org/api/api-endpoints/">here</a> in the documentation or the <a href="https://api.epigraphdb.org">Swagger interface of the API</a>.</p></li>
 <li><p><code>params</code> is where you supply the list of things you want to query about (can be a list of genes, GWAS trait, MR outcome of interest), subject to what each endpoint accepts and requires.</p></li>
 <li><p><code>mode</code> is the format in which the results are returned. Use “table” for basic cases, for more advanced stuff you may need to use “raw” - more on this later.</p></li>
 </ul>
@@ -161,8 +161,8 @@
 <h3 class="hasAnchor">
 <a href="#mapping-genes-to-proteins" class="anchor"></a>Mapping genes to proteins</h3>
 <p>In this first section, we will take an arbitrary list of genes and query the EpiGraphDB API to find the proteins that they map to.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="co"># Let's test this on a few genes</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Let's test this on a few genes</span>
 <span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TP53"</span>, <span class="st">"BRCA1"</span>, <span class="st">"TNF"</span><span class="op">)</span>
 
 <span class="co"># Select the endpoint "POST /mappings/gene-to-protein"</span>
@@ -184,15 +184,15 @@
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;             </span>
 <span class="co">#&gt; 1 TP53      ENSG00000141510 P04637            </span>
 <span class="co">#&gt; 2 BRCA1     ENSG00000012048 P38398            </span>
-<span class="co">#&gt; 3 TNF       ENSG00000232810 P01375</span></pre></div>
+<span class="co">#&gt; 3 TNF       ENSG00000232810 P01375</span></code></pre></div>
 <p>In the above data frame, we see the output from querying EpiGraphDB for the proteins that have been mapped to the genes TP53, BRCA1, and TNF. Our query returned the UniProt and Ensembl IDs for those genes.</p>
 </div>
 <div id="mapping-proteins-to-pathways" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mapping-proteins-to-pathways" class="anchor"></a>Mapping proteins to pathways</h3>
 <p>Next, to demonstrate the mapping of proteins to pathways, we are going to take one protein from the previous example, P04637, and query EpiGraphDB for all pathways it is known to be involved in.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="co"># Let's see what pathways the protein product of TP53 gene is involved in</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Let's see what pathways the protein product of TP53 gene is involved in</span>
 
 <span class="co"># NOTE: Argument `uniprot_id_list` requires a list of UniProt IDs in</span>
 <span class="co">#       POST /mappings/gene-to-protein.</span>
@@ -219,14 +219,14 @@
 <span class="co"># Get pathways names (Reactome IDs)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pathway_df</span><span class="op">$</span><span class="va">pathway_reactome_id</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "R-HSA-6785807" "R-HSA-390471"  "R-HSA-5689896" "R-HSA-6804754"</span>
-<span class="co">#&gt; [5] "R-HSA-3232118"</span></pre></div>
+<span class="co">#&gt; [5] "R-HSA-3232118"</span></code></pre></div>
 <p>P04637 is involved in five pathways. Next, let’s get pathway info for one of them.</p>
 </div>
 <div id="get-pathway-info" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-pathway-info" class="anchor"></a>Get pathway info</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># Let's see what exactly this pathway is</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Let's see what exactly this pathway is</span>
 <span class="va">reactome_id</span> <span class="op">&lt;-</span> <span class="st">"R-HSA-6804754"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Pathway/search"</span>
@@ -242,11 +242,11 @@
 <span class="co">#&gt; # A tibble: 1 x 3</span>
 <span class="co">#&gt;   node.in_disease node.name                     node.reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                         &lt;chr&gt;           </span>
-<span class="co">#&gt; 1 FALSE           Regulation of TP53 Expression R-HSA-6804754</span></pre></div>
+<span class="co">#&gt; 1 FALSE           Regulation of TP53 Expression R-HSA-6804754</span></code></pre></div>
 <p>If you are interested in this type of analysis, check out case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">1</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a> for further details on pathways analysis, PPI, mapping drugs to targets etc.</p>
 <p><br><em>Running the above queries using the <a href="https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities">dedicated wrapped functions</a>:</em></p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="../reference/mappings_gene_to_protein.html">mappings_gene_to_protein</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/mappings_gene_to_protein.html">mappings_gene_to_protein</a></span><span class="op">(</span><span class="va">genes</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 3</span>
 <span class="co">#&gt;   gene.name gene.ensembl_id protein.uniprot_id</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;             </span>
@@ -257,7 +257,7 @@
 <span class="co">#&gt; # A tibble: 1 x 3</span>
 <span class="co">#&gt;   uniprot_id pathway_count pathway_reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;list&gt;             </span>
-<span class="co">#&gt; 1 P04637                 5 &lt;chr [5]&gt;</span></pre></div>
+<span class="co">#&gt; 1 P04637                 5 &lt;chr [5]&gt;</span></code></pre></div>
 </div>
 </div>
 <div id="part-2-epidemiological-relationships-analysis" class="section level2">
@@ -267,9 +267,9 @@
 <div id="look-up-gwas-studies" class="section level3">
 <h3 class="hasAnchor">
 <a href="#look-up-gwas-studies" class="anchor"></a>Look up GWAS studies</h3>
-<p>First, we want to check what GWAS are available within EpiGraphDB for our trait of interest, e.g. Body mass index. Doing this query is equivalent doing a look-up using <a href="https://dev.epigraphdb.org/explore">EpiGraphDB Web UI</a>. The search functionality is fuzzy search and case insensitive, i.e. ‘body mass index’ or ‘Body Mass Index’ will give you the same set of results.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="co"># Let's see what Body mass index GWAS are available in EpiGraphDB</span>
+<p>First, we want to check what GWAS are available within EpiGraphDB for our trait of interest, e.g. Body mass index. Doing this query is equivalent doing a look-up using <a href="https://dev.epigraphdb.org/explore">EpiGraphDB Web UI</a>. The search functionality is fuzzy search and case insensitive, i.e. ‘body mass index’ or ‘Body Mass Index’ will give you the same set of results.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Let's see what Body mass index GWAS are available in EpiGraphDB</span>
 <span class="va">trait</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
@@ -298,7 +298,7 @@
 <span class="co">#&gt;  7 Body mass index       ieu-a-974        171977           2015      Locke AE   </span>
 <span class="co">#&gt;  8 Body mass index       ieu-a-95         73137            2013      Randall JC </span>
 <span class="co">#&gt;  9 Body mass index       ieu-a-94         60586            2013      Randall JC </span>
-<span class="co">#&gt; 10 Body mass index (BMI) ukb-b-19953      461460           2018      Ben Elswor…</span></pre></div>
+<span class="co">#&gt; 10 Body mass index (BMI) ukb-b-19953      461460           2018      Ben Elswor…</span></code></pre></div>
 </div>
 <div id="explore-mendelian-randomization-studies" class="section level3">
 <h3 class="hasAnchor">
@@ -307,8 +307,8 @@
 <div id="specify-exposure-trait" class="section level4">
 <h4 class="hasAnchor">
 <a href="#specify-exposure-trait" class="anchor"></a>Specify exposure trait</h4>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># Look up all MR analyses where a trait was used as exposure</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Look up all MR analyses where a trait was used as exposure</span>
 <span class="co"># and find all outcome traits with causal evidence from it.</span>
 
 <span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span>
@@ -327,40 +327,40 @@
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 633 x 10</span>
-<span class="co">#&gt;    exposure.id exposure.trait outcome.id outcome.trait   mr.b   mr.se mr.pval</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 ieu-a-2     Body mass ind… ukb-a-74   Non-cancer i… 0.0346 0.00242       0</span>
-<span class="co">#&gt;  2 ieu-a-2     Body mass ind… ukb-a-388  Hip circumfe… 0.724  0.0266        0</span>
-<span class="co">#&gt;  3 ieu-a-2     Body mass ind… ukb-a-382  Waist circum… 0.656  0.0245        0</span>
-<span class="co">#&gt;  4 ieu-a-2     Body mass ind… ukb-a-35   Comparative … 0.137  0.00791       0</span>
-<span class="co">#&gt;  5 ieu-a-2     Body mass ind… ukb-a-34   Comparative … 0.366  0.0236        0</span>
-<span class="co">#&gt;  6 ieu-a-2     Body mass ind… ukb-a-293  Trunk predic… 0.358  0.0167        0</span>
-<span class="co">#&gt;  7 ieu-a-2     Body mass ind… ukb-a-292  Trunk fat-fr… 0.360  0.0177        0</span>
-<span class="co">#&gt;  8 ieu-a-2     Body mass ind… ukb-a-291  Trunk fat ma… 0.737  0.0280        0</span>
-<span class="co">#&gt;  9 ieu-a-2     Body mass ind… ukb-a-290  Trunk fat pe… 0.527  0.0275        0</span>
-<span class="co">#&gt; 10 ieu-a-2     Body mass ind… ukb-a-289  Arm predicte… 0.416  0.0177        0</span>
+<span class="co">#&gt;    exposure.id exposure.trait  outcome.id outcome.trait     mr.b   mr.se mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-2     Body mass index ukb-a-74   Non-cancer ill… 0.0346 0.00242       0</span>
+<span class="co">#&gt;  2 ieu-a-2     Body mass index ukb-a-388  Hip circumfere… 0.724  0.0266        0</span>
+<span class="co">#&gt;  3 ieu-a-2     Body mass index ukb-a-382  Waist circumfe… 0.656  0.0245        0</span>
+<span class="co">#&gt;  4 ieu-a-2     Body mass index ukb-a-35   Comparative he… 0.137  0.00791       0</span>
+<span class="co">#&gt;  5 ieu-a-2     Body mass index ukb-a-34   Comparative bo… 0.366  0.0236        0</span>
+<span class="co">#&gt;  6 ieu-a-2     Body mass index ukb-a-293  Trunk predicte… 0.358  0.0167        0</span>
+<span class="co">#&gt;  7 ieu-a-2     Body mass index ukb-a-292  Trunk fat-free… 0.360  0.0177        0</span>
+<span class="co">#&gt;  8 ieu-a-2     Body mass index ukb-a-291  Trunk fat mass  0.737  0.0280        0</span>
+<span class="co">#&gt;  9 ieu-a-2     Body mass index ukb-a-290  Trunk fat perc… 0.527  0.0275        0</span>
+<span class="co">#&gt; 10 ieu-a-2     Body mass index ukb-a-289  Arm predicted … 0.416  0.0177        0</span>
 <span class="co">#&gt; # … with 623 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></code></pre></div>
 <p>The returned data frame includes all MR analysis with <code>exposure.trait</code> being “Body mass index”. However, there are several GWAS with this names. If you are interested in a specific GWAS, you will need to filter by <code>exposure.id</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="co"># Show how many MR analyses were done for each Body mass index GWAS</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Show how many MR analyses were done for each Body mass index GWAS</span>
 <span class="va">mr_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">exposure.id</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 2</span>
 <span class="co">#&gt;   exposure.id     n</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;</span>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;</span>
 <span class="co">#&gt; 1 ieu-a-2       146</span>
 <span class="co">#&gt; 2 ieu-a-785      90</span>
 <span class="co">#&gt; 3 ieu-a-835     129</span>
 <span class="co">#&gt; 4 ieu-a-94       69</span>
 <span class="co">#&gt; 5 ieu-a-95       86</span>
-<span class="co">#&gt; 6 ieu-a-974     113</span></pre></div>
+<span class="co">#&gt; 6 ieu-a-974     113</span></code></pre></div>
 </div>
 <div id="specify-outcome-trait" class="section level4">
 <h4 class="hasAnchor">
 <a href="#specify-outcome-trait" class="anchor"></a>Specify outcome trait</h4>
 <p>Next, we can check all available MR analyses for an outcome trait of interest.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co"># Look up all MR for a specified outcome trait</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Look up all MR for a specified outcome trait</span>
 <span class="co"># and find all exposure traits with causal evidence on it.</span>
 
 <span class="va">trait2</span> <span class="op">&lt;-</span> <span class="st">"Waist circumference"</span>
@@ -377,27 +377,27 @@
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 842 x 10</span>
-<span class="co">#&gt;    exposure.id exposure.trait outcome.id outcome.trait     mr.b   mr.se mr.pval</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 ieu-a-96    Height         ieu-a-67   Waist circum…   0.416  1.81e-2       0</span>
-<span class="co">#&gt;  2 ieu-a-54    Hip circumfer… ieu-a-67   Waist circum…   0.461  1.82e-2       0</span>
-<span class="co">#&gt;  3 ieu-a-69    Waist circumf… ieu-a-67   Waist circum…   0.625  4.01e-2       0</span>
-<span class="co">#&gt;  4 ukb-a-185   Treatment/med… ieu-a-67   Waist circum…  26.8    1.40e+0       0</span>
-<span class="co">#&gt;  5 ieu-a-89    Height         ieu-a-67   Waist circum…   0.402  9.41e-3       0</span>
-<span class="co">#&gt;  6 ukb-a-485   Types of phys… ieu-a-67   Waist circum…  -1.82   6.62e-2       0</span>
-<span class="co">#&gt;  7 ieu-a-67    Waist circumf… ieu-a-69   Waist circum…   0.840  5.03e-2       0</span>
-<span class="co">#&gt;  8 ieu-a-70    Waist circumf… ieu-a-69   Waist circum…   0.541  3.41e-2       0</span>
-<span class="co">#&gt;  9 ieu-a-87    Extreme waist… ieu-a-69   Waist circum…   0.0950 2.50e-4       0</span>
-<span class="co">#&gt; 10 ukb-a-523   Diagnoses - m… ieu-a-69   Waist circum… -12.5    2.97e-1       0</span>
+<span class="co">#&gt;    exposure.id exposure.trait  outcome.id outcome.trait     mr.b   mr.se mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-96    Height          ieu-a-67   Waist circum…   0.416  1.81e-2       0</span>
+<span class="co">#&gt;  2 ieu-a-54    Hip circumfere… ieu-a-67   Waist circum…   0.461  1.82e-2       0</span>
+<span class="co">#&gt;  3 ieu-a-69    Waist circumfe… ieu-a-67   Waist circum…   0.625  4.01e-2       0</span>
+<span class="co">#&gt;  4 ukb-a-185   Treatment/medi… ieu-a-67   Waist circum…  26.8    1.40e+0       0</span>
+<span class="co">#&gt;  5 ieu-a-89    Height          ieu-a-67   Waist circum…   0.402  9.41e-3       0</span>
+<span class="co">#&gt;  6 ukb-a-485   Types of physi… ieu-a-67   Waist circum…  -1.82   6.62e-2       0</span>
+<span class="co">#&gt;  7 ieu-a-67    Waist circumfe… ieu-a-69   Waist circum…   0.840  5.03e-2       0</span>
+<span class="co">#&gt;  8 ieu-a-70    Waist circumfe… ieu-a-69   Waist circum…   0.541  3.41e-2       0</span>
+<span class="co">#&gt;  9 ieu-a-87    Extreme waist-… ieu-a-69   Waist circum…   0.0950 2.50e-4       0</span>
+<span class="co">#&gt; 10 ukb-a-523   Diagnoses - ma… ieu-a-69   Waist circum… -12.5    2.97e-1       0</span>
 <span class="co">#&gt; # … with 832 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="specify-both-exposure-and-outcome-traits" class="section level4">
 <h4 class="hasAnchor">
 <a href="#specify-both-exposure-and-outcome-traits" class="anchor"></a>Specify both exposure and outcome traits</h4>
 <p>Finally, we can look up MR causal inference results for a pair of exposure and outcome.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="co"># Look up a specific pair of exposure+outcome</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Look up a specific pair of exposure+outcome</span>
 <span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span>
 <span class="va">trait2</span> <span class="op">&lt;-</span> <span class="st">"Coronary heart disease"</span>
 
@@ -414,34 +414,34 @@
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
+<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
+<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
+<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
+<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 <p>To query EpiGraphDB directly by GWAS ID, you will need to use the advanced functionality. See the end of this article.</p>
 <p><br><em>Running the above MR query using a <a href="https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities">dedicated wrapped function</a>:</em></p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/mr.html">mr</a></span><span class="op">(</span>
   exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
   outcome_trait <span class="op">=</span> <span class="va">trait2</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait  mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass ind… ieu-a-7    Coronary hea… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass ind… ieu-a-7    Coronary hea… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass ind… ieu-a-7    Coronary hea… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass ind… ieu-a-8    Coronary hea… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass ind… ieu-a-7    Coronary hea… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass ind… ieu-a-8    Coronary hea… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
+<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
+<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
+<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
+<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -450,8 +450,8 @@
 <a href="#part-3--looking-for-literature-evidence" class="anchor"></a>Part 3. Looking for literature evidence</h2>
 <p>Accessing information in the literature is a ubiquitous task in research, be it for novel hypothesis generation or as part of evidence triangulation. EpiGraphDB facilitates fast processing of this information by allowing access to a host of literature-mined relationships that have been structured into semantic triples. These take the general form (subject, predicate, object) and have been generated using contemporary natural language processing techniques applied to a massive amount of published biomedical research papers.</p>
 <p>In the following section, we will query the API for the relationship between a given gene and a disease outcome.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="co"># Identity all publications where a gene is mentioned with relation to a disease</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Identity all publications where a gene is mentioned with relation to a disease</span>
 
 <span class="va">gene</span> <span class="op">&lt;-</span> <span class="st">"IL23R"</span>
 <span class="va">trait</span> <span class="op">&lt;-</span> <span class="st">"Inflammatory bowel disease"</span>
@@ -475,10 +475,10 @@
 <span class="co">#&gt; 1 &lt;chr [2]&gt;  IL23R     NEG_ASSOCIATED_WITH Inflammatory Bowel Diseases</span>
 <span class="co">#&gt; 2 &lt;chr [1]&gt;  IL23R     AFFECTS             Inflammatory Bowel Diseases</span>
 <span class="co">#&gt; 3 &lt;chr [21]&gt; IL23R     ASSOCIATED_WITH     Inflammatory Bowel Diseases</span>
-<span class="co">#&gt; 4 &lt;chr [1]&gt;  IL23R     PREDISPOSES         Inflammatory Bowel Diseases</span></pre></div>
+<span class="co">#&gt; 4 &lt;chr [1]&gt;  IL23R     PREDISPOSES         Inflammatory Bowel Diseases</span></code></pre></div>
 <p>The data frame above shows that IL23R has been mentioned in 25 publications (<code>pubmed_id</code> column) in relation to Inflammatory bowel disease, in four predicates.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="co"># Get a list of all PubMed IDs</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get a list of all PubMed IDs</span>
 <span class="va">lit_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pubmed_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -486,26 +486,26 @@
 <span class="co">#&gt;  [1] "17484863" "21155887" "27852544" "19575361" "19496308" "18383521"</span>
 <span class="co">#&gt;  [7] "18341487" "19817673" "18088064" "29248579" "18047540" "25159710"</span>
 <span class="co">#&gt; [13] "18383363" "19175939" "18698678" "21846945" "20067801" "18368064"</span>
-<span class="co">#&gt; [19] "20393462" "19747142" "18164077" "24280935" "23131344"</span></pre></div>
+<span class="co">#&gt; [19] "20393462" "19747142" "18164077" "24280935" "23131344"</span></code></pre></div>
 <p>If you are interested in literature mining analysis, and also matching MR results to literature evidence, please refer to more specific examples in case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html">3</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a>.</p>
 </div>
 <div id="epigraphdb-node-search" class="section level2">
 <h2 class="hasAnchor">
 <a href="#epigraphdb-node-search" class="anchor"></a>EpiGraphDB node search</h2>
 <p>EpiGraphDB stores data as nodes (data types) and edges (relationships between nodes). The available nodes can be viewed through the <code>meta/nodes</code> endpoint. Let’s list the available nodes:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/list"</span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/list"</span>
 <span class="va">meta_node_fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
   route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="cn">NULL</span>, mode <span class="op">=</span> <span class="st">"raw"</span>
 <span class="op">)</span>
 <span class="va">meta_node_fields</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "Gwas"       "Disease"    "Drug"       "Efo"        "Event"     </span>
 <span class="co">#&gt;  [6] "Gene"       "Tissue"     "Literature" "Pathway"    "Protein"   </span>
-<span class="co">#&gt; [11] "SemmedTerm" "Variant"</span></pre></div>
+<span class="co">#&gt; [11] "SemmedTerm" "Variant"</span></code></pre></div>
 <p>The list of nodes is also available in the <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/">documentation</a>, along with the node properties, which are useful for running native Cypher queries. In this section, we want to show how to perform node search for a term of interest. Any node can be searched by specifying it in this query: <code>GET /meta/nodes/{meta_node}/search</code>.</p>
 <p>To demonstrate this, we are going to search for ‘breast cancer’ in various nodes:</p>
-<div class="sourceCode" id="cb16"><pre class="downlit">
-<span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"breast cancer"</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"breast cancer"</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
@@ -570,7 +570,7 @@
 <span class="co">#&gt;  7 typed-liter… Hereditary breast cancer         http://www.orpha.net/ORDO/Orph…</span>
 <span class="co">#&gt;  8 typed-liter… age at breast cancer diagnosis   http://www.ebi.ac.uk/efo/EFO_0…</span>
 <span class="co">#&gt;  9 typed-liter… breast cancer stage              http://www.ebi.ac.uk/efo/EFO_0…</span>
-<span class="co">#&gt; 10 typed-liter… family history of breast cancer  http://www.ebi.ac.uk/efo/EFO_0…</span></pre></div>
+<span class="co">#&gt; 10 typed-liter… family history of breast cancer  http://www.ebi.ac.uk/efo/EFO_0…</span></code></pre></div>
 <p>The queries above can be further expanded using Cypher as will be shown in the next section. To get more information about <code>meta</code> endpoint please see the guidelines on <a href="https://mrcieu.github.io/epigraphdb-r/articles/meta-functionalities.html">meta functionalities</a>.</p>
 </div>
 <div id="advanced-examples" class="section level2">
@@ -578,8 +578,8 @@
 <a href="#advanced-examples" class="anchor"></a>Advanced examples</h2>
 <p>The functionalities of <code>epigraphdb</code> R package and the REST API of EpiGraphDB are currently limited to a certain number of API endpoints available via the <code>query_epigraphdb</code> function, which are simply a small and limited subset of what a graph database offers. If you would like to further customise your query, EpiGraphDB API supports using Neo4j Cypher to directly query the graph database.</p>
 <p>To get you started, we want to show that the majority of API endpoint queries are simple wrappers around Cypher queries which directly request data from the graph database. For example, the simple GWAS query we’ve done in Part 2 using “table” mode, can be executed using “raw” mode to expose the exact Cypher query that was run against the database:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="co"># Running a GWAS query from Part 2</span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Running a GWAS query from Part 2</span>
 <span class="co"># Ask for "raw" format (as a list)</span>
 <span class="va">trait</span> <span class="op">&lt;-</span> <span class="st">"body mass index"</span>
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Gwas/search"</span>
@@ -591,17 +591,17 @@
 
 <span class="co"># display the Cypher query</span>
 <span class="va">response</span><span class="op">$</span><span class="va">metadata</span><span class="op">$</span><span class="va">query</span>
-<span class="co">#&gt; [1] "MATCH (node: Gwas) WHERE node.trait =~ \"(?i).*body mass index.*\" RETURN node LIMIT 10;"</span></pre></div>
+<span class="co">#&gt; [1] "MATCH (node: Gwas) WHERE node.trait =~ \"(?i).*body mass index.*\" RETURN node LIMIT 10;"</span></code></pre></div>
 <p>This is what a native Cypher query looks like:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
     MATCH (node: Gwas)
     WHERE node.trait =~ \"(?i).*body mass index.*\"
     RETURN node LIMIT 10;
-"</span></pre></div>
+"</span></code></pre></div>
 <p>This is how you supply a Cypher query to <code>query_epigraphdb</code> function:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="co"># use POST /cypher</span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># use POST /cypher</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/cypher"</span>
 <span class="va">method</span> <span class="op">&lt;-</span> <span class="st">"POST"</span>
@@ -632,10 +632,10 @@
 <span class="co">#&gt;  7 Body mass index       ieu-a-974        171977           2015      Locke AE   </span>
 <span class="co">#&gt;  8 Body mass index       ieu-a-95         73137            2013      Randall JC </span>
 <span class="co">#&gt;  9 Body mass index       ieu-a-94         60586            2013      Randall JC </span>
-<span class="co">#&gt; 10 Body mass index (BMI) ukb-b-19953      461460           2018      Ben Elswor…</span></pre></div>
+<span class="co">#&gt; 10 Body mass index (BMI) ukb-b-19953      461460           2018      Ben Elswor…</span></code></pre></div>
 <p>Next step: let’s modify Cypher query</p>
-<div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="co"># Let's return Body mass index GWAS that were done by Locke AE</span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Let's return Body mass index GWAS that were done by Locke AE</span>
 
 <span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
     MATCH (node: Gwas)
@@ -666,11 +666,11 @@
 <span class="co">#&gt; 1 Body mass index ieu-a-2   339224           2015      Locke AE   </span>
 <span class="co">#&gt; 2 Body mass index ieu-a-785 152893           2015      Locke AE   </span>
 <span class="co">#&gt; 3 Body mass index ieu-a-835 322154           2015      Locke AE   </span>
-<span class="co">#&gt; 4 Body mass index ieu-a-974 171977           2015      Locke AE</span></pre></div>
+<span class="co">#&gt; 4 Body mass index ieu-a-974 171977           2015      Locke AE</span></code></pre></div>
 <p>NOTE: Be mindful of the data type of each node property. Please refer to <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas">data dictionary</a> to explore data types before writing native Cypher queries.</p>
 <p><br> Now, let’s try making queries by specifying a GWAS ID.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="co"># Extract info only for GWAS 'ieu-a-2'</span>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Extract info only for GWAS 'ieu-a-2'</span>
 <span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
     MATCH (node: Gwas)
     WHERE node.id = \"ieu-a-2\"
@@ -693,9 +693,9 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;   node.trait      node.id node.sample_size node.year node.author</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
-<span class="co">#&gt; 1 Body mass index ieu-a-2 339224           2015      Locke AE</span></pre></div>
-<div class="sourceCode" id="cb22"><pre class="downlit">
-<span class="co"># Return MR results only for exposure trait 'ieu-a-2' (body mass index)</span>
+<span class="co">#&gt; 1 Body mass index ieu-a-2 339224           2015      Locke AE</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Return MR results only for exposure trait 'ieu-a-2' (body mass index)</span>
 
 <span class="co"># first let's check the MR Cypher query that we run in "table" mode in Part 2</span>
 <span class="va">trait1</span> <span class="op">&lt;-</span> <span class="st">"Body mass index"</span>
@@ -730,18 +730,18 @@
 <span class="op">)</span>
 <span class="va">results_subset</span>
 <span class="co">#&gt; # A tibble: 146 x 10</span>
-<span class="co">#&gt;    exposure.trait exposure.id outcome.trait outcome.id   mr.se   mr.b mr.method</span>
-<span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 Body mass ind… ieu-a-2     Non-cancer i… ukb-a-74   0.00242 0.0346 FE IVW   </span>
-<span class="co">#&gt;  2 Body mass ind… ieu-a-2     Hip circumfe… ukb-a-388  0.0266  0.724  Simple m…</span>
-<span class="co">#&gt;  3 Body mass ind… ieu-a-2     Waist circum… ukb-a-382  0.0245  0.656  Simple m…</span>
-<span class="co">#&gt;  4 Body mass ind… ieu-a-2     Comparative … ukb-a-35   0.00791 0.137  FE IVW   </span>
-<span class="co">#&gt;  5 Body mass ind… ieu-a-2     Comparative … ukb-a-34   0.0236  0.366  Simple m…</span>
-<span class="co">#&gt;  6 Body mass ind… ieu-a-2     Trunk predic… ukb-a-293  0.0167  0.358  Simple m…</span>
-<span class="co">#&gt;  7 Body mass ind… ieu-a-2     Trunk fat-fr… ukb-a-292  0.0177  0.360  Simple m…</span>
-<span class="co">#&gt;  8 Body mass ind… ieu-a-2     Trunk fat ma… ukb-a-291  0.0280  0.737  Simple m…</span>
-<span class="co">#&gt;  9 Body mass ind… ieu-a-2     Trunk fat pe… ukb-a-290  0.0275  0.527  Weighted…</span>
-<span class="co">#&gt; 10 Body mass ind… ieu-a-2     Arm predicte… ukb-a-289  0.0177  0.416  Simple m…</span>
+<span class="co">#&gt;    exposure.trait  exposure.id outcome.trait outcome.id   mr.se   mr.b mr.method</span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 Body mass index ieu-a-2     Non-cancer i… ukb-a-74   0.00242 0.0346 FE IVW   </span>
+<span class="co">#&gt;  2 Body mass index ieu-a-2     Hip circumfe… ukb-a-388  0.0266  0.724  Simple m…</span>
+<span class="co">#&gt;  3 Body mass index ieu-a-2     Waist circum… ukb-a-382  0.0245  0.656  Simple m…</span>
+<span class="co">#&gt;  4 Body mass index ieu-a-2     Comparative … ukb-a-35   0.00791 0.137  FE IVW   </span>
+<span class="co">#&gt;  5 Body mass index ieu-a-2     Comparative … ukb-a-34   0.0236  0.366  Simple m…</span>
+<span class="co">#&gt;  6 Body mass index ieu-a-2     Trunk predic… ukb-a-293  0.0167  0.358  Simple m…</span>
+<span class="co">#&gt;  7 Body mass index ieu-a-2     Trunk fat-fr… ukb-a-292  0.0177  0.360  Simple m…</span>
+<span class="co">#&gt;  8 Body mass index ieu-a-2     Trunk fat ma… ukb-a-291  0.0280  0.737  Simple m…</span>
+<span class="co">#&gt;  9 Body mass index ieu-a-2     Trunk fat pe… ukb-a-290  0.0275  0.527  Weighted…</span>
+<span class="co">#&gt; 10 Body mass index ieu-a-2     Arm predicte… ukb-a-289  0.0177  0.416  Simple m…</span>
 <span class="co">#&gt; # … with 136 more rows, and 3 more variables: mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.pval &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span>
 
@@ -749,8 +749,8 @@
 <span class="va">results_subset</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">exposure.id</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;   exposure.id     n</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;</span>
-<span class="co">#&gt; 1 ieu-a-2       146</span></pre></div>
+<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;</span>
+<span class="co">#&gt; 1 ieu-a-2       146</span></code></pre></div>
 <p><br> Great! You can now use the basic functionality of the R package and make simple Cypher queries to the API. Next, we recommend to work through the <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">case studies</a> and check out the <a href="https://epigraphdb.org/explore">Web UI examples</a> and the <a href="https://epigraphdb.org/gallery">EpiGraphDB Gallery</a>.</p>
 </div>
   </div>
@@ -770,7 +770,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

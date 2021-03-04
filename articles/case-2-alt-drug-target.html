@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="case-2-alt-drug-target_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Case study 2: Identification of potential drug targets</h1>
@@ -136,8 +136,8 @@
 <li>We also examine the literature evidence of these candidate genes on the disease.</li>
 </ul>
 <p>The triangulation of MR evidence and literature evidence as available from EpiGraphDB regarding these candidate genes will greatly enhance our confidence in identifying potential viable drug targets.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"magrittr"</span><span class="op">)</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://magrittr.tidyverse.org">"magrittr"</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
@@ -162,12 +162,12 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span></pre></div>
+<span class="co">#&gt; </span></code></pre></div>
 <p>Here we configure the parameters used in the case study example. We illustrate this approach using IL23R, an established drug target for inflammatory bowel disease (IBD) (Duerr et al., 2006; Momozawa et al., 2011).</p>
 <p>While specific IL23R interventions are still undergoing trials, there is a possibility that these therapies may not be effective for all or even the majority of patients. This case study therefore explores potential alternative drug targets.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">GENE_NAME</span> <span class="op">&lt;-</span> <span class="st">"IL23R"</span>
-<span class="va">OUTCOME_TRAIT</span> <span class="op">&lt;-</span> <span class="st">"Inflammatory bowel disease"</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">GENE_NAME</span> <span class="op">&lt;-</span> <span class="st">"IL23R"</span>
+<span class="va">OUTCOME_TRAIT</span> <span class="op">&lt;-</span> <span class="st">"Inflammatory bowel disease"</span></code></pre></div>
 </div>
 <div id="using-ppi-networks-for-alternative-drug-targets-search" class="section level2">
 <h2 class="hasAnchor">
@@ -175,8 +175,8 @@
 <p>The assumption here is that the most likely alternative targets are either directly interacting with IL23R or somewhere in the same PPI network. In this example, we consider only genes that were found to interact with IL23R via direct protein-protein interactions, and require that those <strong>interacting proteins</strong> should also be <strong>druggable</strong>.</p>
 <p>The thousands of genes are classified with regard to their druggability by Finan et al. 2017, where the <strong>Tier 1</strong> category refers to approved drugs or those in clinical testing while for other tier categories the druggability confidence drops in order <strong>Tier 2</strong> and then <strong>Tier 3</strong>.</p>
 <p>Here we use the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-genedruggabilityppi">GET /gene/druggability/ppi</a> endpoint to get data on the druggable alternative genes.**</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">get_drug_targets_ppi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">gene_name</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">get_drug_targets_ppi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">gene_name</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/gene/druggability/ppi"</span>
   <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>gene_name <span class="op">=</span> <span class="va">gene_name</span><span class="op">)</span>
   <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="va">params</span>, mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
@@ -198,10 +198,10 @@
 <span class="co">#&gt;  8 IL23R   Q5VWK5        P40933        IL15    Tier 1              </span>
 <span class="co">#&gt;  9 IL23R   Q5VWK5        Q16552        IL17A   Tier 1              </span>
 <span class="co">#&gt; 10 IL23R   Q5VWK5        Q96PD4        IL17F   Tier 1              </span>
-<span class="co">#&gt; # … with 32 more rows</span></pre></div>
+<span class="co">#&gt; # … with 32 more rows</span></code></pre></div>
 <p>For further analysis we select the gene of interest (IL23R) as well as its interacting genes with Tier 1 druggability.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">get_gene_list</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ppi_df</span>, <span class="va">include_primary_gene</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">get_gene_list</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ppi_df</span>, <span class="va">include_primary_gene</span> <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">{</span>
   <span class="kw">if</span> <span class="op">(</span><span class="va">include_primary_gene</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">gene_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
       <span class="va">ppi_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">`g1.name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>,
@@ -220,15 +220,15 @@
 <span class="co">#&gt;  [1] "IL23R"   "CSF2"    "IFNA1"   "IFNG"    "IL10"    "IL12B"   "IL12RB1"</span>
 <span class="co">#&gt;  [8] "IL13"    "IL15"    "IL17A"   "IL17F"   "IL2"     "IL22"    "IL23A"  </span>
 <span class="co">#&gt; [15] "IL4"     "IL5"     "IL6"     "IL9"     "JAK1"    "JAK2"    "NFKB1"  </span>
-<span class="co">#&gt; [22] "PIK3CA"  "RORC"    "STAT3"   "TSLP"    "TYK2"</span></pre></div>
+<span class="co">#&gt; [22] "PIK3CA"  "RORC"    "STAT3"   "TSLP"    "TYK2"</span></code></pre></div>
 </div>
 <div id="using-mendelian-randomization-results-for-causal-effect-estimation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-mendelian-randomization-results-for-causal-effect-estimation" class="anchor"></a>Using Mendelian randomization results for causal effect estimation</h2>
 <p>The next step is to find out whether any of these genes have a comparable and statistically plausible effect on IBD.</p>
 <p>Here we search EpiGraphDB for the Mendelian randomization (MR) results for these genes and IBD from the recent study by Zheng et al, 2019 (<a href="https://epigraphdb.org/xqtl/" class="uri">https://epigraphdb.org/xqtl/</a>) via the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr">GET /xqtl/single-snp-mr</a> endpoint.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">extract_mr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">outcome_trait</span>, <span class="va">gene_list</span>, <span class="va">qtl_type</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">extract_mr</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">outcome_trait</span>, <span class="va">gene_list</span>, <span class="va">qtl_type</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/xqtl/single-snp-mr"</span>
   <span class="va">per_gene</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">gene_name</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -254,26 +254,26 @@
 <span class="op">}</span><span class="op">)</span>
 <span class="va">xqtl_df</span>
 <span class="co">#&gt; # A tibble: 9 x 9</span>
-<span class="co">#&gt;   gene.ensembl_id gene.name gwas.id gwas.trait r.beta   r.se      r.p r.rsid</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
-<span class="co">#&gt; 1 ENSG00000162594 IL23R     ieu-a-… Inflammat…  1.50  0.0546 0.       rs115…</span>
-<span class="co">#&gt; 2 ENSG00000113302 IL12B     ieu-a-… Inflammat…  0.418 0.0345 9.59e-34 rs492…</span>
-<span class="co">#&gt; 3 ENSG00000162594 IL23R     ieu-a-… Inflammat…  0.887 0.0644 4.16e-43 rs206…</span>
-<span class="co">#&gt; 4 ENSG00000164136 IL15      ieu-a-… Inflammat… -1.42  0.197  5.53e-13 rs753…</span>
-<span class="co">#&gt; 5 ENSG00000113520 IL4       ieu-a-… Inflammat…  0.460 0.0840 4.47e- 8 rs207…</span>
-<span class="co">#&gt; 6 ENSG00000096968 JAK2      ieu-a-… Inflammat… -1.90  0.204  1.32e-20 rs478…</span>
-<span class="co">#&gt; 7 ENSG00000109320 NFKB1     ieu-a-… Inflammat…  0.974 0.174  2.16e- 8 rs476…</span>
-<span class="co">#&gt; 8 ENSG00000143365 RORC      ieu-a-… Inflammat… -0.995 0.116  1.21e-17 rs484…</span>
-<span class="co">#&gt; 9 ENSG00000168610 STAT3     ieu-a-… Inflammat…  0.597 0.0757 2.96e-15 rs105…</span>
-<span class="co">#&gt; # … with 1 more variable: qtl_type &lt;chr&gt;</span></pre></div>
+<span class="co">#&gt;   gene.ensembl_id gene.name gwas.id  gwas.trait    r.beta   r.se      r.p r.rsid</span>
+<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt; </span>
+<span class="co">#&gt; 1 ENSG00000162594 IL23R     ieu-a-2… Inflammatory…  1.50  0.0546 0.       rs115…</span>
+<span class="co">#&gt; 2 ENSG00000113302 IL12B     ieu-a-2… Inflammatory…  0.418 0.0345 9.59e-34 rs492…</span>
+<span class="co">#&gt; 3 ENSG00000162594 IL23R     ieu-a-2… Inflammatory…  0.887 0.0644 4.16e-43 rs206…</span>
+<span class="co">#&gt; 4 ENSG00000164136 IL15      ieu-a-2… Inflammatory… -1.42  0.197  5.53e-13 rs753…</span>
+<span class="co">#&gt; 5 ENSG00000113520 IL4       ieu-a-2… Inflammatory…  0.460 0.0840 4.47e- 8 rs207…</span>
+<span class="co">#&gt; 6 ENSG00000096968 JAK2      ieu-a-2… Inflammatory… -1.90  0.204  1.32e-20 rs478…</span>
+<span class="co">#&gt; 7 ENSG00000109320 NFKB1     ieu-a-2… Inflammatory…  0.974 0.174  2.16e- 8 rs476…</span>
+<span class="co">#&gt; 8 ENSG00000143365 RORC      ieu-a-2… Inflammatory… -0.995 0.116  1.21e-17 rs484…</span>
+<span class="co">#&gt; 9 ENSG00000168610 STAT3     ieu-a-2… Inflammatory…  0.597 0.0757 2.96e-15 rs105…</span>
+<span class="co">#&gt; # … with 1 more variable: qtl_type &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="using-literature-evidence-for-results-enrichment-and-triangulation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-literature-evidence-for-results-enrichment-and-triangulation" class="anchor"></a>Using literature evidence for results enrichment and triangulation</h2>
 <p>Can we find evidence in the literature where these genes are found to be associated with IBD to increase our level of confidence in MR results or to provide alternative evidence where MR results to not exist?</p>
 <p>We can use the <a href="https://docs.epigraphdb.org/api/api-endpoints/#get-geneliterature">GET /gene/literature</a> endpoint to get data on the literature evidence for the set of genes.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">extract_literature</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">outcome_trait</span>, <span class="va">gene_list</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">extract_literature</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">outcome_trait</span>, <span class="va">gene_list</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">per_gene</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">gene_name</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/gene/literature"</span>
     <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -306,48 +306,44 @@
 <span class="co">#&gt;  8 &lt;chr [1]&gt;  IFNA1     PREVENTS         Inflammatory Bowel Di…                1</span>
 <span class="co">#&gt;  9 &lt;chr [2]&gt;  IFNG      ASSOCIATED_WITH  Inflammatory Bowel Di…                2</span>
 <span class="co">#&gt; 10 &lt;chr [1]&gt;  IFNG      AFFECTS          Inflammatory Bowel Di…                1</span>
-<span class="co">#&gt; # … with 35 more rows</span></pre></div>
+<span class="co">#&gt; # … with 35 more rows</span></code></pre></div>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sessioninfo" class="anchor"></a><code>sessionInfo</code>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.0.2 (2020-06-22)</span>
-<span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
-<span class="co">#&gt; Running under: Ubuntu 16.04.6 LTS</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; R version 4.0.4 (2021-02-15)</span>
+<span class="co">#&gt; Platform: x86_64-apple-darwin17.0 (64-bit)</span>
+<span class="co">#&gt; Running under: macOS Catalina 10.15.7</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /usr/lib/openblas-base/libblas.so.3</span>
-<span class="co">#&gt; LAPACK: /usr/lib/libopenblasp-r0.2.18.so</span>
+<span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib</span>
+<span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; locale:</span>
-<span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
-<span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-<span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
-<span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
-<span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-<span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+<span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; attached base packages:</span>
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] epigraphdb_0.2.1 glue_1.4.2       purrr_0.3.4      dplyr_1.0.2     </span>
-<span class="co">#&gt; [5] magrittr_1.5    </span>
+<span class="co">#&gt; [1] epigraphdb_0.2.1 glue_1.4.2       purrr_0.3.4      dplyr_1.0.4     </span>
+<span class="co">#&gt; [5] magrittr_2.0.1  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] knitr_1.30         tidyselect_1.1.0   R6_2.4.1           ragg_0.3.1        </span>
-<span class="co">#&gt;  [5] rlang_0.4.7        fansi_0.4.1        httr_1.4.2         stringr_1.4.0     </span>
-<span class="co">#&gt;  [9] tools_4.0.2        xfun_0.18          utf8_1.1.4         cli_2.0.2         </span>
-<span class="co">#&gt; [13] htmltools_0.5.0    systemfonts_0.3.2  ellipsis_0.3.1     yaml_2.2.1        </span>
-<span class="co">#&gt; [17] assertthat_0.2.1   rprojroot_1.3-2    digest_0.6.25      tibble_3.0.3      </span>
-<span class="co">#&gt; [21] lifecycle_0.2.0    pkgdown_1.6.1.9000 crayon_1.3.4       vctrs_0.3.4       </span>
-<span class="co">#&gt; [25] fs_1.5.0           curl_4.3           memoise_1.1.0      evaluate_0.14     </span>
-<span class="co">#&gt; [29] rmarkdown_2.4      stringi_1.5.3      pillar_1.4.6       compiler_4.0.2    </span>
-<span class="co">#&gt; [33] desc_1.2.0         generics_0.0.2     backports_1.1.10   jsonlite_1.7.1    </span>
-<span class="co">#&gt; [37] pkgconfig_2.0.3</span></pre></div>
+<span class="co">#&gt;  [1] rstudioapi_0.13   knitr_1.31        tidyselect_1.1.0  R6_2.5.0         </span>
+<span class="co">#&gt;  [5] ragg_1.1.1        rlang_0.4.10      fastmap_1.1.0     fansi_0.4.2      </span>
+<span class="co">#&gt;  [9] httr_1.4.2        stringr_1.4.0     tools_4.0.4       xfun_0.21        </span>
+<span class="co">#&gt; [13] utf8_1.1.4        cli_2.3.1         ellipsis_0.3.1    htmltools_0.5.1.1</span>
+<span class="co">#&gt; [17] systemfonts_1.0.1 yaml_2.2.1        assertthat_0.2.1  digest_0.6.27    </span>
+<span class="co">#&gt; [21] rprojroot_2.0.2   tibble_3.1.0      lifecycle_1.0.0   pkgdown_1.6.1    </span>
+<span class="co">#&gt; [25] crayon_1.4.1      textshaping_0.3.1 ps_1.6.0          vctrs_0.3.6      </span>
+<span class="co">#&gt; [29] fs_1.5.0          curl_4.3          memoise_2.0.0     cachem_1.0.4     </span>
+<span class="co">#&gt; [33] evaluate_0.14     rmarkdown_2.7     stringi_1.5.3     pillar_1.5.0     </span>
+<span class="co">#&gt; [37] compiler_4.0.4    desc_1.2.0        generics_0.1.0    jsonlite_1.7.2   </span>
+<span class="co">#&gt; [41] pkgconfig_2.0.3</span></code></pre></div>
 </div>
   </div>
 
@@ -366,7 +362,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

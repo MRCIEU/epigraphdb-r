@@ -139,7 +139,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -213,20 +213,20 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>xqtl_multi_snp_mr</span><span class='op'>(</span>outcome_trait <span class='op'>=</span> <span class='st'>"Coronary heart disease"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 11 x 7</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 11 x 7</span><span>
 #&gt;    gene.ensembl_id gene.name   gwas.id gwas.trait         r.beta   r.se      r.p
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> ENSG00000134222 PSRC1       ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.214</span><span>  0.027</span><span style='text-decoration: underline;'>0</span><span> 1.98</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>-15</span><span>
-#&gt; </span><span style='color: #555555;'> 2</span><span> ENSG00000183508 FAM46C      ieu-a-7 Coronary heart d…  0.236  0.043</span><span style='text-decoration: underline;'>5</span><span> 5.86</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 8</span><span>
-#&gt; </span><span style='color: #555555;'> 3</span><span> ENSG00000151612 ZNF827      ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.503</span><span>  0.096</span><span style='text-decoration: underline;'>8</span><span> 2.05</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span>
-#&gt; </span><span style='color: #555555;'> 4</span><span> ENSG00000133789 SWAP70      ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.184</span><span>  0.036</span><span style='text-decoration: underline;'>1</span><span> 3.24</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span>
-#&gt; </span><span style='color: #555555;'> 5</span><span> ENSG00000130475 FCHO1       ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.127</span><span>  0.025</span><span style='text-decoration: underline;'>7</span><span> 7.28</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 7</span><span>
-#&gt; </span><span style='color: #555555;'> 6</span><span> ENSG00000076685 NT5C2       ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.148</span><span>  0.030</span><span style='text-decoration: underline;'>3</span><span> 1.08</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #555555;'> 7</span><span> ENSG00000212541 RNU6-510P   ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.091</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.019</span><span style='text-decoration: underline;'>4</span><span> 2.50</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #555555;'> 8</span><span> ENSG00000152804 HHEX        ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.174</span><span>  0.037</span><span style='text-decoration: underline;'>1</span><span> 2.82</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #555555;'> 9</span><span> ENSG00000197520 FAM177B     ieu-a-7 Coronary heart d…  0.237  0.051</span><span style='text-decoration: underline;'>0</span><span> 3.32</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #555555;'>10</span><span> ENSG00000234608 MAPKAPK5-A… ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.142</span><span>  0.030</span><span style='text-decoration: underline;'>8</span><span> 4.25</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #555555;'>11</span><span> ENSG00000242142 SERBP1P3    ieu-a-7 Coronary heart d…  0.068</span><span style='text-decoration: underline;'>3</span><span> 0.015</span><span style='text-decoration: underline;'>0</span><span> 5.17</span><span style='color: #555555;'>e</span><span style='color: #BB0000;'>- 6</span><span></div></span></pre>
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ENSG00000134222 PSRC1       ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.214</span><span>  0.027</span><span style='text-decoration: underline;'>0</span><span> 1.98</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ENSG00000183508 FAM46C      ieu-a-7 Coronary heart d…  0.236  0.043</span><span style='text-decoration: underline;'>5</span><span> 5.86</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ENSG00000151612 ZNF827      ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.503</span><span>  0.096</span><span style='text-decoration: underline;'>8</span><span> 2.05</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ENSG00000133789 SWAP70      ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.184</span><span>  0.036</span><span style='text-decoration: underline;'>1</span><span> 3.24</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ENSG00000130475 FCHO1       ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.127</span><span>  0.025</span><span style='text-decoration: underline;'>7</span><span> 7.28</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ENSG00000076685 NT5C2       ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.148</span><span>  0.030</span><span style='text-decoration: underline;'>3</span><span> 1.08</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ENSG00000212541 RNU6-510P   ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.091</span><span style='color: #BB0000;text-decoration: underline;'>2</span><span> 0.019</span><span style='text-decoration: underline;'>4</span><span> 2.50</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ENSG00000152804 HHEX        ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.174</span><span>  0.037</span><span style='text-decoration: underline;'>1</span><span> 2.82</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ENSG00000197520 FAM177B     ieu-a-7 Coronary heart d…  0.237  0.051</span><span style='text-decoration: underline;'>0</span><span> 3.32</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ENSG00000234608 MAPKAPK5-A… ieu-a-7 Coronary heart d… -</span><span style='color: #BB0000;'>0.142</span><span>  0.030</span><span style='text-decoration: underline;'>8</span><span> 4.25</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> ENSG00000242142 SERBP1P3    ieu-a-7 Coronary heart d…  0.068</span><span style='text-decoration: underline;'>3</span><span> 0.015</span><span style='text-decoration: underline;'>0</span><span> 5.17</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -242,7 +242,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

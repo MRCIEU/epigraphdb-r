@@ -100,7 +100,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fa fa-github"></span>
+    <span class="fas fa-github"></span>
      
   </a>
 </li>
@@ -130,12 +130,12 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>To install the latest development version from github ( <a href="https://devtools.r-lib.org/"><code>devtools</code></a> is required ):</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"MRCIEU/epigraphdb-r"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"MRCIEU/epigraphdb-r"</span><span class="op">)</span></code></pre></div>
 <p>To install a stable version from CRAN:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"epigraphdb"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"epigraphdb"</span><span class="op">)</span></code></pre></div>
 <p><strong>NOTE</strong>: while the package repository is “epigraphdb-r”, the R package name is “epigraphdb”.</p>
 </div>
 <div id="using-epigraphdb" class="section level2">
@@ -143,8 +143,8 @@
 <a href="#using-epigraphdb" class="anchor"></a>Using <code>epigraphdb</code>
 </h2>
 <p><code>epigraphdb</code> provides a simple and intuitive way to query the API, as:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt;</span>
 <span class="co">#&gt;   EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt;</span>
@@ -163,7 +163,7 @@
 <span class="co">#&gt;  9 UKB-a:124   Treatment/me… 974        Body mass i…  -5.14   1.08e-1</span>
 <span class="co">#&gt; 10 95          Body mass in… 974        Body mass i…   0.981  2.79e-2</span>
 <span class="co">#&gt; # … with 360 more rows, and 6 more variables: p &lt;dbl&gt;, ci_upp &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   ci_low &lt;dbl&gt;, selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;)</span></pre></div>
+<span class="co">#&gt; #   ci_low &lt;dbl&gt;, selection &lt;chr&gt;, method &lt;chr&gt;, moescore &lt;dbl&gt;)</span></code></pre></div>
 <p>For more information on how to use the <code>epigraphdb</code> R package and how to use the API in R please check out the following articles:</p>
 <table class="table">
 <colgroup><col width="100%"></colgroup>
@@ -444,15 +444,19 @@
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>Please cite EpiGraphDB as</p>
 <blockquote>
-<p>Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Tom R Gaunt. 2020. EpiGraphDB: a database and data mining platform for health data science. <em>bioRxiv</em>. <a href="https://doi.org/10.1101/2020.08.01.230193">doi:10.1101/2020.08.01.230193</a>.</p>
+<p>Yi Liu, Benjamin Elsworth, Pau Erola, Valeriia Haberland, Gibran Hemani, Matt Lyon, Jie Zheng, Oliver Lloyd, Marina Vabistsevits, Tom R Gaunt, EpiGraphDB: a database and data mining platform for health data science, Bioinformatics, btaa961, <a href="https://doi.org/10.1093/bioinformatics/btaa961" class="uri">https://doi.org/10.1093/bioinformatics/btaa961</a></p>
 </blockquote>
-<pre><code>@article {epigraphdb2020,
-  author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Gaunt, Tom R},
-  title = {{EpiGraphDB}: a database and data mining platform for health data science},
-  journal = {bioRxiv},
-  year = {2020},
-  doi = {10.1101/2020.08.01.230193},
-  url = {https://epigraphdb.org}
+<pre><code>@article{epigraphdb2020bioinformatics,
+    author = {Liu, Yi and Elsworth, Benjamin and Erola, Pau and Haberland, Valeriia and Hemani, Gibran and Lyon, Matt and Zheng, Jie and Lloyd, Oliver and Vabistsevits, Marina and Gaunt, Tom R},
+    title = {{EpiGraphDB}: a database and data mining platform for health data science},
+    journal = {Bioinformatics},
+    year = {2020},
+    month = {11},
+    issn = {1367-4803},
+    doi = {10.1093/bioinformatics/btaa961},
+    url = {https://doi.org/10.1093/bioinformatics/btaa961},
+    note = {btaa961},
+    eprint = {https://academic.oup.com/bioinformatics/advance-article-pdf/doi/10.1093/bioinformatics/btaa961/34178613/btaa961.pdf}
 }</code></pre>
 </div>
 <div id="contact" class="section level2">
@@ -505,7 +509,6 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=epigraphdb"><img src="https://www.r-pkg.org/badges/version/epigraphdb" alt="CRAN status"></a></li>
-<li><a href="https://travis-ci.org/MRCIEU/epigraphdb-r/"><img src="https://travis-ci.org/MRCIEU/epigraphdb-r.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://codecov.io/gh/MRCIEU/epigraphdb-r?branch=master"><img src="https://codecov.io/gh/MRCIEU/epigraphdb-r/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
@@ -518,7 +521,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

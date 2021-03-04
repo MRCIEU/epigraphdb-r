@@ -1,6 +1,6 @@
-pandoc: '2.2'
-pkgdown: 1.6.1.9000
-pkgdown_sha: e1e46f2e13c7efdb17bc4eae40bc3779c2b0b517
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
   about: about.html
   case-1-pleiotropy: case-1-pleiotropy.html
@@ -11,5 +11,5 @@ articles:
   options: options.html
   using-epigraphdb-api: using-epigraphdb-api.html
   using-epigraphdb-r-package: using-epigraphdb-r-package.html
-last_built: 2020-10-04T14:19Z
+last_built: 2021-03-04T16:10Z
 
