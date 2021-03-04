@@ -1,6 +1,6 @@
 .onAttach <- function(libname, pkgname) { # nolint
   packageStartupMessage("
-    EpiGraphDB v0.3 (API: https://api.epigraphdb.org)
+    EpiGraphDB v1.00 (API: https://api.epigraphdb.org)
   ")
 }
 
