@@ -2,6 +2,9 @@
 
 Current ongoing development.
 
+- Switch to github actions for building the package documentation site.
+- Switch to EpiGraphDB v1.0.0 API.
+
 # epigraphdb 0.2.1 (2020-08-06)
 
 - use `httr::RETRY` to mitigate problems due to network errors.
