@@ -23,8 +23,12 @@ roxygen:
 	CI=true Rscript -e "devtools::document()"
 
 ## Check package infrastructure and perform unit tests
-test:
+check-devtools:
 	CI=true Rscript -e "devtools::check()"
+
+## testthat
+test:
+	CI=true Rscript -e "devtools::test()"
 
 tests: test
 
