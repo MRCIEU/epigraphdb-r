@@ -47,7 +47,7 @@ test_that("meta_nodes_list_node", {
 })
 
 test_that("meta_rels_list_rel", {
-  meta_rel <- "MR"
+  meta_rel <- "MR_EVE_MR"
   expect_error(
     meta_rels_list_rel(
       meta_rel = meta_rel

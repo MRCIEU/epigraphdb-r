@@ -95,7 +95,7 @@ meta_nodes_list_node <- function(meta_node, full_data = TRUE, limit = 10, offset
 #'
 #' @examples
 #' # List the first 5 MR relationships
-#' meta_rels_list_rel(meta_rel = "MR", limit = 5)
+#' meta_rels_list_rel(meta_rel = "MR_EVE_MR", limit = 5)
 #' @export
 meta_rels_list_rel <- function(meta_rel, limit = 10, offset = 0,
                                mode = c("table", "raw")) {
