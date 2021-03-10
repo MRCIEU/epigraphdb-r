@@ -38,7 +38,7 @@ query_epigraphdb(
 )
 ```
 
-- `endpoint` and `method` consitute the 'method' provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. [`POST /mappings/gene-to-protein`](https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein) is used to query gene-to-proteins mappings. See the full list of currently available endpoints [here][2] in the documentation or the [Swagger interface of the API](https://api.epigraphdb.org).
+- `endpoint` and `method` constitute the 'method' provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. [`POST /mappings/gene-to-protein`](https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein) is used to query gene-to-proteins mappings. See the full list of currently available endpoints [here][2] in the documentation or the [Swagger interface of the API](https://api.epigraphdb.org).
 
 - `params` is where you supply the list of things you want to query about (can be a list of genes, GWAS trait, MR outcome of interest), subject to what each endpoint accepts and requires.
 
@@ -473,7 +473,7 @@ mr_df$metadata$query
 
 # modify the query to only return 'ieu-a-2' GWAS results
 query <- "
-  MATCH (exposure:Gwas)-[mr:MR]->(outcome:Gwas)
+  MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas)
   WHERE exposure.id = \"ieu-a-2\"
   AND mr.pval < 5e-08
   RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore}
