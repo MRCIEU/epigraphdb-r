@@ -1,6 +1,6 @@
 Package: epigraphdb
 Title: Interface Package for the 'EpiGraphDB' Platform
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
     person("Yi", "Liu", email = "yi6240.liu@bristol.ac.uk",
       role = c("cre", "aut")
