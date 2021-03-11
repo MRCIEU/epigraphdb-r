@@ -83,7 +83,10 @@ mr_df %>% glimpse()
 For this example, we are interested in traits mapped to a disease node.
 To do this we utilise the mapping from GWAS trait to Disease via EFO term.
 
-```{r}
+```r
+# NOTE: this block takes a bit of time, depending on the size of `mr_df` above.
+#       We will not run the block here in package building,
+#       but readers are encouraged to try it offline!
 trait_to_disease <- function(trait) {
   endpoint <- "/ontology/gwas-efo-disease"
   params <- list(trait = trait)
