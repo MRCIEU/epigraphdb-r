@@ -96,10 +96,12 @@ trait_to_disease <- function(trait) {
   res
 }
 
-disease_df <- mr_df %>%
+outcome_disease_df <- mr_df %>%
+  select(`outcome.trait`) %>%
+  distinct() %>%
   mutate(disease = map(`outcome.trait`, trait_to_disease)) %>%
   filter(map_lgl(`disease`, function(x) !is.null(x)))
-disease_df
+outcome_disease_df
 ```
 
 ## Take one example to look for literature evidence
