@@ -171,7 +171,7 @@
 <span class="co">#&gt;     union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v1.00 (API: https://api.epigraphdb.org)</span>
+<span class="co">#&gt;     EpiGraphDB v1.0 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span></code></pre></div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
@@ -217,8 +217,8 @@
 <span class="co">#&gt;   ..$ MR_EVE_MR                   :List of 2</span>
 <span class="co">#&gt;   ..$ OPENGWAS_TOPHITS            :List of 2</span>
 <span class="co">#&gt;   ..$ VARIANT_TO_GENE             :List of 2</span>
-<span class="co">#&gt;   ..$ MEDRXIV_PREDICATE           :List of 2</span>
 <span class="co">#&gt;   ..$ MEDRXIV_OBJ                 :List of 2</span>
+<span class="co">#&gt;   ..$ MEDRXIV_PREDICATE           :List of 2</span>
 <span class="co">#&gt;   ..$ EXPRESSED_IN                :List of 2</span>
 <span class="co">#&gt;   ..$ BIORXIV_OBJ                 :List of 2</span>
 <span class="co">#&gt;   ..$ EFO_CHILD_OF                :List of 2</span>
@@ -244,10 +244,7 @@
 <span class="co">#&gt;   ..$ GWAS_TO_LITERATURE          :List of 2</span>
 <span class="co">#&gt;   ..$ GENE_TO_PROTEIN             :List of 2</span>
 <span class="co">#&gt;   ..$ SEMMEDDB_OBJ                :List of 2</span>
-<span class="co">#&gt;  $ connections:List of 41</span>
-<span class="co">#&gt;   ..$ :List of 4</span>
-<span class="co">#&gt;   ..$ :List of 4</span>
-<span class="co">#&gt;   ..$ :List of 4</span>
+<span class="co">#&gt;  $ connections:List of 38</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
@@ -352,7 +349,7 @@
 <span class="va">meta_rel_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">from_node</span>, <span class="va">to_node</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">count</span>, big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 41 x 4</span>
+<span class="co">#&gt; # A tibble: 38 x 4</span>
 <span class="co">#&gt;    meta_rel                     count        from_node to_node       </span>
 <span class="co">#&gt;    &lt;chr&gt;                        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         </span>
 <span class="co">#&gt;  1 MONDO_MAP_EFO                "     2,819" Disease   Efo           </span>
@@ -365,7 +362,7 @@
 <span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,015,233" Gene      Gwas          </span>
 <span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,449,779" Gene      Gwas          </span>
 <span class="co">#&gt; 10 GENE_TO_PROTEIN              "    19,142" Gene      Protein       </span>
-<span class="co">#&gt; # … with 31 more rows</span></code></pre></div>
+<span class="co">#&gt; # … with 28 more rows</span></code></pre></div>
 </div>
 <div id="schema-plot" class="section level3">
 <h3 class="hasAnchor">
