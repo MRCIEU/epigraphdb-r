@@ -1,6 +1,4 @@
-# epigraphdb 0.2.1.900
-
-Current ongoing development.
+# epigraphdb 0.2.2 (2021-03-21)
 
 - Switch to github actions for building the package documentation site.
 - Switch to EpiGraphDB v1.0.0 API.
