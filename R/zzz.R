@@ -1,6 +1,6 @@
 .onAttach <- function(libname, pkgname) { # nolint
   packageStartupMessage("
-    EpiGraphDB v1.00 (API: https://api.epigraphdb.org)
+    EpiGraphDB v1.0 (API: https://api.epigraphdb.org)
   ")
 }
 
@@ -8,9 +8,7 @@
   current_options <- options()
   package_options <- list(
     # URL to EpiGraphDB API
-    # epigraphdb.api.url = "https://api.epigraphdb.org",
-    # TODO: switch back to prod
-    epigraphdb.api.url = "http://dev-api.epigraphdb.org",
+    epigraphdb.api.url = "https://api.epigraphdb.org",
     # Are the requests for CI usage
     epigraphdb.ci = Sys.getenv(x = "CI", unset = c(CI = "false")) %>%
       as.logical()

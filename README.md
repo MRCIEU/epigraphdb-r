@@ -44,7 +44,7 @@ the R package name is "epigraphdb".
 ```r
 library("epigraphdb")
 #>
-#>   EpiGraphDB v0.3 (API: https://api.epigraphdb.org)
+#>   EpiGraphDB v1.0 (API: https://api.epigraphdb.org)
 #>
 mr(outcome_trait = "Body mass index")
 #> # A tibble: 370 x 12
