@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -210,15 +210,27 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame</span>
 <span class='fu'>mr</span><span class='op'>(</span>exposure_trait <span class='op'>=</span> <span class='st'>"Body mass index"</span>, outcome_trait <span class='op'>=</span> <span class='st'>"Coronary heart disease"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 10</span><span>
-#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.072</span><span style='text-decoration: underline;'>7</span><span> 4.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.093</span><span style='text-decoration: underline;'>1</span><span> 1.02</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.068</span><span style='text-decoration: underline;'>4</span><span> 1.31</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.075</span><span style='text-decoration: underline;'>6</span><span> 1.94</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 18 x 10</span><span>
+#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.041</span><span style='text-decoration: underline;'>5</span><span> 5.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.041</span><span style='text-decoration: underline;'>0</span><span> 3.33</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-20</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.049</span><span style='text-decoration: underline;'>2</span><span> 1.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.053</span><span style='text-decoration: underline;'>6</span><span> 2.32</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.053</span><span style='text-decoration: underline;'>5</span><span> 5.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.060</span><span style='text-decoration: underline;'>4</span><span> 1.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.059</span><span style='text-decoration: underline;'>0</span><span> 1.24</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.070</span><span style='text-decoration: underline;'>8</span><span> 1.62</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.098</span><span style='text-decoration: underline;'>6</span><span> 5.88</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.060</span><span style='text-decoration: underline;'>9</span><span> 1.07</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.064</span><span style='text-decoration: underline;'>8</span><span> 1.81</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.064</span><span style='text-decoration: underline;'>8</span><span> 1.81</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.051</span><span style='text-decoration: underline;'>4</span><span> 2.76</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.097</span><span style='text-decoration: underline;'>1</span><span> 2.82</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>16</span><span> ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.068</span><span style='text-decoration: underline;'>6</span><span> 3.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>17</span><span> ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.068</span><span style='text-decoration: underline;'>8</span><span> 5.86</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>18</span><span> ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
 #&gt; </span><span style='color: #949494;'># … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   mr.moescore &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># Returns raw response</span>
@@ -228,10 +240,38 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 <span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; List of 2
 #&gt;  $ metadata:List of 3
-#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__
-#&gt;   ..$ total_seconds: num 0.0154
+#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
+#&gt;   ..$ total_seconds: num 0.045
 #&gt;   ..$ empty_results: logi FALSE
-#&gt;  $ results :List of 6
+#&gt;  $ results :List of 18
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-2"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.464
+#&gt;   .. .. ..$ se       : num 0.0415
+#&gt;   .. .. ..$ pval     : num 5.46e-29
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.91
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST006368"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.457
+#&gt;   .. .. ..$ se       : num 0.041
+#&gt;   .. .. ..$ pval     : num 3.33e-20
+#&gt;   .. .. ..$ method   : chr "RE IVW"
+#&gt;   .. .. ..$ selection: chr "DF + HF"
+#&gt;   .. .. ..$ moescore : num 0.92
 #&gt;   ..$ :List of 3
 #&gt;   .. ..$ exposure:List of 2
 #&gt;   .. .. ..$ id   : chr "ieu-a-974"
@@ -248,18 +288,158 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt;   .. .. ..$ moescore : num 0.89
 #&gt;   ..$ :List of 3
 #&gt;   .. ..$ exposure:List of 2
-#&gt;   .. .. ..$ id   : chr "ieu-a-2"
+#&gt;   .. .. ..$ id   : chr "ieu-a-835"
 #&gt;   .. .. ..$ trait: chr "Body mass index"
 #&gt;   .. ..$ outcome :List of 2
 #&gt;   .. .. ..$ id   : chr "ieu-a-7"
 #&gt;   .. .. ..$ trait: chr "Coronary heart disease"
 #&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.417
+#&gt;   .. .. ..$ se       : num 0.0492
+#&gt;   .. .. ..$ pval     : num 1e-11
+#&gt;   .. .. ..$ method   : chr "Simple mean"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.96
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-974"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-9"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.32
+#&gt;   .. .. ..$ se       : num 0.0536
+#&gt;   .. .. ..$ pval     : num 2.32e-09
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "DF + HF"
+#&gt;   .. .. ..$ moescore : num 0.86
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-2"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-9"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.358
+#&gt;   .. .. ..$ se       : num 0.0535
+#&gt;   .. .. ..$ pval     : num 5.91e-09
+#&gt;   .. .. ..$ method   : chr "RE IVW"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.89
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-835"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-9"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
 #&gt;   .. .. ..$ b        : num 0.397
-#&gt;   .. .. ..$ se       : num 0.0727
-#&gt;   .. .. ..$ pval     : num 4.79e-08
-#&gt;   .. .. ..$ method   : chr "Simple median"
+#&gt;   .. .. ..$ se       : num 0.0604
+#&gt;   .. .. ..$ pval     : num 1.79e-08
+#&gt;   .. .. ..$ method   : chr "RE IVW"
 #&gt;   .. .. ..$ selection: chr "HF"
 #&gt;   .. .. ..$ moescore : num 0.92
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST006368"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-9"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.341
+#&gt;   .. .. ..$ se       : num 0.059
+#&gt;   .. .. ..$ pval     : num 1.24e-07
+#&gt;   .. .. ..$ method   : chr "RE IVW"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.84
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-95"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-9"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.371
+#&gt;   .. .. ..$ se       : num 0.0708
+#&gt;   .. .. ..$ pval     : num 1.62e-07
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.75
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST006368"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-6"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.493
+#&gt;   .. .. ..$ se       : num 0.0986
+#&gt;   .. .. ..$ pval     : num 5.88e-07
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "DF + HF"
+#&gt;   .. .. ..$ moescore : num 0.79
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-785"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-9"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.395
+#&gt;   .. .. ..$ se       : num 0.0609
+#&gt;   .. .. ..$ pval     : num 1.07e-06
+#&gt;   .. .. ..$ method   : chr "RE IVW"
+#&gt;   .. .. ..$ selection: chr "HF"
+#&gt;   .. .. ..$ moescore : num 0.84
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST006368"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST000998"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.309
+#&gt;   .. .. ..$ se       : num 0.0648
+#&gt;   .. .. ..$ pval     : num 1.81e-06
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "Tophits"
+#&gt;   .. .. ..$ moescore : num 0.82
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST006368"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-8"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.309
+#&gt;   .. .. ..$ se       : num 0.0648
+#&gt;   .. .. ..$ pval     : num 1.81e-06
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "Tophits"
+#&gt;   .. .. ..$ moescore : num 0.81
+#&gt;   ..$ :List of 3
+#&gt;   .. ..$ exposure:List of 2
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST004904"
+#&gt;   .. .. ..$ trait: chr "Body mass index"
+#&gt;   .. ..$ outcome :List of 2
+#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ trait: chr "Coronary heart disease"
+#&gt;   .. ..$ mr      :List of 6
+#&gt;   .. .. ..$ b        : num 0.275
+#&gt;   .. .. ..$ se       : num 0.0514
+#&gt;   .. .. ..$ pval     : num 2.76e-06
+#&gt;   .. .. ..$ method   : chr "RE IVW"
+#&gt;   .. .. ..$ selection: chr "DF + HF"
+#&gt;   .. .. ..$ moescore : num 0.72
 #&gt;   ..$ :List of 3
 #&gt;   .. ..$ exposure:List of 2
 #&gt;   .. .. ..$ id   : chr "ieu-a-95"
@@ -269,8 +449,8 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt;   .. .. ..$ trait: chr "Coronary heart disease"
 #&gt;   .. ..$ mr      :List of 6
 #&gt;   .. .. ..$ b        : num 0.455
-#&gt;   .. .. ..$ se       : num 0.0931
-#&gt;   .. .. ..$ pval     : num 1.02e-06
+#&gt;   .. .. ..$ se       : num 0.0971
+#&gt;   .. .. ..$ pval     : num 2.82e-06
 #&gt;   .. .. ..$ method   : chr "Penalised median"
 #&gt;   .. .. ..$ selection: chr "DF"
 #&gt;   .. .. ..$ moescore : num 0.78
@@ -282,26 +462,26 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt;   .. .. ..$ id   : chr "ieu-a-8"
 #&gt;   .. .. ..$ trait: chr "Coronary heart disease"
 #&gt;   .. ..$ mr      :List of 6
-#&gt;   .. .. ..$ b        : num 0.331
-#&gt;   .. .. ..$ se       : num 0.0684
-#&gt;   .. .. ..$ pval     : num 1.31e-06
+#&gt;   .. .. ..$ b        : num 0.317
+#&gt;   .. .. ..$ se       : num 0.0686
+#&gt;   .. .. ..$ pval     : num 3.93e-06
 #&gt;   .. .. ..$ method   : chr "FE IVW"
 #&gt;   .. .. ..$ selection: chr "DF"
 #&gt;   .. .. ..$ moescore : num 0.75
 #&gt;   ..$ :List of 3
 #&gt;   .. ..$ exposure:List of 2
-#&gt;   .. .. ..$ id   : chr "ieu-a-835"
+#&gt;   .. .. ..$ id   : chr "ieu-a-2"
 #&gt;   .. .. ..$ trait: chr "Body mass index"
 #&gt;   .. ..$ outcome :List of 2
-#&gt;   .. .. ..$ id   : chr "ieu-a-7"
+#&gt;   .. .. ..$ id   : chr "ebi-a-GCST000998"
 #&gt;   .. .. ..$ trait: chr "Coronary heart disease"
 #&gt;   .. ..$ mr      :List of 6
-#&gt;   .. .. ..$ b        : num 0.36
-#&gt;   .. .. ..$ se       : num 0.0756
-#&gt;   .. .. ..$ pval     : num 1.94e-06
-#&gt;   .. .. ..$ method   : chr "Simple median"
-#&gt;   .. .. ..$ selection: chr "Tophits"
-#&gt;   .. .. ..$ moescore : num 0.91
+#&gt;   .. .. ..$ b        : num 0.312
+#&gt;   .. .. ..$ se       : num 0.0688
+#&gt;   .. .. ..$ pval     : num 5.86e-06
+#&gt;   .. .. ..$ method   : chr "FE IVW"
+#&gt;   .. .. ..$ selection: chr "DF"
+#&gt;   .. .. ..$ moescore : num 0.76
 #&gt;   ..$ :List of 3
 #&gt;   .. ..$ exposure:List of 2
 #&gt;   .. .. ..$ id   : chr "ieu-a-974"
@@ -318,20 +498,20 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt;   .. .. ..$ moescore : num 0.85</div><div class='input'>
 <span class='co'># Use a different threshold</span>
 <span class='fu'>mr</span><span class='op'>(</span>exposure_trait <span class='op'>=</span> <span class='st'>"Body mass index"</span>, pval_threshold <span class='op'>=</span> <span class='fl'>1e-8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 602 x 10</span><span>
-#&gt;    exposure.id exposure.trait  outcome.id outcome.trait     mr.b   mr.se mr.pval
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ieu-a-2     Body mass index ukb-a-74   Non-cancer ill… 0.034</span><span style='text-decoration: underline;'>6</span><span> 0.002</span><span style='text-decoration: underline;'>42</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ieu-a-2     Body mass index ukb-a-388  Hip circumfere… 0.724  0.026</span><span style='text-decoration: underline;'>6</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ieu-a-2     Body mass index ukb-a-382  Waist circumfe… 0.656  0.024</span><span style='text-decoration: underline;'>5</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ieu-a-2     Body mass index ukb-a-35   Comparative he… 0.137  0.007</span><span style='text-decoration: underline;'>91</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ieu-a-2     Body mass index ukb-a-34   Comparative bo… 0.366  0.023</span><span style='text-decoration: underline;'>6</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ieu-a-2     Body mass index ukb-a-293  Trunk predicte… 0.358  0.016</span><span style='text-decoration: underline;'>7</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ieu-a-2     Body mass index ukb-a-292  Trunk fat-free… 0.360  0.017</span><span style='text-decoration: underline;'>7</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ieu-a-2     Body mass index ukb-a-291  Trunk fat mass  0.737  0.028</span><span style='text-decoration: underline;'>0</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ieu-a-2     Body mass index ukb-a-290  Trunk fat perc… 0.527  0.027</span><span style='text-decoration: underline;'>5</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ieu-a-2     Body mass index ukb-a-289  Arm predicted … 0.416  0.017</span><span style='text-decoration: underline;'>7</span><span>        0
-#&gt; </span><span style='color: #949494;'># … with 592 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span><span>
+</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2,138 x 10</span><span>
+#&gt;    exposure.id  exposure.trait  outcome.id outcome.trait    mr.b   mr.se mr.pval
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ieu-a-974    Body mass index ebi-a-GCS… Fibrinogen lev… 0.193 0.002</span><span style='text-decoration: underline;'>24</span><span>       0
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ebi-a-GCST0… Body mass index ukb-b-2303 Body mass inde… 0.595 0.015</span><span style='text-decoration: underline;'>3</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ieu-a-835    Body mass index ukb-b-180… Leg fat mass (… 0.608 0.013</span><span style='text-decoration: underline;'>9</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ieu-a-835    Body mass index ukb-b-128… Arm fat percen… 0.526 0.013</span><span style='text-decoration: underline;'>0</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ieu-a-835    Body mass index ieu-a-93   Overweight      1.67  0.034</span><span style='text-decoration: underline;'>1</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ieu-a-835    Body mass index ieu-a-61   Waist circumfe… 0.824 0.019</span><span style='text-decoration: underline;'>4</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ieu-a-835    Body mass index ieu-a-60   Waist circumfe… 0.820 0.019</span><span style='text-decoration: underline;'>5</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ieu-a-2      Body mass index ukb-b-4650 Comparative bo… 0.439 0.009</span><span style='text-decoration: underline;'>89</span><span>       0
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ebi-a-GCST0… Body mass index ukb-b-201… Arm fat percen… 0.533 0.010</span><span style='text-decoration: underline;'>4</span><span>        0
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ieu-a-2      Body mass index ukb-b-2303 Body mass inde… 0.674 0.017</span><span style='text-decoration: underline;'>8</span><span>        0
+#&gt; </span><span style='color: #949494;'># … with 2,128 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

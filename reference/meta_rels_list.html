@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -187,130 +187,127 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>meta_rels_list</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [[1]]
-#&gt; [1] "BN_GEN_COR"
+#&gt; [1] "BIORXIV_OBJ"
 #&gt; 
 #&gt; [[2]]
-#&gt; [1] "CPIC"
+#&gt; [1] "BIORXIV_PREDICATE"
 #&gt; 
 #&gt; [[3]]
-#&gt; [1] "EFO_CHILD_OF"
+#&gt; [1] "BIORXIV_SUB"
 #&gt; 
 #&gt; [[4]]
-#&gt; [1] "EVENT_IN_PATHWAY"
+#&gt; [1] "BIORXIV_TO_LIT"
 #&gt; 
 #&gt; [[5]]
-#&gt; [1] "EXPRESSED_IN"
+#&gt; [1] "CPIC"
 #&gt; 
 #&gt; [[6]]
-#&gt; [1] "GENE_TO_LITERATURE"
+#&gt; [1] "EFO_CHILD_OF"
 #&gt; 
 #&gt; [[7]]
-#&gt; [1] "GENE_TO_PROTEIN"
+#&gt; [1] "EXPRESSED_IN"
 #&gt; 
 #&gt; [[8]]
-#&gt; [1] "GWAS_NLP"
+#&gt; [1] "GENE_TO_PROTEIN"
 #&gt; 
 #&gt; [[9]]
-#&gt; [1] "GWAS_NLP_EFO"
+#&gt; [1] "GEN_COR"
 #&gt; 
 #&gt; [[10]]
-#&gt; [1] "GWAS_SEM"
+#&gt; [1] "GWAS_EFO_EBI"
 #&gt; 
 #&gt; [[11]]
-#&gt; [1] "GWAS_TO_LIT"
+#&gt; [1] "GWAS_NLP"
 #&gt; 
 #&gt; [[12]]
-#&gt; [1] "GWAS_TO_VARIANT"
+#&gt; [1] "GWAS_NLP_EFO"
 #&gt; 
 #&gt; [[13]]
-#&gt; [1] "INTACT_INTERACTS_WITH_GENE_GENE"
+#&gt; [1] "GWAS_TO_LITERATURE"
 #&gt; 
 #&gt; [[14]]
-#&gt; [1] "INTACT_INTERACTS_WITH_GENE_PROTEIN"
+#&gt; [1] "GWAS_TO_LITERATURE_TRIPLE"
 #&gt; 
 #&gt; [[15]]
-#&gt; [1] "INTACT_INTERACTS_WITH_PROTEIN_PROTEIN"
+#&gt; [1] "GWAS_TO_VARIANT"
 #&gt; 
 #&gt; [[16]]
-#&gt; [1] "INTACT_NOT_INTERACTS_WITH"
+#&gt; [1] "MEDRXIV_OBJ"
 #&gt; 
 #&gt; [[17]]
-#&gt; [1] "METAMAP_LITE"
+#&gt; [1] "MEDRXIV_PREDICATE"
 #&gt; 
 #&gt; [[18]]
-#&gt; [1] "MONDO_MAP_EFO"
+#&gt; [1] "MEDRXIV_SUB"
 #&gt; 
 #&gt; [[19]]
-#&gt; [1] "MONDO_MAP_UMLS"
+#&gt; [1] "MEDRXIV_TO_LIT"
 #&gt; 
 #&gt; [[20]]
-#&gt; [1] "MR"
+#&gt; [1] "METAMAP_LITE"
 #&gt; 
 #&gt; [[21]]
-#&gt; [1] "OBS_COR"
+#&gt; [1] "MONDO_MAP_EFO"
 #&gt; 
 #&gt; [[22]]
-#&gt; [1] "OPENTARGETS_DRUG_TO_DISEASE"
+#&gt; [1] "MONDO_MAP_UMLS"
 #&gt; 
 #&gt; [[23]]
-#&gt; [1] "OPENTARGETS_DRUG_TO_TARGET"
+#&gt; [1] "MR_EVE_MR"
 #&gt; 
 #&gt; [[24]]
-#&gt; [1] "PATHWAY_TO_DISEASE"
+#&gt; [1] "OBS_COR"
 #&gt; 
 #&gt; [[25]]
-#&gt; [1] "PATHWAY_TO_LITERATURE"
+#&gt; [1] "OPENTARGETS_DRUG_TO_DISEASE"
 #&gt; 
 #&gt; [[26]]
-#&gt; [1] "PRECEDING_EVENT"
+#&gt; [1] "OPENTARGETS_DRUG_TO_TARGET"
 #&gt; 
 #&gt; [[27]]
-#&gt; [1] "PROTEIN_IN_EVENT"
+#&gt; [1] "PATHWAY_CHILD_OF"
 #&gt; 
 #&gt; [[28]]
 #&gt; [1] "PROTEIN_IN_PATHWAY"
 #&gt; 
 #&gt; [[29]]
-#&gt; [1] "PROTEIN_TO_DISEASE"
-#&gt; 
-#&gt; [[30]]
-#&gt; [1] "PROTEIN_TO_LITERATURE"
-#&gt; 
-#&gt; [[31]]
 #&gt; [1] "PRS"
 #&gt; 
+#&gt; [[30]]
+#&gt; [1] "TERM_TO_GENE"
+#&gt; 
+#&gt; [[31]]
+#&gt; [1] "SEMMEDDB_OBJ"
+#&gt; 
 #&gt; [[32]]
-#&gt; [1] "SEM_GENE"
+#&gt; [1] "SEMMEDDB_PREDICATE"
 #&gt; 
 #&gt; [[33]]
-#&gt; [1] "SEM_OBJ"
+#&gt; [1] "SEMMEDDB_SUB"
 #&gt; 
 #&gt; [[34]]
-#&gt; [1] "SEM_PREDICATE"
+#&gt; [1] "SEMMEDDB_TO_LIT"
 #&gt; 
 #&gt; [[35]]
-#&gt; [1] "SEM_SUB"
-#&gt; 
-#&gt; [[36]]
-#&gt; [1] "SEM_TO_LIT"
-#&gt; 
-#&gt; [[37]]
 #&gt; [1] "STRING_INTERACT_WITH"
 #&gt; 
-#&gt; [[38]]
-#&gt; [1] "TOPHITS"
+#&gt; [[36]]
+#&gt; [1] "OPENGWAS_TOPHITS"
 #&gt; 
-#&gt; [[39]]
+#&gt; [[37]]
 #&gt; [1] "VARIANT_TO_GENE"
 #&gt; 
-#&gt; [[40]]
+#&gt; [[38]]
 #&gt; [1] "XQTL_MULTI_SNP_MR"
 #&gt; 
-#&gt; [[41]]
+#&gt; [[39]]
 #&gt; [1] "XQTL_SINGLE_SNP_MR_GENE_GWAS"
 #&gt; 
-#&gt; [[42]]
+#&gt; [[40]]
 #&gt; [1] "XQTL_SINGLE_SNP_MR_SNP_GENE"
+#&gt; 
+#&gt; [[41]]
+#&gt; [1] "GENE_TO_DISEASE"
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

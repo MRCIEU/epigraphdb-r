@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -175,7 +175,7 @@
 <span class="co">#&gt;     union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
+<span class="co">#&gt;     EpiGraphDB v1.00 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span></code></pre></div>
 <p>Here we set the starting trait, which we will use to explore associated disease traits.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -198,25 +198,28 @@
 
 <span class="va">mr_df</span> <span class="op">&lt;-</span> <span class="fu">get_mr</span><span class="op">(</span><span class="va">STARTING_TRAIT</span><span class="op">)</span>
 <span class="va">mr_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 29</span>
+<span class="co">#&gt; Rows: 1,178</span>
 <span class="co">#&gt; Columns: 10</span>
 <span class="co">#&gt; $ exposure.id    &lt;chr&gt; "ieu-a-1088", "ieu-a-1088", "ieu-a-1088", "ieu-a-1088",…</span>
 <span class="co">#&gt; $ exposure.trait &lt;chr&gt; "Sleep duration", "Sleep duration", "Sleep duration", "…</span>
-<span class="co">#&gt; $ outcome.id     &lt;chr&gt; "ukb-a-460", "ieu-a-118", "ieu-a-115", "ieu-a-1073", "i…</span>
-<span class="co">#&gt; $ outcome.trait  &lt;chr&gt; "Vitamin and mineral supplements: Vitamin B", "Neurotic…</span>
-<span class="co">#&gt; $ mr.b           &lt;dbl&gt; -0.0100669162, -0.1818909943, 2.3293509483, 0.250118136…</span>
-<span class="co">#&gt; $ mr.se          &lt;dbl&gt; 0.0001310998, 0.0114868227, 0.1428329498, 0.0063949227,…</span>
-<span class="co">#&gt; $ mr.pval        &lt;dbl&gt; 0.000000e+00, 0.000000e+00, 0.000000e+00, 0.000000e+00,…</span>
+<span class="co">#&gt; $ outcome.id     &lt;chr&gt; "met-a-353", "met-a-307", "ieu-a-99", "ieu-a-59", "ieu-…</span>
+<span class="co">#&gt; $ outcome.trait  &lt;chr&gt; "Cortisol", "Cholesterol", "Hip circumference", "Hip ci…</span>
+<span class="co">#&gt; $ mr.b           &lt;dbl&gt; 0.059176931, -0.024282343, -0.288661815, 0.072874008, 0…</span>
+<span class="co">#&gt; $ mr.se          &lt;dbl&gt; 1.385651e-03, 5.409778e-05, 5.928478e-03, 1.617032e-04,…</span>
+<span class="co">#&gt; $ mr.pval        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0…</span>
 <span class="co">#&gt; $ mr.method      &lt;chr&gt; "FE IVW", "FE IVW", "FE IVW", "FE IVW", "FE IVW", "FE I…</span>
-<span class="co">#&gt; $ mr.selection   &lt;chr&gt; "DF", "DF", "DF", "DF", "DF", "DF", "DF", "HF", "DF", "…</span>
-<span class="co">#&gt; $ mr.moescore    &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 0.94, 1.00, 1…</span></code></pre></div>
+<span class="co">#&gt; $ mr.selection   &lt;chr&gt; "DF", "DF", "DF", "DF", "DF", "DF", "DF", "DF", "DF", "…</span>
+<span class="co">#&gt; $ mr.moescore    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</span></code></pre></div>
 </div>
 <div id="map-outcome-traits-to-disease" class="section level2">
 <h2 class="hasAnchor">
 <a href="#map-outcome-traits-to-disease" class="anchor"></a>Map outcome traits to disease</h2>
 <p>For this example, we are interested in traits mapped to a disease node. To do this we utilise the mapping from GWAS trait to Disease via EFO term.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">trait_to_disease</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">trait</span><span class="op">)</span> <span class="op">{</span>
+<code class="sourceCode R"><span class="co"># NOTE: this block takes a bit of time, depending on the size of `mr_df` above.</span>
+<span class="co">#       We will not run the block here in package building,</span>
+<span class="co">#       but readers are encouraged to try it offline!</span>
+<span class="va">trait_to_disease</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">trait</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/ontology/gwas-efo-disease"</span>
   <span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>trait <span class="op">=</span> <span class="va">trait</span><span class="op">)</span>
   <span class="va">disease_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="va">params</span>, mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
@@ -228,20 +231,12 @@
   <span class="va">res</span>
 <span class="op">}</span>
 
-<span class="va">disease_df</span> <span class="op">&lt;-</span> <span class="va">mr_df</span> <span class="op">%&gt;%</span>
+<span class="va">outcome_disease_df</span> <span class="op">&lt;-</span> <span class="va">mr_df</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`outcome.trait`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>disease <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">`outcome.trait`</span>, <span class="va">trait_to_disease</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_lgl</a></span><span class="op">(</span><span class="va">`disease`</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="va">disease_df</span>
-<span class="co">#&gt; # A tibble: 5 x 11</span>
-<span class="co">#&gt;   exposure.id exposure.trait outcome.id outcome.trait      mr.b   mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-1088  Sleep duration ukb-a-107  Non-cancer il… -0.00257 2.53e-4 3.84e-24</span>
-<span class="co">#&gt; 2 ieu-a-1088  Sleep duration ieu-a-6    Coronary hear… -1.04    1.10e-1 2.32e-21</span>
-<span class="co">#&gt; 3 ieu-a-1088  Sleep duration ukb-a-548  Diagnoses - m… -0.00671 8.64e-4 8.01e-15</span>
-<span class="co">#&gt; 4 ieu-a-1088  Sleep duration ukb-a-54   Cancer code  … -0.00191 2.47e-4 1.07e-14</span>
-<span class="co">#&gt; 5 ukb-a-9     Sleep duration ukb-a-13   Sleeplessness… -0.322   3.45e-2 1.10e-11</span>
-<span class="co">#&gt; # … with 4 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.moescore &lt;dbl&gt;, disease &lt;list&gt;</span></code></pre></div>
+<span class="va">outcome_disease_df</span></code></pre></div>
 </div>
 <div id="take-one-example-to-look-for-literature-evidence" class="section level2">
 <h2 class="hasAnchor">
@@ -275,65 +270,67 @@
 <span class="va">lit_df</span> <span class="op">&lt;-</span> <span class="fu">get_gwas_pair_literature</span><span class="op">(</span><span class="va">GWAS_ID_X</span>, <span class="va">GWAS_ID_Y</span><span class="op">)</span>
 
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">lit_df</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 839</span>
-<span class="co">#&gt; Columns: 18</span>
-<span class="co">#&gt; $ gwas.trait       &lt;chr&gt; "Sleep duration", "Sleep duration", "Sleep duration",…</span>
+<span class="co">#&gt; Rows: 1,000</span>
+<span class="co">#&gt; Columns: 20</span>
 <span class="co">#&gt; $ gwas.id          &lt;chr&gt; "ieu-a-1088", "ieu-a-1088", "ieu-a-1088", "ieu-a-1088…</span>
+<span class="co">#&gt; $ gwas.trait       &lt;chr&gt; "Sleep duration", "Sleep duration", "Sleep duration",…</span>
+<span class="co">#&gt; $ gs1.pval         &lt;dbl&gt; 9.468989e-05, 2.478516e-06, 2.478516e-06, 1.854114e-0…</span>
 <span class="co">#&gt; $ gs1.localCount   &lt;int&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…</span>
-<span class="co">#&gt; $ gs1.pval         &lt;dbl&gt; 7.851119e-06, 7.851119e-06, 7.851119e-06, 7.851119e-0…</span>
-<span class="co">#&gt; $ s1.subject_name  &lt;chr&gt; "Caffeine", "Caffeine", "Caffeine", "Caffeine", "Caff…</span>
-<span class="co">#&gt; $ s1.predicate     &lt;chr&gt; "INTERACTS_WITH", "INTERACTS_WITH", "INTERACTS_WITH",…</span>
-<span class="co">#&gt; $ s1.id            &lt;chr&gt; "Caffeine:INTERACTS_WITH:Melatonin", "Caffeine:INTERA…</span>
-<span class="co">#&gt; $ s1.object_name   &lt;chr&gt; "Melatonin", "Melatonin", "Melatonin", "Melatonin", "…</span>
-<span class="co">#&gt; $ st.name          &lt;chr&gt; "Melatonin", "Melatonin", "Melatonin", "Melatonin", "…</span>
-<span class="co">#&gt; $ st.type          &lt;chr&gt; "horm", "horm", "horm", "horm", "horm", "horm", "horm…</span>
-<span class="co">#&gt; $ s2.subject_name  &lt;chr&gt; "Melatonin", "Melatonin", "Melatonin", "Melatonin", "…</span>
-<span class="co">#&gt; $ s2.predicate     &lt;chr&gt; "ASSOCIATED_WITH", "ASSOCIATED_WITH", "ASSOCIATED_WIT…</span>
-<span class="co">#&gt; $ s2.id            &lt;chr&gt; "Melatonin:ASSOCIATED_WITH:Acute coronary syndrome", …</span>
-<span class="co">#&gt; $ s2.object_name   &lt;chr&gt; "Acute coronary syndrome", "Myocardial Infarction", "…</span>
-<span class="co">#&gt; $ gs2.localCount   &lt;int&gt; 3, 2, 3, 9, 2, 6, 4, 2, 2, 2, 3, 3, 2, 2, 2, 5, 2, 4,…</span>
-<span class="co">#&gt; $ gs2.pval         &lt;dbl&gt; 8.329046e-05, 1.094386e-02, 8.329046e-05, 3.435014e-1…</span>
-<span class="co">#&gt; $ assoc_gwas.trait &lt;chr&gt; "Coronary heart disease", "Coronary heart disease", "…</span>
-<span class="co">#&gt; $ assoc_gwas.id    &lt;chr&gt; "ieu-a-6", "ieu-a-6", "ieu-a-6", "ieu-a-6", "ieu-a-6"…</span></code></pre></div>
+<span class="co">#&gt; $ st1.name         &lt;chr&gt; "Sulpiride", "Glycine", "Glycine", "gamma-aminobutyri…</span>
+<span class="co">#&gt; $ s1.id            &lt;chr&gt; "C0038803:INTERACTS_WITH:C0003596", "C0017890:STIMULA…</span>
+<span class="co">#&gt; $ s1.subject_id    &lt;chr&gt; "C0038803", "C0017890", "C0017890", "C0016904", "C001…</span>
+<span class="co">#&gt; $ s1.object_id     &lt;chr&gt; "C0003596", "C0033487", "C0033487", "C0033487", "C003…</span>
+<span class="co">#&gt; $ s1.predicate     &lt;chr&gt; "INTERACTS_WITH", "STIMULATES", "STIMULATES", "STIMUL…</span>
+<span class="co">#&gt; $ st.name          &lt;chr&gt; "Apomorphine", "propofol", "propofol", "propofol", "p…</span>
+<span class="co">#&gt; $ st.type          &lt;list&gt; &lt;"orch", "phsu"&gt;, &lt;"orch", "phsu"&gt;, &lt;"orch", "phsu"&gt;…</span>
+<span class="co">#&gt; $ s2.id            &lt;chr&gt; "C0003596:TREATS:C0242350", "C0033487:AUGMENTS:C01517…</span>
+<span class="co">#&gt; $ s2.subject_id    &lt;chr&gt; "C0003596", "C0033487", "C0033487", "C0033487", "C003…</span>
+<span class="co">#&gt; $ s2.object_id     &lt;chr&gt; "C0242350", "C0151744", "C0010054", "C0151744", "C001…</span>
+<span class="co">#&gt; $ s2.predicate     &lt;chr&gt; "TREATS", "AUGMENTS", "TREATS", "AUGMENTS", "TREATS",…</span>
+<span class="co">#&gt; $ gs2.pval         &lt;dbl&gt; 0.045878175, 0.002682225, 0.001627351, 0.002682225, 0…</span>
+<span class="co">#&gt; $ gs2.localCount   &lt;int&gt; 3, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…</span>
+<span class="co">#&gt; $ st2.name         &lt;chr&gt; "Erectile dysfunction", "Myocardial Ischemia", "Coron…</span>
+<span class="co">#&gt; $ assoc_gwas.id    &lt;chr&gt; "ieu-a-6", "ieu-a-6", "ieu-a-6", "ieu-a-6", "ieu-a-6"…</span>
+<span class="co">#&gt; $ assoc_gwas.trait &lt;chr&gt; "Coronary heart disease", "Coronary heart disease", "…</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Predicate counts for SemMed triples for trait X</span>
 <span class="va">lit_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`s1.predicate`</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 8 x 2</span>
+<span class="co">#&gt; # A tibble: 7 x 2</span>
 <span class="co">#&gt;   s1.predicate           n</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt;</span>
-<span class="co">#&gt; 1 INTERACTS_WITH       643</span>
-<span class="co">#&gt; 2 INHIBITS              80</span>
-<span class="co">#&gt; 3 NEG_INTERACTS_WITH    49</span>
-<span class="co">#&gt; 4 STIMULATES            47</span>
-<span class="co">#&gt; 5 higher_than           10</span>
-<span class="co">#&gt; 6 COEXISTS_WITH          7</span>
-<span class="co">#&gt; 7 NEG_INHIBITS           2</span>
-<span class="co">#&gt; 8 CONVERTS_TO            1</span></code></pre></div>
+<span class="co">#&gt; 1 INTERACTS_WITH       719</span>
+<span class="co">#&gt; 2 STIMULATES            96</span>
+<span class="co">#&gt; 3 INHIBITS              93</span>
+<span class="co">#&gt; 4 NEG_INTERACTS_WITH    51</span>
+<span class="co">#&gt; 5 higher_than           23</span>
+<span class="co">#&gt; 6 COEXISTS_WITH         15</span>
+<span class="co">#&gt; 7 NEG_INHIBITS           3</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Predicate counts for SemMed triples for trait Y</span>
 <span class="va">lit_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`s2.predicate`</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 15 x 2</span>
-<span class="co">#&gt;    s2.predicate        n</span>
-<span class="co">#&gt;    &lt;chr&gt;           &lt;int&gt;</span>
-<span class="co">#&gt;  1 CAUSES            154</span>
-<span class="co">#&gt;  2 STIMULATES        132</span>
-<span class="co">#&gt;  3 PREVENTS          123</span>
-<span class="co">#&gt;  4 PREDISPOSES       107</span>
-<span class="co">#&gt;  5 AFFECTS            95</span>
-<span class="co">#&gt;  6 ASSOCIATED_WITH    50</span>
-<span class="co">#&gt;  7 INTERACTS_WITH     50</span>
-<span class="co">#&gt;  8 TREATS             31</span>
-<span class="co">#&gt;  9 DISRUPTS           30</span>
-<span class="co">#&gt; 10 INHIBITS           24</span>
-<span class="co">#&gt; 11 COEXISTS_WITH      21</span>
-<span class="co">#&gt; 12 NEG_PREVENTS       16</span>
-<span class="co">#&gt; 13 higher_than         3</span>
-<span class="co">#&gt; 14 AUGMENTS            2</span>
-<span class="co">#&gt; 15 same_as             1</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 16 x 2</span>
+<span class="co">#&gt;    s2.predicate            n</span>
+<span class="co">#&gt;    &lt;chr&gt;               &lt;int&gt;</span>
+<span class="co">#&gt;  1 TREATS                191</span>
+<span class="co">#&gt;  2 STIMULATES            132</span>
+<span class="co">#&gt;  3 CAUSES                120</span>
+<span class="co">#&gt;  4 PREVENTS              117</span>
+<span class="co">#&gt;  5 ASSOCIATED_WITH       103</span>
+<span class="co">#&gt;  6 PREDISPOSES            83</span>
+<span class="co">#&gt;  7 AFFECTS                71</span>
+<span class="co">#&gt;  8 INTERACTS_WITH         62</span>
+<span class="co">#&gt;  9 INHIBITS               47</span>
+<span class="co">#&gt; 10 COEXISTS_WITH          34</span>
+<span class="co">#&gt; 11 DISRUPTS               19</span>
+<span class="co">#&gt; 12 NEG_PREVENTS           13</span>
+<span class="co">#&gt; 13 higher_than             4</span>
+<span class="co">#&gt; 14 AUGMENTS                2</span>
+<span class="co">#&gt; 15 NEG_ASSOCIATED_WITH     1</span>
+<span class="co">#&gt; 16 same_as                 1</span></code></pre></div>
 <div id="filter-the-data-by-predicates" class="section level3">
 <h3 class="hasAnchor">
 <a href="#filter-the-data-by-predicates" class="anchor"></a>Filter the data by predicates</h3>
@@ -349,72 +346,81 @@
 <span class="va">lit_df_filter</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`s1.predicate`</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt; # A tibble: 5 x 2</span>
 <span class="co">#&gt;   s1.predicate           n</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt;</span>
-<span class="co">#&gt; 1 INTERACTS_WITH       608</span>
-<span class="co">#&gt; 2 INHIBITS              68</span>
-<span class="co">#&gt; 3 NEG_INTERACTS_WITH    48</span>
-<span class="co">#&gt; 4 STIMULATES            28</span>
-<span class="co">#&gt; 5 higher_than            9</span>
-<span class="co">#&gt; 6 CONVERTS_TO            1</span></code></pre></div>
+<span class="co">#&gt; 1 INTERACTS_WITH       649</span>
+<span class="co">#&gt; 2 INHIBITS              87</span>
+<span class="co">#&gt; 3 STIMULATES            66</span>
+<span class="co">#&gt; 4 NEG_INTERACTS_WITH    26</span>
+<span class="co">#&gt; 5 higher_than           22</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lit_df_filter</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`s2.predicate`</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 13 x 2</span>
-<span class="co">#&gt;    s2.predicate       n</span>
-<span class="co">#&gt;    &lt;chr&gt;          &lt;int&gt;</span>
-<span class="co">#&gt;  1 CAUSES           154</span>
-<span class="co">#&gt;  2 STIMULATES       132</span>
-<span class="co">#&gt;  3 PREVENTS         123</span>
-<span class="co">#&gt;  4 PREDISPOSES      107</span>
-<span class="co">#&gt;  5 AFFECTS           93</span>
-<span class="co">#&gt;  6 INTERACTS_WITH    50</span>
-<span class="co">#&gt;  7 DISRUPTS          30</span>
-<span class="co">#&gt;  8 TREATS            27</span>
-<span class="co">#&gt;  9 INHIBITS          24</span>
-<span class="co">#&gt; 10 NEG_PREVENTS      16</span>
-<span class="co">#&gt; 11 higher_than        3</span>
-<span class="co">#&gt; 12 AUGMENTS           2</span>
-<span class="co">#&gt; 13 same_as            1</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 14 x 2</span>
+<span class="co">#&gt;    s2.predicate            n</span>
+<span class="co">#&gt;    &lt;chr&gt;               &lt;int&gt;</span>
+<span class="co">#&gt;  1 TREATS                180</span>
+<span class="co">#&gt;  2 STIMULATES            132</span>
+<span class="co">#&gt;  3 CAUSES                120</span>
+<span class="co">#&gt;  4 PREVENTS              117</span>
+<span class="co">#&gt;  5 PREDISPOSES            83</span>
+<span class="co">#&gt;  6 AFFECTS                70</span>
+<span class="co">#&gt;  7 INTERACTS_WITH         62</span>
+<span class="co">#&gt;  8 INHIBITS               46</span>
+<span class="co">#&gt;  9 DISRUPTS               19</span>
+<span class="co">#&gt; 10 NEG_PREVENTS           13</span>
+<span class="co">#&gt; 11 higher_than             4</span>
+<span class="co">#&gt; 12 AUGMENTS                2</span>
+<span class="co">#&gt; 13 NEG_ASSOCIATED_WITH     1</span>
+<span class="co">#&gt; 14 same_as                 1</span></code></pre></div>
 </div>
 </div>
 <div id="literature-results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#literature-results" class="anchor"></a>Literature results</h2>
-<p>If we explore the full table in <code>lit_df_filter</code>, we can see lots of links between the two traits, pinned on specific overlapping terms. For example:</p>
-<p><code>Aspirin:INHIBITS:Oral anticoagulants</code> from Sleep duration (s1) and <code>anticoagulants:INHIBITS:P2RY12</code> from CHD (s2).</p>
+<p>If we explore the full table in <code>lit_df_filter</code>, we can see lots of links between the two traits, pinned on specific overlapping terms.</p>
 <p>We can summarise the <a href="https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml">SemMedDB semantic type</a> and number of overlapping terms:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lit_counts</span> <span class="op">&lt;-</span> <span class="va">lit_df_filter</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`st.type`</span>, <span class="va">`st.name`</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">`st.type`</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">`n`</span><span class="op">)</span><span class="op">)</span>
 <span class="va">lit_counts</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 21 x 3</span>
-<span class="co">#&gt;    st.type st.name                   n</span>
-<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;                 &lt;int&gt;</span>
-<span class="co">#&gt;  1 aapp    Leptin                    6</span>
-<span class="co">#&gt;  2 aapp    Somatotropin              5</span>
-<span class="co">#&gt;  3 aapp    Adrenergic Receptor       4</span>
-<span class="co">#&gt;  4 aapp    apolipoprotein E-4        2</span>
-<span class="co">#&gt;  5 aapp    Glutathione               2</span>
-<span class="co">#&gt;  6 aapp    Monoamine Oxidase         1</span>
-<span class="co">#&gt;  7 gngm    Cytochrome P450          10</span>
-<span class="co">#&gt;  8 gngm    Glycoproteins             2</span>
-<span class="co">#&gt;  9 horm    Melatonin                28</span>
-<span class="co">#&gt; 10 horm    Hormones                  3</span>
-<span class="co">#&gt; 11 orch    Ethanol                 672</span>
-<span class="co">#&gt; 12 orch    Oral anticoagulants      10</span>
-<span class="co">#&gt; 13 orch    Metoprolol                8</span>
-<span class="co">#&gt; 14 orch    Propofol                  2</span>
-<span class="co">#&gt; 15 orch    Acetaldehyde              1</span>
-<span class="co">#&gt; 16 orch    Benzodiazepines           1</span>
-<span class="co">#&gt; 17 orch    gamma hydroxybutyrate     1</span>
-<span class="co">#&gt; 18 orch    Luteolin                  1</span>
-<span class="co">#&gt; 19 orch    Morphine                  1</span>
-<span class="co">#&gt; 20 orch    Neostigmine               1</span>
-<span class="co">#&gt; 21 orch    Thiopental                1</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 33 x 3</span>
+<span class="co">#&gt;    st.type   st.name                                  n</span>
+<span class="co">#&gt;    &lt;list&gt;    &lt;chr&gt;                                &lt;int&gt;</span>
+<span class="co">#&gt;  1 &lt;chr [2]&gt; ethanol                                571</span>
+<span class="co">#&gt;  2 &lt;chr [2]&gt; Oral anticoagulants                     24</span>
+<span class="co">#&gt;  3 &lt;chr [2]&gt; Metoprolol                              20</span>
+<span class="co">#&gt;  4 &lt;chr [2]&gt; morphine                                 7</span>
+<span class="co">#&gt;  5 &lt;chr [2]&gt; Benzodiazepines                          4</span>
+<span class="co">#&gt;  6 &lt;chr [2]&gt; propofol                                 4</span>
+<span class="co">#&gt;  7 &lt;chr [2]&gt; Diazepam                                 2</span>
+<span class="co">#&gt;  8 &lt;chr [2]&gt; Midazolam                                2</span>
+<span class="co">#&gt;  9 &lt;chr [2]&gt; Thiopental                               2</span>
+<span class="co">#&gt; 10 &lt;chr [2]&gt; Apomorphine                              1</span>
+<span class="co">#&gt; 11 &lt;chr [2]&gt; gamma hydroxybutyrate                    1</span>
+<span class="co">#&gt; 12 &lt;chr [2]&gt; Luteolin                                 1</span>
+<span class="co">#&gt; 13 &lt;chr [2]&gt; Neostigmine                              1</span>
+<span class="co">#&gt; 14 &lt;chr [2]&gt; Glycoproteins                            3</span>
+<span class="co">#&gt; 15 &lt;chr [2]&gt; glutathione                              1</span>
+<span class="co">#&gt; 16 &lt;chr [3]&gt; Cytochrome P450                          6</span>
+<span class="co">#&gt; 17 &lt;chr [3]&gt; mitogen-activated protein kinase p38     4</span>
+<span class="co">#&gt; 18 &lt;chr [3]&gt; AHSA1                                    2</span>
+<span class="co">#&gt; 19 &lt;chr [3]&gt; AIMP2                                    2</span>
+<span class="co">#&gt; 20 &lt;chr [3]&gt; CRK                                      2</span>
+<span class="co">#&gt; 21 &lt;chr [3]&gt; GRAP2                                    2</span>
+<span class="co">#&gt; 22 &lt;chr [3]&gt; MAPK1                                    2</span>
+<span class="co">#&gt; 23 &lt;chr [3]&gt; MAPK14                                   2</span>
+<span class="co">#&gt; 24 &lt;chr [3]&gt; POLDIP2                                  2</span>
+<span class="co">#&gt; 25 &lt;chr [3]&gt; Protein Kinase C                         2</span>
+<span class="co">#&gt; 26 &lt;chr [1]&gt; agonists                                31</span>
+<span class="co">#&gt; 27 &lt;chr [1]&gt; Antidepressive Agents                   12</span>
+<span class="co">#&gt; 28 &lt;chr [1]&gt; Anesthetics                              8</span>
+<span class="co">#&gt; 29 &lt;chr [2]&gt; melatonin                               88</span>
+<span class="co">#&gt; 30 &lt;chr [2]&gt; Medroxyprogesterone 17-Acetate           5</span>
+<span class="co">#&gt; # … with 3 more rows</span></code></pre></div>
 <p>Note, the SemMedDB semantic types have been pre-filtered to only include a subset of possibilities.</p>
 <p>Further examples of these term IDs and descriptions can be found here - <a href="https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml">https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml</a></p>
 <div id="plotting-the-overlapping-term-frequencies" class="section level3">
@@ -426,7 +432,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&lt;</span> <span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="op">{</span>
     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`st.name`</span>, y <span class="op">=</span> <span class="va">`n`</span>, fill <span class="op">=</span> <span class="va">`st.type`</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`st.name`</span>, y <span class="op">=</span> <span class="va">`n`</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>
         <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">`n`</span><span class="op">)</span>,
@@ -435,29 +441,30 @@
       <span class="op">)</span> <span class="op">+</span>
       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">}</span></code></pre></div>
-<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
 <div id="look-in-detail-at-one-overlapping-term" class="section level3">
 <h3 class="hasAnchor">
 <a href="#look-in-detail-at-one-overlapping-term" class="anchor"></a>Look in detail at one overlapping term</h3>
-<p>Here we look at cases where <code>Leptin</code> is the central overlapping term.</p>
+<p>Here we look at cases where <code>leptin</code> is the central overlapping term.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">focus_term</span> <span class="op">&lt;-</span> <span class="st">"Leptin"</span>
+<code class="sourceCode R"><span class="va">focus_term</span> <span class="op">&lt;-</span> <span class="st">"leptin"</span>
 <span class="va">lit_detail</span> <span class="op">&lt;-</span> <span class="va">lit_df_filter</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">`st.name`</span> <span class="op">==</span> <span class="va">focus_term</span><span class="op">)</span>
 <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 18</span>
-<span class="co">#&gt;   gwas.trait  gwas.id gs1.localCount gs1.pval s1.subject_name s1.predicate s1.id</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;    &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;        &lt;chr&gt;</span>
-<span class="co">#&gt; 1 Sleep dura… ieu-a-…              5 1.77e-12 ghrelin         INHIBITS     ghre…</span>
-<span class="co">#&gt; 2 Sleep dura… ieu-a-…              5 1.77e-12 ghrelin         INHIBITS     ghre…</span>
-<span class="co">#&gt; 3 Sleep dura… ieu-a-…              5 1.77e-12 ghrelin         INHIBITS     ghre…</span>
-<span class="co">#&gt; 4 Sleep dura… ieu-a-…              5 1.77e-12 ghrelin         INHIBITS     ghre…</span>
-<span class="co">#&gt; 5 Sleep dura… ieu-a-…              5 1.77e-12 ghrelin         INHIBITS     ghre…</span>
-<span class="co">#&gt; 6 Sleep dura… ieu-a-…              5 1.77e-12 ghrelin         INHIBITS     ghre…</span>
-<span class="co">#&gt; # … with 11 more variables: s1.object_name &lt;chr&gt;, st.name &lt;chr&gt;, st.type &lt;chr&gt;,</span>
-<span class="co">#&gt; #   s2.subject_name &lt;chr&gt;, s2.predicate &lt;chr&gt;, s2.id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   s2.object_name &lt;chr&gt;, gs2.localCount &lt;int&gt;, gs2.pval &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   assoc_gwas.trait &lt;chr&gt;, assoc_gwas.id &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 20</span>
+<span class="co">#&gt;   gwas.id  gwas.trait   gs1.pval gs1.localCount st1.name s1.id     s1.subject_id</span>
+<span class="co">#&gt;   &lt;chr&gt;    &lt;chr&gt;           &lt;dbl&gt;          &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;        </span>
+<span class="co">#&gt; 1 ieu-a-1… Sleep dura…   2.48e-6              2 Cortico… C0010124… C0010124     </span>
+<span class="co">#&gt; 2 ieu-a-1… Sleep dura…   2.48e-6              2 Cortico… C0010124… C0010124     </span>
+<span class="co">#&gt; 3 ieu-a-1… Sleep dura…   2.48e-6              2 Cortico… C0010124… C0010124     </span>
+<span class="co">#&gt; 4 ieu-a-1… Sleep dura…   2.48e-6              2 Cortico… C0010124… C0010124     </span>
+<span class="co">#&gt; 5 ieu-a-1… Sleep dura…   2.48e-6              2 Cortico… C0010124… C0010124     </span>
+<span class="co">#&gt; 6 ieu-a-1… Sleep dura…   2.48e-6              2 Cortico… C0010124… C0010124     </span>
+<span class="co">#&gt; # … with 13 more variables: s1.object_id &lt;chr&gt;, s1.predicate &lt;chr&gt;,</span>
+<span class="co">#&gt; #   st.name &lt;chr&gt;, st.type &lt;list&gt;, s2.id &lt;chr&gt;, s2.subject_id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   s2.object_id &lt;chr&gt;, s2.predicate &lt;chr&gt;, gs2.pval &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   gs2.localCount &lt;int&gt;, st2.name &lt;chr&gt;, assoc_gwas.id &lt;chr&gt;,</span>
+<span class="co">#&gt; #   assoc_gwas.trait &lt;chr&gt;</span></code></pre></div>
 <p>We can create a network diagram to visualise these relationships.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">lit_detail</span> <span class="op">&lt;-</span> <span class="va">lit_detail</span> <span class="op">%&gt;%</span>
@@ -467,92 +474,92 @@
 <span class="va">nodes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span>
   <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`gwas.trait`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
   <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`assoc_gwas.trait`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`s1.subject_name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`s2.subject_name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`s1.object_name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
-  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`s2.object_name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">node</span> <span class="op">==</span> <span class="va">focus_term</span>, <span class="fl">3</span>, <span class="va">node_type</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`st1.name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`st2.name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>,
+  <span class="va">lit_detail</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`st.name`</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>node_type <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,
+<span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">nodes</span>
-<span class="co">#&gt; # A tibble: 10 x 2</span>
-<span class="co">#&gt;    node                      node_type</span>
-<span class="co">#&gt;    &lt;chr&gt;                         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 SLEEP DURATION                    1</span>
-<span class="co">#&gt;  2 CORONARY HEART DISEASE            1</span>
-<span class="co">#&gt;  3 ghrelin                           2</span>
-<span class="co">#&gt;  4 Leptin                            3</span>
-<span class="co">#&gt;  5 Coronary Arteriosclerosis         2</span>
-<span class="co">#&gt;  6 Coronary heart disease            2</span>
-<span class="co">#&gt;  7 Proteome                          2</span>
-<span class="co">#&gt;  8 Sleep Apnea, Obstructive          2</span>
-<span class="co">#&gt;  9 Adiponectin                       2</span>
-<span class="co">#&gt; 10 Insulin                           2</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 20 x 2</span>
+<span class="co">#&gt;    node                        node_type</span>
+<span class="co">#&gt;    &lt;chr&gt;                           &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 SLEEP DURATION                      1</span>
+<span class="co">#&gt;  2 CORONARY HEART DISEASE              1</span>
+<span class="co">#&gt;  3 Corticosterone                      2</span>
+<span class="co">#&gt;  4 Sleep Apnea, Obstructive            2</span>
+<span class="co">#&gt;  5 Phosphotransferases                 2</span>
+<span class="co">#&gt;  6 JAK2                                2</span>
+<span class="co">#&gt;  7 Janus kinase 2                      2</span>
+<span class="co">#&gt;  8 Insulin                             2</span>
+<span class="co">#&gt;  9 Adiponectin                         2</span>
+<span class="co">#&gt; 10 Coronary heart disease              2</span>
+<span class="co">#&gt; 11 Proteome                            2</span>
+<span class="co">#&gt; 12 Endothelial dysfunction             2</span>
+<span class="co">#&gt; 13 Cardiovascular Diseases             2</span>
+<span class="co">#&gt; 14 Congestive heart failure            2</span>
+<span class="co">#&gt; 15 Acute Coronary Syndrome             2</span>
+<span class="co">#&gt; 16 Coronary Arteriosclerosis           2</span>
+<span class="co">#&gt; 17 Stable angina                       2</span>
+<span class="co">#&gt; 18 Metabolic syndrome                  2</span>
+<span class="co">#&gt; 19 Acute myocardial infarction         2</span>
+<span class="co">#&gt; 20 leptin                              3</span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span>
   <span class="co"># exposure -&gt; s1 subject</span>
   <span class="va">lit_detail</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`gwas.trait`</span>, assoc_node <span class="op">=</span> <span class="va">`s1.subject_name`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`gwas.trait`</span>, assoc_node <span class="op">=</span> <span class="va">`st1.name`</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># s2 object -&gt; outcome</span>
   <span class="va">lit_detail</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`s2.object_name`</span>, assoc_node <span class="op">=</span> <span class="va">`assoc_gwas.trait`</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>node <span class="op">=</span> <span class="va">`st2.name`</span>, assoc_node <span class="op">=</span> <span class="va">`assoc_gwas.trait`</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># s1 subject - s1 predicate -&gt; s1 object</span>
   <span class="va">lit_detail</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
-      node <span class="op">=</span> <span class="va">`s1.subject_name`</span>, assoc_node <span class="op">=</span> <span class="va">`s1.object_name`</span>,
+      node <span class="op">=</span> <span class="va">`st1.name`</span>, assoc_node <span class="op">=</span> <span class="va">`st.name`</span>,
       label <span class="op">=</span> <span class="va">`s1.predicate`</span>
     <span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="co"># s2 subject - s2 predicate -&gt; s2 object</span>
   <span class="va">lit_detail</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span>
-      node <span class="op">=</span> <span class="va">`s2.subject_name`</span>, assoc_node <span class="op">=</span> <span class="va">`s2.object_name`</span>,
+      node <span class="op">=</span> <span class="va">`st.name`</span>, assoc_node <span class="op">=</span> <span class="va">`st2.name`</span>,
       label <span class="op">=</span> <span class="va">`s2.predicate`</span>
     <span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>
 <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">edges</span>
-<span class="co">#&gt; # A tibble: 14 x 3</span>
-<span class="co">#&gt;    node                      assoc_node                label         </span>
-<span class="co">#&gt;    &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;         </span>
-<span class="co">#&gt;  1 SLEEP DURATION            ghrelin                   &lt;NA&gt;          </span>
-<span class="co">#&gt;  2 Coronary Arteriosclerosis CORONARY HEART DISEASE    &lt;NA&gt;          </span>
-<span class="co">#&gt;  3 Coronary heart disease    CORONARY HEART DISEASE    &lt;NA&gt;          </span>
-<span class="co">#&gt;  4 Proteome                  CORONARY HEART DISEASE    &lt;NA&gt;          </span>
-<span class="co">#&gt;  5 Sleep Apnea, Obstructive  CORONARY HEART DISEASE    &lt;NA&gt;          </span>
-<span class="co">#&gt;  6 Adiponectin               CORONARY HEART DISEASE    &lt;NA&gt;          </span>
-<span class="co">#&gt;  7 Insulin                   CORONARY HEART DISEASE    &lt;NA&gt;          </span>
-<span class="co">#&gt;  8 ghrelin                   Leptin                    INHIBITS      </span>
-<span class="co">#&gt;  9 Leptin                    Coronary Arteriosclerosis TREATS        </span>
-<span class="co">#&gt; 10 Leptin                    Coronary heart disease    PREDISPOSES   </span>
-<span class="co">#&gt; 11 Leptin                    Proteome                  INTERACTS_WITH</span>
-<span class="co">#&gt; 12 Leptin                    Sleep Apnea, Obstructive  TREATS        </span>
-<span class="co">#&gt; 13 Leptin                    Adiponectin               STIMULATES    </span>
-<span class="co">#&gt; 14 Leptin                    Insulin                   INTERACTS_WITH</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 40 x 3</span>
+<span class="co">#&gt;    node                     assoc_node             label</span>
+<span class="co">#&gt;    &lt;chr&gt;                    &lt;chr&gt;                  &lt;chr&gt;</span>
+<span class="co">#&gt;  1 SLEEP DURATION           Corticosterone         &lt;NA&gt; </span>
+<span class="co">#&gt;  2 Sleep Apnea, Obstructive CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  3 Phosphotransferases      CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  4 JAK2                     CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  5 Janus kinase 2           CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  6 Insulin                  CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  7 Adiponectin              CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  8 Coronary heart disease   CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt;  9 Proteome                 CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt; 10 Endothelial dysfunction  CORONARY HEART DISEASE &lt;NA&gt; </span>
+<span class="co">#&gt; # … with 30 more rows</span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_network</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">edges</span>, <span class="va">nodes</span>, <span class="va">show_edge_labels</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span>
-
-  <span class="co"># default is to not display edge labels</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">show_edge_labels</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">edges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">edges</span>, <span class="op">-</span><span class="va">label</span><span class="op">)</span>
-  <span class="op">}</span>
+<code class="sourceCode R"><span class="va">plot_network</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">edges</span>, <span class="va">nodes</span><span class="op">)</span> <span class="op">{</span>
 
   <span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/graph_from_data_frame.html">graph_from_data_frame</a></span><span class="op">(</span><span class="va">edges</span>, directed <span class="op">=</span> <span class="cn">TRUE</span>, vertices <span class="op">=</span> <span class="va">nodes</span><span class="op">)</span>
   <span class="va">graph</span><span class="op">$</span><span class="va">layout</span> <span class="op">&lt;-</span> <span class="va">layout_with_kk</span>
 
   <span class="co"># generate colors based on node type</span>
-  <span class="va">colrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tomato"</span>, <span class="st">"steelblue"</span>, <span class="st">"gold"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">$</span><span class="va">color</span> <span class="op">&lt;-</span> <span class="va">colrs</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">$</span><span class="va">node_type</span><span class="op">]</span>
+  <span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"tomato"</span>, <span class="st">"lightblue"</span>, <span class="st">"gold"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">$</span><span class="va">color</span> <span class="op">&lt;-</span> <span class="va">colors</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/igraph/man/V.html">V</a></span><span class="op">(</span><span class="va">graph</span><span class="op">)</span><span class="op">$</span><span class="va">node_type</span><span class="op">]</span>
 
   <span class="co"># Configure canvas</span>
   <span class="va">default_mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span><span class="st">"mar"</span><span class="op">)</span>
   <span class="va">new_mar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="va">new_mar</span><span class="op">)</span>
 
-  <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/plot.igraph.html">plot.igraph</a></span><span class="op">(</span><span class="va">graph</span>,
+  <span class="fu"><a href="https://rdrr.io/pkg/igraph/man/plot.igraph.html">plot.igraph</a></span><span class="op">(</span>
+    <span class="va">graph</span>,
     vertex.size <span class="op">=</span> <span class="fl">13</span>,
     vertex.label.color <span class="op">=</span> <span class="st">"black"</span>,
     vertex.label.family <span class="op">=</span> <span class="st">"Helvetica"</span>,
@@ -565,8 +572,8 @@
   <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="va">default_mar</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">plot_network</span><span class="op">(</span><span class="va">edges</span>, <span class="va">nodes</span>, show_edge_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-17-1.png" width="2187.5"></p>
+<code class="sourceCode R"><span class="fu">plot_network</span><span class="op">(</span><span class="va">edges</span>, <span class="va">nodes</span><span class="op">)</span></code></pre></div>
+<p><img src="case-3-literature-triangulation_files/figure-html/unnamed-chunk-16-1.png" width="2187.5"></p>
 </div>
 </div>
 <div id="checking-the-source-literature" class="section level2">
@@ -583,7 +590,7 @@
     pval_threshold <span class="op">=</span> <span class="fl">1e-1</span>
   <span class="op">)</span>
   <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="va">params</span>, mode <span class="op">=</span> <span class="st">"table"</span><span class="op">)</span>
-  <span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`triple.id`</span>, <span class="va">`lit.pubmed_id`</span><span class="op">)</span>
+  <span class="va">df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">`triple.id`</span>, <span class="va">`triple.name`</span>, <span class="va">`lit.id`</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">pub_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span>
@@ -597,24 +604,20 @@
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/transpose.html">transpose</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">get_literature</span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">gwas_id</span>, <span class="va">x</span><span class="op">$</span><span class="va">semmed_triple_id</span><span class="op">)</span><span class="op">)</span>
 <span class="va">pub_df</span>
-<span class="co">#&gt; # A tibble: 15 x 2</span>
-<span class="co">#&gt;    triple.id                                 lit.pubmed_id</span>
-<span class="co">#&gt;    &lt;chr&gt;                                     &lt;chr&gt;        </span>
-<span class="co">#&gt;  1 ghrelin:INHIBITS:Leptin                   21659802     </span>
-<span class="co">#&gt;  2 ghrelin:INHIBITS:Leptin                   22473743     </span>
-<span class="co">#&gt;  3 ghrelin:INHIBITS:Leptin                   19955752     </span>
-<span class="co">#&gt;  4 ghrelin:INHIBITS:Leptin                   18719052     </span>
-<span class="co">#&gt;  5 ghrelin:INHIBITS:Leptin                   30364557     </span>
-<span class="co">#&gt;  6 Leptin:TREATS:Coronary Arteriosclerosis   26769430     </span>
-<span class="co">#&gt;  7 Leptin:TREATS:Coronary Arteriosclerosis   20691218     </span>
-<span class="co">#&gt;  8 Leptin:PREDISPOSES:Coronary heart disease 18723235     </span>
-<span class="co">#&gt;  9 Leptin:PREDISPOSES:Coronary heart disease 22412070     </span>
-<span class="co">#&gt; 10 Leptin:INTERACTS_WITH:Proteome            26975316     </span>
-<span class="co">#&gt; 11 Leptin:TREATS:Sleep Apnea, Obstructive    10449691     </span>
-<span class="co">#&gt; 12 Leptin:STIMULATES:Adiponectin             17403719     </span>
-<span class="co">#&gt; 13 Leptin:STIMULATES:Adiponectin             21481397     </span>
-<span class="co">#&gt; 14 Leptin:INTERACTS_WITH:Insulin             12724058     </span>
-<span class="co">#&gt; 15 Leptin:INTERACTS_WITH:Insulin             15648007</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 124 x 3</span>
+<span class="co">#&gt;    triple.id                       triple.name                           lit.id </span>
+<span class="co">#&gt;    &lt;chr&gt;                           &lt;chr&gt;                                 &lt;chr&gt;  </span>
+<span class="co">#&gt;  1 C0010124:NEG_INTERACTS_WITH:C0… Corticosterone NEG_INTERACTS_WITH Le… 200515…</span>
+<span class="co">#&gt;  2 C0010124:NEG_INTERACTS_WITH:C0… Corticosterone NEG_INTERACTS_WITH Le… 154755…</span>
+<span class="co">#&gt;  3 C0299583:TREATS:C0520679        Leptin|LEP TREATS Sleep Apnea, Obstr… 104496…</span>
+<span class="co">#&gt;  4 C0299583:TREATS:C0520679        Leptin|LEP TREATS Sleep Apnea, Obstr… 104496…</span>
+<span class="co">#&gt;  5 C0299583:STIMULATES:C0031727    Leptin STIMULATES Phosphotransferases 159272…</span>
+<span class="co">#&gt;  6 C0299583:STIMULATES:3717        Leptin|LEP STIMULATES Janus kinase 2… 159272…</span>
+<span class="co">#&gt;  7 C0299583:STIMULATES:C0169661    Leptin|LEP STIMULATES Janus kinase 2… 159272…</span>
+<span class="co">#&gt;  8 C0299583:INTERACTS_WITH:C00216… Leptin INTERACTS_WITH Insulin         156480…</span>
+<span class="co">#&gt;  9 C0299583:INTERACTS_WITH:C00216… Leptin INTERACTS_WITH Insulin         127240…</span>
+<span class="co">#&gt; 10 C0299583:STIMULATES:C0389071    Leptin STIMULATES Adiponectin         158112…</span>
+<span class="co">#&gt; # … with 114 more rows</span></code></pre></div>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
@@ -637,22 +640,22 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] epigraphdb_0.2.1 igraph_1.2.6     ggplot2_3.3.3    glue_1.4.2      </span>
-<span class="co">#&gt; [5] purrr_0.3.4      dplyr_1.0.4      magrittr_2.0.1  </span>
+<span class="co">#&gt; [1] epigraphdb_0.2.2 igraph_1.2.6     ggplot2_3.3.3    glue_1.4.2      </span>
+<span class="co">#&gt; [5] purrr_0.3.4      dplyr_1.0.5      magrittr_2.0.1  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.0      tools_4.0.4      </span>
+<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.1      tools_4.0.4      </span>
 <span class="co">#&gt;  [5] digest_0.6.27     jsonlite_1.7.2    evaluate_0.14     memoise_2.0.0    </span>
 <span class="co">#&gt;  [9] lifecycle_1.0.0   tibble_3.1.0      gtable_0.3.0      pkgconfig_2.0.3  </span>
 <span class="co">#&gt; [13] rlang_0.4.10      rstudioapi_0.13   cli_2.3.1         curl_4.3         </span>
-<span class="co">#&gt; [17] yaml_2.2.1        pkgdown_1.6.1     xfun_0.21         fastmap_1.1.0    </span>
+<span class="co">#&gt; [17] yaml_2.2.1        pkgdown_1.6.1     xfun_0.22         fastmap_1.1.0    </span>
 <span class="co">#&gt; [21] httr_1.4.2        withr_2.4.1       stringr_1.4.0     knitr_1.31       </span>
-<span class="co">#&gt; [25] generics_0.1.0    desc_1.2.0        fs_1.5.0          vctrs_0.3.6      </span>
+<span class="co">#&gt; [25] generics_0.1.0    desc_1.3.0        fs_1.5.0          vctrs_0.3.6      </span>
 <span class="co">#&gt; [29] systemfonts_1.0.1 rprojroot_2.0.2   grid_4.0.4        tidyselect_1.1.0 </span>
-<span class="co">#&gt; [33] R6_2.5.0          textshaping_0.3.1 fansi_0.4.2       rmarkdown_2.7    </span>
+<span class="co">#&gt; [33] R6_2.5.0          textshaping_0.3.3 fansi_0.4.2       rmarkdown_2.7    </span>
 <span class="co">#&gt; [37] farver_2.1.0      ps_1.6.0          scales_1.1.1      htmltools_0.5.1.1</span>
 <span class="co">#&gt; [41] ellipsis_0.3.1    assertthat_0.2.1  colorspace_2.0-0  labeling_0.4.2   </span>
-<span class="co">#&gt; [45] ragg_1.1.1        utf8_1.1.4        stringi_1.5.3     munsell_0.5.0    </span>
+<span class="co">#&gt; [45] ragg_1.1.2        utf8_1.2.1        stringi_1.5.3     munsell_0.5.0    </span>
 <span class="co">#&gt; [49] cachem_1.0.4      crayon_1.4.1</span></code></pre></div>
 </div>
   </div>

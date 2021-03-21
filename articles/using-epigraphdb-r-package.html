@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
+<span class="co">#&gt;     EpiGraphDB v1.00 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span></code></pre></div>
 <div id="methods-to-query-epigraphdb" class="section level2">
 <h2 class="hasAnchor">
@@ -144,15 +144,27 @@
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="va">df</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt; # A tibble: 18 x 10</span>
+<span class="co">#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29</span>
+<span class="co">#&gt;  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20</span>
+<span class="co">#&gt;  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt;  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11</span>
+<span class="co">#&gt;  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9</span>
+<span class="co">#&gt;  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9</span>
+<span class="co">#&gt;  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8</span>
+<span class="co">#&gt;  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7</span>
+<span class="co">#&gt;  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7</span>
+<span class="co">#&gt; 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7</span>
+<span class="co">#&gt; 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6</span>
+<span class="co">#&gt; 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6</span>
+<span class="co">#&gt; 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6</span>
+<span class="co">#&gt; 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6</span>
+<span class="co">#&gt; 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6</span>
+<span class="co">#&gt; 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
@@ -171,15 +183,27 @@
 <span class="op">)</span>
 
 <span class="va">df</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt; # A tibble: 18 x 10</span>
+<span class="co">#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29</span>
+<span class="co">#&gt;  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20</span>
+<span class="co">#&gt;  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt;  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11</span>
+<span class="co">#&gt;  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9</span>
+<span class="co">#&gt;  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9</span>
+<span class="co">#&gt;  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8</span>
+<span class="co">#&gt;  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7</span>
+<span class="co">#&gt;  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7</span>
+<span class="co">#&gt; 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7</span>
+<span class="co">#&gt; 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6</span>
+<span class="co">#&gt; 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6</span>
+<span class="co">#&gt; 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6</span>
+<span class="co">#&gt; 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6</span>
+<span class="co">#&gt; 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6</span>
+<span class="co">#&gt; 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 <p>For more information on the API endpoints, please visit:</p>
@@ -206,15 +230,27 @@
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>
 <span class="op">)</span>
 <span class="va">df</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt; # A tibble: 18 x 10</span>
+<span class="co">#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29</span>
+<span class="co">#&gt;  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20</span>
+<span class="co">#&gt;  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt;  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11</span>
+<span class="co">#&gt;  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9</span>
+<span class="co">#&gt;  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9</span>
+<span class="co">#&gt;  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8</span>
+<span class="co">#&gt;  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7</span>
+<span class="co">#&gt;  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7</span>
+<span class="co">#&gt; 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7</span>
+<span class="co">#&gt; 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6</span>
+<span class="co">#&gt; 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6</span>
+<span class="co">#&gt; 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6</span>
+<span class="co">#&gt; 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6</span>
+<span class="co">#&gt; 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6</span>
+<span class="co">#&gt; 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
@@ -232,10 +268,22 @@
 <span class="va">response</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
-<span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.trait = \""| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.0155</span>
+<span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0433</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
-<span class="co">#&gt;  $ results :List of 6</span>
+<span class="co">#&gt;  $ results :List of 18</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
+<span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>

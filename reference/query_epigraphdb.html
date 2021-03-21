@@ -85,7 +85,7 @@ returned status." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -237,15 +237,27 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
   <span class='op'>)</span>,
   mode <span class='op'>=</span> <span class='st'>"table"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6 x 10</span><span>
-#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>             </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.072</span><span style='text-decoration: underline;'>7</span><span> 4.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.093</span><span style='text-decoration: underline;'>1</span><span> 1.02</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.068</span><span style='text-decoration: underline;'>4</span><span> 1.31</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.075</span><span style='text-decoration: underline;'>6</span><span> 1.94</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>6</span><span> ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 18 x 10</span><span>
+#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.041</span><span style='text-decoration: underline;'>5</span><span> 5.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.041</span><span style='text-decoration: underline;'>0</span><span> 3.33</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-20</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.049</span><span style='text-decoration: underline;'>2</span><span> 1.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.053</span><span style='text-decoration: underline;'>6</span><span> 2.32</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.053</span><span style='text-decoration: underline;'>5</span><span> 5.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.060</span><span style='text-decoration: underline;'>4</span><span> 1.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.059</span><span style='text-decoration: underline;'>0</span><span> 1.24</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.070</span><span style='text-decoration: underline;'>8</span><span> 1.62</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.098</span><span style='text-decoration: underline;'>6</span><span> 5.88</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>11</span><span> ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.060</span><span style='text-decoration: underline;'>9</span><span> 1.07</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>12</span><span> ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.064</span><span style='text-decoration: underline;'>8</span><span> 1.81</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>13</span><span> ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.064</span><span style='text-decoration: underline;'>8</span><span> 1.81</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>14</span><span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.051</span><span style='text-decoration: underline;'>4</span><span> 2.76</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>15</span><span> ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.097</span><span style='text-decoration: underline;'>1</span><span> 2.82</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>16</span><span> ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.068</span><span style='text-decoration: underline;'>6</span><span> 3.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>17</span><span> ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.068</span><span style='text-decoration: underline;'>8</span><span> 5.86</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
+#&gt; </span><span style='color: #BCBCBC;'>18</span><span> ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
 #&gt; </span><span style='color: #949494;'># … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span><span>
 #&gt; </span><span style='color: #949494;'>#   mr.moescore &lt;dbl&gt;</span><span></div><div class='input'>
 <span class='co'># GET /meta/nodes/Gwas/list</span>
@@ -272,7 +284,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; [1] "MATCH p=(protein:Protein)-[r:STRING_INTERACT_WITH]-(assoc_protein:Protein) WHERE protein.uniprot_id IN ['P30793', 'Q9NZM1', 'O95236'] RETURN protein {.uniprot_id}, assoc_protein {.uniprot_id}"
 #&gt; 
 #&gt; $metadata$total_seconds
-#&gt; [1] 0.010175
+#&gt; [1] 0.020927
 #&gt; 
 #&gt; $metadata$empty_results
 #&gt; [1] FALSE
@@ -287,7 +299,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[1]]$assoc_protein
 #&gt; $results[[1]]$assoc_protein$uniprot_id
-#&gt; [1] "P00439"
+#&gt; [1] "O14638"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -299,7 +311,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[2]]$assoc_protein
 #&gt; $results[[2]]$assoc_protein$uniprot_id
-#&gt; [1] "Q5TCS8"
+#&gt; [1] "P20711"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -311,7 +323,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[3]]$assoc_protein
 #&gt; $results[[3]]$assoc_protein$uniprot_id
-#&gt; [1] "O14638"
+#&gt; [1] "O43556"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -323,7 +335,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[4]]$assoc_protein
 #&gt; $results[[4]]$assoc_protein$uniprot_id
-#&gt; [1] "P20711"
+#&gt; [1] "P00374"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -335,7 +347,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[5]]$assoc_protein
 #&gt; $results[[5]]$assoc_protein$uniprot_id
-#&gt; [1] "O43556"
+#&gt; [1] "Q32Q12"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -347,7 +359,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[6]]$assoc_protein
 #&gt; $results[[6]]$assoc_protein$uniprot_id
-#&gt; [1] "P00374"
+#&gt; [1] "P22392"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -359,7 +371,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[7]]$assoc_protein
 #&gt; $results[[7]]$assoc_protein$uniprot_id
-#&gt; [1] "P22392"
+#&gt; [1] "P05187"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -371,7 +383,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[8]]$assoc_protein
 #&gt; $results[[8]]$assoc_protein$uniprot_id
-#&gt; [1] "P05187"
+#&gt; [1] "P22102"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -383,7 +395,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[9]]$assoc_protein
 #&gt; $results[[9]]$assoc_protein$uniprot_id
-#&gt; [1] "P22102"
+#&gt; [1] "P07101"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -395,7 +407,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[10]]$assoc_protein
 #&gt; $results[[10]]$assoc_protein$uniprot_id
-#&gt; [1] "P07101"
+#&gt; [1] "Q9BY32"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -407,7 +419,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[11]]$assoc_protein
 #&gt; $results[[11]]$assoc_protein$uniprot_id
-#&gt; [1] "Q9BY32"
+#&gt; [1] "P50583"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -431,7 +443,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[13]]$assoc_protein
 #&gt; $results[[13]]$assoc_protein$uniprot_id
-#&gt; [1] "P50583"
+#&gt; [1] "P05186"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -443,7 +455,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[14]]$assoc_protein
 #&gt; $results[[14]]$assoc_protein$uniprot_id
-#&gt; [1] "P05186"
+#&gt; [1] "Q05932"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -455,7 +467,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[15]]$assoc_protein
 #&gt; $results[[15]]$assoc_protein$uniprot_id
-#&gt; [1] "Q05932"
+#&gt; [1] "Q9NZB8"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -515,7 +527,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[20]]$assoc_protein
 #&gt; $results[[20]]$assoc_protein$uniprot_id
-#&gt; [1] "Q9NP79"
+#&gt; [1] "Q9Y5B8"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -527,7 +539,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[21]]$assoc_protein
 #&gt; $results[[21]]$assoc_protein$uniprot_id
-#&gt; [1] "Q9Y5B8"
+#&gt; [1] "Q9NP79"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -551,7 +563,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[23]]$assoc_protein
 #&gt; $results[[23]]$assoc_protein$uniprot_id
-#&gt; [1] "P51841"
+#&gt; [1] "O94875"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -563,7 +575,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[24]]$assoc_protein
 #&gt; $results[[24]]$assoc_protein$uniprot_id
-#&gt; [1] "O00746"
+#&gt; [1] "O14656"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -575,7 +587,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[25]]$assoc_protein
 #&gt; $results[[25]]$assoc_protein$uniprot_id
-#&gt; [1] "Q13232"
+#&gt; [1] "P20594"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -587,7 +599,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[26]]$assoc_protein
 #&gt; $results[[26]]$assoc_protein$uniprot_id
-#&gt; [1] "P35270"
+#&gt; [1] "P30613"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -599,7 +611,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[27]]$assoc_protein
 #&gt; $results[[27]]$assoc_protein$uniprot_id
-#&gt; [1] "Q96PE7"
+#&gt; [1] "Q9NQC3"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -611,7 +623,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[28]]$assoc_protein
 #&gt; $results[[28]]$assoc_protein$uniprot_id
-#&gt; [1] "O75298"
+#&gt; [1] "P15531"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -623,7 +635,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[29]]$assoc_protein
 #&gt; $results[[29]]$assoc_protein$uniprot_id
-#&gt; [1] "P17752"
+#&gt; [1] "P14618"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -635,7 +647,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[30]]$assoc_protein
 #&gt; $results[[30]]$assoc_protein$uniprot_id
-#&gt; [1] "Q9NVV9"
+#&gt; [1] "O75355"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -647,7 +659,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[31]]$assoc_protein
 #&gt; $results[[31]]$assoc_protein$uniprot_id
-#&gt; [1] "Q02846"
+#&gt; [1] "Q02108"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -659,7 +671,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[32]]$assoc_protein
 #&gt; $results[[32]]$assoc_protein$uniprot_id
-#&gt; [1] "P25092"
+#&gt; [1] "P09923"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -671,7 +683,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[33]]$assoc_protein
 #&gt; $results[[33]]$assoc_protein$uniprot_id
-#&gt; [1] "P30047"
+#&gt; [1] "P10696"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -683,7 +695,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[34]]$assoc_protein
 #&gt; $results[[34]]$assoc_protein$uniprot_id
-#&gt; [1] "Q02153"
+#&gt; [1] "P16152"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -695,7 +707,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[35]]$assoc_protein
 #&gt; $results[[35]]$assoc_protein$uniprot_id
-#&gt; [1] "Q16799"
+#&gt; [1] "P33402"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -719,7 +731,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[37]]$assoc_protein
 #&gt; $results[[37]]$assoc_protein$uniprot_id
-#&gt; [1] "P33402"
+#&gt; [1] "Q03393"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -731,7 +743,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[38]]$assoc_protein
 #&gt; $results[[38]]$assoc_protein$uniprot_id
-#&gt; [1] "Q03393"
+#&gt; [1] "Q16799"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -743,7 +755,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[39]]$assoc_protein
 #&gt; $results[[39]]$assoc_protein$uniprot_id
-#&gt; [1] "P16152"
+#&gt; [1] "Q02153"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -755,7 +767,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[40]]$assoc_protein
 #&gt; $results[[40]]$assoc_protein$uniprot_id
-#&gt; [1] "P09923"
+#&gt; [1] "P25092"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -767,7 +779,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[41]]$assoc_protein
 #&gt; $results[[41]]$assoc_protein$uniprot_id
-#&gt; [1] "P10696"
+#&gt; [1] "P30047"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -779,7 +791,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[42]]$assoc_protein
 #&gt; $results[[42]]$assoc_protein$uniprot_id
-#&gt; [1] "Q02108"
+#&gt; [1] "Q02846"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -791,7 +803,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[43]]$assoc_protein
 #&gt; $results[[43]]$assoc_protein$uniprot_id
-#&gt; [1] "O75355"
+#&gt; [1] "Q9NVV9"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -803,7 +815,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[44]]$assoc_protein
 #&gt; $results[[44]]$assoc_protein$uniprot_id
-#&gt; [1] "P14618"
+#&gt; [1] "P17752"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -815,7 +827,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[45]]$assoc_protein
 #&gt; $results[[45]]$assoc_protein$uniprot_id
-#&gt; [1] "Q9NQC3"
+#&gt; [1] "O75298"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -827,7 +839,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[46]]$assoc_protein
 #&gt; $results[[46]]$assoc_protein$uniprot_id
-#&gt; [1] "P30613"
+#&gt; [1] "Q96PE7"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -839,7 +851,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[47]]$assoc_protein
 #&gt; $results[[47]]$assoc_protein$uniprot_id
-#&gt; [1] "P15531"
+#&gt; [1] "P35270"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -851,7 +863,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[48]]$assoc_protein
 #&gt; $results[[48]]$assoc_protein$uniprot_id
-#&gt; [1] "P20594"
+#&gt; [1] "O00746"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -863,7 +875,7 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[49]]$assoc_protein
 #&gt; $results[[49]]$assoc_protein$uniprot_id
-#&gt; [1] "O14656"
+#&gt; [1] "Q13232"
 #&gt; 
 #&gt; 
 #&gt; 
@@ -875,79 +887,823 @@ For details, please refer to <a href='https://httr.r-lib.org/reference/POST.html
 #&gt; 
 #&gt; $results[[50]]$assoc_protein
 #&gt; $results[[50]]$assoc_protein$uniprot_id
-#&gt; [1] "O94875"
+#&gt; [1] "P51841"
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; $results[[51]]
 #&gt; $results[[51]]$protein
 #&gt; $results[[51]]$protein$uniprot_id
-#&gt; [1] "Q9NZM1"
+#&gt; [1] "P30793"
 #&gt; 
 #&gt; 
 #&gt; $results[[51]]$assoc_protein
 #&gt; $results[[51]]$assoc_protein$uniprot_id
-#&gt; [1] "P15692"
+#&gt; [1] "P00439"
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; $results[[52]]
 #&gt; $results[[52]]$protein
 #&gt; $results[[52]]$protein$uniprot_id
-#&gt; [1] "Q9NZM1"
+#&gt; [1] "P30793"
 #&gt; 
 #&gt; 
 #&gt; $results[[52]]$assoc_protein
 #&gt; $results[[52]]$assoc_protein$uniprot_id
-#&gt; [1] "P50570"
+#&gt; [1] "O75414"
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; $results[[53]]
 #&gt; $results[[53]]$protein
 #&gt; $results[[53]]$protein$uniprot_id
-#&gt; [1] "Q9NZM1"
+#&gt; [1] "P30793"
 #&gt; 
 #&gt; 
 #&gt; $results[[53]]$assoc_protein
 #&gt; $results[[53]]$assoc_protein$uniprot_id
-#&gt; [1] "Q9NZN3"
+#&gt; [1] "Q5TCS8"
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; $results[[54]]
 #&gt; $results[[54]]$protein
 #&gt; $results[[54]]$protein$uniprot_id
-#&gt; [1] "Q9NZM1"
+#&gt; [1] "P30793"
 #&gt; 
 #&gt; 
 #&gt; $results[[54]]$assoc_protein
 #&gt; $results[[54]]$assoc_protein$uniprot_id
-#&gt; [1] "P22681"
+#&gt; [1] "Q02846"
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; $results[[55]]
 #&gt; $results[[55]]$protein
 #&gt; $results[[55]]$protein$uniprot_id
-#&gt; [1] "Q9NZM1"
+#&gt; [1] "P30793"
 #&gt; 
 #&gt; 
 #&gt; $results[[55]]$assoc_protein
 #&gt; $results[[55]]$assoc_protein$uniprot_id
-#&gt; [1] "P35968"
+#&gt; [1] "P50583"
 #&gt; 
 #&gt; 
 #&gt; 
 #&gt; $results[[56]]
 #&gt; $results[[56]]$protein
 #&gt; $results[[56]]$protein$uniprot_id
-#&gt; [1] "Q9NZM1"
+#&gt; [1] "P30793"
 #&gt; 
 #&gt; 
 #&gt; $results[[56]]$assoc_protein
 #&gt; $results[[56]]$assoc_protein$uniprot_id
+#&gt; [1] "P35270"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[57]]
+#&gt; $results[[57]]$protein
+#&gt; $results[[57]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[57]]$assoc_protein
+#&gt; $results[[57]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NP79"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[58]]
+#&gt; $results[[58]]$protein
+#&gt; $results[[58]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[58]]$assoc_protein
+#&gt; $results[[58]]$assoc_protein$uniprot_id
+#&gt; [1] "O43556"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[59]]
+#&gt; $results[[59]]$protein
+#&gt; $results[[59]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[59]]$assoc_protein
+#&gt; $results[[59]]$assoc_protein$uniprot_id
+#&gt; [1] "P30613"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[60]]
+#&gt; $results[[60]]$protein
+#&gt; $results[[60]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[60]]$assoc_protein
+#&gt; $results[[60]]$assoc_protein$uniprot_id
+#&gt; [1] "P15531"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[61]]
+#&gt; $results[[61]]$protein
+#&gt; $results[[61]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[61]]$assoc_protein
+#&gt; $results[[61]]$assoc_protein$uniprot_id
+#&gt; [1] "Q05932"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[62]]
+#&gt; $results[[62]]$protein
+#&gt; $results[[62]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[62]]$assoc_protein
+#&gt; $results[[62]]$assoc_protein$uniprot_id
+#&gt; [1] "P07101"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[63]]
+#&gt; $results[[63]]$protein
+#&gt; $results[[63]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[63]]$assoc_protein
+#&gt; $results[[63]]$assoc_protein$uniprot_id
+#&gt; [1] "Q16799"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[64]]
+#&gt; $results[[64]]$protein
+#&gt; $results[[64]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[64]]$assoc_protein
+#&gt; $results[[64]]$assoc_protein$uniprot_id
+#&gt; [1] "P10696"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[65]]
+#&gt; $results[[65]]$protein
+#&gt; $results[[65]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[65]]$assoc_protein
+#&gt; $results[[65]]$assoc_protein$uniprot_id
+#&gt; [1] "P05186"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[66]]
+#&gt; $results[[66]]$protein
+#&gt; $results[[66]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[66]]$assoc_protein
+#&gt; $results[[66]]$assoc_protein$uniprot_id
+#&gt; [1] "P09923"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[67]]
+#&gt; $results[[67]]$protein
+#&gt; $results[[67]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[67]]$assoc_protein
+#&gt; $results[[67]]$assoc_protein$uniprot_id
+#&gt; [1] "P49961"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[68]]
+#&gt; $results[[68]]$protein
+#&gt; $results[[68]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[68]]$assoc_protein
+#&gt; $results[[68]]$assoc_protein$uniprot_id
+#&gt; [1] "O75355"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[69]]
+#&gt; $results[[69]]$protein
+#&gt; $results[[69]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[69]]$assoc_protein
+#&gt; $results[[69]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9BY32"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[70]]
+#&gt; $results[[70]]$protein
+#&gt; $results[[70]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[70]]$assoc_protein
+#&gt; $results[[70]]$assoc_protein$uniprot_id
+#&gt; [1] "O75298"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[71]]
+#&gt; $results[[71]]$protein
+#&gt; $results[[71]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[71]]$assoc_protein
+#&gt; $results[[71]]$assoc_protein$uniprot_id
+#&gt; [1] "P05187"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[72]]
+#&gt; $results[[72]]$protein
+#&gt; $results[[72]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[72]]$assoc_protein
+#&gt; $results[[72]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NVV9"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[73]]
+#&gt; $results[[73]]$protein
+#&gt; $results[[73]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[73]]$assoc_protein
+#&gt; $results[[73]]$assoc_protein$uniprot_id
+#&gt; [1] "P20711"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[74]]
+#&gt; $results[[74]]$protein
+#&gt; $results[[74]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[74]]$assoc_protein
+#&gt; $results[[74]]$assoc_protein$uniprot_id
+#&gt; [1] "O94875"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[75]]
+#&gt; $results[[75]]$protein
+#&gt; $results[[75]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[75]]$assoc_protein
+#&gt; $results[[75]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9BX66"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[76]]
+#&gt; $results[[76]]$protein
+#&gt; $results[[76]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[76]]$assoc_protein
+#&gt; $results[[76]]$assoc_protein$uniprot_id
+#&gt; [1] "P00374"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[77]]
+#&gt; $results[[77]]$protein
+#&gt; $results[[77]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[77]]$assoc_protein
+#&gt; $results[[77]]$assoc_protein$uniprot_id
+#&gt; [1] "Q02153"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[78]]
+#&gt; $results[[78]]$protein
+#&gt; $results[[78]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[78]]$assoc_protein
+#&gt; $results[[78]]$assoc_protein$uniprot_id
+#&gt; [1] "P20594"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[79]]
+#&gt; $results[[79]]$protein
+#&gt; $results[[79]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[79]]$assoc_protein
+#&gt; $results[[79]]$assoc_protein$uniprot_id
+#&gt; [1] "Q96PE7"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[80]]
+#&gt; $results[[80]]$protein
+#&gt; $results[[80]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[80]]$assoc_protein
+#&gt; $results[[80]]$assoc_protein$uniprot_id
+#&gt; [1] "P09417"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[81]]
+#&gt; $results[[81]]$protein
+#&gt; $results[[81]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[81]]$assoc_protein
+#&gt; $results[[81]]$assoc_protein$uniprot_id
+#&gt; [1] "P17752"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[82]]
+#&gt; $results[[82]]$protein
+#&gt; $results[[82]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[82]]$assoc_protein
+#&gt; $results[[82]]$assoc_protein$uniprot_id
+#&gt; [1] "Q03393"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[83]]
+#&gt; $results[[83]]$protein
+#&gt; $results[[83]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[83]]$assoc_protein
+#&gt; $results[[83]]$assoc_protein$uniprot_id
+#&gt; [1] "O95197"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[84]]
+#&gt; $results[[84]]$protein
+#&gt; $results[[84]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[84]]$assoc_protein
+#&gt; $results[[84]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9Y5B8"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[85]]
+#&gt; $results[[85]]$protein
+#&gt; $results[[85]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[85]]$assoc_protein
+#&gt; $results[[85]]$assoc_protein$uniprot_id
+#&gt; [1] "P22102"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[86]]
+#&gt; $results[[86]]$protein
+#&gt; $results[[86]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[86]]$assoc_protein
+#&gt; $results[[86]]$assoc_protein$uniprot_id
+#&gt; [1] "O14638"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[87]]
+#&gt; $results[[87]]$protein
+#&gt; $results[[87]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[87]]$assoc_protein
+#&gt; $results[[87]]$assoc_protein$uniprot_id
+#&gt; [1] "P22413"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[88]]
+#&gt; $results[[88]]$protein
+#&gt; $results[[88]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[88]]$assoc_protein
+#&gt; $results[[88]]$assoc_protein$uniprot_id
+#&gt; [1] "P33402"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[89]]
+#&gt; $results[[89]]$protein
+#&gt; $results[[89]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[89]]$assoc_protein
+#&gt; $results[[89]]$assoc_protein$uniprot_id
+#&gt; [1] "Q02108"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[90]]
+#&gt; $results[[90]]$protein
+#&gt; $results[[90]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[90]]$assoc_protein
+#&gt; $results[[90]]$assoc_protein$uniprot_id
+#&gt; [1] "P16066"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[91]]
+#&gt; $results[[91]]$protein
+#&gt; $results[[91]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[91]]$assoc_protein
+#&gt; $results[[91]]$assoc_protein$uniprot_id
+#&gt; [1] "Q5MY95"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[92]]
+#&gt; $results[[92]]$protein
+#&gt; $results[[92]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[92]]$assoc_protein
+#&gt; $results[[92]]$assoc_protein$uniprot_id
+#&gt; [1] "P51841"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[93]]
+#&gt; $results[[93]]$protein
+#&gt; $results[[93]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[93]]$assoc_protein
+#&gt; $results[[93]]$assoc_protein$uniprot_id
+#&gt; [1] "O14656"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[94]]
+#&gt; $results[[94]]$protein
+#&gt; $results[[94]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[94]]$assoc_protein
+#&gt; $results[[94]]$assoc_protein$uniprot_id
+#&gt; [1] "P16152"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[95]]
+#&gt; $results[[95]]$protein
+#&gt; $results[[95]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[95]]$assoc_protein
+#&gt; $results[[95]]$assoc_protein$uniprot_id
+#&gt; [1] "P30047"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[96]]
+#&gt; $results[[96]]$protein
+#&gt; $results[[96]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[96]]$assoc_protein
+#&gt; $results[[96]]$assoc_protein$uniprot_id
+#&gt; [1] "Q13232"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[97]]
+#&gt; $results[[97]]$protein
+#&gt; $results[[97]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[97]]$assoc_protein
+#&gt; $results[[97]]$assoc_protein$uniprot_id
+#&gt; [1] "P25092"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[98]]
+#&gt; $results[[98]]$protein
+#&gt; $results[[98]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[98]]$assoc_protein
+#&gt; $results[[98]]$assoc_protein$uniprot_id
+#&gt; [1] "Q5TCS8"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[99]]
+#&gt; $results[[99]]$protein
+#&gt; $results[[99]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[99]]$assoc_protein
+#&gt; $results[[99]]$assoc_protein$uniprot_id
+#&gt; [1] "O00746"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[100]]
+#&gt; $results[[100]]$protein
+#&gt; $results[[100]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[100]]$assoc_protein
+#&gt; $results[[100]]$assoc_protein$uniprot_id
+#&gt; [1] "O75414"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[101]]
+#&gt; $results[[101]]$protein
+#&gt; $results[[101]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[101]]$assoc_protein
+#&gt; $results[[101]]$assoc_protein$uniprot_id
+#&gt; [1] "P22392"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[102]]
+#&gt; $results[[102]]$protein
+#&gt; $results[[102]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[102]]$assoc_protein
+#&gt; $results[[102]]$assoc_protein$uniprot_id
+#&gt; [1] "Q32Q12"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[103]]
+#&gt; $results[[103]]$protein
+#&gt; $results[[103]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[103]]$assoc_protein
+#&gt; $results[[103]]$assoc_protein$uniprot_id
+#&gt; [1] "P00439"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[104]]
+#&gt; $results[[104]]$protein
+#&gt; $results[[104]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[104]]$assoc_protein
+#&gt; $results[[104]]$assoc_protein$uniprot_id
+#&gt; [1] "P14618"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[105]]
+#&gt; $results[[105]]$protein
+#&gt; $results[[105]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[105]]$assoc_protein
+#&gt; $results[[105]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NQC3"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[106]]
+#&gt; $results[[106]]$protein
+#&gt; $results[[106]]$protein$uniprot_id
+#&gt; [1] "P30793"
+#&gt; 
+#&gt; 
+#&gt; $results[[106]]$assoc_protein
+#&gt; $results[[106]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NZB8"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[107]]
+#&gt; $results[[107]]$protein
+#&gt; $results[[107]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[107]]$assoc_protein
+#&gt; $results[[107]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NZN3"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[108]]
+#&gt; $results[[108]]$protein
+#&gt; $results[[108]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[108]]$assoc_protein
+#&gt; $results[[108]]$assoc_protein$uniprot_id
+#&gt; [1] "P15692"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[109]]
+#&gt; $results[[109]]$protein
+#&gt; $results[[109]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[109]]$assoc_protein
+#&gt; $results[[109]]$assoc_protein$uniprot_id
+#&gt; [1] "P50570"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[110]]
+#&gt; $results[[110]]$protein
+#&gt; $results[[110]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[110]]$assoc_protein
+#&gt; $results[[110]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NZN3"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[111]]
+#&gt; $results[[111]]$protein
+#&gt; $results[[111]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[111]]$assoc_protein
+#&gt; $results[[111]]$assoc_protein$uniprot_id
+#&gt; [1] "P22681"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[112]]
+#&gt; $results[[112]]$protein
+#&gt; $results[[112]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[112]]$assoc_protein
+#&gt; $results[[112]]$assoc_protein$uniprot_id
+#&gt; [1] "P35968"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[113]]
+#&gt; $results[[113]]$protein
+#&gt; $results[[113]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[113]]$assoc_protein
+#&gt; $results[[113]]$assoc_protein$uniprot_id
 #&gt; [1] "Q9NZN4"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[114]]
+#&gt; $results[[114]]$protein
+#&gt; $results[[114]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[114]]$assoc_protein
+#&gt; $results[[114]]$assoc_protein$uniprot_id
+#&gt; [1] "Q9NZN4"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[115]]
+#&gt; $results[[115]]$protein
+#&gt; $results[[115]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[115]]$assoc_protein
+#&gt; $results[[115]]$assoc_protein$uniprot_id
+#&gt; [1] "P15692"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[116]]
+#&gt; $results[[116]]$protein
+#&gt; $results[[116]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[116]]$assoc_protein
+#&gt; $results[[116]]$assoc_protein$uniprot_id
+#&gt; [1] "P35968"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[117]]
+#&gt; $results[[117]]$protein
+#&gt; $results[[117]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[117]]$assoc_protein
+#&gt; $results[[117]]$assoc_protein$uniprot_id
+#&gt; [1] "P50570"
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $results[[118]]
+#&gt; $results[[118]]$protein
+#&gt; $results[[118]]$protein$uniprot_id
+#&gt; [1] "Q9NZM1"
+#&gt; 
+#&gt; 
+#&gt; $results[[118]]$assoc_protein
+#&gt; $results[[118]]$assoc_protein$uniprot_id
+#&gt; [1] "P22681"
 #&gt; 
 #&gt; 
 #&gt; 

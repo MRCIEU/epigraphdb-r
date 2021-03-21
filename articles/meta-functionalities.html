@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -171,7 +171,7 @@
 <span class="co">#&gt;     union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
+<span class="co">#&gt;     EpiGraphDB v1.00 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span></code></pre></div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
@@ -189,63 +189,61 @@
 
 <span class="va">metadata</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; List of 3</span>
-<span class="co">#&gt;  $ nodes      :List of 13</span>
-<span class="co">#&gt;   ..$ Disease     :List of 2</span>
-<span class="co">#&gt;   ..$ SemmedTerm  :List of 2</span>
-<span class="co">#&gt;   ..$ Pathway     :List of 2</span>
-<span class="co">#&gt;   ..$ Gene        :List of 2</span>
-<span class="co">#&gt;   ..$ Literature  :List of 2</span>
-<span class="co">#&gt;   ..$ Protein     :List of 2</span>
-<span class="co">#&gt;   ..$ Variant     :List of 2</span>
-<span class="co">#&gt;   ..$ SemmedTriple:List of 2</span>
-<span class="co">#&gt;   ..$ Efo         :List of 2</span>
-<span class="co">#&gt;   ..$ Tissue      :List of 2</span>
-<span class="co">#&gt;   ..$ Gwas        :List of 2</span>
-<span class="co">#&gt;   ..$ Drug        :List of 2</span>
-<span class="co">#&gt;   ..$ Event       :List of 2</span>
-<span class="co">#&gt;  $ edges      :List of 42</span>
-<span class="co">#&gt;   ..$ OPENTARGETS_DRUG_TO_DISEASE          :List of 2</span>
-<span class="co">#&gt;   ..$ PROTEIN_TO_LITERATURE                :List of 2</span>
-<span class="co">#&gt;   ..$ GWAS_NLP_EFO                         :List of 2</span>
-<span class="co">#&gt;   ..$ EVENT_IN_PATHWAY                     :List of 2</span>
-<span class="co">#&gt;   ..$ BN_GEN_COR                           :List of 2</span>
-<span class="co">#&gt;   ..$ INTACT_NOT_INTERACTS_WITH            :List of 2</span>
-<span class="co">#&gt;   ..$ STRING_INTERACT_WITH                 :List of 2</span>
-<span class="co">#&gt;   ..$ PRS                                  :List of 2</span>
-<span class="co">#&gt;   ..$ INTACT_INTERACTS_WITH_PROTEIN_PROTEIN:List of 2</span>
-<span class="co">#&gt;   ..$ INTACT_INTERACTS_WITH_GENE_PROTEIN   :List of 2</span>
-<span class="co">#&gt;   ..$ TOPHITS                              :List of 2</span>
-<span class="co">#&gt;   ..$ SEM_OBJ                              :List of 2</span>
-<span class="co">#&gt;   ..$ PROTEIN_TO_DISEASE                   :List of 2</span>
-<span class="co">#&gt;   ..$ MONDO_MAP_UMLS                       :List of 2</span>
-<span class="co">#&gt;   ..$ MR                                   :List of 2</span>
-<span class="co">#&gt;   ..$ PROTEIN_IN_EVENT                     :List of 2</span>
-<span class="co">#&gt;   ..$ VARIANT_TO_GENE                      :List of 2</span>
-<span class="co">#&gt;   ..$ PATHWAY_TO_DISEASE                   :List of 2</span>
-<span class="co">#&gt;   ..$ SEM_PREDICATE                        :List of 2</span>
-<span class="co">#&gt;   ..$ EXPRESSED_IN                         :List of 2</span>
-<span class="co">#&gt;   ..$ EFO_CHILD_OF                         :List of 2</span>
-<span class="co">#&gt;   ..$ INTACT_INTERACTS_WITH_GENE_GENE      :List of 2</span>
-<span class="co">#&gt;   ..$ GWAS_SEM                             :List of 2</span>
-<span class="co">#&gt;   ..$ PRECEDING_EVENT                      :List of 2</span>
-<span class="co">#&gt;   ..$ SEM_GENE                             :List of 2</span>
-<span class="co">#&gt;   ..$ METAMAP_LITE                         :List of 2</span>
-<span class="co">#&gt;   ..$ SEM_SUB                              :List of 2</span>
-<span class="co">#&gt;   ..$ GENE_TO_LITERATURE                   :List of 2</span>
-<span class="co">#&gt;   ..$ PROTEIN_IN_PATHWAY                   :List of 2</span>
-<span class="co">#&gt;   ..$ MONDO_MAP_EFO                        :List of 2</span>
-<span class="co">#&gt;   ..$ CPIC                                 :List of 2</span>
-<span class="co">#&gt;   ..$ XQTL_MULTI_SNP_MR                    :List of 2</span>
-<span class="co">#&gt;   ..$ GWAS_TO_LIT                          :List of 2</span>
-<span class="co">#&gt;   ..$ PATHWAY_TO_LITERATURE                :List of 2</span>
-<span class="co">#&gt;   ..$ XQTL_SINGLE_SNP_MR_SNP_GENE          :List of 2</span>
-<span class="co">#&gt;   ..$ OBS_COR                              :List of 2</span>
-<span class="co">#&gt;   ..$ GWAS_NLP                             :List of 2</span>
-<span class="co">#&gt;   ..$ XQTL_SINGLE_SNP_MR_GENE_GWAS         :List of 2</span>
-<span class="co">#&gt;   ..$ OPENTARGETS_DRUG_TO_TARGET           :List of 2</span>
-<span class="co">#&gt;   ..$ GWAS_TO_VARIANT                      :List of 2</span>
-<span class="co">#&gt;   ..$ GENE_TO_PROTEIN                      :List of 2</span>
-<span class="co">#&gt;   ..$ SEM_TO_LIT                           :List of 2</span>
+<span class="co">#&gt;  $ nodes      :List of 12</span>
+<span class="co">#&gt;   ..$ Disease         :List of 2</span>
+<span class="co">#&gt;   ..$ Pathway         :List of 2</span>
+<span class="co">#&gt;   ..$ LiteratureTerm  :List of 2</span>
+<span class="co">#&gt;   ..$ Gene            :List of 2</span>
+<span class="co">#&gt;   ..$ LiteratureTriple:List of 2</span>
+<span class="co">#&gt;   ..$ Literature      :List of 2</span>
+<span class="co">#&gt;   ..$ Protein         :List of 2</span>
+<span class="co">#&gt;   ..$ Variant         :List of 2</span>
+<span class="co">#&gt;   ..$ Efo             :List of 2</span>
+<span class="co">#&gt;   ..$ Tissue          :List of 2</span>
+<span class="co">#&gt;   ..$ Drug            :List of 2</span>
+<span class="co">#&gt;   ..$ Gwas            :List of 2</span>
+<span class="co">#&gt;  $ edges      :List of 41</span>
+<span class="co">#&gt;   ..$ OPENTARGETS_DRUG_TO_DISEASE :List of 2</span>
+<span class="co">#&gt;   ..$ MEDRXIV_SUB                 :List of 2</span>
+<span class="co">#&gt;   ..$ GENE_TO_DISEASE             :List of 2</span>
+<span class="co">#&gt;   ..$ GWAS_NLP_EFO                :List of 2</span>
+<span class="co">#&gt;   ..$ SEMMEDDB_PREDICATE          :List of 2</span>
+<span class="co">#&gt;   ..$ STRING_INTERACT_WITH        :List of 2</span>
+<span class="co">#&gt;   ..$ GWAS_TO_LITERATURE_TRIPLE   :List of 2</span>
+<span class="co">#&gt;   ..$ PRS                         :List of 2</span>
+<span class="co">#&gt;   ..$ BIORXIV_PREDICATE           :List of 2</span>
+<span class="co">#&gt;   ..$ MONDO_MAP_UMLS              :List of 2</span>
+<span class="co">#&gt;   ..$ SEMMEDDB_SUB                :List of 2</span>
+<span class="co">#&gt;   ..$ MR_EVE_MR                   :List of 2</span>
+<span class="co">#&gt;   ..$ OPENGWAS_TOPHITS            :List of 2</span>
+<span class="co">#&gt;   ..$ VARIANT_TO_GENE             :List of 2</span>
+<span class="co">#&gt;   ..$ MEDRXIV_PREDICATE           :List of 2</span>
+<span class="co">#&gt;   ..$ MEDRXIV_OBJ                 :List of 2</span>
+<span class="co">#&gt;   ..$ EXPRESSED_IN                :List of 2</span>
+<span class="co">#&gt;   ..$ BIORXIV_OBJ                 :List of 2</span>
+<span class="co">#&gt;   ..$ EFO_CHILD_OF                :List of 2</span>
+<span class="co">#&gt;   ..$ BIORXIV_TO_LIT              :List of 2</span>
+<span class="co">#&gt;   ..$ GEN_COR                     :List of 2</span>
+<span class="co">#&gt;   ..$ METAMAP_LITE                :List of 2</span>
+<span class="co">#&gt;   ..$ SEMMEDDB_TO_LIT             :List of 2</span>
+<span class="co">#&gt;   ..$ PROTEIN_IN_PATHWAY          :List of 2</span>
+<span class="co">#&gt;   ..$ MONDO_MAP_EFO               :List of 2</span>
+<span class="co">#&gt;   ..$ PATHWAY_CHILD_OF            :List of 2</span>
+<span class="co">#&gt;   ..$ TERM_TO_GENE                :List of 2</span>
+<span class="co">#&gt;   ..$ GWAS_EFO_EBI                :List of 2</span>
+<span class="co">#&gt;   ..$ CPIC                        :List of 2</span>
+<span class="co">#&gt;   ..$ XQTL_MULTI_SNP_MR           :List of 2</span>
+<span class="co">#&gt;   ..$ XQTL_SINGLE_SNP_MR_SNP_GENE :List of 2</span>
+<span class="co">#&gt;   ..$ OBS_COR                     :List of 2</span>
+<span class="co">#&gt;   ..$ GWAS_NLP                    :List of 2</span>
+<span class="co">#&gt;   ..$ XQTL_SINGLE_SNP_MR_GENE_GWAS:List of 2</span>
+<span class="co">#&gt;   ..$ MEDRXIV_TO_LIT              :List of 2</span>
+<span class="co">#&gt;   ..$ BIORXIV_SUB                 :List of 2</span>
+<span class="co">#&gt;   ..$ OPENTARGETS_DRUG_TO_TARGET  :List of 2</span>
+<span class="co">#&gt;   ..$ GWAS_TO_VARIANT             :List of 2</span>
+<span class="co">#&gt;   ..$ GWAS_TO_LITERATURE          :List of 2</span>
+<span class="co">#&gt;   ..$ GENE_TO_PROTEIN             :List of 2</span>
+<span class="co">#&gt;   ..$ SEMMEDDB_OBJ                :List of 2</span>
 <span class="co">#&gt;  $ connections:List of 41</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
 <span class="co">#&gt;   ..$ :List of 4</span>
@@ -309,22 +307,21 @@
 <span class="va">meta_node_df</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">meta_node</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">count</span>, big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 13 x 2</span>
-<span class="co">#&gt;    meta_node    count       </span>
-<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;       </span>
-<span class="co">#&gt;  1 Disease      "    21,829"</span>
-<span class="co">#&gt;  2 Drug         "     2,455"</span>
-<span class="co">#&gt;  3 Efo          "    25,390"</span>
-<span class="co">#&gt;  4 Event        "    11,868"</span>
-<span class="co">#&gt;  5 Gene         "    59,171"</span>
-<span class="co">#&gt;  6 Gwas         "    31,773"</span>
-<span class="co">#&gt;  7 Literature   "29,137,785"</span>
-<span class="co">#&gt;  8 Pathway      "     2,180"</span>
-<span class="co">#&gt;  9 Protein      "    21,543"</span>
-<span class="co">#&gt; 10 SemmedTerm   "   103,967"</span>
-<span class="co">#&gt; 11 SemmedTriple " 3,428,531"</span>
-<span class="co">#&gt; 12 Tissue       "        53"</span>
-<span class="co">#&gt; 13 Variant      "    88,176"</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 12 x 2</span>
+<span class="co">#&gt;    meta_node        count      </span>
+<span class="co">#&gt;    &lt;chr&gt;            &lt;chr&gt;      </span>
+<span class="co">#&gt;  1 Disease          "   38,960"</span>
+<span class="co">#&gt;  2 Drug             "    2,697"</span>
+<span class="co">#&gt;  3 Efo              "   25,390"</span>
+<span class="co">#&gt;  4 Gene             "   57,737"</span>
+<span class="co">#&gt;  5 Gwas             "   34,494"</span>
+<span class="co">#&gt;  6 Literature       "3,995,672"</span>
+<span class="co">#&gt;  7 LiteratureTerm   "  108,905"</span>
+<span class="co">#&gt;  8 LiteratureTriple "5,609,945"</span>
+<span class="co">#&gt;  9 Pathway          "    2,441"</span>
+<span class="co">#&gt; 10 Protein          "   20,280"</span>
+<span class="co">#&gt; 11 Tissue           "       54"</span>
+<span class="co">#&gt; 12 Variant          "   99,005"</span></code></pre></div>
 </div>
 <div id="meta-relationships-and-connections" class="section level3">
 <h3 class="hasAnchor">
@@ -356,18 +353,18 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">from_node</span>, <span class="va">to_node</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">count</span>, big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 41 x 4</span>
-<span class="co">#&gt;    meta_rel                     count        from_node to_node   </span>
-<span class="co">#&gt;    &lt;chr&gt;                        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;     </span>
-<span class="co">#&gt;  1 MONDO_MAP_EFO                "     2,822" Disease   Efo       </span>
-<span class="co">#&gt;  2 MONDO_MAP_UMLS               "     3,414" Disease   SemmedTerm</span>
-<span class="co">#&gt;  3 OPENTARGETS_DRUG_TO_DISEASE  "     2,486" Drug      Disease   </span>
-<span class="co">#&gt;  4 CPIC                         "       355" Drug      Gene      </span>
-<span class="co">#&gt;  5 OPENTARGETS_DRUG_TO_TARGET   "     6,024" Drug      Gene      </span>
-<span class="co">#&gt;  6 EFO_CHILD_OF                 "    43,154" Efo       Efo       </span>
-<span class="co">#&gt;  7 PRECEDING_EVENT              "    10,418" Event     Event     </span>
-<span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,098,049" Gene      Gwas      </span>
-<span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,703,863" Gene      Gwas      </span>
-<span class="co">#&gt; 10 GENE_TO_LITERATURE           "       771" Gene      Literature</span>
+<span class="co">#&gt;    meta_rel                     count        from_node to_node       </span>
+<span class="co">#&gt;    &lt;chr&gt;                        &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;         </span>
+<span class="co">#&gt;  1 MONDO_MAP_EFO                "     2,819" Disease   Efo           </span>
+<span class="co">#&gt;  2 MONDO_MAP_UMLS               "     8,247" Disease   LiteratureTerm</span>
+<span class="co">#&gt;  3 OPENTARGETS_DRUG_TO_DISEASE  "     2,461" Drug      Disease       </span>
+<span class="co">#&gt;  4 CPIC                         "       375" Drug      Gene          </span>
+<span class="co">#&gt;  5 OPENTARGETS_DRUG_TO_TARGET   "     6,534" Drug      Gene          </span>
+<span class="co">#&gt;  6 EFO_CHILD_OF                 "    43,132" Efo       Efo           </span>
+<span class="co">#&gt;  7 GENE_TO_DISEASE              "     5,763" Gene      Disease       </span>
+<span class="co">#&gt;  8 XQTL_MULTI_SNP_MR            " 3,015,233" Gene      Gwas          </span>
+<span class="co">#&gt;  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,449,779" Gene      Gwas          </span>
+<span class="co">#&gt; 10 GENE_TO_PROTEIN              "    19,142" Gene      Protein       </span>
 <span class="co">#&gt; # … with 31 more rows</span></code></pre></div>
 </div>
 <div id="schema-plot" class="section level3">
@@ -423,28 +420,12 @@
 <span class="co">#&gt; [1] "value"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $Event</span>
-<span class="co">#&gt; $Event$id</span>
-<span class="co">#&gt; [1] "reactome_id"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Event$name</span>
-<span class="co">#&gt; [1] "name"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
 <span class="co">#&gt; $Gene</span>
 <span class="co">#&gt; $Gene$id</span>
 <span class="co">#&gt; [1] "ensembl_id"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Gene$name</span>
 <span class="co">#&gt; [1] "name"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Tissue</span>
-<span class="co">#&gt; $Tissue$id</span>
-<span class="co">#&gt; [1] "tissue"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $Tissue$name</span>
-<span class="co">#&gt; [1] "tissue"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Gwas</span>
@@ -457,15 +438,31 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Literature</span>
 <span class="co">#&gt; $Literature$id</span>
-<span class="co">#&gt; [1] "pubmed_id"</span>
+<span class="co">#&gt; [1] "id"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Literature$name</span>
-<span class="co">#&gt; [1] "pubmed_id"</span>
+<span class="co">#&gt; [1] "id"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $LiteratureTerm</span>
+<span class="co">#&gt; $LiteratureTerm$id</span>
+<span class="co">#&gt; [1] "id"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $LiteratureTerm$name</span>
+<span class="co">#&gt; [1] "name"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $LiteratureTriple</span>
+<span class="co">#&gt; $LiteratureTriple$id</span>
+<span class="co">#&gt; [1] "id"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $LiteratureTriple$name</span>
+<span class="co">#&gt; [1] "name"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Pathway</span>
 <span class="co">#&gt; $Pathway$id</span>
-<span class="co">#&gt; [1] "reactome_id"</span>
+<span class="co">#&gt; [1] "id"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Pathway$name</span>
 <span class="co">#&gt; [1] "name"</span>
@@ -479,11 +476,11 @@
 <span class="co">#&gt; [1] "uniprot_id"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $SemmedTerm</span>
-<span class="co">#&gt; $SemmedTerm$id</span>
+<span class="co">#&gt; $Tissue</span>
+<span class="co">#&gt; $Tissue$id</span>
 <span class="co">#&gt; [1] "id"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $SemmedTerm$name</span>
+<span class="co">#&gt; $Tissue$name</span>
 <span class="co">#&gt; [1] "name"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
@@ -509,22 +506,22 @@
 <span class="op">)</span>
 <span class="va">results</span>
 <span class="co">#&gt; # A tibble: 10 x 18</span>
-<span class="co">#&gt;    node.note  node.access node.year node.mr node.author node.consortium node.sex</span>
-<span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;   </span>
-<span class="co">#&gt;  1 NA         public      2018      1       Hoffmann TJ NA              NA      </span>
-<span class="co">#&gt;  2 &lt;NA&gt;       public      2015      1       Locke AE    NA              Males a…</span>
-<span class="co">#&gt;  3 &lt;NA&gt;       public      2015      1       Locke AE    NA              Males   </span>
-<span class="co">#&gt;  4 &lt;NA&gt;       public      2015      1       Locke AE    NA              Males a…</span>
-<span class="co">#&gt;  5 NA         public      2017      1       Akiyama M   NA              NA      </span>
-<span class="co">#&gt;  6 Dominance… public      2016      0       Wood        NA              Males a…</span>
-<span class="co">#&gt;  7 &lt;NA&gt;       public      2015      1       Locke AE    NA              Females </span>
-<span class="co">#&gt;  8 &lt;NA&gt;       public      2013      1       Randall JC  NA              Females </span>
-<span class="co">#&gt;  9 &lt;NA&gt;       public      2013      1       Randall JC  NA              Males   </span>
-<span class="co">#&gt; 10 21001: Ou… public      2018      1       Ben Elswor… MRC-IEU         Males a…</span>
-<span class="co">#&gt; # … with 11 more variables: node.priority &lt;chr&gt;, node.pmid &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.population &lt;chr&gt;, node.unit &lt;chr&gt;, node.sample_size &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.nsnp &lt;chr&gt;, node.trait &lt;chr&gt;, node.id &lt;chr&gt;, node.subcategory &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.category &lt;chr&gt;, node.sd &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt;    node.note        node._name  node.year node.mr node.author node.sex node.pmid</span>
+<span class="co">#&gt;    &lt;chr&gt;            &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 Dominance model… Body mass … 2016.0    0       Wood        Males a… 26961502…</span>
+<span class="co">#&gt;  2 &lt;NA&gt;             Body mass … 2015.0    1       Locke AE    Females  25673413…</span>
+<span class="co">#&gt;  3 &lt;NA&gt;             Body mass … 2013.0    1       Randall JC  Females  23754948…</span>
+<span class="co">#&gt;  4 &lt;NA&gt;             Body mass … 2017.0    1       Akiyama M   &lt;NA&gt;     28892062…</span>
+<span class="co">#&gt;  5 &lt;NA&gt;             Body mass … 2018.0    1       Hoffmann TJ &lt;NA&gt;     30108127…</span>
+<span class="co">#&gt;  6 &lt;NA&gt;             Body mass … 2019.0    1       Ishigaki K  Males    28892062…</span>
+<span class="co">#&gt;  7 &lt;NA&gt;             Body mass … 2015.0    1       Locke AE    Males a… 25673413…</span>
+<span class="co">#&gt;  8 &lt;NA&gt;             Body mass … 2015.0    1       Locke AE    Males a… 25673413…</span>
+<span class="co">#&gt;  9 &lt;NA&gt;             Body mass … 2015.0    1       Locke AE    Males    25673413…</span>
+<span class="co">#&gt; 10 &lt;NA&gt;             Body mass … 2019.0    1       Ishigaki K  Males a… 28892062…</span>
+<span class="co">#&gt; # … with 11 more variables: node.population &lt;chr&gt;, node.sample_size &lt;chr&gt;,</span>
+<span class="co">#&gt; #   node.nsnp &lt;chr&gt;, node.build &lt;chr&gt;, node.trait &lt;chr&gt;, node._source &lt;list&gt;,</span>
+<span class="co">#&gt; #   node.id &lt;chr&gt;, node._id &lt;chr&gt;, node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;,</span>
+<span class="co">#&gt; #   node.sd &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="exact-matching" class="section level2">
 <h2 class="hasAnchor">
@@ -541,13 +538,12 @@
 <span class="op">)</span>
 <span class="va">results</span>
 <span class="co">#&gt; # A tibble: 1 x 17</span>
-<span class="co">#&gt;   node.access node.year node.mr node.author node.consortium node.sex         </span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;lgl&gt;           &lt;chr&gt;            </span>
-<span class="co">#&gt; 1 public      2015      1       Locke AE    NA              Males and Females</span>
-<span class="co">#&gt; # … with 11 more variables: node.priority &lt;chr&gt;, node.pmid &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.population &lt;chr&gt;, node.sd &lt;chr&gt;, node.unit &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   node.sample_size &lt;chr&gt;, node.nsnp &lt;chr&gt;, node.trait &lt;chr&gt;, node.id &lt;chr&gt;,</span>
-<span class="co">#&gt; #   node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;</span></code></pre></div>
+<span class="co">#&gt;   node._name  node.year node.mr node.author node.sex   node.pmid node.population</span>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;          </span>
+<span class="co">#&gt; 1 Body mass … 2015.0    1       Locke AE    Males and… 25673413… Mixed          </span>
+<span class="co">#&gt; # … with 10 more variables: node.sd &lt;chr&gt;, node.sample_size &lt;chr&gt;,</span>
+<span class="co">#&gt; #   node.nsnp &lt;chr&gt;, node.build &lt;chr&gt;, node.trait &lt;chr&gt;, node._source &lt;list&gt;,</span>
+<span class="co">#&gt; #   node.id &lt;chr&gt;, node._id &lt;chr&gt;, node.subcategory &lt;chr&gt;, node.category &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="cypher-advanced" class="section level2">
 <h2 class="hasAnchor">
@@ -569,24 +565,7 @@
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="va">results</span>
-<span class="co">#&gt; # A tibble: 2 x 45</span>
-<span class="co">#&gt;   exposure.access exposure.year exposure.mr exposure.author exposure.consortium</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;           &lt;lgl&gt;              </span>
-<span class="co">#&gt; 1 public          2015          1           Locke AE        NA                 </span>
-<span class="co">#&gt; 2 public          2015          1           Locke AE        NA                 </span>
-<span class="co">#&gt; # … with 40 more variables: exposure.sex &lt;chr&gt;, exposure.priority &lt;chr&gt;,</span>
-<span class="co">#&gt; #   exposure.pmid &lt;chr&gt;, exposure.population &lt;chr&gt;, exposure.sd &lt;chr&gt;,</span>
-<span class="co">#&gt; #   exposure.unit &lt;lgl&gt;, exposure.sample_size &lt;chr&gt;, exposure.nsnp &lt;chr&gt;,</span>
-<span class="co">#&gt; #   exposure.trait &lt;chr&gt;, exposure.id &lt;chr&gt;, exposure.subcategory &lt;chr&gt;,</span>
-<span class="co">#&gt; #   exposure.category &lt;chr&gt;, outcome.note &lt;lgl&gt;, outcome.ncase &lt;chr&gt;,</span>
-<span class="co">#&gt; #   outcome.access &lt;chr&gt;, outcome.year &lt;chr&gt;, outcome.mr &lt;chr&gt;,</span>
-<span class="co">#&gt; #   outcome.author &lt;chr&gt;, outcome.consortium &lt;chr&gt;, outcome.sex &lt;chr&gt;,</span>
-<span class="co">#&gt; #   outcome.priority &lt;chr&gt;, outcome.population &lt;chr&gt;, outcome.unit &lt;chr&gt;,</span>
-<span class="co">#&gt; #   outcome.sample_size &lt;chr&gt;, outcome.nsnp &lt;chr&gt;, outcome.ncontrol &lt;chr&gt;,</span>
-<span class="co">#&gt; #   outcome.trait &lt;chr&gt;, outcome.id &lt;chr&gt;, outcome.subcategory &lt;lgl&gt;,</span>
-<span class="co">#&gt; #   outcome.category &lt;lgl&gt;, mr.b &lt;dbl&gt;, mr.se &lt;dbl&gt;, mr.method &lt;chr&gt;,</span>
-<span class="co">#&gt; #   mr.nsnp &lt;int&gt;, mr.selection &lt;chr&gt;, mr.pval &lt;dbl&gt;, mr.ci_upp &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   mr.log10pval &lt;dbl&gt;, mr.ci_low &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 0 x 0</span></code></pre></div>
 </div>
 <div id="sessioninfo" class="section level2">
 <h2 class="hasAnchor">
@@ -609,20 +588,20 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] epigraphdb_0.2.1 igraph_1.2.6     purrr_0.3.4      dplyr_1.0.4     </span>
+<span class="co">#&gt; [1] epigraphdb_0.2.2 igraph_1.2.6     purrr_0.3.4      dplyr_1.0.5     </span>
 <span class="co">#&gt; [5] magrittr_2.0.1  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.0      tools_4.0.4      </span>
+<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.1      tools_4.0.4      </span>
 <span class="co">#&gt;  [5] digest_0.6.27     jsonlite_1.7.2    evaluate_0.14     memoise_2.0.0    </span>
 <span class="co">#&gt;  [9] lifecycle_1.0.0   tibble_3.1.0      pkgconfig_2.0.3   rlang_0.4.10     </span>
 <span class="co">#&gt; [13] cli_2.3.1         rstudioapi_0.13   curl_4.3          yaml_2.2.1       </span>
-<span class="co">#&gt; [17] pkgdown_1.6.1     xfun_0.21         fastmap_1.1.0     stringr_1.4.0    </span>
-<span class="co">#&gt; [21] httr_1.4.2        knitr_1.31        generics_0.1.0    desc_1.2.0       </span>
+<span class="co">#&gt; [17] pkgdown_1.6.1     xfun_0.22         fastmap_1.1.0     stringr_1.4.0    </span>
+<span class="co">#&gt; [21] httr_1.4.2        knitr_1.31        generics_0.1.0    desc_1.3.0       </span>
 <span class="co">#&gt; [25] fs_1.5.0          vctrs_0.3.6       systemfonts_1.0.1 rprojroot_2.0.2  </span>
-<span class="co">#&gt; [29] tidyselect_1.1.0  glue_1.4.2        R6_2.5.0          textshaping_0.3.1</span>
+<span class="co">#&gt; [29] tidyselect_1.1.0  glue_1.4.2        R6_2.5.0          textshaping_0.3.3</span>
 <span class="co">#&gt; [33] fansi_0.4.2       rmarkdown_2.7     ps_1.6.0          htmltools_0.5.1.1</span>
-<span class="co">#&gt; [37] ellipsis_0.3.1    assertthat_0.2.1  ragg_1.1.1        utf8_1.1.4       </span>
+<span class="co">#&gt; [37] ellipsis_0.3.1    assertthat_0.2.1  ragg_1.1.2        utf8_1.2.1       </span>
 <span class="co">#&gt; [41] stringi_1.5.3     cachem_1.0.4      crayon_1.4.1</span></code></pre></div>
 </div>
   </div>

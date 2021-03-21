@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -185,15 +185,15 @@
 <span class="co">#&gt; # A tibble: 9 x 2</span>
 <span class="co">#&gt;   gene_name uniprot_id</span>
 <span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;     </span>
-<span class="co">#&gt; 1 TMED1     Q13445    </span>
-<span class="co">#&gt; 2 MRPL4     Q9BYD3    </span>
-<span class="co">#&gt; 3 TYK2      P29597    </span>
-<span class="co">#&gt; 4 KRI1      Q8N9T8    </span>
-<span class="co">#&gt; 5 FDX1L     Q6P4F2    </span>
+<span class="co">#&gt; 1 ZGLP1     P0C6A0    </span>
+<span class="co">#&gt; 2 FDX1L     Q6P4F2    </span>
+<span class="co">#&gt; 3 MRPL4     Q9BYD3    </span>
+<span class="co">#&gt; 4 ICAM5     Q9UMF0    </span>
+<span class="co">#&gt; 5 TYK2      P29597    </span>
 <span class="co">#&gt; 6 GRAP2     O75791    </span>
-<span class="co">#&gt; 7 ICAM1     P05362    </span>
-<span class="co">#&gt; 8 ICAM5     Q9UMF0    </span>
-<span class="co">#&gt; 9 ZGLP1     P0C6A0</span></code></pre></div>
+<span class="co">#&gt; 7 KRI1      Q8N9T8    </span>
+<span class="co">#&gt; 8 TMED1     Q13445    </span>
+<span class="co">#&gt; 9 ICAM1     P05362</span></code></pre></div>
 </div>
 <div id="identifying-the-involvement-in-the-same-biological-pathways" class="section level2">
 <h2 class="hasAnchor">
@@ -229,15 +229,15 @@
 <span class="co">#&gt; # A tibble: 9 x 3</span>
 <span class="co">#&gt;   uniprot_id pathway_count pathway_reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;list&gt;             </span>
-<span class="co">#&gt; 1 Q13445                 0 &lt;NULL&gt;             </span>
-<span class="co">#&gt; 2 Q9BYD3                 0 &lt;NULL&gt;             </span>
-<span class="co">#&gt; 3 P29597                 3 &lt;chr [3]&gt;          </span>
-<span class="co">#&gt; 4 Q8N9T8                 0 &lt;NULL&gt;             </span>
-<span class="co">#&gt; 5 Q6P4F2                 1 &lt;chr [1]&gt;          </span>
-<span class="co">#&gt; 6 O75791                 3 &lt;chr [3]&gt;          </span>
-<span class="co">#&gt; 7 P05362                 5 &lt;chr [5]&gt;          </span>
-<span class="co">#&gt; 8 Q9UMF0                 2 &lt;chr [2]&gt;          </span>
-<span class="co">#&gt; 9 P0C6A0                 0 &lt;NULL&gt;</span></code></pre></div>
+<span class="co">#&gt; 1 P0C6A0                 0 &lt;NULL&gt;             </span>
+<span class="co">#&gt; 2 Q6P4F2                15 &lt;chr [15]&gt;         </span>
+<span class="co">#&gt; 3 Q9BYD3                 6 &lt;chr [6]&gt;          </span>
+<span class="co">#&gt; 4 Q9UMF0                 5 &lt;chr [5]&gt;          </span>
+<span class="co">#&gt; 5 P29597                28 &lt;chr [28]&gt;         </span>
+<span class="co">#&gt; 6 O75791                15 &lt;chr [15]&gt;         </span>
+<span class="co">#&gt; 7 Q8N9T8                 0 &lt;NULL&gt;             </span>
+<span class="co">#&gt; 8 Q13445                 0 &lt;NULL&gt;             </span>
+<span class="co">#&gt; 9 P05362                11 &lt;chr [11]&gt;</span></code></pre></div>
 <p>Now for each pair of proteins we match the pathways they have in common.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">get_shared_pathway</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pathway_df</span><span class="op">)</span> <span class="op">{</span>
@@ -286,16 +286,16 @@
 <span class="co">#&gt; # A tibble: 72 x 6</span>
 <span class="co">#&gt;    protein assoc_protein shared_pathway combination   count connected</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;         &lt;list&gt;         &lt;chr&gt;         &lt;int&gt; &lt;lgl&gt;    </span>
-<span class="co">#&gt;  1 P05362  Q9UMF0        &lt;chr [2]&gt;      P05362,Q9UMF0     2 TRUE     </span>
-<span class="co">#&gt;  2 Q9UMF0  P05362        &lt;chr [2]&gt;      P05362,Q9UMF0     2 TRUE     </span>
-<span class="co">#&gt;  3 P05362  P29597        &lt;chr [1]&gt;      P05362,P29597     1 TRUE     </span>
-<span class="co">#&gt;  4 P29597  P05362        &lt;chr [1]&gt;      P05362,P29597     1 TRUE     </span>
-<span class="co">#&gt;  5 O75791  P05362        &lt;chr [0]&gt;      O75791,P05362     0 FALSE    </span>
-<span class="co">#&gt;  6 O75791  P0C6A0        &lt;NULL&gt;         O75791,P0C6A0     0 FALSE    </span>
-<span class="co">#&gt;  7 O75791  P29597        &lt;chr [0]&gt;      O75791,P29597     0 FALSE    </span>
-<span class="co">#&gt;  8 O75791  Q13445        &lt;NULL&gt;         O75791,Q13445     0 FALSE    </span>
-<span class="co">#&gt;  9 O75791  Q6P4F2        &lt;chr [0]&gt;      O75791,Q6P4F2     0 FALSE    </span>
-<span class="co">#&gt; 10 O75791  Q8N9T8        &lt;NULL&gt;         O75791,Q8N9T8     0 FALSE    </span>
+<span class="co">#&gt;  1 P05362  P29597        &lt;chr [6]&gt;      P05362,P29597     6 TRUE     </span>
+<span class="co">#&gt;  2 P29597  P05362        &lt;chr [6]&gt;      P05362,P29597     6 TRUE     </span>
+<span class="co">#&gt;  3 P05362  Q9UMF0        &lt;chr [5]&gt;      P05362,Q9UMF0     5 TRUE     </span>
+<span class="co">#&gt;  4 Q9UMF0  P05362        &lt;chr [5]&gt;      P05362,Q9UMF0     5 TRUE     </span>
+<span class="co">#&gt;  5 O75791  P05362        &lt;chr [2]&gt;      O75791,P05362     2 TRUE     </span>
+<span class="co">#&gt;  6 O75791  P29597        &lt;chr [2]&gt;      O75791,P29597     2 TRUE     </span>
+<span class="co">#&gt;  7 O75791  Q9UMF0        &lt;chr [2]&gt;      O75791,Q9UMF0     2 TRUE     </span>
+<span class="co">#&gt;  8 P05362  O75791        &lt;chr [2]&gt;      O75791,P05362     2 TRUE     </span>
+<span class="co">#&gt;  9 P29597  O75791        &lt;chr [2]&gt;      O75791,P29597     2 TRUE     </span>
+<span class="co">#&gt; 10 Q9UMF0  O75791        &lt;chr [2]&gt;      O75791,Q9UMF0     2 TRUE     </span>
 <span class="co">#&gt; # … with 62 more rows</span></code></pre></div>
 <p>We can further query EpiGraphDB regarding the detailed pathway information using <code>GET /meta/nodes/Pathway/search</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -313,12 +313,21 @@
 
 <span class="va">pathway_info</span> <span class="op">&lt;-</span> <span class="va">pathway</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">get_pathway_info</span><span class="op">)</span>
 <span class="va">pathway_info</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 x 3</span>
-<span class="co">#&gt;   node.in_disease node.name                                     node.reactome_id</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                                         &lt;chr&gt;           </span>
-<span class="co">#&gt; 1 FALSE           Interleukin-4 and Interleukin-13 signaling    R-HSA-6785807   </span>
-<span class="co">#&gt; 2 FALSE           Integrin cell surface interactions            R-HSA-216083    </span>
-<span class="co">#&gt; 3 FALSE           Immunoregulatory interactions between a Lymp… R-HSA-198933</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 12 x 6</span>
+<span class="co">#&gt;    node._name        node.name        node._source node.id node._id node.url    </span>
+<span class="co">#&gt;    &lt;chr&gt;             &lt;chr&gt;            &lt;list&gt;       &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt;       </span>
+<span class="co">#&gt;  1 Immune System     Immune System    &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span>
+<span class="co">#&gt;  2 Adaptive Immune … Adaptive Immune… &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span>
+<span class="co">#&gt;  3 Signal Transduct… Signal Transduc… &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span>
+<span class="co">#&gt;  4 Interferon Signa… Interferon Sign… &lt;chr [1]&gt;    R-HSA-… R-HSA-9… https://rea…</span>
+<span class="co">#&gt;  5 Interleukin-4 an… Interleukin-4 a… &lt;chr [1]&gt;    R-HSA-… R-HSA-6… https://rea…</span>
+<span class="co">#&gt;  6 Interleukin-10 s… Interleukin-10 … &lt;chr [1]&gt;    R-HSA-… R-HSA-6… https://rea…</span>
+<span class="co">#&gt;  7 Signaling by Int… Signaling by In… &lt;chr [1]&gt;    R-HSA-… R-HSA-4… https://rea…</span>
+<span class="co">#&gt;  8 Cytokine Signali… Cytokine Signal… &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span>
+<span class="co">#&gt;  9 Integrin cell su… Integrin cell s… &lt;chr [1]&gt;    R-HSA-… R-HSA-2… https://rea…</span>
+<span class="co">#&gt; 10 Immunoregulatory… Immunoregulator… &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span>
+<span class="co">#&gt; 11 Extracellular ma… Extracellular m… &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span>
+<span class="co">#&gt; 12 Disease           Disease          &lt;chr [1]&gt;    R-HSA-… R-HSA-1… https://rea…</span></code></pre></div>
 <p>In order to extract protein groups from the shared pathways, the last step for this query is to convert the shared pathway data into a graph where</p>
 <ul>
 <li>Proteins are represented as nodes.</li>
@@ -354,20 +363,18 @@
 <span class="va">pathway_protein_graph</span> <span class="op">&lt;-</span> <span class="va">shared_pathway_df</span> <span class="op">%&gt;%</span> <span class="fu">protein_df_to_graph</span><span class="op">(</span><span class="op">)</span>
 <span class="va">pathway_protein_groups</span> <span class="op">&lt;-</span> <span class="va">pathway_protein_graph</span> <span class="op">%&gt;%</span> <span class="fu">graph_to_protein_groups</span><span class="op">(</span><span class="op">)</span>
 <span class="va">pathway_protein_groups</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; tibble [7 × 2] (S3: tbl_df/tbl/data.frame)</span>
-<span class="co">#&gt;  $ group_member:List of 7</span>
-<span class="co">#&gt;   ..$ 2: chr [1:3] "P05362" "P29597" "Q9UMF0"</span>
-<span class="co">#&gt;   ..$ 1: chr "O75791"</span>
-<span class="co">#&gt;   ..$ 3: chr "P0C6A0"</span>
-<span class="co">#&gt;   ..$ 4: chr "Q13445"</span>
-<span class="co">#&gt;   ..$ 5: chr "Q6P4F2"</span>
-<span class="co">#&gt;   ..$ 6: chr "Q8N9T8"</span>
-<span class="co">#&gt;   ..$ 7: chr "Q9BYD3"</span>
-<span class="co">#&gt;   ..- attr(*, "dim")= int 7</span>
+<span class="co">#&gt; tibble [5 × 2] (S3: tbl_df/tbl/data.frame)</span>
+<span class="co">#&gt;  $ group_member:List of 5</span>
+<span class="co">#&gt;   ..$ 1: chr [1:5] "O75791" "P05362" "P29597" "Q6P4F2" ...</span>
+<span class="co">#&gt;   ..$ 2: chr "P0C6A0"</span>
+<span class="co">#&gt;   ..$ 3: chr "Q13445"</span>
+<span class="co">#&gt;   ..$ 4: chr "Q8N9T8"</span>
+<span class="co">#&gt;   ..$ 5: chr "Q9BYD3"</span>
+<span class="co">#&gt;   ..- attr(*, "dim")= int 5</span>
 <span class="co">#&gt;   ..- attr(*, "dimnames")=List of 1</span>
-<span class="co">#&gt;   .. ..$ : chr [1:7] "2" "1" "3" "4" ...</span>
-<span class="co">#&gt;  $ group_size  : Named int [1:7] 3 1 1 1 1 1 1</span>
-<span class="co">#&gt;   ..- attr(*, "names")= chr [1:7] "2" "1" "3" "4" ...</span></code></pre></div>
+<span class="co">#&gt;   .. ..$ : chr [1:5] "1" "2" "3" "4" ...</span>
+<span class="co">#&gt;  $ group_size  : Named int [1:5] 5 1 1 1 1</span>
+<span class="co">#&gt;   ..- attr(*, "names")= chr [1:5] "1" "2" "3" "4" ...</span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pathway_protein_graph</span><span class="op">)</span></code></pre></div>
 <p><img src="case-1-pleiotropy_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
@@ -403,20 +410,20 @@
 <span class="op">}</span>
 <span class="va">ppi_df</span> <span class="op">&lt;-</span> <span class="fu">get_ppi</span><span class="op">(</span><span class="va">gene_protein_df</span>, n_intermediate_proteins <span class="op">=</span> <span class="va">PPI_N_INTERMEDIATE_PROTEINS</span><span class="op">)</span>
 <span class="va">ppi_df</span>
-<span class="co">#&gt; # A tibble: 77 x 3</span>
+<span class="co">#&gt; # A tibble: 1,686 x 3</span>
 <span class="co">#&gt;    protein assoc_protein path_size</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;</span>
-<span class="co">#&gt;  1 Q13445  &lt;NA&gt;                 NA</span>
-<span class="co">#&gt;  2 Q9BYD3  Q8N9T8                2</span>
-<span class="co">#&gt;  3 Q9BYD3  Q8N9T8                2</span>
-<span class="co">#&gt;  4 Q9BYD3  Q8N9T8                2</span>
-<span class="co">#&gt;  5 Q9BYD3  Q8N9T8                2</span>
-<span class="co">#&gt;  6 P29597  P05362                2</span>
-<span class="co">#&gt;  7 P29597  P05362                2</span>
-<span class="co">#&gt;  8 P29597  P05362                2</span>
-<span class="co">#&gt;  9 P29597  P05362                2</span>
-<span class="co">#&gt; 10 P29597  O75791                2</span>
-<span class="co">#&gt; # … with 67 more rows</span></code></pre></div>
+<span class="co">#&gt;  1 P0C6A0  P0C6A0                2</span>
+<span class="co">#&gt;  2 P0C6A0  P0C6A0                2</span>
+<span class="co">#&gt;  3 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt;  4 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt;  5 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt;  6 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt;  7 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt;  8 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt;  9 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt; 10 Q6P4F2  Q6P4F2                2</span>
+<span class="co">#&gt; # … with 1,676 more rows</span></code></pre></div>
 <p>Like in the query for pathway data, we convert and analyse these results as a graph.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">get_shared_ppi</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ppi_df</span><span class="op">)</span> <span class="op">{</span>
@@ -515,20 +522,20 @@
 <span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt; [1] epigraphdb_0.2.1 igraph_1.2.6     glue_1.4.2       purrr_0.3.4     </span>
-<span class="co">#&gt; [5] dplyr_1.0.4      magrittr_2.0.1  </span>
+<span class="co">#&gt; [1] epigraphdb_0.2.2 igraph_1.2.6     glue_1.4.2       purrr_0.3.4     </span>
+<span class="co">#&gt; [5] dplyr_1.0.5      magrittr_2.0.1  </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.0      tools_4.0.4      </span>
+<span class="co">#&gt;  [1] highr_0.8         compiler_4.0.4    pillar_1.5.1      tools_4.0.4      </span>
 <span class="co">#&gt;  [5] digest_0.6.27     jsonlite_1.7.2    evaluate_0.14     memoise_2.0.0    </span>
 <span class="co">#&gt;  [9] lifecycle_1.0.0   tibble_3.1.0      pkgconfig_2.0.3   rlang_0.4.10     </span>
 <span class="co">#&gt; [13] cli_2.3.1         rstudioapi_0.13   curl_4.3          yaml_2.2.1       </span>
-<span class="co">#&gt; [17] pkgdown_1.6.1     xfun_0.21         fastmap_1.1.0     stringr_1.4.0    </span>
+<span class="co">#&gt; [17] pkgdown_1.6.1     xfun_0.22         fastmap_1.1.0     stringr_1.4.0    </span>
 <span class="co">#&gt; [21] httr_1.4.2        knitr_1.31        gtools_3.8.2      generics_0.1.0   </span>
-<span class="co">#&gt; [25] desc_1.2.0        fs_1.5.0          vctrs_0.3.6       systemfonts_1.0.1</span>
-<span class="co">#&gt; [29] rprojroot_2.0.2   tidyselect_1.1.0  R6_2.5.0          textshaping_0.3.1</span>
+<span class="co">#&gt; [25] desc_1.3.0        fs_1.5.0          vctrs_0.3.6       systemfonts_1.0.1</span>
+<span class="co">#&gt; [29] rprojroot_2.0.2   tidyselect_1.1.0  R6_2.5.0          textshaping_0.3.3</span>
 <span class="co">#&gt; [33] fansi_0.4.2       rmarkdown_2.7     ps_1.6.0          htmltools_0.5.1.1</span>
-<span class="co">#&gt; [37] ellipsis_0.3.1    assertthat_0.2.1  ragg_1.1.1        utf8_1.1.4       </span>
+<span class="co">#&gt; [37] ellipsis_0.3.1    assertthat_0.2.1  ragg_1.1.2        utf8_1.2.1       </span>
 <span class="co">#&gt; [41] stringi_1.5.3     cachem_1.0.4      crayon_1.4.1</span></code></pre></div>
 </div>
   </div>

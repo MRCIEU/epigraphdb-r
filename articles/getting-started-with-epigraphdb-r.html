@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -136,7 +136,7 @@
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v0.3 (API: https://api.epigraphdb.org)</span>
+<span class="co">#&gt;     EpiGraphDB v1.00 (API: https://api.epigraphdb.org)</span>
 <span class="co">#&gt; </span></code></pre></div>
 <div id="part-1-using-epigraphdb-to-obtain-biological-mappings" class="section level2">
 <h2 class="hasAnchor">
@@ -152,7 +152,7 @@
   method <span class="op">=</span> <span class="st">"GET"</span> <span class="co"># HTTP method, "GET", "POST", etc.</span>
 <span class="op">)</span></code></pre></div>
 <ul>
-<li><p><code>endpoint</code> and <code>method</code> consitute the ‘method’ provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a> is used to query gene-to-proteins mappings. See the full list of currently available endpoints <a href="https://docs.epigraphdb.org/api/api-endpoints/">here</a> in the documentation or the <a href="https://api.epigraphdb.org">Swagger interface of the API</a>.</p></li>
+<li><p><code>endpoint</code> and <code>method</code> constitute the ‘method’ provided by the EpiGraphDB API web service of where you want to query the data from, and there is a dedicated one for each case. e.g. <a href="https://docs.epigraphdb.org/api/api-endpoints/#post-mappingsgene-to-protein"><code>POST /mappings/gene-to-protein</code></a> is used to query gene-to-proteins mappings. See the full list of currently available endpoints <a href="https://docs.epigraphdb.org/api/api-endpoints/">here</a> in the documentation or the <a href="https://api.epigraphdb.org">Swagger interface of the API</a>.</p></li>
 <li><p><code>params</code> is where you supply the list of things you want to query about (can be a list of genes, GWAS trait, MR outcome of interest), subject to what each endpoint accepts and requires.</p></li>
 <li><p><code>mode</code> is the format in which the results are returned. Use “table” for basic cases, for more advanced stuff you may need to use “raw” - more on this later.</p></li>
 </ul>
@@ -214,12 +214,31 @@
 <span class="co">#&gt; # A tibble: 1 x 3</span>
 <span class="co">#&gt;   uniprot_id pathway_count pathway_reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;list&gt;             </span>
-<span class="co">#&gt; 1 P04637                 5 &lt;chr [5]&gt;</span>
+<span class="co">#&gt; 1 P04637                84 &lt;chr [84]&gt;</span>
 
 <span class="co"># Get pathways names (Reactome IDs)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pathway_df</span><span class="op">$</span><span class="va">pathway_reactome_id</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt; [1] "R-HSA-6785807" "R-HSA-390471"  "R-HSA-5689896" "R-HSA-6804754"</span>
-<span class="co">#&gt; [5] "R-HSA-3232118"</span></code></pre></div>
+<span class="co">#&gt;  [1] "R-HSA-983231"  "R-HSA-9006925" "R-HSA-8953897" "R-HSA-8943724"</span>
+<span class="co">#&gt;  [5] "R-HSA-8941855" "R-HSA-8878159" "R-HSA-8853884" "R-HSA-8852276"</span>
+<span class="co">#&gt;  [9] "R-HSA-74160"   "R-HSA-73894"   "R-HSA-73857"   "R-HSA-69895"  </span>
+<span class="co">#&gt; [13] "R-HSA-69620"   "R-HSA-69615"   "R-HSA-69580"   "R-HSA-69563"  </span>
+<span class="co">#&gt; [17] "R-HSA-69560"   "R-HSA-69541"   "R-HSA-69481"   "R-HSA-69473"  </span>
+<span class="co">#&gt; [21] "R-HSA-69278"   "R-HSA-69275"   "R-HSA-6811555" "R-HSA-6807070"</span>
+<span class="co">#&gt; [25] "R-HSA-6806003" "R-HSA-6804760" "R-HSA-6804759" "R-HSA-6804758"</span>
+<span class="co">#&gt; [29] "R-HSA-6804757" "R-HSA-6804756" "R-HSA-6804754" "R-HSA-6804116"</span>
+<span class="co">#&gt; [33] "R-HSA-6804115" "R-HSA-6804114" "R-HSA-6803211" "R-HSA-6803207"</span>
+<span class="co">#&gt; [37] "R-HSA-6803205" "R-HSA-6803204" "R-HSA-6796648" "R-HSA-6791312"</span>
+<span class="co">#&gt; [41] "R-HSA-6785807" "R-HSA-597592"  "R-HSA-5693606" "R-HSA-5693565"</span>
+<span class="co">#&gt; [45] "R-HSA-5693532" "R-HSA-5689896" "R-HSA-5689880" "R-HSA-5688426"</span>
+<span class="co">#&gt; [49] "R-HSA-5633008" "R-HSA-5633007" "R-HSA-5628897" "R-HSA-5357801"</span>
+<span class="co">#&gt; [53] "R-HSA-453274"  "R-HSA-449147"  "R-HSA-392499"  "R-HSA-391251" </span>
+<span class="co">#&gt; [57] "R-HSA-390471"  "R-HSA-390466"  "R-HSA-3700989" "R-HSA-349425" </span>
+<span class="co">#&gt; [61] "R-HSA-3232118" "R-HSA-3108232" "R-HSA-2990846" "R-HSA-2559586"</span>
+<span class="co">#&gt; [65] "R-HSA-2559585" "R-HSA-2559584" "R-HSA-2559583" "R-HSA-2559580"</span>
+<span class="co">#&gt; [69] "R-HSA-2262752" "R-HSA-212436"  "R-HSA-1912422" "R-HSA-1912408"</span>
+<span class="co">#&gt; [73] "R-HSA-168256"  "R-HSA-1640170" "R-HSA-162582"  "R-HSA-157118" </span>
+<span class="co">#&gt; [77] "R-HSA-139915"  "R-HSA-1280215" "R-HSA-1257604" "R-HSA-114452" </span>
+<span class="co">#&gt; [81] "R-HSA-111448"  "R-HSA-109606"  "R-HSA-109582"  "R-HSA-109581"</span></code></pre></div>
 <p>P04637 is involved in five pathways. Next, let’s get pathway info for one of them.</p>
 </div>
 <div id="get-pathway-info" class="section level3">
@@ -239,10 +258,10 @@
 
 <span class="co"># Pathway description</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pathway_info</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 1 x 3</span>
-<span class="co">#&gt;   node.in_disease node.name                     node.reactome_id</span>
-<span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;                         &lt;chr&gt;           </span>
-<span class="co">#&gt; 1 FALSE           Regulation of TP53 Expression R-HSA-6804754</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 1 x 6</span>
+<span class="co">#&gt;   node._name     node.name      node._source node.id  node._id  node.url        </span>
+<span class="co">#&gt;   &lt;chr&gt;          &lt;chr&gt;          &lt;list&gt;       &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;           </span>
+<span class="co">#&gt; 1 Regulation of… Regulation of… &lt;chr [1]&gt;    R-HSA-6… R-HSA-68… https://reactom…</span></code></pre></div>
 <p>If you are interested in this type of analysis, check out case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">1</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a> for further details on pathways analysis, PPI, mapping drugs to targets etc.</p>
 <p><br><em>Running the above queries using the <a href="https://mrcieu.github.io/epigraphdb-r/index.html#package-functionalities">dedicated wrapped functions</a>:</em></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -257,7 +276,7 @@
 <span class="co">#&gt; # A tibble: 1 x 3</span>
 <span class="co">#&gt;   uniprot_id pathway_count pathway_reactome_id</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;int&gt; &lt;list&gt;             </span>
-<span class="co">#&gt; 1 P04637                 5 &lt;chr [5]&gt;</span></code></pre></div>
+<span class="co">#&gt; 1 P04637                84 &lt;chr [84]&gt;</span></code></pre></div>
 </div>
 </div>
 <div id="part-2-epidemiological-relationships-analysis" class="section level2">
@@ -287,18 +306,18 @@
     <span class="va">node.year</span>, <span class="va">node.author</span>
   <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 5</span>
-<span class="co">#&gt;    node.trait            node.id          node.sample_size node.year node.author</span>
-<span class="co">#&gt;    &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
-<span class="co">#&gt;  1 Body mass index       ebi-a-GCST006368 315347           2018      Hoffmann TJ</span>
-<span class="co">#&gt;  2 Body mass index       ieu-a-2          339224           2015      Locke AE   </span>
-<span class="co">#&gt;  3 Body mass index       ieu-a-785        152893           2015      Locke AE   </span>
-<span class="co">#&gt;  4 Body mass index       ieu-a-835        322154           2015      Locke AE   </span>
-<span class="co">#&gt;  5 Body mass index       ebi-a-GCST004904 158284           2017      Akiyama M  </span>
-<span class="co">#&gt;  6 Body mass index       ieu-a-1089       120286           2016      Wood       </span>
-<span class="co">#&gt;  7 Body mass index       ieu-a-974        171977           2015      Locke AE   </span>
-<span class="co">#&gt;  8 Body mass index       ieu-a-95         73137            2013      Randall JC </span>
-<span class="co">#&gt;  9 Body mass index       ieu-a-94         60586            2013      Randall JC </span>
-<span class="co">#&gt; 10 Body mass index (BMI) ukb-b-19953      461460           2018      Ben Elswor…</span></code></pre></div>
+<span class="co">#&gt;    node.trait      node.id          node.sample_size node.year node.author</span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
+<span class="co">#&gt;  1 Body mass index ieu-a-1089       120286.0         2016.0    Wood       </span>
+<span class="co">#&gt;  2 Body mass index ieu-a-974        171977.0         2015.0    Locke AE   </span>
+<span class="co">#&gt;  3 Body mass index ieu-a-95         73137.0          2013.0    Randall JC </span>
+<span class="co">#&gt;  4 Body mass index ebi-a-GCST004904 158284.0         2017.0    Akiyama M  </span>
+<span class="co">#&gt;  5 Body mass index ebi-a-GCST006368 315347.0         2018.0    Hoffmann TJ</span>
+<span class="co">#&gt;  6 Body mass index bbj-a-2          85894.0          2019.0    Ishigaki K </span>
+<span class="co">#&gt;  7 Body mass index ieu-a-835        322154.0         2015.0    Locke AE   </span>
+<span class="co">#&gt;  8 Body mass index ieu-a-2          339224.0         2015.0    Locke AE   </span>
+<span class="co">#&gt;  9 Body mass index ieu-a-785        152893.0         2015.0    Locke AE   </span>
+<span class="co">#&gt; 10 Body mass index bbj-a-1          158284.0         2019.0    Ishigaki K</span></code></pre></div>
 </div>
 <div id="explore-mendelian-randomization-studies" class="section level3">
 <h3 class="hasAnchor">
@@ -326,34 +345,36 @@
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 633 x 10</span>
-<span class="co">#&gt;    exposure.id exposure.trait  outcome.id outcome.trait     mr.b   mr.se mr.pval</span>
-<span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 ieu-a-2     Body mass index ukb-a-74   Non-cancer ill… 0.0346 0.00242       0</span>
-<span class="co">#&gt;  2 ieu-a-2     Body mass index ukb-a-388  Hip circumfere… 0.724  0.0266        0</span>
-<span class="co">#&gt;  3 ieu-a-2     Body mass index ukb-a-382  Waist circumfe… 0.656  0.0245        0</span>
-<span class="co">#&gt;  4 ieu-a-2     Body mass index ukb-a-35   Comparative he… 0.137  0.00791       0</span>
-<span class="co">#&gt;  5 ieu-a-2     Body mass index ukb-a-34   Comparative bo… 0.366  0.0236        0</span>
-<span class="co">#&gt;  6 ieu-a-2     Body mass index ukb-a-293  Trunk predicte… 0.358  0.0167        0</span>
-<span class="co">#&gt;  7 ieu-a-2     Body mass index ukb-a-292  Trunk fat-free… 0.360  0.0177        0</span>
-<span class="co">#&gt;  8 ieu-a-2     Body mass index ukb-a-291  Trunk fat mass  0.737  0.0280        0</span>
-<span class="co">#&gt;  9 ieu-a-2     Body mass index ukb-a-290  Trunk fat perc… 0.527  0.0275        0</span>
-<span class="co">#&gt; 10 ieu-a-2     Body mass index ukb-a-289  Arm predicted … 0.416  0.0177        0</span>
-<span class="co">#&gt; # … with 623 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 2,282 x 10</span>
+<span class="co">#&gt;    exposure.id  exposure.trait  outcome.id outcome.trait    mr.b   mr.se mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-974    Body mass index ebi-a-GCS… Fibrinogen lev… 0.193 0.00224       0</span>
+<span class="co">#&gt;  2 ebi-a-GCST0… Body mass index ukb-b-2303 Body mass inde… 0.595 0.0153        0</span>
+<span class="co">#&gt;  3 ieu-a-785    Body mass index ieu-a-85   Extreme body m… 1.72  0.00163       0</span>
+<span class="co">#&gt;  4 ieu-a-835    Body mass index ukb-b-180… Leg fat mass (… 0.608 0.0139        0</span>
+<span class="co">#&gt;  5 ieu-a-835    Body mass index ukb-b-128… Arm fat percen… 0.526 0.0130        0</span>
+<span class="co">#&gt;  6 ieu-a-835    Body mass index ieu-a-93   Overweight      1.67  0.0341        0</span>
+<span class="co">#&gt;  7 ieu-a-835    Body mass index ieu-a-61   Waist circumfe… 0.824 0.0194        0</span>
+<span class="co">#&gt;  8 ieu-a-835    Body mass index ieu-a-60   Waist circumfe… 0.820 0.0195        0</span>
+<span class="co">#&gt;  9 ebi-a-GCST0… Body mass index ukb-b-201… Arm fat percen… 0.533 0.0104        0</span>
+<span class="co">#&gt; 10 ieu-a-2      Body mass index ukb-b-4650 Comparative bo… 0.439 0.00989       0</span>
+<span class="co">#&gt; # … with 2,272 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></code></pre></div>
 <p>The returned data frame includes all MR analysis with <code>exposure.trait</code> being “Body mass index”. However, there are several GWAS with this names. If you are interested in a specific GWAS, you will need to filter by <code>exposure.id</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Show how many MR analyses were done for each Body mass index GWAS</span>
 <span class="va">mr_df</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">exposure.id</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 2</span>
-<span class="co">#&gt;   exposure.id     n</span>
-<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;</span>
-<span class="co">#&gt; 1 ieu-a-2       146</span>
-<span class="co">#&gt; 2 ieu-a-785      90</span>
-<span class="co">#&gt; 3 ieu-a-835     129</span>
-<span class="co">#&gt; 4 ieu-a-94       69</span>
-<span class="co">#&gt; 5 ieu-a-95       86</span>
-<span class="co">#&gt; 6 ieu-a-974     113</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 8 x 2</span>
+<span class="co">#&gt;   exposure.id          n</span>
+<span class="co">#&gt;   &lt;chr&gt;            &lt;int&gt;</span>
+<span class="co">#&gt; 1 ebi-a-GCST004904   143</span>
+<span class="co">#&gt; 2 ebi-a-GCST006368   478</span>
+<span class="co">#&gt; 3 ieu-a-2            408</span>
+<span class="co">#&gt; 4 ieu-a-785          223</span>
+<span class="co">#&gt; 5 ieu-a-835          346</span>
+<span class="co">#&gt; 6 ieu-a-94           187</span>
+<span class="co">#&gt; 7 ieu-a-95           213</span>
+<span class="co">#&gt; 8 ieu-a-974          284</span></code></pre></div>
 </div>
 <div id="specify-outcome-trait" class="section level4">
 <h4 class="hasAnchor">
@@ -376,20 +397,20 @@
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 842 x 10</span>
+<span class="co">#&gt; # A tibble: 2,607 x 10</span>
 <span class="co">#&gt;    exposure.id exposure.trait  outcome.id outcome.trait     mr.b   mr.se mr.pval</span>
 <span class="co">#&gt;    &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 ieu-a-96    Height          ieu-a-67   Waist circum…   0.416  1.81e-2       0</span>
-<span class="co">#&gt;  2 ieu-a-54    Hip circumfere… ieu-a-67   Waist circum…   0.461  1.82e-2       0</span>
-<span class="co">#&gt;  3 ieu-a-69    Waist circumfe… ieu-a-67   Waist circum…   0.625  4.01e-2       0</span>
-<span class="co">#&gt;  4 ukb-a-185   Treatment/medi… ieu-a-67   Waist circum…  26.8    1.40e+0       0</span>
-<span class="co">#&gt;  5 ieu-a-89    Height          ieu-a-67   Waist circum…   0.402  9.41e-3       0</span>
-<span class="co">#&gt;  6 ukb-a-485   Types of physi… ieu-a-67   Waist circum…  -1.82   6.62e-2       0</span>
-<span class="co">#&gt;  7 ieu-a-67    Waist circumfe… ieu-a-69   Waist circum…   0.840  5.03e-2       0</span>
-<span class="co">#&gt;  8 ieu-a-70    Waist circumfe… ieu-a-69   Waist circum…   0.541  3.41e-2       0</span>
-<span class="co">#&gt;  9 ieu-a-87    Extreme waist-… ieu-a-69   Waist circum…   0.0950 2.50e-4       0</span>
-<span class="co">#&gt; 10 ukb-a-523   Diagnoses - ma… ieu-a-69   Waist circum… -12.5    2.97e-1       0</span>
-<span class="co">#&gt; # … with 832 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
+<span class="co">#&gt;  1 ukb-b-15957 Types of trans… ieu-a-104  Waist circum…  0.591   7.59e-3       0</span>
+<span class="co">#&gt;  2 ukb-b-13423 Breastfed as a… ieu-a-104  Waist circum…  0.601   1.26e-2       0</span>
+<span class="co">#&gt;  3 ubm-a-130   IDP T1 FAST RO… ieu-a-104  Waist circum…  0.0899  1.25e-3       0</span>
+<span class="co">#&gt;  4 prot-b-38   interleukin 1 … ieu-a-104  Waist circum… -0.00884 2.30e-4       0</span>
+<span class="co">#&gt;  5 met-c-903   Phospholipids … ieu-a-104  Waist circum… -0.0428  2.97e-4       0</span>
+<span class="co">#&gt;  6 ukb-b-19060 Hearing aid us… ieu-a-66   Waist circum…  0.845   1.29e-2       0</span>
+<span class="co">#&gt;  7 ukb-a-344   Difficulty not… ieu-a-66   Waist circum…  0.102   4.80e-4       0</span>
+<span class="co">#&gt;  8 ubm-a-11    IDP T1 FIRST l… ieu-a-66   Waist circum…  0.0468  2.60e-4       0</span>
+<span class="co">#&gt;  9 prot-a-2356 Lysosomal Pro-… ieu-a-66   Waist circum…  0.0157  6.30e-5       0</span>
+<span class="co">#&gt; 10 prot-a-1332 Hemojuvelin     ieu-a-66   Waist circum… -0.0196  2.56e-4       0</span>
+<span class="co">#&gt; # … with 2,597 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="specify-both-exposure-and-outcome-traits" class="section level4">
@@ -413,15 +434,27 @@
 <span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">mr_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt; # A tibble: 18 x 10</span>
+<span class="co">#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29</span>
+<span class="co">#&gt;  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20</span>
+<span class="co">#&gt;  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt;  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11</span>
+<span class="co">#&gt;  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9</span>
+<span class="co">#&gt;  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9</span>
+<span class="co">#&gt;  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8</span>
+<span class="co">#&gt;  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7</span>
+<span class="co">#&gt;  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7</span>
+<span class="co">#&gt; 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7</span>
+<span class="co">#&gt; 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6</span>
+<span class="co">#&gt; 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6</span>
+<span class="co">#&gt; 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6</span>
+<span class="co">#&gt; 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6</span>
+<span class="co">#&gt; 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6</span>
+<span class="co">#&gt; 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 <p>To query EpiGraphDB directly by GWAS ID, you will need to use the advanced functionality. See the end of this article.</p>
@@ -431,15 +464,27 @@
   exposure_trait <span class="op">=</span> <span class="va">trait1</span>,
   outcome_trait <span class="op">=</span> <span class="va">trait2</span>
 <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 x 10</span>
-<span class="co">#&gt;   exposure.id exposure.trait  outcome.id outcome.trait      mr.b  mr.se  mr.pval</span>
-<span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ieu-a-974   Body mass index ieu-a-7    Coronary heart d… 0.389 0.0493 3.42e-15</span>
-<span class="co">#&gt; 2 ieu-a-2     Body mass index ieu-a-7    Coronary heart d… 0.397 0.0727 4.79e- 8</span>
-<span class="co">#&gt; 3 ieu-a-95    Body mass index ieu-a-7    Coronary heart d… 0.455 0.0931 1.02e- 6</span>
-<span class="co">#&gt; 4 ieu-a-2     Body mass index ieu-a-8    Coronary heart d… 0.331 0.0684 1.31e- 6</span>
-<span class="co">#&gt; 5 ieu-a-835   Body mass index ieu-a-7    Coronary heart d… 0.360 0.0756 1.94e- 6</span>
-<span class="co">#&gt; 6 ieu-a-974   Body mass index ieu-a-8    Coronary heart d… 0.328 0.0731 6.97e- 6</span>
+<span class="co">#&gt; # A tibble: 18 x 10</span>
+<span class="co">#&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval</span>
+<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29</span>
+<span class="co">#&gt;  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20</span>
+<span class="co">#&gt;  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15</span>
+<span class="co">#&gt;  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11</span>
+<span class="co">#&gt;  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9</span>
+<span class="co">#&gt;  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9</span>
+<span class="co">#&gt;  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8</span>
+<span class="co">#&gt;  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7</span>
+<span class="co">#&gt;  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7</span>
+<span class="co">#&gt; 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7</span>
+<span class="co">#&gt; 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6</span>
+<span class="co">#&gt; 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6</span>
+<span class="co">#&gt; 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6</span>
+<span class="co">#&gt; 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6</span>
+<span class="co">#&gt; 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6</span>
+<span class="co">#&gt; 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6</span>
+<span class="co">#&gt; 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6</span>
 <span class="co">#&gt; # … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.moescore &lt;dbl&gt;</span></code></pre></div>
 </div>
@@ -469,13 +514,14 @@
 
 <span class="co"># Review the found evidence in the literature</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">lit_df</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 4 x 4</span>
-<span class="co">#&gt;   pubmed_id  gene.name st.predicate        st.object_name             </span>
-<span class="co">#&gt;   &lt;list&gt;     &lt;chr&gt;     &lt;chr&gt;               &lt;chr&gt;                      </span>
-<span class="co">#&gt; 1 &lt;chr [2]&gt;  IL23R     NEG_ASSOCIATED_WITH Inflammatory Bowel Diseases</span>
-<span class="co">#&gt; 2 &lt;chr [1]&gt;  IL23R     AFFECTS             Inflammatory Bowel Diseases</span>
-<span class="co">#&gt; 3 &lt;chr [21]&gt; IL23R     ASSOCIATED_WITH     Inflammatory Bowel Diseases</span>
-<span class="co">#&gt; 4 &lt;chr [1]&gt;  IL23R     PREDISPOSES         Inflammatory Bowel Diseases</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 5 x 6</span>
+<span class="co">#&gt;   pubmed_id  gene.name lt.id    lt.name               lt.type  st.predicate     </span>
+<span class="co">#&gt;   &lt;list&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;                 &lt;list&gt;   &lt;chr&gt;            </span>
+<span class="co">#&gt; 1 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… PREDISPOSES      </span>
+<span class="co">#&gt; 2 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… NEG_ASSOCIATED_W…</span>
+<span class="co">#&gt; 3 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… CAUSES           </span>
+<span class="co">#&gt; 4 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… ASSOCIATED_WITH  </span>
+<span class="co">#&gt; 5 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… AFFECTS</span></code></pre></div>
 <p>The data frame above shows that IL23R has been mentioned in 25 publications (<code>pubmed_id</code> column) in relation to Inflammatory bowel disease, in four predicates.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get a list of all PubMed IDs</span>
@@ -483,10 +529,10 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pubmed_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "17484863" "21155887" "27852544" "19575361" "19496308" "18383521"</span>
-<span class="co">#&gt;  [7] "18341487" "19817673" "18088064" "29248579" "18047540" "25159710"</span>
-<span class="co">#&gt; [13] "18383363" "19175939" "18698678" "21846945" "20067801" "18368064"</span>
-<span class="co">#&gt; [19] "20393462" "19747142" "18164077" "24280935" "23131344"</span></code></pre></div>
+<span class="co">#&gt;  [1] "21155887" "18383521" "18383363" "25159710" "18341487" "18047540"</span>
+<span class="co">#&gt;  [7] "19575361" "17484863" "19496308" "18698678" "18088064" "19175939"</span>
+<span class="co">#&gt; [13] "19817673" "29248579" "19747142" "20393462" "20067801" "18368064"</span>
+<span class="co">#&gt; [19] "21846945" "18164077" "24280935" "23131344" "27852544" "31728561"</span></code></pre></div>
 <p>If you are interested in literature mining analysis, and also matching MR results to literature evidence, please refer to more specific examples in case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html">3</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a>.</p>
 </div>
 <div id="epigraphdb-node-search" class="section level2">
@@ -499,9 +545,9 @@
   route <span class="op">=</span> <span class="va">endpoint</span>, params <span class="op">=</span> <span class="cn">NULL</span>, mode <span class="op">=</span> <span class="st">"raw"</span>
 <span class="op">)</span>
 <span class="va">meta_node_fields</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "Gwas"       "Disease"    "Drug"       "Efo"        "Event"     </span>
-<span class="co">#&gt;  [6] "Gene"       "Tissue"     "Literature" "Pathway"    "Protein"   </span>
-<span class="co">#&gt; [11] "SemmedTerm" "Variant"</span></code></pre></div>
+<span class="co">#&gt;  [1] "Disease"        "Drug"           "Efo"            "Gene"          </span>
+<span class="co">#&gt;  [5] "Gwas"           "Literature"     "LiteratureTerm" "Pathway"       </span>
+<span class="co">#&gt;  [9] "Protein"        "Tissue"         "Variant"</span></code></pre></div>
 <p>The list of nodes is also available in the <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/">documentation</a>, along with the node properties, which are useful for running native Cypher queries. In this section, we want to show how to perform node search for a term of interest. Any node can be searched by specifying it in this query: <code>GET /meta/nodes/{meta_node}/search</code>.</p>
 <p>To demonstrate this, we are going to search for ‘breast cancer’ in various nodes:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -521,16 +567,16 @@
 <span class="co">#&gt; # A tibble: 10 x 5</span>
 <span class="co">#&gt;    node.trait                  node.id    node.sample_size node.year node.author</span>
 <span class="co">#&gt;    &lt;chr&gt;                       &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
-<span class="co">#&gt;  1 Breast cancer               ebi-a-GCS… 89677            2015      Michailido…</span>
-<span class="co">#&gt;  2 Breast cancer               ebi-a-GCS… 139274           2017      Michailido…</span>
-<span class="co">#&gt;  3 Breast cancer (Combined On… ieu-a-1126 228951           2017      Michailido…</span>
-<span class="co">#&gt;  4 Breast cancer (GWAS)        ieu-a-1131 32498            2017      Michailido…</span>
-<span class="co">#&gt;  5 Breast cancer (GWAS)        ieu-a-1168 33832            2015      Michailido…</span>
-<span class="co">#&gt;  6 Breast cancer (Oncoarray)   ieu-a-1129 106776           2017      Michailido…</span>
-<span class="co">#&gt;  7 Breast cancer (Survival)    ieu-a-1165 37954            2015      Guo Q      </span>
-<span class="co">#&gt;  8 Breast cancer (iCOGS)       ieu-a-1162 89677            2015      Michailido…</span>
-<span class="co">#&gt;  9 Breast cancer (iCOGS)       ieu-a-1130 89677            2017      Michailido…</span>
-<span class="co">#&gt; 10 Breast cancer anti-estroge… prot-a-234 3301             2018      Sun BB</span>
+<span class="co">#&gt;  1 Breast cancer               ebi-a-GCS… 89677.0          2015.0    Michailido…</span>
+<span class="co">#&gt;  2 Breast cancer               ebi-a-GCS… 139274.0         2017.0    Michailido…</span>
+<span class="co">#&gt;  3 Breast cancer (Combined On… ieu-a-1126 228951.0         2017.0    Michailido…</span>
+<span class="co">#&gt;  4 Breast cancer (GWAS)        ieu-a-1168 33832.0          2015.0    Michailido…</span>
+<span class="co">#&gt;  5 Breast cancer (GWAS)        ieu-a-1131 32498.0          2017.0    Michailido…</span>
+<span class="co">#&gt;  6 Breast cancer (Oncoarray)   ieu-a-1129 106776.0         2017.0    Michailido…</span>
+<span class="co">#&gt;  7 Breast cancer (Survival)    ieu-a-1165 37954.0          2015.0    Guo Q      </span>
+<span class="co">#&gt;  8 Breast cancer (iCOGS)       ieu-a-1162 89677.0          2015.0    Michailido…</span>
+<span class="co">#&gt;  9 Breast cancer (iCOGS)       ieu-a-1130 89677.0          2017.0    Michailido…</span>
+<span class="co">#&gt; 10 Breast cancer anti-estroge… prot-a-234 3301.0           2018.0    Sun BB</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Disease/search"</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
@@ -543,13 +589,13 @@
 <span class="co">#&gt; # A tibble: 7 x 3</span>
 <span class="co">#&gt;   node.label             node.id             node.definition                    </span>
 <span class="co">#&gt;   &lt;chr&gt;                  &lt;chr&gt;               &lt;chr&gt;                              </span>
-<span class="co">#&gt; 1 sporadic breast cancer http://purl.obolib… A carcinoma that arises from the b…</span>
-<span class="co">#&gt; 2 progesterone-receptor… http://purl.obolib… NA                                 </span>
-<span class="co">#&gt; 3 progesterone-receptor… http://purl.obolib… NA                                 </span>
-<span class="co">#&gt; 4 Her2-receptor negativ… http://purl.obolib… NA                                 </span>
-<span class="co">#&gt; 5 estrogen-receptor pos… http://purl.obolib… a subtype of breast cancer that is…</span>
-<span class="co">#&gt; 6 estrogen-receptor neg… http://purl.obolib… a subtype of breast cancer that is…</span>
-<span class="co">#&gt; 7 breast cancer          http://purl.obolib… A primary or metastatic malignant …</span>
+<span class="co">#&gt; 1 Her2-receptor negativ… http://purl.obolib… NA                                 </span>
+<span class="co">#&gt; 2 breast cancer          http://purl.obolib… A primary or metastatic malignant …</span>
+<span class="co">#&gt; 3 estrogen-receptor neg… http://purl.obolib… A subtype of breast cancer that is…</span>
+<span class="co">#&gt; 4 estrogen-receptor pos… http://purl.obolib… A subtype of breast cancer that is…</span>
+<span class="co">#&gt; 5 progesterone-receptor… http://purl.obolib… NA                                 </span>
+<span class="co">#&gt; 6 progesterone-receptor… http://purl.obolib… NA                                 </span>
+<span class="co">#&gt; 7 sporadic breast cancer http://purl.obolib… A carcinoma that arises from the b…</span>
 
 <span class="va">endpoint</span> <span class="op">&lt;-</span> <span class="st">"/meta/nodes/Efo/search"</span>
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/query_epigraphdb.html">query_epigraphdb</a></span><span class="op">(</span>
@@ -558,19 +604,19 @@
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="va">results</span>
-<span class="co">#&gt; # A tibble: 10 x 3</span>
-<span class="co">#&gt;    node.type    node.value                       node.id                        </span>
-<span class="co">#&gt;    &lt;chr&gt;        &lt;chr&gt;                            &lt;chr&gt;                          </span>
-<span class="co">#&gt;  1 typed-liter… breast cancer cell line          http://www.ebi.ac.uk/efo/EFO_0…</span>
-<span class="co">#&gt;  2 typed-liter… triple-negative breast cancer    http://www.ebi.ac.uk/efo/EFO_0…</span>
-<span class="co">#&gt;  3 typed-liter… Her2-receptor negative breast c… http://purl.obolibrary.org/obo…</span>
-<span class="co">#&gt;  4 typed-liter… breast cancer                    http://purl.obolibrary.org/obo…</span>
-<span class="co">#&gt;  5 typed-liter… progesterone-receptor negative … http://www.ebi.ac.uk/efo/EFO_0…</span>
-<span class="co">#&gt;  6 typed-liter… estrogen-receptor negative brea… http://www.ebi.ac.uk/efo/EFO_1…</span>
-<span class="co">#&gt;  7 typed-liter… Hereditary breast cancer         http://www.orpha.net/ORDO/Orph…</span>
-<span class="co">#&gt;  8 typed-liter… age at breast cancer diagnosis   http://www.ebi.ac.uk/efo/EFO_0…</span>
-<span class="co">#&gt;  9 typed-liter… breast cancer stage              http://www.ebi.ac.uk/efo/EFO_0…</span>
-<span class="co">#&gt; 10 typed-liter… family history of breast cancer  http://www.ebi.ac.uk/efo/EFO_0…</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 10 x 6</span>
+<span class="co">#&gt;    node._name      node._source node.id     node._id    node.type node.value    </span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;list&gt;       &lt;chr&gt;       &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;         </span>
+<span class="co">#&gt;  1 BRCAX breast c… &lt;chr [1]&gt;    http://www… http://www… typed-li… BRCAX breast …</span>
+<span class="co">#&gt;  2 Her2-receptor … &lt;chr [1]&gt;    http://pur… http://pur… typed-li… Her2-receptor…</span>
+<span class="co">#&gt;  3 Hereditary bre… &lt;chr [1]&gt;    http://www… http://www… typed-li… Hereditary br…</span>
+<span class="co">#&gt;  4 age at breast … &lt;chr [1]&gt;    http://www… http://www… typed-li… age at breast…</span>
+<span class="co">#&gt;  5 breast cancer   &lt;chr [1]&gt;    http://pur… http://pur… typed-li… breast cancer </span>
+<span class="co">#&gt;  6 breast cancer … &lt;chr [1]&gt;    http://www… http://www… typed-li… breast cancer…</span>
+<span class="co">#&gt;  7 breast cancer … &lt;chr [1]&gt;    http://www… http://www… typed-li… breast cancer…</span>
+<span class="co">#&gt;  8 breast cancer … &lt;chr [1]&gt;    http://www… http://www… typed-li… breast cancer…</span>
+<span class="co">#&gt;  9 estrogen-recep… &lt;chr [1]&gt;    http://www… http://www… typed-li… estrogen-rece…</span>
+<span class="co">#&gt; 10 estrogen-recep… &lt;chr [1]&gt;    http://www… http://www… typed-li… estrogen-rece…</span></code></pre></div>
 <p>The queries above can be further expanded using Cypher as will be shown in the next section. To get more information about <code>meta</code> endpoint please see the guidelines on <a href="https://mrcieu.github.io/epigraphdb-r/articles/meta-functionalities.html">meta functionalities</a>.</p>
 </div>
 <div id="advanced-examples" class="section level2">
@@ -621,18 +667,18 @@
     <span class="va">node.year</span>, <span class="va">node.author</span>
   <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 10 x 5</span>
-<span class="co">#&gt;    node.trait            node.id          node.sample_size node.year node.author</span>
-<span class="co">#&gt;    &lt;chr&gt;                 &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
-<span class="co">#&gt;  1 Body mass index       ebi-a-GCST006368 315347           2018      Hoffmann TJ</span>
-<span class="co">#&gt;  2 Body mass index       ieu-a-2          339224           2015      Locke AE   </span>
-<span class="co">#&gt;  3 Body mass index       ieu-a-785        152893           2015      Locke AE   </span>
-<span class="co">#&gt;  4 Body mass index       ieu-a-835        322154           2015      Locke AE   </span>
-<span class="co">#&gt;  5 Body mass index       ebi-a-GCST004904 158284           2017      Akiyama M  </span>
-<span class="co">#&gt;  6 Body mass index       ieu-a-1089       120286           2016      Wood       </span>
-<span class="co">#&gt;  7 Body mass index       ieu-a-974        171977           2015      Locke AE   </span>
-<span class="co">#&gt;  8 Body mass index       ieu-a-95         73137            2013      Randall JC </span>
-<span class="co">#&gt;  9 Body mass index       ieu-a-94         60586            2013      Randall JC </span>
-<span class="co">#&gt; 10 Body mass index (BMI) ukb-b-19953      461460           2018      Ben Elswor…</span></code></pre></div>
+<span class="co">#&gt;    node.trait      node.id          node.sample_size node.year node.author</span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
+<span class="co">#&gt;  1 Body mass index ieu-a-1089       120286.0         2016.0    Wood       </span>
+<span class="co">#&gt;  2 Body mass index ieu-a-974        171977.0         2015.0    Locke AE   </span>
+<span class="co">#&gt;  3 Body mass index ieu-a-95         73137.0          2013.0    Randall JC </span>
+<span class="co">#&gt;  4 Body mass index ebi-a-GCST004904 158284.0         2017.0    Akiyama M  </span>
+<span class="co">#&gt;  5 Body mass index ebi-a-GCST006368 315347.0         2018.0    Hoffmann TJ</span>
+<span class="co">#&gt;  6 Body mass index bbj-a-2          85894.0          2019.0    Ishigaki K </span>
+<span class="co">#&gt;  7 Body mass index ieu-a-835        322154.0         2015.0    Locke AE   </span>
+<span class="co">#&gt;  8 Body mass index ieu-a-2          339224.0         2015.0    Locke AE   </span>
+<span class="co">#&gt;  9 Body mass index ieu-a-785        152893.0         2015.0    Locke AE   </span>
+<span class="co">#&gt; 10 Body mass index bbj-a-1          158284.0         2019.0    Ishigaki K</span></code></pre></div>
 <p>Next step: let’s modify Cypher query</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Let's return Body mass index GWAS that were done by Locke AE</span>
@@ -663,10 +709,10 @@
 <span class="co">#&gt; # A tibble: 4 x 5</span>
 <span class="co">#&gt;   node.trait      node.id   node.sample_size node.year node.author</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
-<span class="co">#&gt; 1 Body mass index ieu-a-2   339224           2015      Locke AE   </span>
-<span class="co">#&gt; 2 Body mass index ieu-a-785 152893           2015      Locke AE   </span>
-<span class="co">#&gt; 3 Body mass index ieu-a-835 322154           2015      Locke AE   </span>
-<span class="co">#&gt; 4 Body mass index ieu-a-974 171977           2015      Locke AE</span></code></pre></div>
+<span class="co">#&gt; 1 Body mass index ieu-a-974 171977.0         2015.0    Locke AE   </span>
+<span class="co">#&gt; 2 Body mass index ieu-a-835 322154.0         2015.0    Locke AE   </span>
+<span class="co">#&gt; 3 Body mass index ieu-a-2   339224.0         2015.0    Locke AE   </span>
+<span class="co">#&gt; 4 Body mass index ieu-a-785 152893.0         2015.0    Locke AE</span></code></pre></div>
 <p>NOTE: Be mindful of the data type of each node property. Please refer to <a href="https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas">data dictionary</a> to explore data types before writing native Cypher queries.</p>
 <p><br> Now, let’s try making queries by specifying a GWAS ID.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
@@ -693,7 +739,7 @@
 <span class="co">#&gt; # A tibble: 1 x 5</span>
 <span class="co">#&gt;   node.trait      node.id node.sample_size node.year node.author</span>
 <span class="co">#&gt;   &lt;chr&gt;           &lt;chr&gt;   &lt;chr&gt;            &lt;chr&gt;     &lt;chr&gt;      </span>
-<span class="co">#&gt; 1 Body mass index ieu-a-2 339224           2015      Locke AE</span></code></pre></div>
+<span class="co">#&gt; 1 Body mass index ieu-a-2 339224.0         2015.0    Locke AE</span></code></pre></div>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Return MR results only for exposure trait 'ieu-a-2' (body mass index)</span>
 
@@ -709,11 +755,11 @@
   mode <span class="op">=</span> <span class="st">"raw"</span>
 <span class="op">)</span>
 <span class="va">mr_df</span><span class="op">$</span><span class="va">metadata</span><span class="op">$</span><span class="va">query</span>
-<span class="co">#&gt; [1] "MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND mr.pval &lt; 5e-08 RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore} ORDER BY mr.pval ;"</span>
+<span class="co">#&gt; [1] "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND mr.pval &lt; 5e-08 RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore} ORDER BY mr.pval ;"</span>
 
 <span class="co"># modify the query to only return 'ieu-a-2' GWAS results</span>
 <span class="va">query</span> <span class="op">&lt;-</span> <span class="st">"
-  MATCH (exposure:Gwas)-[mr:MR]-&gt;(outcome:Gwas)
+  MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas)
   WHERE exposure.id = \"ieu-a-2\"
   AND mr.pval &lt; 5e-08
   RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore}
@@ -729,28 +775,28 @@
   mode <span class="op">=</span> <span class="st">"table"</span>
 <span class="op">)</span>
 <span class="va">results_subset</span>
-<span class="co">#&gt; # A tibble: 146 x 10</span>
-<span class="co">#&gt;    exposure.trait  exposure.id outcome.trait outcome.id   mr.se   mr.b mr.method</span>
-<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 Body mass index ieu-a-2     Non-cancer i… ukb-a-74   0.00242 0.0346 FE IVW   </span>
-<span class="co">#&gt;  2 Body mass index ieu-a-2     Hip circumfe… ukb-a-388  0.0266  0.724  Simple m…</span>
-<span class="co">#&gt;  3 Body mass index ieu-a-2     Waist circum… ukb-a-382  0.0245  0.656  Simple m…</span>
-<span class="co">#&gt;  4 Body mass index ieu-a-2     Comparative … ukb-a-35   0.00791 0.137  FE IVW   </span>
-<span class="co">#&gt;  5 Body mass index ieu-a-2     Comparative … ukb-a-34   0.0236  0.366  Simple m…</span>
-<span class="co">#&gt;  6 Body mass index ieu-a-2     Trunk predic… ukb-a-293  0.0167  0.358  Simple m…</span>
-<span class="co">#&gt;  7 Body mass index ieu-a-2     Trunk fat-fr… ukb-a-292  0.0177  0.360  Simple m…</span>
-<span class="co">#&gt;  8 Body mass index ieu-a-2     Trunk fat ma… ukb-a-291  0.0280  0.737  Simple m…</span>
-<span class="co">#&gt;  9 Body mass index ieu-a-2     Trunk fat pe… ukb-a-290  0.0275  0.527  Weighted…</span>
-<span class="co">#&gt; 10 Body mass index ieu-a-2     Arm predicte… ukb-a-289  0.0177  0.416  Simple m…</span>
-<span class="co">#&gt; # … with 136 more rows, and 3 more variables: mr.selection &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 408 x 10</span>
+<span class="co">#&gt;    exposure.trait  exposure.id outcome.trait  outcome.id  mr.b   mr.se mr.method</span>
+<span class="co">#&gt;    &lt;chr&gt;           &lt;chr&gt;       &lt;chr&gt;          &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    </span>
+<span class="co">#&gt;  1 Body mass index ieu-a-2     Comparative b… ukb-b-4650 0.439 0.00989 FE IVW   </span>
+<span class="co">#&gt;  2 Body mass index ieu-a-2     Body mass ind… ukb-b-2303 0.674 0.0178  FE IVW   </span>
+<span class="co">#&gt;  3 Body mass index ieu-a-2     Basal metabol… ukb-b-164… 0.449 0.0118  FE IVW   </span>
+<span class="co">#&gt;  4 Body mass index ieu-a-2     Arm fat perce… ukb-a-282  0.528 0.0125  FE IVW   </span>
+<span class="co">#&gt;  5 Body mass index ieu-a-2     Waist circumf… ukb-b-9405 0.645 0.0126  FE IVW   </span>
+<span class="co">#&gt;  6 Body mass index ieu-a-2     Arm predicted… ukb-b-9093 0.398 0.00841 FE IVW   </span>
+<span class="co">#&gt;  7 Body mass index ieu-a-2     Body mass ind… ieu-a-94   1.01  0.0269  FE IVW   </span>
+<span class="co">#&gt;  8 Body mass index ieu-a-2     Hip circumfer… ieu-a-48   0.828 0.0149  FE IVW   </span>
+<span class="co">#&gt;  9 Body mass index ieu-a-2     Waist circumf… ieu-a-65   0.732 0.0200  FE IVW   </span>
+<span class="co">#&gt; 10 Body mass index ieu-a-2     Hip circumfer… ukb-b-155… 0.652 0.0180  FE IVW   </span>
+<span class="co">#&gt; # … with 398 more rows, and 3 more variables: mr.selection &lt;chr&gt;,</span>
 <span class="co">#&gt; #   mr.pval &lt;dbl&gt;, mr.moescore &lt;dbl&gt;</span>
 
 <span class="co"># check exposures in the results</span>
 <span class="va">results_subset</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">exposure.id</span><span class="op">)</span>
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;   exposure.id     n</span>
-<span class="co">#&gt; * &lt;chr&gt;       &lt;int&gt;</span>
-<span class="co">#&gt; 1 ieu-a-2       146</span></code></pre></div>
+<span class="co">#&gt;   &lt;chr&gt;       &lt;int&gt;</span>
+<span class="co">#&gt; 1 ieu-a-2       408</span></code></pre></div>
 <p><br> Great! You can now use the basic functionality of the R package and make simple Cypher queries to the API. Next, we recommend to work through the <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html">case studies</a> and check out the <a href="https://epigraphdb.org/explore">Web UI examples</a> and the <a href="https://epigraphdb.org/gallery">EpiGraphDB Gallery</a>.</p>
 </div>
   </div>

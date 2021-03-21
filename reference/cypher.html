@@ -82,7 +82,7 @@ Regular users are recommended to use standard query functions" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
@@ -189,14 +189,14 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>cypher</span><span class='op'>(</span><span class='st'>"MATCH (n:Gwas) RETURN n LIMIT 2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 16</span><span>
-#&gt;   n.note n.access n.year n.mr  n.author n.consortium n.sex            n.priority
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;lgl&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> </span><span style='color: #BB0000;'>NA</span><span>     public   2018   1     Vosa U   </span><span style='color: #BB0000;'>NA</span><span>           Males and Femal… 0         
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>     public   2018   1     Vosa U   </span><span style='color: #BB0000;'>NA</span><span>           Males and Femal… 0         
-#&gt; </span><span style='color: #949494;'># … with 8 more variables: n.population &lt;chr&gt;, n.unit &lt;lgl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   n.sample_size &lt;chr&gt;, n.nsnp &lt;chr&gt;, n.trait &lt;chr&gt;, n.id &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   n.subcategory &lt;lgl&gt;, n.category &lt;lgl&gt;</span><span></div></span></pre>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 20</span><span>
+#&gt;   n.ncase n._name      n.year n.mr  n.author  n.sex  n.pmid n.population n.unit 
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> 515.0   frontotempo… 2010.0 1     Van Deer… Males… 20154… European     log od…
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> </span><span style='color: #BB0000;'>NA</span><span>      body mass i… 2018.0 1     Yengo, L  Males… 30124… European     SD     
+#&gt; </span><span style='color: #949494;'># … with 11 more variables: n.sample_size &lt;chr&gt;, n.nsnp &lt;chr&gt;, n.build &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   n.ncontrol &lt;chr&gt;, n.trait &lt;chr&gt;, n._source &lt;list&gt;, n.id &lt;chr&gt;, n._id &lt;chr&gt;,</span><span>
+#&gt; </span><span style='color: #949494;'>#   n.subcategory &lt;chr&gt;, n.category &lt;chr&gt;, n.consortium &lt;chr&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
