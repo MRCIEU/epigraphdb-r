@@ -517,11 +517,11 @@
 <span class="co">#&gt; # A tibble: 5 x 6</span>
 <span class="co">#&gt;   pubmed_id  gene.name lt.id    lt.name               lt.type  st.predicate     </span>
 <span class="co">#&gt;   &lt;list&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;                 &lt;list&gt;   &lt;chr&gt;            </span>
-<span class="co">#&gt; 1 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… PREDISPOSES      </span>
-<span class="co">#&gt; 2 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… NEG_ASSOCIATED_W…</span>
-<span class="co">#&gt; 3 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… CAUSES           </span>
-<span class="co">#&gt; 4 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… ASSOCIATED_WITH  </span>
-<span class="co">#&gt; 5 &lt;chr [26]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… AFFECTS</span></code></pre></div>
+<span class="co">#&gt; 1 &lt;chr [1]&gt;  IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… PREDISPOSES      </span>
+<span class="co">#&gt; 2 &lt;chr [2]&gt;  IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… NEG_ASSOCIATED_W…</span>
+<span class="co">#&gt; 3 &lt;chr [1]&gt;  IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… CAUSES           </span>
+<span class="co">#&gt; 4 &lt;chr [21]&gt; IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… ASSOCIATED_WITH  </span>
+<span class="co">#&gt; 5 &lt;chr [1]&gt;  IL23R     C0021390 Inflammatory Bowel D… &lt;chr [1… AFFECTS</span></code></pre></div>
 <p>The data frame above shows that IL23R has been mentioned in 25 publications (<code>pubmed_id</code> column) in relation to Inflammatory bowel disease, in four predicates.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get a list of all PubMed IDs</span>
@@ -529,10 +529,10 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">pubmed_id</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;  [1] "21155887" "18383521" "18383363" "25159710" "18341487" "18047540"</span>
-<span class="co">#&gt;  [7] "19575361" "17484863" "19496308" "18698678" "18088064" "19175939"</span>
-<span class="co">#&gt; [13] "19817673" "29248579" "19747142" "20393462" "20067801" "18368064"</span>
-<span class="co">#&gt; [19] "21846945" "18164077" "24280935" "23131344" "27852544" "31728561"</span></code></pre></div>
+<span class="co">#&gt;  [1] "23131344" "21155887" "17484863" "31728561" "18383521" "18383363"</span>
+<span class="co">#&gt;  [7] "25159710" "18341487" "18047540" "19575361" "19496308" "18698678"</span>
+<span class="co">#&gt; [13] "18088064" "19175939" "19817673" "29248579" "19747142" "20393462"</span>
+<span class="co">#&gt; [19] "20067801" "18368064" "21846945" "18164077" "24280935" "27852544"</span></code></pre></div>
 <p>If you are interested in literature mining analysis, and also matching MR results to literature evidence, please refer to more specific examples in case studies <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html">3</a> and <a href="https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html">2</a>.</p>
 </div>
 <div id="epigraphdb-node-search" class="section level2">
