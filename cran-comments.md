@@ -1,5 +1,11 @@
-## Resubmission (2020-08-24)
+# epigraphdb 0.2.2
 
-I have addressed the issue relating to changing user's par("mar") configs in
-vignettes/case-3-literature-triangulation.Rmd.
-Now par("mar") is restored after the plot.
+Fix various compatibility issues following the upstream API changes in the EpiGraphDB platform.
+
+## Test environments
+- Local Linux, R 4.0.4
+- Via GitHub Actions
+  - windows-latest, R release
+  - macOS-latest, R release
+  - ubuntu-20.04, R release and R devel
+- Via rhub, windows release and devel
