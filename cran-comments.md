@@ -1,6 +1,8 @@
 # epigraphdb 0.2.2
 
-Fix various compatibility issues following the upstream API changes in the EpiGraphDB platform.
+2021-03-27 Fixed issues from auto checks on CRAN.
+
+2021-03-25 Fix various compatibility issues following the upstream API changes in the EpiGraphDB platform.
 
 ## Test environments
 - Local Linux, R 4.0.4
