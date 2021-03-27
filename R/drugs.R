@@ -7,7 +7,9 @@
 #' @return Data from `GET /drugs/risk-factors`
 #'
 #' @examples
+#' \dontrun{
 #' drugs_risk_factors(trait = "Body mass index")
+#' }
 #' @export
 drugs_risk_factors <- function(trait, pval_threshold = 1e-8,
                                mode = c("table", "raw")) {

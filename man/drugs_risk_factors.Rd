@@ -24,5 +24,7 @@ Data from \code{GET /drugs/risk-factors}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-drugsrisk-factors}{\code{GET /drugs/risk-factors}}
 }
 \examples{
+\dontrun{
 drugs_risk_factors(trait = "Body mass index")
+}
 }
