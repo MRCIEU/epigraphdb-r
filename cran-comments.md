@@ -1,5 +1,7 @@
 # epigraphdb 0.2.2
 
+2021-03-29 Fixed invalid urls.
+
 2021-03-27 Fixed issues from auto checks on CRAN.
 
 2021-03-25 Fix various compatibility issues following the upstream API changes in the EpiGraphDB platform.

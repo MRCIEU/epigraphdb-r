@@ -186,7 +186,7 @@ lit_df_filter %>%
 
 If we explore the full table in ```lit_df_filter```, we can see lots of links between the two traits, pinned on specific overlapping terms.
 
-We can summarise the [SemMedDB semantic type](https://metamap.nlm.nih.gov/MetaMapLite.shtml) and number of overlapping terms:
+We can summarise the [SemMedDB semantic type](https://metamap.nlm.nih.gov/SemanticTypesAndGroups.shtml) and number of overlapping terms:
 
 ```{r}
 lit_counts <- lit_df_filter %>%
@@ -196,8 +196,6 @@ lit_counts %>% print(n = 30)
 ```
 
 Note, the SemMedDB semantic types have been pre-filtered to only include a subset of possibilities.
-
-Further examples of these term IDs and descriptions can be found here - [https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml](https://mmtx.nlm.nih.gov/MMTx/semanticTypes.shtml)
 
 ### Plotting the overlapping term frequencies
 
