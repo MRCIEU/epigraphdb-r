@@ -197,36 +197,36 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <pre class="examples"><div class='input'>
 <span class='co'># Returns a list of available proteins (exposures)</span>
 <span class='fu'>pqtl_list</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 989 x 1</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 989 x 1</span>
 #&gt;    expID   
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> A1CF    
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ACP1    
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ACP2    
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ACP5    
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ADA2    
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ADAM15  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ADAM23  
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ADAMTS13
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ADAMTS5 
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ADGRE2  
-#&gt; </span><span style='color: #949494;'># … with 979 more rows</span><span></div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   
+#&gt; <span style='color: #BCBCBC;'> 1</span> A1CF    
+#&gt; <span style='color: #BCBCBC;'> 2</span> ACP1    
+#&gt; <span style='color: #BCBCBC;'> 3</span> ACP2    
+#&gt; <span style='color: #BCBCBC;'> 4</span> ACP5    
+#&gt; <span style='color: #BCBCBC;'> 5</span> ADA2    
+#&gt; <span style='color: #BCBCBC;'> 6</span> ADAM15  
+#&gt; <span style='color: #BCBCBC;'> 7</span> ADAM23  
+#&gt; <span style='color: #BCBCBC;'> 8</span> ADAMTS13
+#&gt; <span style='color: #BCBCBC;'> 9</span> ADAMTS5 
+#&gt; <span style='color: #BCBCBC;'>10</span> ADGRE2  
+#&gt; <span style='color: #949494;'># … with 979 more rows</span></div><div class='input'>
 <span class='co'># Returns a list of available traits (outcomes)</span>
 <span class='fu'>pqtl_list</span><span class='op'>(</span>flag <span class='op'>=</span> <span class='st'>"outcomes"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 225 x 1</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 225 x 1</span>
 #&gt;    outID                                                                  
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                                                  
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> Cancer code  self-reported: basal cell carcinoma                       
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> Cancer code  self-reported: malignant melanoma                         
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> Cancer code  self-reported: small intestine or small bowel cancer      
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> Breast cancer (Combined Oncoarray; iCOGS; GWAS meta analysis)          
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> Serum creatinine (eGFRcrea)                                            
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> Serum cystatin C (eGFRcys)                                             
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> Eye problems or disorders: Cataract                                    
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> Eye problems or disorders: Diabetes related eye disease                
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> Eye problems or disorders: Glaucoma                                    
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> Eye problems or disorders: Injury or trauma resulting in loss of vision
-#&gt; </span><span style='color: #949494;'># … with 215 more rows</span><span></div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                                                  
+#&gt; <span style='color: #BCBCBC;'> 1</span> Cancer code  self-reported: basal cell carcinoma                       
+#&gt; <span style='color: #BCBCBC;'> 2</span> Cancer code  self-reported: malignant melanoma                         
+#&gt; <span style='color: #BCBCBC;'> 3</span> Cancer code  self-reported: small intestine or small bowel cancer      
+#&gt; <span style='color: #BCBCBC;'> 4</span> Breast cancer (Combined Oncoarray; iCOGS; GWAS meta analysis)          
+#&gt; <span style='color: #BCBCBC;'> 5</span> Serum creatinine (eGFRcrea)                                            
+#&gt; <span style='color: #BCBCBC;'> 6</span> Serum cystatin C (eGFRcys)                                             
+#&gt; <span style='color: #BCBCBC;'> 7</span> Eye problems or disorders: Cataract                                    
+#&gt; <span style='color: #BCBCBC;'> 8</span> Eye problems or disorders: Diabetes related eye disease                
+#&gt; <span style='color: #BCBCBC;'> 9</span> Eye problems or disorders: Glaucoma                                    
+#&gt; <span style='color: #BCBCBC;'>10</span> Eye problems or disorders: Injury or trauma resulting in loss of vision
+#&gt; <span style='color: #949494;'># … with 215 more rows</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

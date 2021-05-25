@@ -210,29 +210,29 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Returns a data frame</span>
 <span class='fu'>mr</span><span class='op'>(</span>exposure_trait <span class='op'>=</span> <span class='st'>"Body mass index"</span>, outcome_trait <span class='op'>=</span> <span class='st'>"Coronary heart disease"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 18 x 10</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 18 x 10</span>
 #&gt;    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.041</span><span style='text-decoration: underline;'>5</span><span> 5.46</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.041</span><span style='text-decoration: underline;'>0</span><span> 3.33</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-20</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.049</span><span style='text-decoration: underline;'>3</span><span> 3.42</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.049</span><span style='text-decoration: underline;'>2</span><span> 1.00</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.053</span><span style='text-decoration: underline;'>6</span><span> 2.32</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.053</span><span style='text-decoration: underline;'>5</span><span> 5.91</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.060</span><span style='text-decoration: underline;'>4</span><span> 1.79</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.059</span><span style='text-decoration: underline;'>0</span><span> 1.24</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.070</span><span style='text-decoration: underline;'>8</span><span> 1.62</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.098</span><span style='text-decoration: underline;'>6</span><span> 5.88</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>11</span><span> ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.060</span><span style='text-decoration: underline;'>9</span><span> 1.07</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>12</span><span> ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.064</span><span style='text-decoration: underline;'>8</span><span> 1.81</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>13</span><span> ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.064</span><span style='text-decoration: underline;'>8</span><span> 1.81</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>14</span><span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.051</span><span style='text-decoration: underline;'>4</span><span> 2.76</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>15</span><span> ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.097</span><span style='text-decoration: underline;'>1</span><span> 2.82</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>16</span><span> ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.068</span><span style='text-decoration: underline;'>6</span><span> 3.93</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>17</span><span> ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.068</span><span style='text-decoration: underline;'>8</span><span> 5.86</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>18</span><span> ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.073</span><span style='text-decoration: underline;'>1</span><span> 6.97</span><span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span><span>
-#&gt; </span><span style='color: #949494;'># … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   mr.moescore &lt;dbl&gt;</span><span></div><div class='input'>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.041<span style='text-decoration: underline;'>5</span> 5.46<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-29</span>
+#&gt; <span style='color: #BCBCBC;'> 2</span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.041<span style='text-decoration: underline;'>0</span> 3.33<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-20</span>
+#&gt; <span style='color: #BCBCBC;'> 3</span> ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.049<span style='text-decoration: underline;'>3</span> 3.42<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-15</span>
+#&gt; <span style='color: #BCBCBC;'> 4</span> ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.049<span style='text-decoration: underline;'>2</span> 1.00<span style='color: #949494;'>e</span><span style='color: #BB0000;'>-11</span>
+#&gt; <span style='color: #BCBCBC;'> 5</span> ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.053<span style='text-decoration: underline;'>6</span> 2.32<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span>
+#&gt; <span style='color: #BCBCBC;'> 6</span> ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.053<span style='text-decoration: underline;'>5</span> 5.91<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 9</span>
+#&gt; <span style='color: #BCBCBC;'> 7</span> ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.060<span style='text-decoration: underline;'>4</span> 1.79<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 8</span>
+#&gt; <span style='color: #BCBCBC;'> 8</span> ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.059<span style='text-decoration: underline;'>0</span> 1.24<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span>
+#&gt; <span style='color: #BCBCBC;'> 9</span> ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.070<span style='text-decoration: underline;'>8</span> 1.62<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span>
+#&gt; <span style='color: #BCBCBC;'>10</span> ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.098<span style='text-decoration: underline;'>6</span> 5.88<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 7</span>
+#&gt; <span style='color: #BCBCBC;'>11</span> ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.060<span style='text-decoration: underline;'>9</span> 1.07<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>12</span> ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.064<span style='text-decoration: underline;'>8</span> 1.81<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>13</span> ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.064<span style='text-decoration: underline;'>8</span> 1.81<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>14</span> ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.051<span style='text-decoration: underline;'>4</span> 2.76<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>15</span> ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.097<span style='text-decoration: underline;'>1</span> 2.82<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>16</span> ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.068<span style='text-decoration: underline;'>6</span> 3.93<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>17</span> ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.068<span style='text-decoration: underline;'>8</span> 5.86<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #BCBCBC;'>18</span> ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.073<span style='text-decoration: underline;'>1</span> 6.97<span style='color: #949494;'>e</span><span style='color: #BB0000;'>- 6</span>
+#&gt; <span style='color: #949494;'># … with 3 more variables: mr.method &lt;chr&gt;, mr.selection &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   mr.moescore &lt;dbl&gt;</span></div><div class='input'>
 <span class='co'># Returns raw response</span>
 <span class='fu'>mr</span><span class='op'>(</span>
   exposure_trait <span class='op'>=</span> <span class='st'>"Body mass index"</span>, outcome_trait <span class='op'>=</span> <span class='st'>"Coronary heart disease"</span>,
@@ -241,7 +241,7 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 </div><div class='output co'>#&gt; List of 2
 #&gt;  $ metadata:List of 3
 #&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
-#&gt;   ..$ total_seconds: num 0.0476
+#&gt;   ..$ total_seconds: num 0.0306
 #&gt;   ..$ empty_results: logi FALSE
 #&gt;  $ results :List of 18
 #&gt;   ..$ :List of 3
@@ -498,21 +498,21 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
 #&gt;   .. .. ..$ moescore : num 0.85</div><div class='input'>
 <span class='co'># Use a different threshold</span>
 <span class='fu'>mr</span><span class='op'>(</span>exposure_trait <span class='op'>=</span> <span class='st'>"Body mass index"</span>, pval_threshold <span class='op'>=</span> <span class='fl'>1e-8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 2,138 x 10</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2,138 x 10</span>
 #&gt;    exposure.id  exposure.trait  outcome.id outcome.trait    mr.b   mr.se mr.pval
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>           </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ieu-a-974    Body mass index ebi-a-GCS… Fibrinogen lev… 0.193 0.002</span><span style='text-decoration: underline;'>24</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ebi-a-GCST0… Body mass index ukb-b-2303 Body mass inde… 0.595 0.015</span><span style='text-decoration: underline;'>3</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ieu-a-835    Body mass index ukb-b-180… Leg fat mass (… 0.608 0.013</span><span style='text-decoration: underline;'>9</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ieu-a-835    Body mass index ukb-b-128… Arm fat percen… 0.526 0.013</span><span style='text-decoration: underline;'>0</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ieu-a-835    Body mass index ieu-a-93   Overweight      1.67  0.034</span><span style='text-decoration: underline;'>1</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ieu-a-835    Body mass index ieu-a-61   Waist circumfe… 0.824 0.019</span><span style='text-decoration: underline;'>4</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ieu-a-835    Body mass index ieu-a-60   Waist circumfe… 0.820 0.019</span><span style='text-decoration: underline;'>5</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ieu-a-2      Body mass index ukb-b-4650 Comparative bo… 0.439 0.009</span><span style='text-decoration: underline;'>89</span><span>       0
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ebi-a-GCST0… Body mass index ukb-b-201… Arm fat percen… 0.533 0.010</span><span style='text-decoration: underline;'>4</span><span>        0
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ieu-a-2      Body mass index ukb-b-2303 Body mass inde… 0.674 0.017</span><span style='text-decoration: underline;'>8</span><span>        0
-#&gt; </span><span style='color: #949494;'># … with 2,128 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span><span></div></span></pre>
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>           <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span>
+#&gt; <span style='color: #BCBCBC;'> 1</span> ieu-a-974    Body mass index ebi-a-GCS… Fibrinogen lev… 0.193 0.002<span style='text-decoration: underline;'>24</span>       0
+#&gt; <span style='color: #BCBCBC;'> 2</span> ebi-a-GCST0… Body mass index ukb-b-2303 Body mass inde… 0.595 0.015<span style='text-decoration: underline;'>3</span>        0
+#&gt; <span style='color: #BCBCBC;'> 3</span> ieu-a-835    Body mass index ukb-b-180… Leg fat mass (… 0.608 0.013<span style='text-decoration: underline;'>9</span>        0
+#&gt; <span style='color: #BCBCBC;'> 4</span> ieu-a-835    Body mass index ukb-b-128… Arm fat percen… 0.526 0.013<span style='text-decoration: underline;'>0</span>        0
+#&gt; <span style='color: #BCBCBC;'> 5</span> ieu-a-835    Body mass index ieu-a-93   Overweight      1.67  0.034<span style='text-decoration: underline;'>1</span>        0
+#&gt; <span style='color: #BCBCBC;'> 6</span> ieu-a-835    Body mass index ieu-a-61   Waist circumfe… 0.824 0.019<span style='text-decoration: underline;'>4</span>        0
+#&gt; <span style='color: #BCBCBC;'> 7</span> ieu-a-835    Body mass index ieu-a-60   Waist circumfe… 0.820 0.019<span style='text-decoration: underline;'>5</span>        0
+#&gt; <span style='color: #BCBCBC;'> 8</span> ieu-a-2      Body mass index ukb-b-4650 Comparative bo… 0.439 0.009<span style='text-decoration: underline;'>89</span>       0
+#&gt; <span style='color: #BCBCBC;'> 9</span> ebi-a-GCST0… Body mass index ukb-b-201… Arm fat percen… 0.533 0.010<span style='text-decoration: underline;'>4</span>        0
+#&gt; <span style='color: #BCBCBC;'>10</span> ieu-a-2      Body mass index ukb-b-2303 Body mass inde… 0.674 0.017<span style='text-decoration: underline;'>8</span>        0
+#&gt; <span style='color: #949494;'># … with 2,128 more rows, and 3 more variables: mr.method &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   mr.selection &lt;chr&gt;, mr.moescore &lt;dbl&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

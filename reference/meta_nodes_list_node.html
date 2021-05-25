@@ -210,25 +210,25 @@ with minimal parsing done by <a href='https://httr.r-lib.org/'><code>httr</code>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># List the first 5 Gwas nodes, with only id and name fields</span>
 <span class='fu'>meta_nodes_list_node</span><span class='op'>(</span>meta_node <span class='op'>=</span> <span class='st'>"Gwas"</span>, full_data <span class='op'>=</span> <span class='cn'>FALSE</span>, limit <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 2</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 2</span>
 #&gt;   id       name                                 
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>                                
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> ieu-b-43 frontotemporal dementia (TDP subtype)
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> ieu-b-40 body mass index                      
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> ieu-b-39 diastolic blood pressure             
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> ieu-b-38 systolic blood pressure              
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> ieu-b-35 C-Reactive protein level             </div><div class='input'>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                
+#&gt; <span style='color: #BCBCBC;'>1</span> ieu-b-43 frontotemporal dementia (TDP subtype)
+#&gt; <span style='color: #BCBCBC;'>2</span> ieu-b-40 body mass index                      
+#&gt; <span style='color: #BCBCBC;'>3</span> ieu-b-39 diastolic blood pressure             
+#&gt; <span style='color: #BCBCBC;'>4</span> ieu-b-38 systolic blood pressure              
+#&gt; <span style='color: #BCBCBC;'>5</span> ieu-b-35 C-Reactive protein level             </div><div class='input'>
 <span class='co'># List the 6th - 10th Disease nodes, with full properties</span>
 <span class='fu'>meta_nodes_list_node</span><span class='op'>(</span>meta_node <span class='op'>=</span> <span class='st'>"Disease"</span>, full_data <span class='op'>=</span> <span class='cn'>TRUE</span>, limit <span class='op'>=</span> <span class='fl'>5</span>, offset <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 5 x 11</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5 x 11</span>
 #&gt;   n._name  n.doid  n.definition   n._source n.id   n.label n._id  n.icd9 n.icd10
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;list&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> cervica… </span><span style='color: #949494;'>&lt;chr [</span><span>… A primary or … </span><span style='color: #949494;'>&lt;chr [1]&gt;</span><span> http:… cervic… http:… </span><span style='color: #949494;'>&lt;chr </span><span>… </span><span style='color: #949494;'>&lt;chr [</span><span>…
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> Alkhurm… </span><span style='color: #949494;'>&lt;chr [</span><span>… A disease cau… </span><span style='color: #949494;'>&lt;chr [1]&gt;</span><span> http:… Alkhur… http:… </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> maligna… </span><span style='color: #949494;'>&lt;chr [</span><span>… A melanoma th… </span><span style='color: #949494;'>&lt;chr [1]&gt;</span><span> http:… malign… http:… </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> stomach… </span><span style='color: #949494;'>&lt;chr [</span><span>… A pathologica… </span><span style='color: #949494;'>&lt;chr [1]&gt;</span><span> http:… stomac… http:… </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> 
-#&gt; </span><span style='color: #BCBCBC;'>5</span><span> Abnorma… </span><span style='color: #949494;'>&lt;NULL&gt;</span><span>  A structural … </span><span style='color: #949494;'>&lt;chr [1]&gt;</span><span> http:… Abnorm… http:… </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> </span><span style='color: #949494;'>&lt;NULL&gt;</span><span> 
-#&gt; </span><span style='color: #949494;'># … with 2 more variables: n.umls &lt;list&gt;, n.mesh &lt;list&gt;</span><span></div></span></pre>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;list&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>1</span> cervica… <span style='color: #949494;'>&lt;chr [</span>… A primary or … <span style='color: #949494;'>&lt;chr [1]&gt;</span> http:… cervic… http:… <span style='color: #949494;'>&lt;chr </span>… <span style='color: #949494;'>&lt;chr [</span>…
+#&gt; <span style='color: #BCBCBC;'>2</span> Alkhurm… <span style='color: #949494;'>&lt;chr [</span>… A disease cau… <span style='color: #949494;'>&lt;chr [1]&gt;</span> http:… Alkhur… http:… <span style='color: #949494;'>&lt;NULL&gt;</span> <span style='color: #949494;'>&lt;NULL&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>3</span> maligna… <span style='color: #949494;'>&lt;chr [</span>… A melanoma th… <span style='color: #949494;'>&lt;chr [1]&gt;</span> http:… malign… http:… <span style='color: #949494;'>&lt;NULL&gt;</span> <span style='color: #949494;'>&lt;NULL&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>4</span> stomach… <span style='color: #949494;'>&lt;chr [</span>… A pathologica… <span style='color: #949494;'>&lt;chr [1]&gt;</span> http:… stomac… http:… <span style='color: #949494;'>&lt;NULL&gt;</span> <span style='color: #949494;'>&lt;NULL&gt;</span> 
+#&gt; <span style='color: #BCBCBC;'>5</span> Abnorma… <span style='color: #949494;'>&lt;NULL&gt;</span>  A structural … <span style='color: #949494;'>&lt;chr [1]&gt;</span> http:… Abnorm… http:… <span style='color: #949494;'>&lt;NULL&gt;</span> <span style='color: #949494;'>&lt;NULL&gt;</span> 
+#&gt; <span style='color: #949494;'># … with 2 more variables: n.umls &lt;list&gt;, n.mesh &lt;list&gt;</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
