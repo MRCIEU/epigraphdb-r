@@ -4,6 +4,7 @@
 ^README\.Rmd$
 ^cran-comments\.md$
 ^\.github$
+^\.git$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
@@ -20,3 +21,8 @@
 ^\.covrignore$
 ^CRAN-RELEASE$
 ^\.Rcheck$
+^Dockerfile$
+^docker-compose.yml$
+^\.ipynb_checkpoints$
+^\.env$
+^pkg-build$

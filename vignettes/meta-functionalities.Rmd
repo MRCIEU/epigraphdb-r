@@ -99,13 +99,14 @@ meta_rel_df <- metadata %>%
       select(meta_rel, count)
   } %>%
   inner_join(
-    metadata %>% pluck("connections") %>% {
-      transpose(.) %>%
-        as_tibble() %>%
-        mutate(meta_rel = flatten_chr(rel)) %>%
-        mutate_at(vars(from_node, to_node), flatten_chr) %>%
-        select(meta_rel, from_node, to_node)
-    }
+    metadata %>% pluck("connections") %>%
+      {
+        transpose(.) %>%
+          as_tibble() %>%
+          mutate(meta_rel = flatten_chr(rel)) %>%
+          mutate_at(vars(from_node, to_node), flatten_chr) %>%
+          select(meta_rel, from_node, to_node)
+      }
   )
 
 meta_rel_df %>%
