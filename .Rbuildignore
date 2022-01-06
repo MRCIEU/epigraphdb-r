@@ -20,3 +20,5 @@
 ^\.covrignore$
 ^CRAN-RELEASE$
 ^\.Rcheck$
+^Dockerfile$
+^docker-compose.yml$

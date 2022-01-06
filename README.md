@@ -284,6 +284,10 @@ We also provide a list of functions (see the table below) that are equivalent to
   </tbody>
 </table>
 
+## Contributing
+
+If you would like to contribute to this package, please check out [documentation](https://github.com/mrcieu/epigraphdb-r/DEVEL.md) on setting up development and currently planned updates.
+
 ## EpiGraphDB resources
 
 | link                                                | screenshot                                            |
