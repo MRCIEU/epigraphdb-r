@@ -44,14 +44,16 @@ r-cmd-check:
 	CI=true R CMD check --as-cran /build/epigraphdb_0.2.3.tar.gz
 
 ## Check for CRAN submission (via rhub's remote specs)
-check-cran-rhub:
+## (note: you should have manually done rhub::validate_email,
+## as https://r-hub.github.io/rhub/articles/rhub.html)
+rhub-check-cran:
 	# NOTE: the env_var tries to deal with utf8 issues
 	# https://github.com/r-hub/rhub/issues/374
 	# Rscript -e "rhub::check_for_cran(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
 	Rscript -e "devtools::check_rhub(interactive = FALSE, env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
 
 ## Check for MS windows compatibility (via devtools::check_win_devel)
-check-windows:
+rhub-check-windows:
 	Rscript -e "devtools::check_win_devel()"
 	Rscript -e "devtools::check_win_release()"
 
