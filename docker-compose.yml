@@ -5,3 +5,4 @@ services:
       context: .
     volumes:
       - ./:/data
+      - ./build/:/build

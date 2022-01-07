@@ -1,15 +1,32 @@
 # EpiGraphDB R package `epigraphdb`
 
-<a href="http://epigraphdb.org"><img src="man/figures/epigraphdb-logo.svg" alt="" height="60" style="padding:10px"/></a>
-<span class="pull-right">
-<a href="https://www.bristol.ac.uk"><img src="man/figures/uob.svg" alt="" height="60" style="padding:10px"/></a>
-<a href="http://www.bristol.ac.uk/integrative-epidemiology/"><img src="man/figures/mrc-ieu-logo.png" alt="" height="60" style="padding:10px"/></a>
-</span>
+<div>
+  <a href="http://epigraphdb.org" target="_blank">
+    <img 
+     src="man/figures/epigraphdb-logo.svg" 
+     style="padding:10px;height:60px;"
+    />
+  </a>
+  <span class="pull-right">
+    <a href="https://www.bristol.ac.uk" target="_blank">
+      <img 
+       src="man/figures/uob.svg" 
+       style="padding:10px;height:60px;"
+      />
+    </a>
+    <a href="http://www.bristol.ac.uk/integrative-epidemiology/" target="_blank">
+      <img 
+       src="man/figures/mrc-ieu-logo.png" 
+       style="padding:10px;height:60px;"
+      />
+    </a>
+  </span>
+</div>
 
 <!-- badges: start -->
 
 [![CRAN status](https://www.r-pkg.org/badges/version/epigraphdb)](https://cran.r-project.org/package=epigraphdb)
-[![Codecov test coverage](https://codecov.io/gh/MRCIEU/epigraphdb-r/branch/master/graph/badge.svg)](https://codecov.io/gh/MRCIEU/epigraphdb-r?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/MRCIEU/epigraphdb-r/branch/master/graph/badge.svg)](https://app.codecov.io/gh/MRCIEU/epigraphdb-r?branch=master)
 
 <!-- badges: end -->
 

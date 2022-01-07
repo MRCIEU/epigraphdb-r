@@ -22,3 +22,7 @@
 ^\.Rcheck$
 ^Dockerfile$
 ^docker-compose.yml$
+^\.ipynb_checkpoints$
+^DEVEL\.md$
+^\.env$
+^build$

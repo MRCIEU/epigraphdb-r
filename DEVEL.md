@@ -1,10 +1,12 @@
 # Notes on development
 
-Set up for local development
+For simple changes simply rely on github actions will be enough.
 
-Testing
+## Set up for local development
 
-Testing package builds
+## During development
+
+## Testing package builds
 
 # Todo list
 

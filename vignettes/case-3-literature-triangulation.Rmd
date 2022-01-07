@@ -29,7 +29,7 @@ https://github.com/MRCIEU/epigraphdb/blob/master/paper-case-studies/case-3-liter
 
 The biomedical literature contains a wealth of information than far exceeds our capacity for systematic manual extraction.
 For this reason, there are many existing literature mining methods to extract the key concepts and content.
-Here we use data from [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/), a well established database that provides subject-predicate-object triples from all PubMed titles and abstracts.
+Here we use data from [SemMedDB](https://lhncbc.nlm.nih.gov/ii/tools/SemRep_SemMedDB_SKR.html), a well established database that provides subject-predicate-object triples from all PubMed titles and abstracts.
 Using a subset of this data we created MELODI-presto (https://melodi-presto.mrcieu.ac.uk/), a method to assign triples to any given biomedical query via a PubMed search and some basic enrichment, and have applied this systematically to traits represented in EpiGraphDB.
 This allows us to identify overlapping terms connecting any set of GWAS traits, e.g. exposure and disease outcome.
 From here we can attempt to triangulate causal estimates, and conversely, check the mechanisms identified from the literature against the causal evidence.
@@ -186,7 +186,7 @@ lit_df_filter %>%
 
 If we explore the full table in ```lit_df_filter```, we can see lots of links between the two traits, pinned on specific overlapping terms.
 
-We can summarise the [SemMedDB semantic type](https://metamap.nlm.nih.gov/SemanticTypesAndGroups.shtml) and number of overlapping terms:
+We can summarise the [SemMedDB semantic type](https://lhncbc.nlm.nih.gov/ii/tools/MetaMap/documentation/SemanticTypesAndGroups.html) and number of overlapping terms:
 
 ```{r}
 lit_counts <- lit_df_filter %>%
@@ -276,7 +276,6 @@ edges
 
 ```{r}
 plot_network <- function(edges, nodes) {
-
   graph <- graph_from_data_frame(edges, directed = TRUE, vertices = nodes)
   graph$layout <- layout_with_kk
 
@@ -310,7 +309,7 @@ plot_network(edges, nodes)
 
 ## Checking the source literature
 
-We can refer back to the articles to check the text that was used to derive the SemMedDB data. This is important due to the imperfect nature of the SemRep annotation process (https://semrep.nlm.nih.gov/).
+We can refer back to the articles to check the text that was used to derive the SemMedDB data. This is important due to the imperfect nature of the SemRep annotation process (https://lhncbc.nlm.nih.gov/ii/tools/SemRep_SemMedDB_SKR/SemRep.html).
 
 ```{r}
 get_literature <- function(gwas_id, semmed_triple_id) {

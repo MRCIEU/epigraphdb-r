@@ -6,10 +6,6 @@
 
 ## ==== codebase ====
 
-## Init (install a local copy and its development dependencies)
-init:
-	Rscript -e "devtools::install(dependencies = TRUE)"
-
 ## Lint codebase
 lint:
 	Rscript -e "lintr::lint_package()"
@@ -22,8 +18,8 @@ fmt:
 roxygen:
 	CI=true Rscript -e "devtools::document()"
 
-## Check package infrastructure and perform unit tests
-check-devtools:
+## devtools::check (superset of unit tests)
+check:
 	CI=true Rscript -e "devtools::check()"
 
 ## testthat
@@ -32,35 +28,20 @@ test:
 
 tests: test
 
-## ==== build and install ====
+## Build pkgdown documentation
+docs:
+	CI=true Rscript -e "pkgdown::build_site()"
+
+## ==== CRAN submission ====
 
 ## Build package
 build:
-	CI=true Rscript -e "devtools::build(vignettes = TRUE, manual = TRUE)"
+	CI=true Rscript -e "devtools::build(path = '/build/', vignettes = TRUE, manual = TRUE)"
 
-## Build pkgdown documentation
-docs:
-	CI=true Rscript -e "pkgdown::build_site(preview = TRUE)"
-
-## Build package and install locally
-install:
-	Rscript -e "devtools::install()"
-
-## Uninstall
-uninstall:
-	Rscript -e "devtools::uninstall()"
-
-## ==== CRAN related ====
-
-## Check for CRAN submission; `make check BUNDLE={/path/to/bundle}`
-check:
-	CI=true R CMD check --as-cran $$BUNDLE
-
-## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
-check-cran-local:
-	# NOTE: the env_var tries to deal with utf8 issues
-	# https://github.com/r-hub/rhub/issues/374
-	Rscript -e "rhub::local_check_linux(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
+## Check for CRAN submission
+## (note: assuming path to package is /build/epigraphdb_0.2.3.tar.gz)
+r-cmd-check:
+	CI=true R CMD check --as-cran /build/epigraphdb_0.2.3.tar.gz
 
 ## Check for CRAN submission (via rhub's remote specs)
 check-cran-rhub:
@@ -73,6 +54,26 @@ check-cran-rhub:
 check-windows:
 	Rscript -e "devtools::check_win_devel()"
 	Rscript -e "devtools::check_win_release()"
+
+## ==== less frequently used utils ====
+
+## Init (install a local copy and its development dependencies)
+init:
+	Rscript -e "devtools::install(dependencies = TRUE)"
+
+## Build package and install locally
+install:
+	Rscript -e "devtools::install()"
+
+## Uninstall
+uninstall:
+	Rscript -e "devtools::uninstall()"
+
+## Check for CRAN submission (via rhub's local docker container); requirement: sysreqs, and github version of rhub
+check-cran-local:
+	# NOTE: the env_var tries to deal with utf8 issues
+	# https://github.com/r-hub/rhub/issues/374
+	Rscript -e "rhub::local_check_linux(env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = 'always'))"
 
 #################################################################################
 # Self Documenting Commands                                                     #
