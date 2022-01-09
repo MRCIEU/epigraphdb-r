@@ -118,7 +118,7 @@ here we look at the literature evidence for one pair in detail:
   ([ieu-a-6](https://gwas.mrcieu.ac.uk/datasets/ieu-a-6/)).
 
 The following looks for enriched triples of information (Subject-Predicate-Object) associated with our two traits.
-These have been derived via PubMed searches and corresponding [SemMedDB](https://skr3.nlm.nih.gov/SemMedDB/) data.
+These have been derived via PubMed searches and corresponding [SemMedDB](https://lhncbc.nlm.nih.gov/ii/tools/SemRep_SemMedDB_SKR.html) data.
 
 ```{r}
 get_gwas_pair_literature <- function(gwas_id, assoc_gwas_id) {
