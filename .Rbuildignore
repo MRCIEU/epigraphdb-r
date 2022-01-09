@@ -25,4 +25,4 @@
 ^\.ipynb_checkpoints$
 ^DEVEL\.md$
 ^\.env$
-^build$
+^pkg-build$

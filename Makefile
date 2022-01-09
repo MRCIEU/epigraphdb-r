@@ -36,7 +36,7 @@ docs:
 
 ## Build package
 build:
-	CI=true Rscript -e "devtools::build(path = '/build/', vignettes = TRUE, manual = TRUE)"
+	CI=true Rscript -e "devtools::build(path = '/pkg-build', vignettes = TRUE, manual = TRUE)"
 
 ## Check for CRAN submission
 ## (note: assuming path to package is /build/epigraphdb_0.2.3.tar.gz)
