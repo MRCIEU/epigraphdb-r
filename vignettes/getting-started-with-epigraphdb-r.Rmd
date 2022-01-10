@@ -499,9 +499,9 @@ Great! You can now use the basic functionality of the R package and make simple 
 
 [1]: https://epigraphdb.org/about
 [2]: https://docs.epigraphdb.org/api/api-endpoints/
-[3]: https://mrcieu.github.io/epigraphdb-r/articles/case-1-pleiotropy.html
-[4]: https://mrcieu.github.io/epigraphdb-r/articles/case-2-alt-drug-target.html
-[5]: https://mrcieu.github.io/epigraphdb-r/articles/case-3-literature-triangulation.html
+[3]: https://docs.epigraphdb.org/r-package/case-1-pleiotropy/
+[4]: https://docs.epigraphdb.org/r-package/case-2-alt-drug-target/
+[5]: https://docs.epigraphdb.org/r-package/case-3-literature-triangulation/
 [6]: https://epigraphdb.org/mr
 [7]: https://docs.epigraphdb.org/graph-database/meta-nodes/#gwas
 [8]: https://epigraphdb.org/explore

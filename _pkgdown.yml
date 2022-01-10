@@ -30,16 +30,16 @@ navbar:
         href: articles/using-epigraphdb-r-package.html
       - text: "Meta functionalities of the EpiGraphDB platform"
         href: "articles/meta-functionalities.html"
-      - text: "Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations"
-        href: "articles/case-1-pleiotropy.html"
-      - text: "Case study 2: Identification of potential drug targets"
-        href: "articles/case-2-alt-drug-target.html"
-      - text: "Case study 3: Triangulating causal estimates with literature evidence"
-        href: "articles/case-3-literature-triangulation.html"
       - text: "Using API"
         href: articles/using-epigraphdb-api.html
       - text: "Options"
         href: "articles/options.html"
+      - text: "(on EpiGraphDB docs) Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations"
+        href: "https://docs.epigraphdb.org/r-package/case-1-pleiotropy/"
+      - text: "(on EpiGraphDB docs) Case study 2: Identification of potential drug targets"
+        href: "https://docs.epigraphdb.org/r-package/case-2-alt-drug-target/"
+      - text: "(on EpiGraphDB docs) Case study 3: Triangulating causal estimates with literature evidence"
+        href: "https://docs.epigraphdb.org/r-package/case-3-literature-triangulation/"
     - text: "CHANGELOG"
       href: "news/index.html"
   right:
