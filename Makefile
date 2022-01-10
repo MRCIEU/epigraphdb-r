@@ -41,7 +41,7 @@ build:
 ## Check for CRAN submission
 ## (note: assuming path to package is /build/epigraphdb_0.2.3.tar.gz)
 r-cmd-check:
-	CI=true R CMD check --as-cran /build/epigraphdb_0.2.3.tar.gz
+	CI=true R CMD check --as-cran /pkg-build/epigraphdb_0.2.3.tar.gz
 
 ## Check for CRAN submission (via rhub's remote specs)
 ## (note: you should have manually done rhub::validate_email,
