@@ -1,6 +1,7 @@
 context("pqtl")
 
 test_that("pqtl protein endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   query <- "ADAM19"
   rtype <- "mrres"
@@ -20,6 +21,7 @@ test_that("pqtl protein endpoint", {
 })
 
 test_that("pqtl trait endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   query <- "Inflammatory bowel disease"
   rtype <- "mrres"
@@ -38,6 +40,7 @@ test_that("pqtl trait endpoint", {
 })
 
 test_that("pqtl_pleio endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   rsid <- "rs1260326"
   prflag <- "proteins"
@@ -52,6 +55,7 @@ test_that("pqtl_pleio endpoint", {
 })
 
 test_that("pqtl_list endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   flag <- "exposures"
   r <- httr::RETRY("GET", glue::glue("{url}/pqtl/list/"),

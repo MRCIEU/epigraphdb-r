@@ -1,6 +1,7 @@
 context("cypher")
 
 test_that("POST /cypher", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   route <- "/cypher"
   query <- "MATCH (n:Gwas) RETURN n LIMIT 2"

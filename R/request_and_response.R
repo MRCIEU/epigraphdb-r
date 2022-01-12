@@ -76,11 +76,10 @@
 query_epigraphdb <- function(route, params = NULL,
                              mode = c("raw", "table"),
                              method = c("GET", "POST"),
-                             retry_times = 5,
-                             retry_pause_min = 4) {
+                             retry_times = 3,
+                             retry_pause_min = 1) {
   mode <- match.arg(mode)
   method <- match.arg(method)
-  # NOTE: Add POST at a later date
   if (method == "GET") {
     method_func <- api_get_request
   } else if (method == "POST") {

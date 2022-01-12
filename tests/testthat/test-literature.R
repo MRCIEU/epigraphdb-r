@@ -1,6 +1,7 @@
 context("literature")
 
 test_that("/literature/gwas", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   trait <- "Body mass index"
   semmed_predicate <- NULL

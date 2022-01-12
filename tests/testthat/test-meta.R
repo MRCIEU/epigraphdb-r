@@ -1,6 +1,7 @@
 context("meta")
 
 test_that("GET /meta/nodes/list", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   route <- "/meta/nodes/list"
   r <- httr::RETRY("GET",
@@ -12,6 +13,7 @@ test_that("GET /meta/nodes/list", {
 })
 
 test_that("GET /meta/rels/list", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   route <- "/meta/rels/list"
   r <- httr::RETRY("GET",

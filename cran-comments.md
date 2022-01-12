@@ -1,15 +1,11 @@
-# epigraphdb 0.2.2
+# epigraphdb 0.2.3
 
-2021-03-29 Fixed invalid urls.
-
-2021-03-27 Fixed issues from auto checks on CRAN.
-
-2021-03-25 Fix various compatibility issues following the upstream API changes in the EpiGraphDB platform.
+- TODO Tests on upstream resource availability are skipped on CRAN, but available on CI and local environment.
 
 ## Test environments
-- Local Linux, R 4.0.4
+- TODO Local Linux, R 4.0.4
 - Via GitHub Actions
-  - windows-latest, R release
-  - macOS-latest, R release
-  - ubuntu-20.04, R release and R devel
-- Via rhub, windows release and devel
+  - TODO windows-latest, R release
+  - TODO macOS-latest, R release
+  - TODO ubuntu-20.04, R release and R devel
+- TODO Via rhub, windows release and devel

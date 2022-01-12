@@ -1,6 +1,7 @@
 context("protein")
 
 test_that("POST /protein/in-pathway", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   uniprot_id_list <- c("014933", "060674", "P32455")
   params <- list(

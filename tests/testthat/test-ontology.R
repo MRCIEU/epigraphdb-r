@@ -1,6 +1,7 @@
 context("ontology")
 
 test_that("ontology endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   efo_term <- "blood pressure"
   r <- httr::RETRY("GET", glue::glue("{url}/ontology/gwas-efo"),

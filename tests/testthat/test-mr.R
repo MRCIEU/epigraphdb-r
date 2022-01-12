@@ -1,6 +1,7 @@
 context("mr")
 
 test_that("mr endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"

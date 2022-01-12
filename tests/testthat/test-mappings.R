@@ -1,6 +1,7 @@
 context("protein")
 
 test_that("POST /mappings/gene-to-protein", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   gene_name_list <- c("GCH1", "MYOF")
   params <- list(

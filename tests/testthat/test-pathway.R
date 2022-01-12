@@ -1,6 +1,7 @@
 context("pathway")
 
 test_that("/pathway", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   trait <- "Body mass index"
   r <- httr::RETRY("GET", glue::glue("{url}/pathway"),

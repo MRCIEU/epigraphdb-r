@@ -1,6 +1,7 @@
 context("obs_cor")
 
 test_that("obs_cor endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   trait <- "body mass index"
   r <- httr::RETRY("GET", glue::glue("{url}/obs-cor"),
