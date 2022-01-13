@@ -17,6 +17,7 @@ test_that("/confounder", {
 })
 
 test_that("confounder", {
+  skip_on_cran()
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
   expect_error(

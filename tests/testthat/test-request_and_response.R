@@ -1,6 +1,7 @@
 context("request_and_response")
 
 test_that("query_epigraphdb raw", {
+  skip_on_cran()
   expect_error(
     results <- query_epigraphdb(
       route = "/meta/nodes/Gwas/list",
@@ -15,6 +16,7 @@ test_that("query_epigraphdb raw", {
 })
 
 test_that("query_epigraphdb table", {
+  skip_on_cran()
   expect_error(
     results <- query_epigraphdb(
       route = "/mr",
@@ -30,6 +32,7 @@ test_that("query_epigraphdb table", {
 })
 
 test_that("query_epigraphdb error handling", {
+  skip_on_cran()
   expect_error(
     results <- query_epigraphdb(
       route = "/mr",
@@ -42,6 +45,7 @@ test_that("query_epigraphdb error handling", {
 })
 
 test_that("query_epigraphdb POST 1", {
+  skip_on_cran()
   expect_error(
     results <- query_epigraphdb(
       route = "/protein/ppi",
@@ -56,6 +60,7 @@ test_that("query_epigraphdb POST 1", {
 })
 
 test_that("query_epigraphdb POST 2", {
+  skip_on_cran()
   expect_error(
     results <- query_epigraphdb(
       route = "/xqtl/single-snp-mr/gene-by-variant",

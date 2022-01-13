@@ -15,6 +15,7 @@ test_that("/drugs/risk-factors", {
 })
 
 test_that("drugs_risk_factors", {
+  skip_on_cran()
   trait <- "Body mass index"
   expect_error(
     drugs_risk_factors(

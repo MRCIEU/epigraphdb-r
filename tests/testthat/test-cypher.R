@@ -18,6 +18,7 @@ test_that("POST /cypher", {
 })
 
 test_that("cypher", {
+  skip_on_cran()
   query <- "MATCH (n:Gwas) RETURN n LIMIT 2"
   expect_error(
     cypher(query = query),

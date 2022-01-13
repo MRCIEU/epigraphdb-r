@@ -111,7 +111,7 @@ api_get_request <- function(route, params,
     url = url, query = params, config = config,
     times = retry_times, pause_min = retry_pause_min
   )
-  stop_for_status(response)
+  stop_for_status(response = response, context = list(params = params, url = url))
   response
 }
 
@@ -135,7 +135,7 @@ api_post_request <- function(route, params,
     url = url, body = body, config = config,
     times = retry_times, pause_min = retry_pause_min
   )
-  stop_for_status(response)
+  stop_for_status(response, context = list(params = params, url = url))
   response
 }
 
@@ -155,7 +155,7 @@ api_request <- function(route, params,
   mode <- match.arg(mode)
   response <- do.call(method, args = list(
     route = route, params = params,
-    retry_times = retry_times, retry_pause_min = retry_pause_min,
+    retry_times = retry_times, retry_pause_min = retry_pause_min
   ))
   if (mode == "table") {
     return(flatten_response(response))
@@ -187,32 +187,39 @@ flatten_response <- function(response, field = "results") {
 #' Modifies from httr::stop_for_status
 #'
 #' @param response An httr response
+#' @param context A list on the url and params for the request
 #'
 #' @keywords internal
-stop_for_status <- function(response) {
+stop_for_status <- function(response, context) {
   if (httr::status_code(response) < 300) {
     return(invisible(response))
   }
 
-  stop(http_condition(response))
+  stop(http_condition(response, context))
 }
 
 #' Modified httr::http_condition
 #'
 #' @param response An httr response
+#' @param context A list on the url and params for the request
 #'
 #' @keywords internal
-http_condition <- function(response) {
+http_condition <- function(response, context) {
   status <- httr::status_code(response)
   reason <- httr::http_status(status)$reason
   detail <- paste(
     utils::capture.output(httr::content(response)),
     collapse = "\n"
   )
+  context_str <- paste(
+    utils::capture.output(context),
+    collapse = "\n"
+  )
 
-  message <- sprintf("%s (HTTP %d).\nDetail:\n%s", reason, status, detail)
-
-  status_type <- (status %/% 100) * 100
+  message <- sprintf(
+    "HTTP error: %s (status code %d).\nDetail:\n%s\nContext:\n%s",
+    reason, status, detail, context_str
+  )
 
   structure(
     list(message = message)

@@ -68,6 +68,7 @@ test_that("pqtl_list endpoint", {
 })
 
 test_that("pqtl correct input", {
+  skip_on_cran()
   query <- "Inflammatory bowel disease"
   rtype <- "mrres"
   pvalue <- 0.05
@@ -84,6 +85,7 @@ test_that("pqtl correct input", {
 })
 
 test_that("pqtl incorrect input", {
+  skip_on_cran()
   query <- "Inflammatory bowel disease"
   rtype <- "mrress"
   pvalue <- 0.05
@@ -99,6 +101,7 @@ test_that("pqtl incorrect input", {
 })
 
 test_that("pqtl not found input", {
+  skip_on_cran()
   query <- "ADAM199999"
   rtype <- "mrres"
   pvalue <- 0.05
@@ -113,6 +116,7 @@ test_that("pqtl not found input", {
 })
 
 test_that("pqtl_pleio correct input for a list of proteins", {
+  skip_on_cran()
   rsid <- "rs1260326"
   prflag <- "proteins"
   r <- pqtl_pleio(
@@ -123,6 +127,7 @@ test_that("pqtl_pleio correct input for a list of proteins", {
 })
 
 test_that("pqtl_pleio correct input for a count", {
+  skip_on_cran()
   rsid <- "rs1260326"
   prflag <- "count"
   r <- pqtl_pleio(
@@ -133,6 +138,7 @@ test_that("pqtl_pleio correct input for a count", {
 })
 
 test_that("pqtl_pleio incorrect input", {
+  skip_on_cran()
   rsid <- "rs1260326"
   prflag <- "countt"
   expect_error(
@@ -144,6 +150,7 @@ test_that("pqtl_pleio incorrect input", {
 })
 
 test_that("pqtl_pleio not found input", {
+  skip_on_cran()
   rsid <- "rs1260326gggg"
   prflag <- "proteins"
   r <- pqtl_pleio(
@@ -154,6 +161,7 @@ test_that("pqtl_pleio not found input", {
 })
 
 test_that("pqtl_list raw", {
+  skip_on_cran()
   flag <- "exposures"
   r <- pqtl_list(
     flag = flag,
@@ -163,6 +171,7 @@ test_that("pqtl_list raw", {
 })
 
 test_that("pqtl_list correct exposures input", {
+  skip_on_cran()
   flag <- "exposures"
   r <- pqtl_list(
     flag = flag
@@ -172,6 +181,7 @@ test_that("pqtl_list correct exposures input", {
 })
 
 test_that("pqtl_list correct outcomes input", {
+  skip_on_cran()
   flag <- "outcomes"
   r <- pqtl_list(
     flag = flag
@@ -181,6 +191,7 @@ test_that("pqtl_list correct outcomes input", {
 })
 
 test_that("pqtl_list incorrect input", {
+  skip_on_cran()
   flag <- "foobar"
   expect_error(
     r <- pqtl_list(

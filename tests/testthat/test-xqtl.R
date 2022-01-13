@@ -29,6 +29,7 @@ test_that("/xqtl/single-snp-mr", {
 })
 
 test_that("xqtl_multi_snp_mr", {
+  skip_on_cran()
   outcome_trait <- "Coronary heart disease"
   expect_error(
     xqtl_multi_snp_mr(
@@ -39,6 +40,7 @@ test_that("xqtl_multi_snp_mr", {
 })
 
 test_that("xqtl_single_snp_mr", {
+  skip_on_cran()
   outcome_trait <- "Coronary heart disease"
   expect_error(
     xqtl_single_snp_mr(

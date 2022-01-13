@@ -15,6 +15,7 @@ test_that("obs_cor endpoint", {
 })
 
 test_that("obs_cor mode = \"table\"", {
+  skip_on_cran()
   trait <- "body mass index"
   expect_error(
     df <- obs_cor(
@@ -26,6 +27,7 @@ test_that("obs_cor mode = \"table\"", {
 })
 
 test_that("obs_cor mode = \"raw\"", {
+  skip_on_cran()
   trait <- "body mass index"
   expect_error(
     response <- obs_cor(
@@ -38,6 +40,7 @@ test_that("obs_cor mode = \"raw\"", {
 })
 
 test_that("obs_cor cor_coef_threshold", {
+  skip_on_cran()
   trait <- "Body mass index"
   expect_error(
     response <- obs_cor(

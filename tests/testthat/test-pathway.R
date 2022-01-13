@@ -15,6 +15,7 @@ test_that("/pathway", {
 })
 
 test_that("pathway", {
+  skip_on_cran()
   trait <- "Body mass index"
   expect_error(
     pathway(

@@ -17,6 +17,7 @@ test_that("/literature/gwas", {
 })
 
 test_that("literature_gwas", {
+  skip_on_cran()
   trait <- "Body mass index"
   expect_error(
     literature_gwas(
