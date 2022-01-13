@@ -31,6 +31,7 @@
 #' @examples
 #' # GET /mr
 #' # equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
+#' \dontrun{
 #' query_epigraphdb(
 #'   route = "/mr",
 #'   params = list(
@@ -39,8 +40,10 @@
 #'   ),
 #'   mode = "table"
 #' )
+#' }
 #'
 #' # GET /meta/nodes/Gwas/list
+#' \dontrun{
 #' query_epigraphdb(
 #'   route = "/meta/nodes/Gwas/list",
 #'   params = list(
@@ -48,8 +51,10 @@
 #'     offset = 0
 #'   )
 #' ) %>% str(1)
+#' }
 #'
 #' # POST /protein/ppi
+#' \dontrun{
 #' query_epigraphdb(
 #'   route = "/protein/ppi",
 #'   params = list(
@@ -57,8 +62,10 @@
 #'   ),
 #'   method = "POST"
 #' )
+#' }
 #'
 #' # error handling
+#' \dontrun{
 #' tryCatch(
 #'   query_epigraphdb(
 #'     route = "/mr",
@@ -72,6 +79,7 @@
 #'     message(e)
 #'   }
 #' )
+#' }
 #' @export
 query_epigraphdb <- function(route, params = NULL,
                              mode = c("raw", "table"),

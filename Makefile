@@ -28,9 +28,13 @@ test:
 
 tests: test
 
+## devtools::run_examples, including don't run
+run_examples:
+	CI=true Rscript -e "devtools::run_examples(run_dontrun = TRUE)"
+
 ## Build pkgdown documentation
 docs:
-	CI=true Rscript -e "pkgdown::build_site()"
+	CI=true Rscript -e "pkgdown::build_site(run_dont_run = TRUE)"
 
 ## ==== CRAN submission ====
 

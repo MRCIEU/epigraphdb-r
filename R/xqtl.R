@@ -10,7 +10,9 @@
 #' @return Data from `GET /xqtl/multi-snp-mr`
 #'
 #' @examples
+#' \dontrun{
 #' xqtl_multi_snp_mr(outcome_trait = "Coronary heart disease")
+#' }
 #' @export
 xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
                               mr_method = c("IVW", "Egger"),
@@ -43,7 +45,9 @@ xqtl_multi_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
 #' @return Data from `GEET /xqtl/single-snp-mr`
 #'
 #' @examples
+#' \dontrun{
 #' xqtl_single_snp_mr(outcome_trait = "Coronary heart disease")
+#' }
 #' @export
 xqtl_single_snp_mr <- function(exposure_gene = NULL, outcome_trait = NULL,
                                snp = NULL,

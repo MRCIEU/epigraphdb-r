@@ -9,7 +9,9 @@
 #' @return Data from `GET /literature/gwas`
 #'
 #' @examples
+#' \dontrun{
 #' literature_gwas(trait = "Body mass index")
+#' }
 #' @export
 literature_gwas <- function(trait, semmed_predicate = NULL,
                             mode = c("table", "raw")) {

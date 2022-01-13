@@ -7,7 +7,9 @@
 #' @return Data from `GET /meta/nodes/list`
 #'
 #' @examples
+#' \dontrun{
 #' meta_nodes_list()
+#' }
 #' @export
 meta_nodes_list <- function(mode = c("raw")) {
   # NOTE: currently response from the API does
@@ -29,7 +31,9 @@ meta_nodes_list <- function(mode = c("raw")) {
 #' @return Data from `GET /meta/rels/list`
 #'
 #' @examples
+#' \dontrun{
 #' meta_rels_list()
+#' }
 #' @export
 meta_rels_list <- function(mode = c("raw")) {
   # NOTE: currently response from the API does
@@ -61,10 +65,14 @@ meta_rels_list <- function(mode = c("raw")) {
 #'
 #' @examples
 #' # List the first 5 Gwas nodes, with only id and name fields
+#' \dontrun{
 #' meta_nodes_list_node(meta_node = "Gwas", full_data = FALSE, limit = 5)
+#' }
 #'
 #' # List the 6th - 10th Disease nodes, with full properties
+#' \dontrun{
 #' meta_nodes_list_node(meta_node = "Disease", full_data = TRUE, limit = 5, offset = 0)
+#' }
 #' @export
 meta_nodes_list_node <- function(meta_node, full_data = TRUE, limit = 10, offset = 0,
                                  mode = c("table", "raw")) {
@@ -95,7 +103,9 @@ meta_nodes_list_node <- function(meta_node, full_data = TRUE, limit = 10, offset
 #'
 #' @examples
 #' # List the first 5 MR relationships
+#' \dontrun{
 #' meta_rels_list_rel(meta_rel = "MR_EVE_MR", limit = 5)
+#' }
 #' @export
 meta_rels_list_rel <- function(meta_rel, limit = 10, offset = 0,
                                mode = c("table", "raw")) {
@@ -133,7 +143,9 @@ meta_rels_list_rel <- function(meta_rel, limit = 10, offset = 0,
 #'
 #' @examples
 #' # Search Gwas nodes
+#' \dontrun{
 #' meta_nodes_search_node(meta_node = "Gwas", name = "body mass index")
+#' }
 #' @export
 meta_nodes_search_node <- function(meta_node,
                                    id = NULL, name = NULL,
