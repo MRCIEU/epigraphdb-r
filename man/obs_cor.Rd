@@ -24,10 +24,14 @@ Data from \code{GET /obs-cor}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-obs-cor}{\code{GET /obs-cor}}
 }
 \examples{
+\dontrun{
 obs_cor(trait = "Body mass index (BMI)") \%>\%
   dplyr::glimpse()
+}
 
 # Use a different threshold
+\dontrun{
 obs_cor(trait = "Body mass index (BMI)", cor_coef_threshold = 0.8) \%>\%
   dplyr::glimpse()
+}
 }

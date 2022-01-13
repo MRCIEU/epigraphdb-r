@@ -20,5 +20,7 @@ Data from \code{GET /meta/rels/list}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metarelslist}{\code{GET /meta/rels/list}}
 }
 \examples{
+\dontrun{
 meta_rels_list()
+}
 }

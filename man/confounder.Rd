@@ -42,5 +42,7 @@ Data from \code{GET /confounder}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-confounder}{\code{GET /confounder}}
 }
 \examples{
+\dontrun{
 confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
+}
 }

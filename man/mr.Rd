@@ -38,14 +38,20 @@ Data from \code{GET /mr}
 }
 \examples{
 # Returns a data frame
+\dontrun{
 mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
+}
 
 # Returns raw response
+\dontrun{
 mr(
   exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease",
   mode = "raw"
 ) \%>\% str()
+}
 
 # Use a different threshold
+\dontrun{
 mr(exposure_trait = "Body mass index", pval_threshold = 1e-8)
+}
 }

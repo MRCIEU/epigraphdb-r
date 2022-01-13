@@ -27,8 +27,12 @@ Data from \verb{GET /pqtl/list/}
 \examples{
 
 # Returns a list of available proteins (exposures)
+\dontrun{
 pqtl_list()
+}
 
 # Returns a list of available traits (outcomes)
+\dontrun{
 pqtl_list(flag = "outcomes")
+}
 }

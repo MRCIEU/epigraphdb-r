@@ -20,5 +20,7 @@ NOTE: this function is intended for advanced uses.
 Regular users are recommended to use standard query functions
 }
 \examples{
+\dontrun{
 cypher("MATCH (n:Gwas) RETURN n LIMIT 2")
+}
 }

@@ -24,5 +24,7 @@ Data from \code{GET /pathway}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-pathway}{\code{GET /pathway}}
 }
 \examples{
+\dontrun{
 pathway(trait = "Body mass index")
+}
 }

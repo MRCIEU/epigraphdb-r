@@ -31,7 +31,11 @@ Data from \code{GET /ontology/gwas-efo}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-ontologygwas-efo}{\code{GET /ontology/gwas-efo}}
 }
 \examples{
+\dontrun{
 ontology_gwas_efo(trait = "blood", fuzzy = FALSE)
+}
 
+\dontrun{
 ontology_gwas_efo(efo_term = "blood pressure", fuzzy = FALSE)
+}
 }

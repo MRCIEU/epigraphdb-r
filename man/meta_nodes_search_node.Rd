@@ -41,5 +41,7 @@ Data from \code{GET /meta/nodes/{meta_node}/search}
 }
 \examples{
 # Search Gwas nodes
+\dontrun{
 meta_nodes_search_node(meta_node = "Gwas", name = "body mass index")
+}
 }

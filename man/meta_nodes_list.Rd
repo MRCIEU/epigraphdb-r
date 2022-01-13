@@ -20,5 +20,7 @@ Data from \code{GET /meta/nodes/list}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-metanodeslist}{\code{GET /meta/nodes/list}}
 }
 \examples{
+\dontrun{
 meta_nodes_list()
+}
 }

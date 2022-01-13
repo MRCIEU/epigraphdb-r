@@ -25,5 +25,7 @@ Data from \code{GET /literature/gwas}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-literaturegwas}{\code{GET /literature/gwas}}
 }
 \examples{
+\dontrun{
 literature_gwas(trait = "Body mass index")
+}
 }
