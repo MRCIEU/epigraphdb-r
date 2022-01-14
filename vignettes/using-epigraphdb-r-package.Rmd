@@ -172,7 +172,7 @@ response %>% str(2)
 #> List of 2
 #>  $ metadata:List of 3
 #>   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
-#>   ..$ total_seconds: num 0.0318
+#>   ..$ total_seconds: num 0.0347
 #>   ..$ empty_results: logi FALSE
 #>  $ results :List of 18
 #>   ..$ :List of 3

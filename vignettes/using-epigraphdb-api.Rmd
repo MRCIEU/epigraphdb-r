@@ -53,7 +53,7 @@ r %>%
 #> List of 2
 #>  $ metadata:List of 3
 #>   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
-#>   ..$ total_seconds: num 0.0313
+#>   ..$ total_seconds: num 0.0304
 #>   ..$ empty_results: logi FALSE
 #>  $ results :List of 18
 #>   ..$ :List of 3
@@ -90,7 +90,7 @@ epigraphdb::mr(
 #> List of 2
 #>  $ metadata:List of 3
 #>   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
-#>   ..$ total_seconds: num 0.0305
+#>   ..$ total_seconds: num 0.0321
 #>   ..$ empty_results: logi FALSE
 #>  $ results :List of 18
 #>   ..$ :List of 3
