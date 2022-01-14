@@ -1,6 +1,7 @@
 # epigraphdb 0.2.3 (WIP)
 
-- TODO: Error handling logics have been overhauled.
+- Error handling logics have been overhauled.
+  - Now it is easier to see the context when a request function fails
 - Vignettes on case studies of using EpiGraphDB functionalities have been moved to [EpiGraphDB's platform documentation](https://docs.epigraphdb.org). This is to make the package building process faster and less error prone. Specifically, it involves these vignette articles:
   - [Case 1 pleiotropy](https://docs.epigraphdb.org/r-package/case-1-pleiotropy/)
   - [Case 2 alternative drug target](https://docs.epigraphdb.org/r-package/case-2-alt-drug-target/)
