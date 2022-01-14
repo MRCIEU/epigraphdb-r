@@ -4,7 +4,7 @@
 # Rules
 #################################################################################
 
-## ==== codebase ====
+## ==== codebase devel ====
 
 ## Lint codebase
 lint:
@@ -14,6 +14,14 @@ lint:
 fmt:
 	Rscript -e "styler::style_pkg(filetype=c('R', 'Rmd'))"
 
+## testthat
+test:
+	CI=true Rscript -e "devtools::test()"
+
+tests: test
+
+## ==== package build ====
+
 ## Update rd docs
 roxygen:
 	CI=true Rscript -e "devtools::document()"
@@ -22,25 +30,23 @@ roxygen:
 check:
 	CI=true Rscript -e "devtools::check()"
 
-## testthat
-test:
-	CI=true Rscript -e "devtools::test()"
-
-tests: test
-
 ## devtools::run_examples, including don't run
 run_examples:
 	CI=true Rscript -e "devtools::run_examples(run_dontrun = TRUE)"
+
+## Precompute vignetts
+precompute_docs:
+	CI=true Rscript scripts/precompute.R
 
 ## Build pkgdown documentation
 docs:
 	CI=true Rscript -e "pkgdown::build_site(run_dont_run = TRUE)"
 
-## ==== CRAN submission ====
-
 ## Build package
 build:
 	CI=true Rscript -e "devtools::build(path = '/pkg-build', vignettes = TRUE, manual = TRUE)"
+
+## ==== CRAN submission ====
 
 ## Check for CRAN submission
 ## (note: assuming path to package is /build/epigraphdb_0.2.3.tar.gz)

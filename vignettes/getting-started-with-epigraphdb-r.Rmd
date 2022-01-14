@@ -9,16 +9,23 @@ vignette: >
 
 This article is provided as a brief introductory guide to working with the EpiGraphDB platform through `epigraphdb` R package. Here we will demonstrate a few basic operations that can be carried out using the platform, but for more advanced methods please refer to the [API endpoint documentation][2].
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r}
+
+
+```r
 library("dplyr")
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 library("epigraphdb")
+#> 
+#>     EpiGraphDB v1.0 (API: https://api.epigraphdb.org)
+#> 
 ```
 
 ## Part 1: Using EpiGraphDB to obtain biological mappings
@@ -51,7 +58,8 @@ In this guide, we are going to use the all-purpose `query_epigraphdb` function i
 
 In this first section, we will take an arbitrary list of genes and query the EpiGraphDB API to find the proteins that they map to.
 
-```{r}
+
+```r
 # Let's test this on a few genes
 genes <- c("TP53", "BRCA1", "TNF")
 
@@ -69,6 +77,12 @@ proteins <- query_epigraphdb(
 
 # Check the output
 print(proteins)
+#> # A tibble: 3 × 3
+#>   gene.name gene.ensembl_id protein.uniprot_id
+#>   <chr>     <chr>           <chr>             
+#> 1 TP53      ENSG00000141510 P04637            
+#> 2 BRCA1     ENSG00000012048 P38398            
+#> 3 TNF       ENSG00000232810 P01375
 ```
 
 In the above data frame, we see the output from querying EpiGraphDB for the proteins that have been mapped to the genes TP53, BRCA1, and TNF. Our query returned the UniProt and Ensembl IDs for those genes.
@@ -77,7 +91,8 @@ In the above data frame, we see the output from querying EpiGraphDB for the prot
 
 Next, to demonstrate the mapping of proteins to pathways, we are going to take one protein from the previous example, P04637, and query EpiGraphDB for all pathways it is known to be involved in.
 
-```{r}
+
+```r
 # Let's see what pathways the protein product of TP53 gene is involved in
 
 # NOTE: Argument `uniprot_id_list` requires a list of UniProt IDs in
@@ -97,16 +112,42 @@ pathway_df <- query_epigraphdb(
 
 # Check out how many pathways this protein is found in
 print(pathway_df)
+#> # A tibble: 1 × 3
+#>   uniprot_id pathway_count pathway_reactome_id
+#>   <chr>              <int> <list>             
+#> 1 P04637                84 <chr [84]>
 
 # Get pathways names (Reactome IDs)
 print(pathway_df$pathway_reactome_id[[1]])
+#>  [1] "R-HSA-983231"  "R-HSA-9006925" "R-HSA-8953897" "R-HSA-8943724"
+#>  [5] "R-HSA-8941855" "R-HSA-8878159" "R-HSA-8853884" "R-HSA-8852276"
+#>  [9] "R-HSA-74160"   "R-HSA-73894"   "R-HSA-73857"   "R-HSA-69895"  
+#> [13] "R-HSA-69620"   "R-HSA-69615"   "R-HSA-69580"   "R-HSA-69563"  
+#> [17] "R-HSA-69560"   "R-HSA-69541"   "R-HSA-69481"   "R-HSA-69473"  
+#> [21] "R-HSA-69278"   "R-HSA-69275"   "R-HSA-6811555" "R-HSA-6807070"
+#> [25] "R-HSA-6806003" "R-HSA-6804760" "R-HSA-6804759" "R-HSA-6804758"
+#> [29] "R-HSA-6804757" "R-HSA-6804756" "R-HSA-6804754" "R-HSA-6804116"
+#> [33] "R-HSA-6804115" "R-HSA-6804114" "R-HSA-6803211" "R-HSA-6803207"
+#> [37] "R-HSA-6803205" "R-HSA-6803204" "R-HSA-6796648" "R-HSA-6791312"
+#> [41] "R-HSA-6785807" "R-HSA-597592"  "R-HSA-5693606" "R-HSA-5693565"
+#> [45] "R-HSA-5693532" "R-HSA-5689896" "R-HSA-5689880" "R-HSA-5688426"
+#> [49] "R-HSA-5633008" "R-HSA-5633007" "R-HSA-5628897" "R-HSA-5357801"
+#> [53] "R-HSA-453274"  "R-HSA-449147"  "R-HSA-392499"  "R-HSA-391251" 
+#> [57] "R-HSA-390471"  "R-HSA-390466"  "R-HSA-3700989" "R-HSA-349425" 
+#> [61] "R-HSA-3232118" "R-HSA-3108232" "R-HSA-2990846" "R-HSA-2559586"
+#> [65] "R-HSA-2559585" "R-HSA-2559584" "R-HSA-2559583" "R-HSA-2559580"
+#> [69] "R-HSA-2262752" "R-HSA-212436"  "R-HSA-1912422" "R-HSA-1912408"
+#> [73] "R-HSA-168256"  "R-HSA-1640170" "R-HSA-162582"  "R-HSA-157118" 
+#> [77] "R-HSA-139915"  "R-HSA-1280215" "R-HSA-1257604" "R-HSA-114452" 
+#> [81] "R-HSA-111448"  "R-HSA-109606"  "R-HSA-109582"  "R-HSA-109581"
 ```
 
 P04637 is involved in five pathways. Next, let's get pathway info for one of them.
 
 ### Get pathway info
 
-```{r}
+
+```r
 # Let's see what exactly this pathway is
 reactome_id <- "R-HSA-6804754"
 
@@ -120,15 +161,30 @@ pathway_info <- query_epigraphdb(
 
 # Pathway description
 print(pathway_info)
+#> # A tibble: 1 × 6
+#>   node._name                    node.name node._source node.id node._id node.url
+#>   <chr>                         <chr>     <list>       <chr>   <chr>    <chr>   
+#> 1 Regulation of TP53 Expression Regulati… <chr [1]>    R-HSA-… R-HSA-6… https:/…
 ```
 
 If you are interested in this type of analysis, check out case studies [1][3] and [2][4] for further details on pathways analysis, PPI, mapping drugs to targets etc.
 
 <br>
 _Running the above queries using the [dedicated wrapped functions][12]:_
-```{r}
+
+```r
 mappings_gene_to_protein(genes)
+#> # A tibble: 3 × 3
+#>   gene.name gene.ensembl_id protein.uniprot_id
+#>   <chr>     <chr>           <chr>             
+#> 1 TP53      ENSG00000141510 P04637            
+#> 2 BRCA1     ENSG00000012048 P38398            
+#> 3 TNF       ENSG00000232810 P01375
 protein_in_pathway(proteins_uniprot_ids)
+#> # A tibble: 1 × 3
+#>   uniprot_id pathway_count pathway_reactome_id
+#>   <chr>              <int> <list>             
+#> 1 P04637                84 <chr [84]>
 ```
 
 ## Part 2: Epidemiological relationships analysis
@@ -139,7 +195,8 @@ In this part we will demonstrate queries that may be relevant in epidemiology re
 
 First, we want to check what GWAS are available within EpiGraphDB for our trait of interest, e.g. Body mass index. Doing this query is equivalent doing a look-up using [EpiGraphDB Web UI](https://dev.epigraphdb.org/explore). The search functionality is fuzzy search and case insensitive, i.e. 'body mass index' or 'Body Mass Index' will give you the same set of results.
 
-```{r}
+
+```r
 # Let's see what Body mass index GWAS are available in EpiGraphDB
 trait <- "body mass index"
 
@@ -157,6 +214,19 @@ results %>%
     node.trait, node.id, node.sample_size,
     node.year, node.author
   )
+#> # A tibble: 10 × 5
+#>    node.trait      node.id          node.sample_size node.year node.author
+#>    <chr>           <chr>            <chr>            <chr>     <chr>      
+#>  1 Body mass index ieu-a-1089       120286.0         2016.0    Wood       
+#>  2 Body mass index ieu-a-974        171977.0         2015.0    Locke AE   
+#>  3 Body mass index ieu-a-95         73137.0          2013.0    Randall JC 
+#>  4 Body mass index ebi-a-GCST004904 158284.0         2017.0    Akiyama M  
+#>  5 Body mass index ebi-a-GCST006368 315347.0         2018.0    Hoffmann TJ
+#>  6 Body mass index bbj-a-2          85894.0          2019.0    Ishigaki K 
+#>  7 Body mass index ieu-a-835        322154.0         2015.0    Locke AE   
+#>  8 Body mass index ieu-a-2          339224.0         2015.0    Locke AE   
+#>  9 Body mass index ieu-a-785        152893.0         2015.0    Locke AE   
+#> 10 Body mass index bbj-a-1          158284.0         2019.0    Ishigaki K
 ```
 
 ### Explore Mendelian randomization studies
@@ -165,7 +235,8 @@ In these examples, we show how to extract [pre-computed MR results][6] for the s
 
 #### Specify exposure trait
 
-```{r}
+
+```r
 # Look up all MR analyses where a trait was used as exposure
 # and find all outcome traits with causal evidence from it.
 
@@ -184,20 +255,48 @@ mr_df <- query_epigraphdb(
   mode = "table"
 )
 print(mr_df)
+#> # A tibble: 2,282 × 10
+#>    exposure.id  exposure.trait  outcome.id outcome.trait    mr.b   mr.se mr.pval
+#>    <chr>        <chr>           <chr>      <chr>           <dbl>   <dbl>   <dbl>
+#>  1 ieu-a-974    Body mass index ebi-a-GCS… Fibrinogen lev… 0.193 0.00224       0
+#>  2 ebi-a-GCST0… Body mass index ukb-b-2303 Body mass inde… 0.595 0.0153        0
+#>  3 ieu-a-785    Body mass index ieu-a-85   Extreme body m… 1.72  0.00163       0
+#>  4 ieu-a-835    Body mass index ukb-b-180… Leg fat mass (… 0.608 0.0139        0
+#>  5 ieu-a-835    Body mass index ukb-b-128… Arm fat percen… 0.526 0.0130        0
+#>  6 ieu-a-835    Body mass index ieu-a-93   Overweight      1.67  0.0341        0
+#>  7 ieu-a-835    Body mass index ieu-a-61   Waist circumfe… 0.824 0.0194        0
+#>  8 ieu-a-835    Body mass index ieu-a-60   Waist circumfe… 0.820 0.0195        0
+#>  9 ebi-a-GCST0… Body mass index ukb-b-201… Arm fat percen… 0.533 0.0104        0
+#> 10 ieu-a-2      Body mass index ukb-b-4650 Comparative bo… 0.439 0.00989       0
+#> # … with 2,272 more rows, and 3 more variables: mr.method <chr>,
+#> #   mr.selection <chr>, mr.moescore <dbl>
 ```
 
 The returned data frame includes all MR analysis with `exposure.trait` being "Body mass index". However, there are several GWAS with this names. If you are interested in a specific GWAS, you will need to filter by `exposure.id`.
 
-```{r}
+
+```r
 # Show how many MR analyses were done for each Body mass index GWAS
 mr_df %>% count(exposure.id)
+#> # A tibble: 8 × 2
+#>   exposure.id          n
+#>   <chr>            <int>
+#> 1 ebi-a-GCST004904   143
+#> 2 ebi-a-GCST006368   478
+#> 3 ieu-a-2            408
+#> 4 ieu-a-785          223
+#> 5 ieu-a-835          346
+#> 6 ieu-a-94           187
+#> 7 ieu-a-95           213
+#> 8 ieu-a-974          284
 ```
 
 #### Specify outcome trait
 
 Next, we can check all available MR analyses for an outcome trait of interest.
 
-```{r}
+
+```r
 # Look up all MR for a specified outcome trait
 # and find all exposure traits with causal evidence on it.
 
@@ -214,13 +313,29 @@ mr_df <- query_epigraphdb(
   mode = "table"
 )
 print(mr_df)
+#> # A tibble: 2,607 × 10
+#>    exposure.id exposure.trait  outcome.id outcome.trait     mr.b   mr.se mr.pval
+#>    <chr>       <chr>           <chr>      <chr>            <dbl>   <dbl>   <dbl>
+#>  1 ukb-b-15957 Types of trans… ieu-a-104  Waist circum…  0.591   7.59e-3       0
+#>  2 ukb-b-13423 Breastfed as a… ieu-a-104  Waist circum…  0.601   1.26e-2       0
+#>  3 ubm-a-130   IDP T1 FAST RO… ieu-a-104  Waist circum…  0.0899  1.25e-3       0
+#>  4 prot-b-38   interleukin 1 … ieu-a-104  Waist circum… -0.00884 2.30e-4       0
+#>  5 met-c-903   Phospholipids … ieu-a-104  Waist circum… -0.0428  2.97e-4       0
+#>  6 ukb-b-19060 Hearing aid us… ieu-a-66   Waist circum…  0.845   1.29e-2       0
+#>  7 ukb-a-344   Difficulty not… ieu-a-66   Waist circum…  0.102   4.80e-4       0
+#>  8 ubm-a-11    IDP T1 FIRST l… ieu-a-66   Waist circum…  0.0468  2.60e-4       0
+#>  9 prot-a-2356 Lysosomal Pro-… ieu-a-66   Waist circum…  0.0157  6.30e-5       0
+#> 10 prot-a-1332 Hemojuvelin     ieu-a-66   Waist circum… -0.0196  2.56e-4       0
+#> # … with 2,597 more rows, and 3 more variables: mr.method <chr>,
+#> #   mr.selection <chr>, mr.moescore <dbl>
 ```
 
 #### Specify both exposure and outcome traits
 
 Finally, we can look up MR causal inference results for a pair of exposure and outcome.
 
-```{r}
+
+```r
 # Look up a specific pair of exposure+outcome
 trait1 <- "Body mass index"
 trait2 <- "Coronary heart disease"
@@ -237,17 +352,64 @@ mr_df <- query_epigraphdb(
 )
 
 print(mr_df)
+#> # A tibble: 18 × 10
+#>    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#>    <chr>        <chr>           <chr>       <chr>          <dbl>  <dbl>    <dbl>
+#>  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29
+#>  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20
+#>  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15
+#>  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11
+#>  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9
+#>  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9
+#>  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8
+#>  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7
+#>  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7
+#> 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7
+#> 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6
+#> 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6
+#> 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6
+#> 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6
+#> 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6
+#> 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6
+#> 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6
+#> 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6
+#> # … with 3 more variables: mr.method <chr>, mr.selection <chr>,
+#> #   mr.moescore <dbl>
 ```
 
 To query EpiGraphDB directly by GWAS ID, you will need to use the advanced functionality. See the end of this article.
 
 <br>
 _Running the above MR query using a [dedicated wrapped function][12]:_
-```{r}
+
+```r
 mr(
   exposure_trait = trait1,
   outcome_trait = trait2
 )
+#> # A tibble: 18 × 10
+#>    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#>    <chr>        <chr>           <chr>       <chr>          <dbl>  <dbl>    <dbl>
+#>  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29
+#>  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20
+#>  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15
+#>  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11
+#>  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9
+#>  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9
+#>  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8
+#>  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7
+#>  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7
+#> 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7
+#> 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6
+#> 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6
+#> 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6
+#> 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6
+#> 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6
+#> 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6
+#> 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6
+#> 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6
+#> # … with 3 more variables: mr.method <chr>, mr.selection <chr>,
+#> #   mr.moescore <dbl>
 ```
 
 ## Part 3. Looking for literature evidence
@@ -256,7 +418,8 @@ Accessing information in the literature is a ubiquitous task in research, be it 
 
 In the following section, we will query the API for the relationship between a given gene and a disease outcome.
 
-```{r}
+
+```r
 # Identity all publications where a gene is mentioned with relation to a disease
 
 gene <- "IL23R"
@@ -275,16 +438,29 @@ lit_df <- query_epigraphdb(
 
 # Review the found evidence in the literature
 print(lit_df)
+#> # A tibble: 5 × 6
+#>   pubmed_id  gene.name lt.id    lt.name                     lt.type st.predicate
+#>   <list>     <chr>     <chr>    <chr>                       <list>  <chr>       
+#> 1 <chr [1]>  IL23R     C0021390 Inflammatory Bowel Diseases <chr [… PREDISPOSES 
+#> 2 <chr [2]>  IL23R     C0021390 Inflammatory Bowel Diseases <chr [… NEG_ASSOCIA…
+#> 3 <chr [1]>  IL23R     C0021390 Inflammatory Bowel Diseases <chr [… CAUSES      
+#> 4 <chr [21]> IL23R     C0021390 Inflammatory Bowel Diseases <chr [… ASSOCIATED_…
+#> 5 <chr [1]>  IL23R     C0021390 Inflammatory Bowel Diseases <chr [… AFFECTS
 ```
 
 The data frame above shows that IL23R has been mentioned in 25 publications (`pubmed_id` column) in relation to Inflammatory bowel disease, in four predicates.
 
-```{r}
+
+```r
 # Get a list of all PubMed IDs
 lit_df %>%
   pull(pubmed_id) %>%
   unlist() %>%
   unique()
+#>  [1] "23131344" "21155887" "17484863" "31728561" "18383521" "18383363"
+#>  [7] "25159710" "18341487" "18047540" "19575361" "19496308" "18698678"
+#> [13] "18088064" "19175939" "19817673" "29248579" "19747142" "20393462"
+#> [19] "20067801" "18368064" "21846945" "18164077" "24280935" "27852544"
 ```
 
 If you are interested in literature mining analysis, and also matching MR results to literature evidence, please refer to more specific examples in case studies [3][5] and [2][4].
@@ -293,19 +469,24 @@ If you are interested in literature mining analysis, and also matching MR result
 
 EpiGraphDB stores data as nodes (data types) and edges (relationships between nodes). The available nodes can be viewed through the `meta/nodes` endpoint. Let's list the available nodes:
 
-```{r}
+
+```r
 endpoint <- "/meta/nodes/list"
 meta_node_fields <- query_epigraphdb(
   route = endpoint, params = NULL, mode = "raw"
 )
 meta_node_fields %>% unlist()
+#>  [1] "Disease"        "Drug"           "Efo"            "Gene"          
+#>  [5] "Gwas"           "Literature"     "LiteratureTerm" "Pathway"       
+#>  [9] "Protein"        "Tissue"         "Variant"
 ```
 
 The list of nodes is also available in the [documentation][11], along with the node properties, which are useful for running native Cypher queries. In this section, we want to show how to perform node search for a term of interest. Any node can be searched by specifying it in this query: `GET /meta/nodes/{meta_node}/search`.
 
 To demonstrate this, we are going to search for 'breast cancer' in various nodes:
 
-```{r}
+
+```r
 name <- "breast cancer"
 
 endpoint <- "/meta/nodes/Gwas/search"
@@ -319,6 +500,19 @@ results %>%
     node.trait, node.id, node.sample_size,
     node.year, node.author
   )
+#> # A tibble: 10 × 5
+#>    node.trait                  node.id    node.sample_size node.year node.author
+#>    <chr>                       <chr>      <chr>            <chr>     <chr>      
+#>  1 Breast cancer               ebi-a-GCS… 89677.0          2015.0    Michailido…
+#>  2 Breast cancer               ebi-a-GCS… 139274.0         2017.0    Michailido…
+#>  3 Breast cancer (Combined On… ieu-a-1126 228951.0         2017.0    Michailido…
+#>  4 Breast cancer (GWAS)        ieu-a-1168 33832.0          2015.0    Michailido…
+#>  5 Breast cancer (GWAS)        ieu-a-1131 32498.0          2017.0    Michailido…
+#>  6 Breast cancer (Oncoarray)   ieu-a-1129 106776.0         2017.0    Michailido…
+#>  7 Breast cancer (Survival)    ieu-a-1165 37954.0          2015.0    Guo Q      
+#>  8 Breast cancer (iCOGS)       ieu-a-1162 89677.0          2015.0    Michailido…
+#>  9 Breast cancer (iCOGS)       ieu-a-1130 89677.0          2017.0    Michailido…
+#> 10 Breast cancer anti-estroge… prot-a-234 3301.0           2018.0    Sun BB
 
 endpoint <- "/meta/nodes/Disease/search"
 results <- query_epigraphdb(
@@ -328,6 +522,16 @@ results <- query_epigraphdb(
 )
 results %>%
   select(node.label, node.id, node.definition)
+#> # A tibble: 7 × 3
+#>   node.label                                   node.id     node.definition      
+#>   <chr>                                        <chr>       <chr>                
+#> 1 Her2-receptor negative breast cancer         http://pur… NA                   
+#> 2 breast cancer                                http://pur… A primary or metasta…
+#> 3 estrogen-receptor negative breast cancer     http://pur… A subtype of breast …
+#> 4 estrogen-receptor positive breast cancer     http://pur… A subtype of breast …
+#> 5 progesterone-receptor negative breast cancer http://pur… NA                   
+#> 6 progesterone-receptor positive breast cancer http://pur… NA                   
+#> 7 sporadic breast cancer                       http://pur… A carcinoma that ari…
 
 endpoint <- "/meta/nodes/Efo/search"
 results <- query_epigraphdb(
@@ -336,6 +540,19 @@ results <- query_epigraphdb(
   mode = "table"
 )
 results
+#> # A tibble: 10 × 6
+#>    node._name      node._source node.id     node._id    node.type node.value    
+#>    <chr>           <list>       <chr>       <chr>       <chr>     <chr>         
+#>  1 BRCAX breast c… <chr [1]>    http://www… http://www… typed-li… BRCAX breast …
+#>  2 Her2-receptor … <chr [1]>    http://pur… http://pur… typed-li… Her2-receptor…
+#>  3 Hereditary bre… <chr [1]>    http://www… http://www… typed-li… Hereditary br…
+#>  4 age at breast … <chr [1]>    http://www… http://www… typed-li… age at breast…
+#>  5 breast cancer   <chr [1]>    http://pur… http://pur… typed-li… breast cancer 
+#>  6 breast cancer … <chr [1]>    http://www… http://www… typed-li… breast cancer…
+#>  7 breast cancer … <chr [1]>    http://www… http://www… typed-li… breast cancer…
+#>  8 breast cancer … <chr [1]>    http://www… http://www… typed-li… breast cancer…
+#>  9 estrogen-recep… <chr [1]>    http://www… http://www… typed-li… estrogen-rece…
+#> 10 estrogen-recep… <chr [1]>    http://www… http://www… typed-li… estrogen-rece…
 ```
 
 The queries above can be further expanded using Cypher as will be shown in the next section. To get more information about `meta` endpoint please see the guidelines on [meta functionalities][10].
@@ -348,7 +565,8 @@ If you would like to further customise your query, EpiGraphDB API supports using
 To get you started, we want to show that the majority of API endpoint queries are simple wrappers around Cypher queries which directly request data from the graph database.
 For example, the simple GWAS query we've done in Part 2 using "table" mode, can be executed using "raw" mode to expose the exact Cypher query that was run against the database:
 
-```{r}
+
+```r
 # Running a GWAS query from Part 2
 # Ask for "raw" format (as a list)
 trait <- "body mass index"
@@ -361,11 +579,13 @@ response <- query_epigraphdb(
 
 # display the Cypher query
 response$metadata$query
+#> [1] "MATCH (node: Gwas) WHERE node.trait =~ \"(?i).*body mass index.*\" RETURN node LIMIT 10;"
 ```
 
 This is what a native Cypher query looks like:
 
-```{r}
+
+```r
 query <- "
     MATCH (node: Gwas)
     WHERE node.trait =~ \"(?i).*body mass index.*\"
@@ -375,7 +595,8 @@ query <- "
 
 This is how you supply a Cypher query to `query_epigraphdb` function:
 
-```{r}
+
+```r
 # use POST /cypher
 
 endpoint <- "/cypher"
@@ -395,11 +616,25 @@ results %>%
     node.trait, node.id, node.sample_size,
     node.year, node.author
   )
+#> # A tibble: 10 × 5
+#>    node.trait      node.id          node.sample_size node.year node.author
+#>    <chr>           <chr>            <chr>            <chr>     <chr>      
+#>  1 Body mass index ieu-a-1089       120286.0         2016.0    Wood       
+#>  2 Body mass index ieu-a-974        171977.0         2015.0    Locke AE   
+#>  3 Body mass index ieu-a-95         73137.0          2013.0    Randall JC 
+#>  4 Body mass index ebi-a-GCST004904 158284.0         2017.0    Akiyama M  
+#>  5 Body mass index ebi-a-GCST006368 315347.0         2018.0    Hoffmann TJ
+#>  6 Body mass index bbj-a-2          85894.0          2019.0    Ishigaki K 
+#>  7 Body mass index ieu-a-835        322154.0         2015.0    Locke AE   
+#>  8 Body mass index ieu-a-2          339224.0         2015.0    Locke AE   
+#>  9 Body mass index ieu-a-785        152893.0         2015.0    Locke AE   
+#> 10 Body mass index bbj-a-1          158284.0         2019.0    Ishigaki K
 ```
 
 Next step: let's modify Cypher query
 
-```{r}
+
+```r
 # Let's return Body mass index GWAS that were done by Locke AE
 
 query <- "
@@ -425,6 +660,13 @@ results_subset %>%
     node.trait, node.id, node.sample_size,
     node.year, node.author
   )
+#> # A tibble: 4 × 5
+#>   node.trait      node.id   node.sample_size node.year node.author
+#>   <chr>           <chr>     <chr>            <chr>     <chr>      
+#> 1 Body mass index ieu-a-974 171977.0         2015.0    Locke AE   
+#> 2 Body mass index ieu-a-835 322154.0         2015.0    Locke AE   
+#> 3 Body mass index ieu-a-2   339224.0         2015.0    Locke AE   
+#> 4 Body mass index ieu-a-785 152893.0         2015.0    Locke AE
 ```
 
 NOTE: Be mindful of the data type of each node property. Please refer to [data dictionary][7] to explore data types before writing native Cypher queries.
@@ -432,7 +674,8 @@ NOTE: Be mindful of the data type of each node property. Please refer to [data d
 <br>
 Now, let's try making queries by specifying a GWAS ID.
 
-```{r}
+
+```r
 # Extract info only for GWAS 'ieu-a-2'
 query <- "
     MATCH (node: Gwas)
@@ -453,9 +696,14 @@ results_subset %>%
     node.trait, node.id, node.sample_size,
     node.year, node.author
   )
+#> # A tibble: 1 × 5
+#>   node.trait      node.id node.sample_size node.year node.author
+#>   <chr>           <chr>   <chr>            <chr>     <chr>      
+#> 1 Body mass index ieu-a-2 339224.0         2015.0    Locke AE
 ```
 
-```{r}
+
+```r
 # Return MR results only for exposure trait 'ieu-a-2' (body mass index)
 
 # first let's check the MR Cypher query that we run in "table" mode in Part 2
@@ -470,6 +718,7 @@ mr_df <- query_epigraphdb(
   mode = "raw"
 )
 mr_df$metadata$query
+#> [1] "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND mr.pval < 5e-08 RETURN exposure {.id, .trait}, outcome {.id, .trait}, mr {.b, .se, .pval, .method, .selection, .moescore} ORDER BY mr.pval ;"
 
 # modify the query to only return 'ieu-a-2' GWAS results
 query <- "
@@ -489,9 +738,28 @@ results_subset <- query_epigraphdb(
   mode = "table"
 )
 results_subset
+#> # A tibble: 408 × 10
+#>    exposure.trait  exposure.id outcome.trait  outcome.id  mr.b   mr.se mr.method
+#>    <chr>           <chr>       <chr>          <chr>      <dbl>   <dbl> <chr>    
+#>  1 Body mass index ieu-a-2     Comparative b… ukb-b-4650 0.439 0.00989 FE IVW   
+#>  2 Body mass index ieu-a-2     Body mass ind… ukb-b-2303 0.674 0.0178  FE IVW   
+#>  3 Body mass index ieu-a-2     Basal metabol… ukb-b-164… 0.449 0.0118  FE IVW   
+#>  4 Body mass index ieu-a-2     Arm fat perce… ukb-a-282  0.528 0.0125  FE IVW   
+#>  5 Body mass index ieu-a-2     Waist circumf… ukb-b-9405 0.645 0.0126  FE IVW   
+#>  6 Body mass index ieu-a-2     Arm predicted… ukb-b-9093 0.398 0.00841 FE IVW   
+#>  7 Body mass index ieu-a-2     Body mass ind… ieu-a-94   1.01  0.0269  FE IVW   
+#>  8 Body mass index ieu-a-2     Hip circumfer… ieu-a-48   0.828 0.0149  FE IVW   
+#>  9 Body mass index ieu-a-2     Waist circumf… ieu-a-65   0.732 0.0200  FE IVW   
+#> 10 Body mass index ieu-a-2     Hip circumfer… ukb-b-155… 0.652 0.0180  FE IVW   
+#> # … with 398 more rows, and 3 more variables: mr.selection <chr>,
+#> #   mr.pval <dbl>, mr.moescore <dbl>
 
 # check exposures in the results
 results_subset %>% count(exposure.id)
+#> # A tibble: 1 × 2
+#>   exposure.id     n
+#>   <chr>       <int>
+#> 1 ieu-a-2       408
 ```
 
 <br>

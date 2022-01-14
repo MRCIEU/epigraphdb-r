@@ -7,7 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 ## Introduction
 
@@ -38,8 +43,7 @@ using `curl` in the command line.
 Here are some examples of querying EpiGraphDB web API using
 [httr](https://httr.r-lib.org/reference/index.html):
 
-
-```r
+```{r}
 library("epigraphdb")
 url <- getOption("epigraphdb.api.url")
 payload <- list(
@@ -50,67 +54,18 @@ r <- httr::RETRY("GET", glue::glue("{url}/mr"), query = payload)
 r %>%
   httr::content(as = "parsed") %>%
   str(2)
-#> List of 2
-#>  $ metadata:List of 3
-#>   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
-#>   ..$ total_seconds: num 0.0313
-#>   ..$ empty_results: logi FALSE
-#>  $ results :List of 18
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
 ```
 
 And this is the data structure as returned from the
 `epigraphdb::mr` call with `mode = "raw"`:
 
-
-```r
+```{r epigraphdb-mr}
 epigraphdb::mr(
   exposure_trait = "Body mass index",
   outcome_trait = "Coronary heart disease",
   mode = "raw"
 ) %>%
   str(2)
-#> List of 2
-#>  $ metadata:List of 3
-#>   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
-#>   ..$ total_seconds: num 0.0305
-#>   ..$ empty_results: logi FALSE
-#>  $ results :List of 18
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
-#>   ..$ :List of 3
 ```
 
 In fact, currently the `epigraphdb::mr` function is a

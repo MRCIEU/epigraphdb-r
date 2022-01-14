@@ -26,3 +26,5 @@
 ^\.ipynb_checkpoints$
 ^\.env$
 ^pkg-build$
+^scripts$
+^vignettes_src$
