@@ -1,6 +1,7 @@
 context("protein")
 
 test_that("POST /protein/in-pathway", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   uniprot_id_list <- c("014933", "060674", "P32455")
   params <- list(
@@ -18,6 +19,7 @@ test_that("POST /protein/in-pathway", {
 })
 
 test_that("protein_in_pathway", {
+  skip_on_cran()
   uniprot_id_list <- c("014933", "060674", "P32455")
   expect_error(
     df <- protein_in_pathway(
@@ -29,6 +31,7 @@ test_that("protein_in_pathway", {
 })
 
 test_that("protein_in_pathway, singleton", {
+  skip_on_cran()
   uniprot_id_list <- c("014933")
   expect_error(
     df <- protein_in_pathway(

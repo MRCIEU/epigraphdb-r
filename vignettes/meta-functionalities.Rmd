@@ -7,12 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
 
 This RMarkdown document demonstrates how key elements from the
 [github notebook for the meta functionalities](
@@ -35,11 +30,31 @@ For detailed documentation on the API endpoints please visit:
 - The sections regarding API endpoints on the documentation site:
   https://docs.epigraphdb.org/api/api-endpoints/
 
-```{r}
+
+```r
 library("magrittr")
 library("dplyr")
 library("purrr")
+#> 
+#> Attaching package: 'purrr'
+#> The following object is masked from 'package:magrittr':
+#> 
+#>     set_names
 library("igraph")
+#> 
+#> Attaching package: 'igraph'
+#> The following objects are masked from 'package:purrr':
+#> 
+#>     compose, simplify
+#> The following objects are masked from 'package:dplyr':
+#> 
+#>     as_data_frame, groups, union
+#> The following objects are masked from 'package:stats':
+#> 
+#>     decompose, spectrum
+#> The following object is masked from 'package:base':
+#> 
+#>     union
 library("epigraphdb")
 ```
 
@@ -47,7 +62,8 @@ library("epigraphdb")
 
 Here we query for the metadata information using the endpoint `GET /meta/schema`, which will be used for downstream processing.
 
-```{r}
+
+```r
 endpoint <- "/meta/schema"
 params <- list(
   graphviz = FALSE,
@@ -58,13 +74,112 @@ metadata <- query_epigraphdb(
 )
 
 metadata %>% str(2)
+#> List of 3
+#>  $ nodes      :List of 12
+#>   ..$ Disease         :List of 2
+#>   ..$ Pathway         :List of 2
+#>   ..$ LiteratureTerm  :List of 2
+#>   ..$ Gene            :List of 2
+#>   ..$ LiteratureTriple:List of 2
+#>   ..$ Literature      :List of 2
+#>   ..$ Protein         :List of 2
+#>   ..$ Variant         :List of 2
+#>   ..$ Efo             :List of 2
+#>   ..$ Tissue          :List of 2
+#>   ..$ Drug            :List of 2
+#>   ..$ Gwas            :List of 2
+#>  $ edges      :List of 41
+#>   ..$ OPENTARGETS_DRUG_TO_DISEASE :List of 2
+#>   ..$ MEDRXIV_SUB                 :List of 2
+#>   ..$ GENE_TO_DISEASE             :List of 2
+#>   ..$ GWAS_NLP_EFO                :List of 2
+#>   ..$ SEMMEDDB_PREDICATE          :List of 2
+#>   ..$ STRING_INTERACT_WITH        :List of 2
+#>   ..$ GWAS_TO_LITERATURE_TRIPLE   :List of 2
+#>   ..$ PRS                         :List of 2
+#>   ..$ BIORXIV_PREDICATE           :List of 2
+#>   ..$ MONDO_MAP_UMLS              :List of 2
+#>   ..$ SEMMEDDB_SUB                :List of 2
+#>   ..$ MR_EVE_MR                   :List of 2
+#>   ..$ OPENGWAS_TOPHITS            :List of 2
+#>   ..$ VARIANT_TO_GENE             :List of 2
+#>   ..$ MEDRXIV_PREDICATE           :List of 2
+#>   ..$ MEDRXIV_OBJ                 :List of 2
+#>   ..$ EXPRESSED_IN                :List of 2
+#>   ..$ BIORXIV_OBJ                 :List of 2
+#>   ..$ EFO_CHILD_OF                :List of 2
+#>   ..$ BIORXIV_TO_LIT              :List of 2
+#>   ..$ GEN_COR                     :List of 2
+#>   ..$ METAMAP_LITE                :List of 2
+#>   ..$ SEMMEDDB_TO_LIT             :List of 2
+#>   ..$ PROTEIN_IN_PATHWAY          :List of 2
+#>   ..$ MONDO_MAP_EFO               :List of 2
+#>   ..$ PATHWAY_CHILD_OF            :List of 2
+#>   ..$ TERM_TO_GENE                :List of 2
+#>   ..$ GWAS_EFO_EBI                :List of 2
+#>   ..$ CPIC                        :List of 2
+#>   ..$ XQTL_MULTI_SNP_MR           :List of 2
+#>   ..$ XQTL_SINGLE_SNP_MR_SNP_GENE :List of 2
+#>   ..$ OBS_COR                     :List of 2
+#>   ..$ GWAS_NLP                    :List of 2
+#>   ..$ XQTL_SINGLE_SNP_MR_GENE_GWAS:List of 2
+#>   ..$ MEDRXIV_TO_LIT              :List of 2
+#>   ..$ BIORXIV_SUB                 :List of 2
+#>   ..$ OPENTARGETS_DRUG_TO_TARGET  :List of 2
+#>   ..$ GWAS_TO_VARIANT             :List of 2
+#>   ..$ GWAS_TO_LITERATURE          :List of 2
+#>   ..$ GENE_TO_PROTEIN             :List of 2
+#>   ..$ SEMMEDDB_OBJ                :List of 2
+#>  $ connections:List of 41
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
+#>   ..$ :List of 4
 ```
 
 ### Meta nodes
 
 We can extract the specific meta node information as a dataframe from the metadata.
 
-```{r}
+
+```r
 meta_node_df <- metadata %>%
   pluck("nodes") %>%
   {
@@ -81,13 +196,29 @@ meta_node_df <- metadata %>%
 meta_node_df %>%
   arrange(meta_node) %>%
   mutate(count = format(count, big.mark = ","))
+#> # A tibble: 12 × 2
+#>    meta_node        count      
+#>    <chr>            <chr>      
+#>  1 Disease          "   38,960"
+#>  2 Drug             "    2,697"
+#>  3 Efo              "   25,390"
+#>  4 Gene             "   57,737"
+#>  5 Gwas             "   34,494"
+#>  6 Literature       "3,995,672"
+#>  7 LiteratureTerm   "  108,905"
+#>  8 LiteratureTriple "5,609,945"
+#>  9 Pathway          "    2,441"
+#> 10 Protein          "   20,280"
+#> 11 Tissue           "       54"
+#> 12 Variant          "   99,005"
 ```
 
 ### Meta relationships and connections
 
 We can also extract the meta relationship (edge) information, and the connections.
 
-```{r}
+
+```r
 meta_rel_df <- metadata %>%
   pluck("edges") %>%
   {
@@ -108,25 +239,26 @@ meta_rel_df <- metadata %>%
           select(meta_rel, from_node, to_node)
       }
   )
+#> Joining, by = "meta_rel"
 
 meta_rel_df %>%
   arrange(from_node, to_node) %>%
   mutate(count = format(count, big.mark = ","))
+#> # A tibble: 41 × 4
+#>    meta_rel                     count        from_node to_node       
+#>    <chr>                        <chr>        <chr>     <chr>         
+#>  1 MONDO_MAP_EFO                "     2,819" Disease   Efo           
+#>  2 MONDO_MAP_UMLS               "     8,247" Disease   LiteratureTerm
+#>  3 OPENTARGETS_DRUG_TO_DISEASE  "     2,461" Drug      Disease       
+#>  4 CPIC                         "       375" Drug      Gene          
+#>  5 OPENTARGETS_DRUG_TO_TARGET   "     6,534" Drug      Gene          
+#>  6 EFO_CHILD_OF                 "    43,132" Efo       Efo           
+#>  7 GENE_TO_DISEASE              "     5,763" Gene      Disease       
+#>  8 XQTL_MULTI_SNP_MR            " 3,015,233" Gene      Gwas          
+#>  9 XQTL_SINGLE_SNP_MR_GENE_GWAS " 8,449,779" Gene      Gwas          
+#> 10 GENE_TO_PROTEIN              "    19,142" Gene      Protein       
+#> # … with 31 more rows
 ```
-
-### Schema plot
-
-```{r}
-graph <- meta_rel_df %>%
-  select(from_node, to_node) %>%
-  igraph::graph_from_data_frame(directed = FALSE)
-graph$layout <- igraph::layout_with_kk
-plot(graph)
-```
-
-A detailed version of the
-[schema_plot](https://api.epigraphdb.org/meta/schema?graphviz=true&plot=true)
-can be obtained from the API.
 
 ## Search for specific node
 
@@ -139,19 +271,115 @@ Here we show how these are done at the API level using `Gwas` nodes as an exampl
 
  First we need to know what the "ID" and "name" fields are for the meta nodes using `GET /meta/nodes/id-name-schema`:
 
-```{r}
+
+```r
 endpoint <- "/meta/nodes/id-name-schema"
 meta_node_fields <- query_epigraphdb(
   route = endpoint, params = NULL, mode = "raw"
 )
 meta_node_fields
+#> $Disease
+#> $Disease$id
+#> [1] "id"
+#> 
+#> $Disease$name
+#> [1] "label"
+#> 
+#> 
+#> $Drug
+#> $Drug$id
+#> [1] "label"
+#> 
+#> $Drug$name
+#> [1] "label"
+#> 
+#> 
+#> $Efo
+#> $Efo$id
+#> [1] "id"
+#> 
+#> $Efo$name
+#> [1] "value"
+#> 
+#> 
+#> $Gene
+#> $Gene$id
+#> [1] "ensembl_id"
+#> 
+#> $Gene$name
+#> [1] "name"
+#> 
+#> 
+#> $Gwas
+#> $Gwas$id
+#> [1] "id"
+#> 
+#> $Gwas$name
+#> [1] "trait"
+#> 
+#> 
+#> $Literature
+#> $Literature$id
+#> [1] "id"
+#> 
+#> $Literature$name
+#> [1] "id"
+#> 
+#> 
+#> $LiteratureTerm
+#> $LiteratureTerm$id
+#> [1] "id"
+#> 
+#> $LiteratureTerm$name
+#> [1] "name"
+#> 
+#> 
+#> $LiteratureTriple
+#> $LiteratureTriple$id
+#> [1] "id"
+#> 
+#> $LiteratureTriple$name
+#> [1] "name"
+#> 
+#> 
+#> $Pathway
+#> $Pathway$id
+#> [1] "id"
+#> 
+#> $Pathway$name
+#> [1] "name"
+#> 
+#> 
+#> $Protein
+#> $Protein$id
+#> [1] "uniprot_id"
+#> 
+#> $Protein$name
+#> [1] "uniprot_id"
+#> 
+#> 
+#> $Tissue
+#> $Tissue$id
+#> [1] "id"
+#> 
+#> $Tissue$name
+#> [1] "name"
+#> 
+#> 
+#> $Variant
+#> $Variant$id
+#> [1] "name"
+#> 
+#> $Variant$name
+#> [1] "name"
 ```
 
 ## Fuzzy matching
 
 Here we search for nodes can contain "body mass index" in their traits.
 
-```{r}
+
+```r
 name <- "body mass index"
 
 endpoint <- "/meta/nodes/Gwas/search"
@@ -161,13 +389,31 @@ results <- query_epigraphdb(
   route = endpoint, params = params, mode = "table"
 )
 results
+#> # A tibble: 10 × 18
+#>    node.note        node._name  node.year node.mr node.author node.sex node.pmid
+#>    <chr>            <chr>       <chr>     <chr>   <chr>       <chr>    <chr>    
+#>  1 Dominance model… Body mass … 2016.0    0       Wood        Males a… 26961502…
+#>  2 <NA>             Body mass … 2015.0    1       Locke AE    Females  25673413…
+#>  3 <NA>             Body mass … 2013.0    1       Randall JC  Females  23754948…
+#>  4 <NA>             Body mass … 2017.0    1       Akiyama M   <NA>     28892062…
+#>  5 <NA>             Body mass … 2018.0    1       Hoffmann TJ <NA>     30108127…
+#>  6 <NA>             Body mass … 2019.0    1       Ishigaki K  Males    28892062…
+#>  7 <NA>             Body mass … 2015.0    1       Locke AE    Males a… 25673413…
+#>  8 <NA>             Body mass … 2015.0    1       Locke AE    Males a… 25673413…
+#>  9 <NA>             Body mass … 2015.0    1       Locke AE    Males    25673413…
+#> 10 <NA>             Body mass … 2019.0    1       Ishigaki K  Males a… 28892062…
+#> # … with 11 more variables: node.population <chr>, node.sample_size <chr>,
+#> #   node.nsnp <chr>, node.build <chr>, node.trait <chr>, node._source <list>,
+#> #   node.id <chr>, node._id <chr>, node.subcategory <chr>, node.category <chr>,
+#> #   node.sd <chr>
 ```
 
 ## Exact matching
 
 Similarly, we can exact match a specific node by its ID.
 
-```{r}
+
+```r
 id <- "ieu-a-2"
 
 endpoint <- "/meta/nodes/Gwas/search"
@@ -177,13 +423,21 @@ results <- query_epigraphdb(
   route = endpoint, params = params, mode = "table"
 )
 results
+#> # A tibble: 1 × 17
+#>   node._name  node.year node.mr node.author node.sex   node.pmid node.population
+#>   <chr>       <chr>     <chr>   <chr>       <chr>      <chr>     <chr>          
+#> 1 Body mass … 2015.0    1       Locke AE    Males and… 25673413… Mixed          
+#> # … with 10 more variables: node.sd <chr>, node.sample_size <chr>,
+#> #   node.nsnp <chr>, node.build <chr>, node.trait <chr>, node._source <list>,
+#> #   node.id <chr>, node._id <chr>, node.subcategory <chr>, node.category <chr>
 ```
 
 ## Cypher (advanced)
 
 Advanced users that are familiar with Neo4j Cypher can query the database using Cypher directly.
 
-```{r}
+
+```r
 query <- "
     MATCH (exposure:Gwas)-[mr:MR]->(outcome:Gwas)
     WHERE exposure.trait = 'Body mass index'
@@ -199,11 +453,43 @@ results <- query_epigraphdb(
   mode = "table"
 )
 results
+#> # A tibble: 0 × 0
 ```
 
 
 ## `sessionInfo`
 
-```{r}
+
+```r
 sessionInfo()
+#> R version 4.1.2 (2021-11-01)
+#> Platform: x86_64-pc-linux-gnu (64-bit)
+#> Running under: Ubuntu 20.04.3 LTS
+#> 
+#> Matrix products: default
+#> BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+#> 
+#> locale:
+#>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#>  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#> 
+#> attached base packages:
+#> [1] stats     graphics  grDevices utils     datasets  methods   base     
+#> 
+#> other attached packages:
+#> [1] igraph_1.2.11    purrr_0.3.4      magrittr_2.0.1   epigraphdb_0.2.3
+#> [5] dplyr_1.0.7     
+#> 
+#> loaded via a namespace (and not attached):
+#>  [1] knitr_1.37       tidyselect_1.1.1 R6_2.5.1         rlang_0.4.12    
+#>  [5] fansi_1.0.0      stringr_1.4.0    httr_1.4.2       tools_4.1.2     
+#>  [9] xfun_0.29        utf8_1.2.2       cli_3.1.0        DBI_1.1.2       
+#> [13] ellipsis_0.3.2   assertthat_0.2.1 tibble_3.1.6     lifecycle_1.0.1 
+#> [17] crayon_1.4.2     vctrs_0.3.8      curl_4.3.2       glue_1.6.0      
+#> [21] evaluate_0.14    stringi_1.7.6    compiler_4.1.2   pillar_1.6.4    
+#> [25] generics_0.1.1   jsonlite_1.7.2   pkgconfig_2.0.3
 ```

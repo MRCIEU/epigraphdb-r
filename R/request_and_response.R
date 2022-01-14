@@ -31,6 +31,7 @@
 #' @examples
 #' # GET /mr
 #' # equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
+#' \dontrun{
 #' query_epigraphdb(
 #'   route = "/mr",
 #'   params = list(
@@ -39,8 +40,10 @@
 #'   ),
 #'   mode = "table"
 #' )
+#' }
 #'
 #' # GET /meta/nodes/Gwas/list
+#' \dontrun{
 #' query_epigraphdb(
 #'   route = "/meta/nodes/Gwas/list",
 #'   params = list(
@@ -48,8 +51,10 @@
 #'     offset = 0
 #'   )
 #' ) %>% str(1)
+#' }
 #'
 #' # POST /protein/ppi
+#' \dontrun{
 #' query_epigraphdb(
 #'   route = "/protein/ppi",
 #'   params = list(
@@ -57,8 +62,10 @@
 #'   ),
 #'   method = "POST"
 #' )
+#' }
 #'
 #' # error handling
+#' \dontrun{
 #' tryCatch(
 #'   query_epigraphdb(
 #'     route = "/mr",
@@ -72,15 +79,15 @@
 #'     message(e)
 #'   }
 #' )
+#' }
 #' @export
 query_epigraphdb <- function(route, params = NULL,
                              mode = c("raw", "table"),
                              method = c("GET", "POST"),
-                             retry_times = 5,
-                             retry_pause_min = 4) {
+                             retry_times = 3,
+                             retry_pause_min = 1) {
   mode <- match.arg(mode)
   method <- match.arg(method)
-  # NOTE: Add POST at a later date
   if (method == "GET") {
     method_func <- api_get_request
   } else if (method == "POST") {
@@ -97,13 +104,10 @@ query_epigraphdb <- function(route, params = NULL,
 #'
 #' @param route An EpiGraphDB API endpoint route, e.g. "/mr"
 #' @param params GET request params
-#' @param call The function call to identify the original function
-#' when things go wrong
 #'
 #' @keywords internal
 api_get_request <- function(route, params,
-                            retry_times, retry_pause_min,
-                            call = sys.call(-1)) {
+                            retry_times, retry_pause_min) {
   api_url <- getOption("epigraphdb.api.url") # nolint
   url <- glue::glue("{api_url}{route}")
   is_ci <- getOption("epigraphdb.ci") %>%
@@ -115,7 +119,7 @@ api_get_request <- function(route, params,
     url = url, query = params, config = config,
     times = retry_times, pause_min = retry_pause_min
   )
-  stop_for_status(response, call = sys.call(-1))
+  stop_for_status(response = response, context = list(params = params, url = url))
   response
 }
 
@@ -123,13 +127,10 @@ api_get_request <- function(route, params,
 #'
 #' @param route An EpiGraphDB API endpoint route, e.g. "/mr"
 #' @param params POST request payload
-#' @param call The function call to identify the original function
-#' when things go wrong
 #'
 #' @keywords internal
 api_post_request <- function(route, params,
-                             retry_times, retry_pause_min,
-                             call = sys.call(-1)) {
+                             retry_times, retry_pause_min) {
   api_url <- getOption("epigraphdb.api.url") # nolint
   url <- glue::glue("{api_url}{route}")
   is_ci <- getOption("epigraphdb.ci") %>%
@@ -142,7 +143,7 @@ api_post_request <- function(route, params,
     url = url, body = body, config = config,
     times = retry_times, pause_min = retry_pause_min
   )
-  stop_for_status(response, call = sys.call(-1))
+  stop_for_status(response, context = list(params = params, url = url))
   response
 }
 
@@ -153,20 +154,16 @@ api_post_request <- function(route, params,
 #' @param mode Either `"table"` (returns tibble) or
 #' `"raw"` (returns raw response parsed from json to R list).
 #' @param method A specific request handler, e.g. `epi_get_request`
-#' @param call The function call to identify the original function
-#' when things go wrong
 #'
 #' @keywords internal
 api_request <- function(route, params,
                         mode = c("table", "raw"),
                         method = api_get_request,
-                        retry_times, retry_pause_min,
-                        call = sys.call(-1)) {
+                        retry_times, retry_pause_min) {
   mode <- match.arg(mode)
   response <- do.call(method, args = list(
     route = route, params = params,
-    retry_times = retry_times, retry_pause_min = retry_pause_min,
-    call = call
+    retry_times = retry_times, retry_pause_min = retry_pause_min
   ))
   if (mode == "table") {
     return(flatten_response(response))
@@ -198,35 +195,41 @@ flatten_response <- function(response, field = "results") {
 #' Modifies from httr::stop_for_status
 #'
 #' @param response An httr response
+#' @param context A list on the url and params for the request
 #'
 #' @keywords internal
-stop_for_status <- function(response, call = sys.call(-1)) {
+stop_for_status <- function(response, context) {
   if (httr::status_code(response) < 300) {
     return(invisible(response))
   }
 
-  stop(http_condition(response, call = call))
+  stop(http_condition(response, context))
 }
 
 #' Modified httr::http_condition
 #'
 #' @param response An httr response
-#' @param call The function call
+#' @param context A list on the url and params for the request
 #'
 #' @keywords internal
-http_condition <- function(response, call = sys.call(-1)) {
+http_condition <- function(response, context) {
   status <- httr::status_code(response)
   reason <- httr::http_status(status)$reason
   detail <- paste(
     utils::capture.output(httr::content(response)),
     collapse = "\n"
   )
+  context_str <- paste(
+    utils::capture.output(context),
+    collapse = "\n"
+  )
 
-  message <- sprintf("%s (HTTP %d).\nDetail:\n%s", reason, status, detail)
-
-  status_type <- (status %/% 100) * 100
+  message <- sprintf(
+    "HTTP error: %s (status code %d).\nDetail:\n%s\nContext:\n%s",
+    reason, status, detail, context_str
+  )
 
   structure(
-    list(message = message, call = call)
+    list(message = message)
   )
 }

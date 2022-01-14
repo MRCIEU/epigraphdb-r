@@ -37,5 +37,7 @@ Data from \code{GEET /xqtl/single-snp-mr}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-xqtlsingle-snp-mr}{\code{GET /xqtl/single-snp-mr}}
 }
 \examples{
+\dontrun{
 xqtl_single_snp_mr(outcome_trait = "Coronary heart disease")
+}
 }

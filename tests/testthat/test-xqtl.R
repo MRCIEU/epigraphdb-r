@@ -1,6 +1,7 @@
 context("xqtl")
 
 test_that("/xqtl/multi-snp-mr", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   outcome_trait <- "Coronary heart disease"
   r <- httr::RETRY("GET", glue::glue("{url}/xqtl/multi-snp-mr"),
@@ -14,6 +15,7 @@ test_that("/xqtl/multi-snp-mr", {
 })
 
 test_that("/xqtl/single-snp-mr", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   outcome_trait <- "Coronary heart disease"
   r <- httr::RETRY("GET", glue::glue("{url}/xqtl/single-snp-mr"),
@@ -27,6 +29,7 @@ test_that("/xqtl/single-snp-mr", {
 })
 
 test_that("xqtl_multi_snp_mr", {
+  skip_on_cran()
   outcome_trait <- "Coronary heart disease"
   expect_error(
     xqtl_multi_snp_mr(
@@ -37,6 +40,7 @@ test_that("xqtl_multi_snp_mr", {
 })
 
 test_that("xqtl_single_snp_mr", {
+  skip_on_cran()
   outcome_trait <- "Coronary heart disease"
   expect_error(
     xqtl_single_snp_mr(

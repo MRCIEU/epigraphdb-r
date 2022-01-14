@@ -1,6 +1,7 @@
 context("mr")
 
 test_that("mr endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
@@ -16,6 +17,7 @@ test_that("mr endpoint", {
 })
 
 test_that("mr mode = \"table\"", {
+  skip_on_cran()
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
   expect_error(
@@ -29,6 +31,7 @@ test_that("mr mode = \"table\"", {
 })
 
 test_that("mr mode = \"raw\"", {
+  skip_on_cran()
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
   expect_error(
@@ -43,6 +46,7 @@ test_that("mr mode = \"raw\"", {
 })
 
 test_that("mr parameters", {
+  skip_on_cran()
   exposure <- "Body mass index"
   outcome <- "Coronary heart disease"
   expect_error(
@@ -68,6 +72,7 @@ test_that("mr parameters", {
 })
 
 test_that("mr pval_threshold", {
+  skip_on_cran()
   exposure <- "Body mass index"
   expect_error(
     response <- mr(

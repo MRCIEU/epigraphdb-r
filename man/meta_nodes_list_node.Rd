@@ -36,8 +36,12 @@ Data from \code{GET /meta/nodes/{meta_node}/list}
 }
 \examples{
 # List the first 5 Gwas nodes, with only id and name fields
+\dontrun{
 meta_nodes_list_node(meta_node = "Gwas", full_data = FALSE, limit = 5)
+}
 
 # List the 6th - 10th Disease nodes, with full properties
+\dontrun{
 meta_nodes_list_node(meta_node = "Disease", full_data = TRUE, limit = 5, offset = 0)
+}
 }

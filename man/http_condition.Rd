@@ -4,12 +4,12 @@
 \alias{http_condition}
 \title{Modified httr::http_condition}
 \usage{
-http_condition(response, call = sys.call(-1))
+http_condition(response, context)
 }
 \arguments{
 \item{response}{An httr response}
 
-\item{call}{The function call}
+\item{context}{A list on the url and params for the request}
 }
 \description{
 Modified httr::http_condition

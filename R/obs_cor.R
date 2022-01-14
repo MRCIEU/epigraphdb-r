@@ -9,12 +9,16 @@
 #' @return Data from `GET /obs-cor`
 #'
 #' @examples
+#' \dontrun{
 #' obs_cor(trait = "Body mass index (BMI)") %>%
 #'   dplyr::glimpse()
+#' }
 #'
 #' # Use a different threshold
+#' \dontrun{
 #' obs_cor(trait = "Body mass index (BMI)", cor_coef_threshold = 0.8) %>%
 #'   dplyr::glimpse()
+#' }
 #' @export
 obs_cor <- function(trait, cor_coef_threshold = 0.8, mode = c("table", "raw")) {
   mode <- match.arg(mode)

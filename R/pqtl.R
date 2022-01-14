@@ -30,28 +30,36 @@
 #'
 #' @examples
 #' # Returns a data frame of MR results, while searching for proteins
+#' \dontrun{
 #' pqtl(query = "ADAM19", searchflag = "proteins")
+#' }
 #'
 #' # Returns a data frame with SNP information, while searching for traits
+#' \dontrun{
 #' pqtl(
 #'   query = "Inflammatory bowel disease",
 #'   rtype = "inst",
 #'   searchflag = "traits"
 #' )
+#' }
 #'
 #' # Change a pvalue threshold (the default is 0.05)
+#' \dontrun{
 #' pqtl(
 #'   query = "Inflammatory bowel disease",
 #'   rtype = "inst",
 #'   pvalue = 1.0,
 #'   searchflag = "traits"
 #' )
+#' }
 #'
 #' # Returns raw response if mode="raw"
+#' \dontrun{
 #' pqtl(
 #'   query = "ADAM19", searchflag = "proteins",
 #'   mode = "raw"
 #' ) %>% str()
+#' }
 #' @export
 pqtl <- function(query,
                  rtype = c("mrres", "simple", "sglmr", "inst", "sense"),
@@ -99,10 +107,14 @@ pqtl <- function(query,
 #' @examples
 #'
 #' # Returns a data frame of associated proteins
+#' \dontrun{
 #' pqtl_pleio(rsid = "rs1260326")
+#' }
 #'
 #' # Returns a number of associated proteins
+#' \dontrun{
 #' pqtl_pleio(rsid = "rs1260326", prflag = "count")
+#' }
 pqtl_pleio <- function(rsid = NULL,
                        prflag = c("proteins", "count"),
                        mode = c("table", "raw")) {
@@ -142,10 +154,14 @@ pqtl_pleio <- function(rsid = NULL,
 #' @examples
 #'
 #' # Returns a list of available proteins (exposures)
+#' \dontrun{
 #' pqtl_list()
+#' }
 #'
 #' # Returns a list of available traits (outcomes)
+#' \dontrun{
 #' pqtl_list(flag = "outcomes")
+#' }
 pqtl_list <- function(flag = c("exposures", "outcomes"),
                       mode = c("table", "raw")) {
   mode <- match.arg(mode)

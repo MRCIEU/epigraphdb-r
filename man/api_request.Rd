@@ -10,8 +10,7 @@ api_request(
   mode = c("table", "raw"),
   method = api_get_request,
   retry_times,
-  retry_pause_min,
-  call = sys.call(-1)
+  retry_pause_min
 )
 }
 \arguments{
@@ -23,9 +22,6 @@ api_request(
 \code{"raw"} (returns raw response parsed from json to R list).}
 
 \item{method}{A specific request handler, e.g. \code{epi_get_request}}
-
-\item{call}{The function call to identify the original function
-when things go wrong}
 }
 \description{
 The very general wrapper from EpiGraphDB endpoint request

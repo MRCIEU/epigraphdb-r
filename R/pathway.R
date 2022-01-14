@@ -7,7 +7,9 @@
 #' @return Data from `GET /pathway`
 #'
 #' @examples
+#' \dontrun{
 #' pathway(trait = "Body mass index")
+#' }
 #' @export
 pathway <- function(trait,
                     pval_threshold = 0.00001,

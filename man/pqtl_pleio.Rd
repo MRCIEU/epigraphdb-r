@@ -32,8 +32,12 @@ Data from \verb{GET /pqtl/pleio/}
 \examples{
 
 # Returns a data frame of associated proteins
+\dontrun{
 pqtl_pleio(rsid = "rs1260326")
+}
 
 # Returns a number of associated proteins
+\dontrun{
 pqtl_pleio(rsid = "rs1260326", prflag = "count")
+}
 }

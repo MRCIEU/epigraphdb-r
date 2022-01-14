@@ -13,7 +13,9 @@
 #' @return Data from `GET /confounder`
 #'
 #' @examples
+#' \dontrun{
 #' confounder(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")
+#' }
 #' @export
 confounder <- function(exposure_trait = NULL, outcome_trait = NULL,
                        type = c(

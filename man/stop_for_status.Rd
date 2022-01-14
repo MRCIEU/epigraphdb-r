@@ -4,10 +4,12 @@
 \alias{stop_for_status}
 \title{Catch error for an HTTP response}
 \usage{
-stop_for_status(response, call = sys.call(-1))
+stop_for_status(response, context)
 }
 \arguments{
 \item{response}{An httr response}
+
+\item{context}{A list on the url and params for the request}
 }
 \description{
 Modifies from httr::stop_for_status

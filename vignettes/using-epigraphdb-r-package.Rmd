@@ -7,14 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r setup}
+
+
+```r
 library("epigraphdb")
 ```
 
@@ -39,18 +35,43 @@ endpoint.
 
 ### `mr`
 
-```{r}
+
+```r
 df <- mr(
   exposure_trait = "Body mass index",
   outcome_trait = "Coronary heart disease",
   mode = "table"
 )
 df
+#> # A tibble: 18 × 10
+#>    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#>    <chr>        <chr>           <chr>       <chr>          <dbl>  <dbl>    <dbl>
+#>  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29
+#>  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20
+#>  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15
+#>  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11
+#>  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9
+#>  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9
+#>  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8
+#>  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7
+#>  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7
+#> 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7
+#> 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6
+#> 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6
+#> 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6
+#> 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6
+#> 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6
+#> 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6
+#> 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6
+#> 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6
+#> # … with 3 more variables: mr.method <chr>, mr.selection <chr>,
+#> #   mr.moescore <dbl>
 ```
 
 ### `GET /mr`
 
-```{r}
+
+```r
 df <- query_epigraphdb(
   route = "/mr",
   params = list(
@@ -61,6 +82,29 @@ df <- query_epigraphdb(
 )
 
 df
+#> # A tibble: 18 × 10
+#>    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#>    <chr>        <chr>           <chr>       <chr>          <dbl>  <dbl>    <dbl>
+#>  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29
+#>  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20
+#>  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15
+#>  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11
+#>  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9
+#>  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9
+#>  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8
+#>  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7
+#>  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7
+#> 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7
+#> 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6
+#> 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6
+#> 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6
+#> 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6
+#> 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6
+#> 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6
+#> 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6
+#> 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6
+#> # … with 3 more variables: mr.method <chr>, mr.selection <chr>,
+#> #   mr.moescore <dbl>
 ```
 
 For more information on the API endpoints, please visit:
@@ -80,12 +124,36 @@ json data and contains other information that might benefit users.
 By default, for ease of use, the query returns a data frame which is a
 tidyverse [`tibble`](https://tibble.tidyverse.org/):
 
-```{r}
+
+```r
 df <- mr(
   exposure_trait = "Body mass index",
   outcome_trait = "Coronary heart disease"
 )
 df
+#> # A tibble: 18 × 10
+#>    exposure.id  exposure.trait  outcome.id  outcome.trait   mr.b  mr.se  mr.pval
+#>    <chr>        <chr>           <chr>       <chr>          <dbl>  <dbl>    <dbl>
+#>  1 ieu-a-2      Body mass index ieu-a-7     Coronary hear… 0.464 0.0415 5.46e-29
+#>  2 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.457 0.0410 3.33e-20
+#>  3 ieu-a-974    Body mass index ieu-a-7     Coronary hear… 0.389 0.0493 3.42e-15
+#>  4 ieu-a-835    Body mass index ieu-a-7     Coronary hear… 0.417 0.0492 1.00e-11
+#>  5 ieu-a-974    Body mass index ieu-a-9     Coronary hear… 0.320 0.0536 2.32e- 9
+#>  6 ieu-a-2      Body mass index ieu-a-9     Coronary hear… 0.358 0.0535 5.91e- 9
+#>  7 ieu-a-835    Body mass index ieu-a-9     Coronary hear… 0.397 0.0604 1.79e- 8
+#>  8 ebi-a-GCST0… Body mass index ieu-a-9     Coronary hear… 0.341 0.0590 1.24e- 7
+#>  9 ieu-a-95     Body mass index ieu-a-9     Coronary hear… 0.371 0.0708 1.62e- 7
+#> 10 ebi-a-GCST0… Body mass index ieu-a-6     Coronary hear… 0.493 0.0986 5.88e- 7
+#> 11 ieu-a-785    Body mass index ieu-a-9     Coronary hear… 0.395 0.0609 1.07e- 6
+#> 12 ebi-a-GCST0… Body mass index ebi-a-GCST… Coronary hear… 0.309 0.0648 1.81e- 6
+#> 13 ebi-a-GCST0… Body mass index ieu-a-8     Coronary hear… 0.309 0.0648 1.81e- 6
+#> 14 ebi-a-GCST0… Body mass index ieu-a-7     Coronary hear… 0.275 0.0514 2.76e- 6
+#> 15 ieu-a-95     Body mass index ieu-a-7     Coronary hear… 0.455 0.0971 2.82e- 6
+#> 16 ieu-a-2      Body mass index ieu-a-8     Coronary hear… 0.317 0.0686 3.93e- 6
+#> 17 ieu-a-2      Body mass index ebi-a-GCST… Coronary hear… 0.312 0.0688 5.86e- 6
+#> 18 ieu-a-974    Body mass index ieu-a-8     Coronary hear… 0.328 0.0731 6.97e- 6
+#> # … with 3 more variables: mr.method <chr>, mr.selection <chr>,
+#> #   mr.moescore <dbl>
 ```
 
 ### `mode = "raw"`
@@ -93,13 +161,38 @@ df
 Alternatively, you can use `results_type = "raw"` to get the unformatted
 response from EpiGraphDB API.
 
-```{r}
+
+```r
 response <- mr(
   exposure_trait = "Body mass index",
   outcome_trait = "Coronary heart disease",
   mode = "raw"
 )
 response %>% str(2)
+#> List of 2
+#>  $ metadata:List of 3
+#>   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]->(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__
+#>   ..$ total_seconds: num 0.0207
+#>   ..$ empty_results: logi FALSE
+#>  $ results :List of 18
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
+#>   ..$ :List of 3
 ```
 
 There are several reasons that a `raw` mode might benefit you:

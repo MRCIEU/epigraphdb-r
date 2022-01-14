@@ -27,5 +27,7 @@ Data from \code{GET /meta/rels/{meta_rel}/list}
 }
 \examples{
 # List the first 5 MR relationships
+\dontrun{
 meta_rels_list_rel(meta_rel = "MR_EVE_MR", limit = 5)
+}
 }

@@ -22,5 +22,7 @@ Data from \verb{POST /protein/in-pathway}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#post-proteinin-pathway}{\verb{POST /protein/in-pathway}}
 }
 \examples{
+\dontrun{
 protein_in_pathway(uniprot_id_list = c("014933", "060674", "P32455"))
+}
 }

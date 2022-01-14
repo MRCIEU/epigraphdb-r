@@ -1,6 +1,7 @@
 context("meta")
 
 test_that("GET /meta/nodes/list", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   route <- "/meta/nodes/list"
   r <- httr::RETRY("GET",
@@ -12,6 +13,7 @@ test_that("GET /meta/nodes/list", {
 })
 
 test_that("GET /meta/rels/list", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   route <- "/meta/rels/list"
   r <- httr::RETRY("GET",
@@ -23,6 +25,7 @@ test_that("GET /meta/rels/list", {
 })
 
 test_that("meta_nodes_list", {
+  skip_on_cran()
   expect_error(
     meta_nodes_list(),
     NA
@@ -30,6 +33,7 @@ test_that("meta_nodes_list", {
 })
 
 test_that("meta_rels_list", {
+  skip_on_cran()
   expect_error(
     meta_rels_list(),
     NA
@@ -37,6 +41,7 @@ test_that("meta_rels_list", {
 })
 
 test_that("meta_nodes_list_node", {
+  skip_on_cran()
   meta_node <- "Gwas"
   expect_error(
     meta_nodes_list_node(
@@ -47,6 +52,7 @@ test_that("meta_nodes_list_node", {
 })
 
 test_that("meta_rels_list_rel", {
+  skip_on_cran()
   meta_rel <- "MR_EVE_MR"
   expect_error(
     meta_rels_list_rel(
@@ -57,6 +63,7 @@ test_that("meta_rels_list_rel", {
 })
 
 test_that("meta_nodes_search_node, by id", {
+  skip_on_cran()
   meta_node <- "Gwas"
   id <- "ieu-a-2"
   expect_error(
@@ -69,6 +76,7 @@ test_that("meta_nodes_search_node, by id", {
 })
 
 test_that("meta_nodes_search_node, by name", {
+  skip_on_cran()
   meta_node <- "Gwas"
   name <- "Body mass index"
   expect_error(

@@ -9,6 +9,8 @@ on:
     branches:
       - main
       - master
+  schedule:
+    - cron: '21 4 * * 0'
 
 name: R-CMD-check
 
@@ -70,9 +72,10 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Check
+      - name: R CMD CHECK
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
+          CI: true
         run: |
           options(crayon.enabled = TRUE)
           rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
@@ -84,3 +87,10 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: devtools::run_examples
+        env:
+          CI: true
+        run: |
+          devtools::run_examples(run_dontrun = TRUE)
+        shell: Rscript {0}

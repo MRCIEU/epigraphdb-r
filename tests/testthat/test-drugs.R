@@ -1,6 +1,7 @@
 context("drugs")
 
 test_that("/drugs/risk-factors", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   trait <- "Body mass index"
   r <- httr::RETRY("GET", glue::glue("{url}/drugs/risk-factors"),
@@ -14,6 +15,7 @@ test_that("/drugs/risk-factors", {
 })
 
 test_that("drugs_risk_factors", {
+  skip_on_cran()
   trait <- "Body mass index"
   expect_error(
     drugs_risk_factors(

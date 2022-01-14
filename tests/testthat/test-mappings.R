@@ -1,6 +1,7 @@
 context("protein")
 
 test_that("POST /mappings/gene-to-protein", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   gene_name_list <- c("GCH1", "MYOF")
   params <- list(
@@ -18,6 +19,7 @@ test_that("POST /mappings/gene-to-protein", {
 })
 
 test_that("mappings_gene_to_protein, by gene name", {
+  skip_on_cran()
   gene_name_list <- c("GCH1", "MYOF")
   expect_error(
     df <- mappings_gene_to_protein(
@@ -29,6 +31,7 @@ test_that("mappings_gene_to_protein, by gene name", {
 })
 
 test_that("mappings_gene_to_protein, by gene name, singleton", {
+  skip_on_cran()
   gene_name_list <- c("GCH1")
   expect_error(
     df <- mappings_gene_to_protein(
@@ -40,6 +43,7 @@ test_that("mappings_gene_to_protein, by gene name, singleton", {
 })
 
 test_that("mappings_gene_to_protein, by gene id", {
+  skip_on_cran()
   gene_id_list <- c("ENSG00000162594", "ENSG00000113302")
   expect_error(
     df <- mappings_gene_to_protein(
@@ -52,6 +56,7 @@ test_that("mappings_gene_to_protein, by gene id", {
 })
 
 test_that("mappings_gene_to_protein, by gene id, singleton", {
+  skip_on_cran()
   gene_id_list <- c("ENSG00000162594")
   expect_error(
     df <- mappings_gene_to_protein(
@@ -64,6 +69,7 @@ test_that("mappings_gene_to_protein, by gene id, singleton", {
 })
 
 test_that("mappings_gene_to_protein, error handling", {
+  skip_on_cran()
   gene_id_list <- c("ENSG00000162594")
   expect_error(
     df <- mappings_gene_to_protein(

@@ -9,8 +9,8 @@ query_epigraphdb(
   params = NULL,
   mode = c("raw", "table"),
   method = c("GET", "POST"),
-  retry_times = 5,
-  retry_pause_min = 4
+  retry_times = 3,
+  retry_pause_min = 1
 )
 }
 \arguments{
@@ -51,6 +51,7 @@ returned status.
 \examples{
 # GET /mr
 # equivalent to `mr(exposure_trait = "Body mass index", outcome_trait = "Coronary heart disease")`
+\dontrun{
 query_epigraphdb(
   route = "/mr",
   params = list(
@@ -59,8 +60,10 @@ query_epigraphdb(
   ),
   mode = "table"
 )
+}
 
 # GET /meta/nodes/Gwas/list
+\dontrun{
 query_epigraphdb(
   route = "/meta/nodes/Gwas/list",
   params = list(
@@ -68,8 +71,10 @@ query_epigraphdb(
     offset = 0
   )
 ) \%>\% str(1)
+}
 
 # POST /protein/ppi
+\dontrun{
 query_epigraphdb(
   route = "/protein/ppi",
   params = list(
@@ -77,8 +82,10 @@ query_epigraphdb(
   ),
   method = "POST"
 )
+}
 
 # error handling
+\dontrun{
 tryCatch(
   query_epigraphdb(
     route = "/mr",
@@ -92,4 +99,5 @@ tryCatch(
     message(e)
   }
 )
+}
 }

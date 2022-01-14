@@ -10,7 +10,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' protein_in_pathway(uniprot_id_list = c("014933", "060674", "P32455"))
+#' }
 protein_in_pathway <- function(uniprot_id_list, mode = c("table", "raw")) {
   mode <- match.arg(mode)
   response <- query_epigraphdb(

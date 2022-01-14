@@ -10,9 +10,13 @@
 #' @return Data from `GET /ontology/gwas-efo`
 #'
 #' @examples
+#' \dontrun{
 #' ontology_gwas_efo(trait = "blood", fuzzy = FALSE)
+#' }
 #'
+#' \dontrun{
 #' ontology_gwas_efo(efo_term = "blood pressure", fuzzy = FALSE)
+#' }
 #' @export
 ontology_gwas_efo <- function(trait = NULL, efo_term = NULL, fuzzy = TRUE, mode = c("table", "raw")) {
   mode <- match.arg(mode)

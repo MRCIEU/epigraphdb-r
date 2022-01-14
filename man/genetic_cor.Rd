@@ -24,10 +24,14 @@ Data from \code{GET /genetic_cor}
 \href{https://docs.epigraphdb.org/api/api-endpoints/#get-genetic-cor}{\code{GET /genetic-cor}}
 }
 \examples{
+\dontrun{
 genetic_cor(trait = "Body mass index") \%>\%
   dplyr::glimpse()
+}
 
 # Use a different threshold
+\dontrun{
 genetic_cor(trait = "Body mass index", cor_coef_threshold = 0.4) \%>\%
   dplyr::glimpse()
+}
 }

@@ -1,6 +1,7 @@
 context("ontology")
 
 test_that("ontology endpoint", {
+  skip_on_cran()
   url <- getOption("epigraphdb.api.url")
   efo_term <- "blood pressure"
   r <- httr::RETRY("GET", glue::glue("{url}/ontology/gwas-efo"),
@@ -14,6 +15,7 @@ test_that("ontology endpoint", {
 })
 
 test_that("ontology mode = \"table\"", {
+  skip_on_cran()
   efo_term <- "blood pressure"
   expect_error(
     df <- ontology_gwas_efo(
@@ -25,6 +27,7 @@ test_that("ontology mode = \"table\"", {
 })
 
 test_that("mr mode = \"raw\"", {
+  skip_on_cran()
   efo_term <- "blood pressure"
   expect_error(
     response <- ontology_gwas_efo(
