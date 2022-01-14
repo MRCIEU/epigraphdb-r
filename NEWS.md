@@ -1,4 +1,4 @@
-# epigraphdb 0.2.3 (WIP)
+# epigraphdb 0.2.3 (2022-01-14)
 
 - Error handling logics have been overhauled.
   - Now it is easier to see the context when a request function fails
