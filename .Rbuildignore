@@ -28,3 +28,4 @@
 ^pkg-build$
 ^scripts$
 ^vignettes_src$
+^CRAN-SUBMISSION$
