@@ -94,3 +94,10 @@ jobs:
         run: |
           devtools::run_examples(run_dontrun = TRUE)
         shell: Rscript {0}
+
+      - name: devtools::test
+        env:
+          CI: true
+        run: |
+          devtools::test()
+        shell: Rscript {0}
