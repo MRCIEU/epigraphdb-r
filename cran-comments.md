@@ -1,5 +1,9 @@
 # epigraphdb 0.2.3
 
+(2022-01-14 second submissioin)
+Fixed the issue of the package size too large.
+
+(2022-01-14 first submissioin)
 This is a minor update making the package building and checks more resilient to issues of internet resources.
 
 - When a function call to web service resources fails, either because of the user or the service, it is now easier to trace the issue with more context provided.
