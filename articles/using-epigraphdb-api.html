@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
       </span>
     </div>
 
@@ -73,19 +75,19 @@
       <a href="../articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
     </li>
     <li>
-      <a href="../articles/case-1-pleiotropy.html">Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
-    </li>
-    <li>
-      <a href="../articles/case-2-alt-drug-target.html">Case study 2: Identification of potential drug targets</a>
-    </li>
-    <li>
-      <a href="../articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
-    </li>
-    <li>
       <a href="../articles/using-epigraphdb-api.html">Using API</a>
     </li>
     <li>
       <a href="../articles/options.html">Options</a>
+    </li>
+    <li>
+      <a href="https://docs.epigraphdb.org/r-package/case-1-pleiotropy/" class="external-link">(on EpiGraphDB docs) Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
+    </li>
+    <li>
+      <a href="https://docs.epigraphdb.org/r-package/case-2-alt-drug-target/" class="external-link">(on EpiGraphDB docs) Case study 2: Identification of potential drug targets</a>
+    </li>
+    <li>
+      <a href="https://docs.epigraphdb.org/r-package/case-3-literature-triangulation/" class="external-link">(on EpiGraphDB docs) Case study 3: Triangulating causal estimates with literature evidence</a>
     </li>
   </ul>
 </li>
@@ -95,8 +97,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fas fa-github"></span>
+  <a href="https://github.com/MRCIEU/epigraphdb-r" class="external-link">
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -116,51 +118,47 @@
       <h1 data-toc-skip>Using EpiGraphDB API</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/using-epigraphdb-api.Rmd"><code>vignettes/using-epigraphdb-api.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/HEAD/vignettes/using-epigraphdb-api.Rmd" class="external-link"><code>vignettes/using-epigraphdb-api.Rmd</code></a></small>
       <div class="hidden name"><code>using-epigraphdb-api.Rmd</code></div>
 
     </div>
 
     
     
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>EpiGraphDB as a collated resource offers rich integrative epidemiological evidence for researchers to use, which can be queried from our <a href="https://api.epigraphdb.org">RESTful API service</a>.</p>
-<p>EpiGraphDB <a href="https://epigraphdb.org">web application</a>:</p>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>EpiGraphDB as a collated resource offers rich integrative epidemiological evidence for researchers to use, which can be queried from our <a href="https://api.epigraphdb.org" class="external-link">RESTful API service</a>.</p>
+<p>EpiGraphDB <a href="https://epigraphdb.org" class="external-link">web application</a>:</p>
 <div class="figure">
 <img src="figures/epigraphdb-xqtl-view.png" alt=""><p class="caption">web application</p>
 </div>
-<p>EpiGraphDB <a href="https://api.epigraphdb.org">web API (OpenAPI / swagger interface)</a>:</p>
+<p>EpiGraphDB <a href="https://api.epigraphdb.org" class="external-link">web API (OpenAPI / swagger interface)</a>:</p>
 <div class="figure">
 <img src="figures/epigraphdb-api-swagger.png" alt=""><p class="caption">web API</p>
 </div>
 <p>The R package is designed to give users quick access to some of the key resources, but not as a comprehensive replacement of the web API. At the moment EpiGraphDB is still under fast and active development with frequent addition of new API endpoints that might not have corresponding functions available in the R package.</p>
 <p>In this tutorial we will discuss two alternative methods to get data from the EpiGraphDB web API – using <code>httr</code> in R and using <code>curl</code> in the command line.</p>
 </div>
-<div id="using-httr" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-httr" class="anchor"></a>Using <code>httr</code>
+<div class="section level2">
+<h2 id="using-httr">Using <code>httr</code><a class="anchor" aria-label="anchor" href="#using-httr"></a>
 </h2>
-<p>Here are some examples of querying EpiGraphDB web API using <a href="https://httr.r-lib.org/reference/index.html">httr</a>:</p>
+<p>Here are some examples of querying EpiGraphDB web API using <a href="https://httr.r-lib.org/reference/index.html" class="external-link">httr</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     EpiGraphDB v1.0 (API: https://api.epigraphdb.org)</span>
-<span class="co">#&gt; </span>
-<span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
-<span class="va">payload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/" class="external-link">"epigraphdb"</a></span><span class="op">)</span>
+<span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
+<span class="va">payload</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
   exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>
 <span class="op">)</span>
-<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/RETRY.html">RETRY</a></span><span class="op">(</span><span class="st">"GET"</span>, <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html">glue</a></span><span class="op">(</span><span class="st">"{url}/mr"</span><span class="op">)</span>, query <span class="op">=</span> <span class="va">payload</span><span class="op">)</span>
-<span class="va">r</span> <span class="op">%&gt;%</span>
-  <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"parsed"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/RETRY.html" class="external-link">RETRY</a></span><span class="op">(</span><span class="st">"GET"</span>, <span class="fu">glue</span><span class="fu">::</span><span class="fu"><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue</a></span><span class="op">(</span><span class="st">"{url}/mr"</span><span class="op">)</span>, query <span class="op">=</span> <span class="va">payload</span><span class="op">)</span>
+<span class="va">r</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span>as <span class="op">=</span> <span class="st">"parsed"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.03</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0306</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 18</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -187,12 +185,12 @@
   exposure_trait <span class="op">=</span> <span class="st">"Body mass index"</span>,
   outcome_trait <span class="op">=</span> <span class="st">"Coronary heart disease"</span>,
   mode <span class="op">=</span> <span class="st">"raw"</span>
-<span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
+<span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt; List of 2</span>
 <span class="co">#&gt;  $ metadata:List of 3</span>
 <span class="co">#&gt;   ..$ query        : chr "MATCH (exposure:Gwas)-[mr:MR_EVE_MR]-&gt;(outcome:Gwas) WHERE exposure.trait = \"Body mass index\" AND outcome.tra"| __truncated__</span>
-<span class="co">#&gt;   ..$ total_seconds: num 0.0298</span>
+<span class="co">#&gt;   ..$ total_seconds: num 0.0234</span>
 <span class="co">#&gt;   ..$ empty_results: logi FALSE</span>
 <span class="co">#&gt;  $ results :List of 18</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
@@ -213,13 +211,12 @@
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span>
 <span class="co">#&gt;   ..$ :List of 3</span></code></pre></div>
-<p>In fact, currently the <code><a href="../reference/mr.html">epigraphdb::mr</a></code> function is a <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R">wrapper</a> of <code>httr::get</code>. Please consult with <a href="https://httr.r-lib.org/index.html"><code>httr</code> documentation</a> for details of usage.</p>
+<p>In fact, currently the <code><a href="../reference/mr.html">epigraphdb::mr</a></code> function is a <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/R/mr.R" class="external-link">wrapper</a> of <code>httr::get</code>. Please consult with <a href="https://httr.r-lib.org/index.html" class="external-link"><code>httr</code> documentation</a> for details of usage.</p>
 </div>
-<div id="using-curl" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-curl" class="anchor"></a>Using <code>curl</code>
+<div class="section level2">
+<h2 id="using-curl">Using <code>curl</code><a class="anchor" aria-label="anchor" href="#using-curl"></a>
 </h2>
-<p>Here is an example in using <code>curl</code> to get data and using <a href="https://stedolan.github.io/jq/"><code>jq</code></a> for post processing the returned json data:</p>
+<p>Here is an example in using <code>curl</code> to get data and using <a href="https://stedolan.github.io/jq/" class="external-link"><code>jq</code></a> for post processing the returned json data:</p>
 <pre class="shell"><code>curl -X 'GET' 'https://api.epigraphdb.org/mr?exposure=Body+mass+index&amp;outcome=Coronary+heart+disease' | jq</code></pre>
 <p>The returned data will look like this:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">{</span></span>
@@ -312,16 +309,16 @@
 <span id="cb4-88"><a href="#cb4-88"></a>  <span class="ot">]</span></span>
 <span id="cb4-89"><a href="#cb4-89"></a><span class="fu">}</span></span></code></pre></div>
 </div>
-<div id="other-methods" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other-methods" class="anchor"></a>Other methods</h2>
+<div class="section level2">
+<h2 id="other-methods">Other methods<a class="anchor" aria-label="anchor" href="#other-methods"></a>
+</h2>
 <p>Alternatively, you can use other commonly used tools to query the web API:</p>
 <ul>
-<li><a href="https://github.com/httpie/httpie">command line: httpie</a></li>
-<li><a href="https://realpython.com/python-requests/">python: requests</a></li>
-<li><a href="https://www.guru99.com/postman-tutorial.html">GUI client: postman</a></li>
+<li><a href="https://github.com/httpie/httpie" class="external-link">command line: httpie</a></li>
+<li><a href="https://realpython.com/python-requests/" class="external-link">python: requests</a></li>
+<li><a href="https://www.guru99.com/postman-tutorial.html" class="external-link">GUI client: postman</a></li>
 </ul>
-<p>For details of the EpiGraphDB RESTful API and related services, please visit our <a href="https://docs.epigraphdb.org">documentation site</a>.</p>
+<p>For details of the EpiGraphDB RESTful API and related services, please visit our <a href="https://docs.epigraphdb.org" class="external-link">documentation site</a>.</p>
 </div>
   </div>
 
@@ -336,11 +333,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://yiliu6240.github.io" class="external-link">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com" class="external-link">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/" class="external-link">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -348,6 +347,8 @@
 
   
 
+
+  
 
   </body>
 </html>

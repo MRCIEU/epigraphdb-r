@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">epigraphdb</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.3</span>
       </span>
     </div>
 
@@ -73,19 +75,19 @@
       <a href="../articles/meta-functionalities.html">Meta functionalities of the EpiGraphDB platform</a>
     </li>
     <li>
-      <a href="../articles/case-1-pleiotropy.html">Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
-    </li>
-    <li>
-      <a href="../articles/case-2-alt-drug-target.html">Case study 2: Identification of potential drug targets</a>
-    </li>
-    <li>
-      <a href="../articles/case-3-literature-triangulation.html">Case study 3: Triangulating causal estimates with literature evidence</a>
-    </li>
-    <li>
       <a href="../articles/using-epigraphdb-api.html">Using API</a>
     </li>
     <li>
       <a href="../articles/options.html">Options</a>
+    </li>
+    <li>
+      <a href="https://docs.epigraphdb.org/r-package/case-1-pleiotropy/" class="external-link">(on EpiGraphDB docs) Case study 1: Distinguishing vertical and horizontal pleiotropy for SNP-protein associations</a>
+    </li>
+    <li>
+      <a href="https://docs.epigraphdb.org/r-package/case-2-alt-drug-target/" class="external-link">(on EpiGraphDB docs) Case study 2: Identification of potential drug targets</a>
+    </li>
+    <li>
+      <a href="https://docs.epigraphdb.org/r-package/case-3-literature-triangulation/" class="external-link">(on EpiGraphDB docs) Case study 3: Triangulating causal estimates with literature evidence</a>
     </li>
   </ul>
 </li>
@@ -95,8 +97,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/MRCIEU/epigraphdb-r">
-    <span class="fas fa-github"></span>
+  <a href="https://github.com/MRCIEU/epigraphdb-r" class="external-link">
+    <span class="fa fa-github"></span>
      
   </a>
 </li>
@@ -116,21 +118,21 @@
       <h1 data-toc-skip>Options</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/master/vignettes/options.Rmd"><code>vignettes/options.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/MRCIEU/epigraphdb-r/blob/HEAD/vignettes/options.Rmd" class="external-link"><code>vignettes/options.Rmd</code></a></small>
       <div class="hidden name"><code>options.Rmd</code></div>
 
     </div>
 
     
     
-<div id="change-the-api-url" class="section level2">
-<h2 class="hasAnchor">
-<a href="#change-the-api-url" class="anchor"></a>Change the API URL</h2>
+<div class="section level2">
+<h2 id="change-the-api-url">Change the API URL<a class="anchor" aria-label="anchor" href="#change-the-api-url"></a>
+</h2>
 <p>EpiGraphDB currently offers two API URLs</p>
 <ul>
-<li>production (default): <a href="https://api.epigraphdb.org" class="uri">https://api.epigraphdb.org</a>
+<li>production (default): <a href="https://api.epigraphdb.org" class="external-link uri">https://api.epigraphdb.org</a>
 </li>
-<li>development: <a href="http://dev-api.epigraphdb.org" class="uri">http://dev-api.epigraphdb.org</a>
+<li>development: <a href="http://dev-api.epigraphdb.org" class="external-link uri">http://dev-api.epigraphdb.org</a>
 </li>
 </ul>
 <p>To switch to the development API, do</p>
@@ -138,19 +140,19 @@
 <code class="sourceCode R"><span class="co"># Get default option</span>
 <span class="va">default_api_url</span> <span class="op">&lt;-</span> <span class="fu">getOptions</span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
 <span class="co"># Change to the development API</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>epigraphdb.api.url <span class="op">=</span> <span class="st">"http://dev-api.epigraphdb.org"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>epigraphdb.api.url <span class="op">=</span> <span class="st">"http://dev-api.epigraphdb.org"</span><span class="op">)</span>
 <span class="co"># Verify current URL</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"epigraphdb.api.url"</span><span class="op">)</span>
 <span class="co"># Switch back</span>
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>epigraphdb.api.url <span class="op">=</span> <span class="va">default_api_url</span><span class="op">)</span></code></pre></div>
-<p>NOTE: you can make this change persistent by placing the changes in <a href="https://www.statmethods.net/interface/customizing.html"><code>.Rprofile</code></a>.</p>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>epigraphdb.api.url <span class="op">=</span> <span class="va">default_api_url</span><span class="op">)</span></code></pre></div>
+<p>NOTE: you can make this change persistent by placing the changes in <a href="https://www.statmethods.net/interface/customizing.html" class="external-link"><code>.Rprofile</code></a>.</p>
 </div>
-<div id="suppress-start-up-message" class="section level2">
-<h2 class="hasAnchor">
-<a href="#suppress-start-up-message" class="anchor"></a>Suppress start up message</h2>
+<div class="section level2">
+<h2 id="suppress-start-up-message">Suppress start up message<a class="anchor" aria-label="anchor" href="#suppress-start-up-message"></a>
+</h2>
 <p>If you would like to turn off the start up message that displays the current version of EpiGraphDB service, use the following code to load the package:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/">"epigraphdb"</a></span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressPackageStartupMessages</a></span><span class="op">(</span><span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://mrcieu.github.io/epigraphdb-r/" class="external-link">"epigraphdb"</a></span><span class="op">)</span><span class="op">}</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 
@@ -165,11 +167,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://yiliu6240.github.io">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/">Tom Gaunt</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://yiliu6240.github.io" class="external-link">Yi Liu</a>, Valeriia Haberland, <a href="https://marinalearning.netlify.com" class="external-link">Marina Vabistsevits</a>, <a href="http://www.biocompute.org.uk/" class="external-link">Tom Gaunt</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -177,6 +181,8 @@
 
   
 
+
+  
 
   </body>
 </html>
