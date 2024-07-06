@@ -1,3 +1,7 @@
+# epigraphdb 0.2.4
+
+* Remove some non-runtime dependencies from the Imports and Suggests lists.
+
 # epigraphdb 0.2.3 (2022-01-14)
 
 - Error handling logics have been overhauled.

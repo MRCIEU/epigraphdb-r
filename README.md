@@ -42,8 +42,8 @@ To install the latest development version from github (
 [`devtools`](https://devtools.r-lib.org/) is required
 ):
 ```r
-# install.packages("devtools")
-devtools::install_github("MRCIEU/epigraphdb-r")
+# install.packages("remotes")
+remotes::install_github("MRCIEU/epigraphdb-r")
 ```
 
 To install a stable version from CRAN:

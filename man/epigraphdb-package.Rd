@@ -6,7 +6,7 @@
 \alias{epigraphdb-package}
 \title{epigraphdb: Interface Package for the 'EpiGraphDB' Platform}
 \description{
-The interface package to access data from the 'EpiGraphDB' <https://epigraphdb.org> platform. It provides easy access to the 'EpiGraphDB' platform with functions that query the corresponding REST endpoints on the API <https://api.epigraphdb.org> and return the response data in the 'tibble' data frame format.
+The interface package to access data from the 'EpiGraphDB' \url{https://epigraphdb.org} platform. It provides easy access to the 'EpiGraphDB' platform with functions that query the corresponding REST endpoints on the API \url{https://api.epigraphdb.org} and return the response data in the 'tibble' data frame format.
 }
 \seealso{
 Useful links:
